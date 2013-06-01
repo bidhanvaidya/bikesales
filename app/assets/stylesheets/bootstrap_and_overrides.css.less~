@@ -1,6 +1,6 @@
 @import "twitter/bootstrap/bootstrap";
 body { 
-	padding-top: 80px;
+	padding-top: 60px;
 	padding-left: 20px;
 }
 
@@ -36,14 +36,11 @@ body {
 margin-left: 0px;
 }.row-fluid {
 width: 80%;
-margin-left: 10%;
+margin-left: 10ss%;
 }
 .ad_title {
-background: grey;
+background: #2828C2;
 border-radius: 5px;
-margin-bottom: 15px;
-padding-left: 5px;
-
 }
 #title {
 color: white;
@@ -84,35 +81,4 @@ border-radius: 15px;
 right: -48%;
 position: relative;
 }
-.bike_details {
-background: black;
-color: white;
-border-radius: 5px;
-padding: 5px;
-margin: 5px;
-font-weight: bold;
-}
-.result {
-border: solid 1px black;
-border-radius: 7px;
-}
 
-//Background image gradient
-body {
-background: #fdfdfe url(bg-body.png) left top repeat-x;
-}
-
-//Top navbar height
-@navbarHeight: 63px;
-
-//Bottom navbar height
-.navbar-fixed-bottom {
-bottom: 0;
-height: 31px;
-}
-
-//Brand-footer properties
-.brand-footer {
-color: white;
-font-weight: bold;
-}

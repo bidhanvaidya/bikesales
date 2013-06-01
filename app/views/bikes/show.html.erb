@@ -3,44 +3,57 @@
   <h1><%=t '.title', :default => model_class.model_name.human %></h1>
 </div>
 
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:_type) %>:</strong></dt>
-  <dd><%= @bike._type %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:_id) %>:</strong></dt>
-  <dd><%= @bike._id %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:year) %>:</strong></dt>
-  <dd><%= @bike.year %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:make) %>:</strong></dt>
-  <dd><%= @bike.make %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:model) %>:</strong></dt>
-  <dd><%= @bike.model %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:variant) %>:</strong></dt>
-  <dd><%= @bike.variant %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:price) %>:</strong></dt>
-  <dd><%= @bike.price %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:odometer) %>:</strong></dt>
-  <dd><%= @bike.odometer %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:body) %>:</strong></dt>
-  <dd><%= @bike.body %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:type) %>:</strong></dt>
-  <dd><%= @bike.type %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:color) %>:</strong></dt>
-  <dd><%= @bike.color %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:engine_capacity) %>:</strong></dt>
-  <dd><%= @bike.engine_capacity %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:rego_no) %>:</strong></dt>
-  <dd><%= @bike.rego_no %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:reg_expiry) %>:</strong></dt>
-  <dd><%= @bike.reg_expiry %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:vin_no) %>:</strong></dt>
-  <dd><%= @bike.vin_no %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:address) %>:</strong></dt>
-  <dd><%= @bike.address %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:phone) %>:</strong></dt>
-  <dd><%= @bike.phone %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:comment) %>:</strong></dt>
-  <dd><%= @bike.comment %></dd>
-</dl>
+<div class = "row">
+  <div class = "span3">
+
+  </div>
+
+  <div class = "span6">
+    
+    <div class = "result">
+    <div class = "bike_details">
+      Bike Details
+    </div>
+
+      <table class= "table"><tr>
+
+        <td>Bike:<td> 
+          <td><%=@bike.model%></td>
+        </tr>
+        <tr>
+
+        <td>Make:<td> 
+          <td><%=@bike.make%></td>
+        </tr>
+        <tr>
+
+
+        <td>Type:<td> 
+          <td><%=@bike.type%></td>
+        </tr>
+        <tr>
+
+        <td>Price:<td> 
+          <td><%=@bike.price%></td>
+        </tr>
+        <tr>
+
+        <td>Variant:<td> 
+          <td><%=@bike.variant%></td>
+        </tr>
+        <tr>
+
+        <td>Year:<td> 
+          <td><%=@bike.year%></td>
+        </tr>
+        <tr>
+
+      </table>
+  </div>
+  </div>
+
+  <div class = "span3"></div>
+</div>
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
