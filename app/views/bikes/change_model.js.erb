@@ -1,0 +1,10 @@
+var option = $('<option></option>').attr("value", "").text("Select Model");
+$("select#bike_model").append(option);
+ 	console.log("test");
+<%@bikes.each do |model|%>
+
+var option = $('<option></option>').attr("value", "<%=model%>").text("<%=model%>");
+$("select#bike_model").append(option);
+ 	console.log("test");
+ <%end%>
+  

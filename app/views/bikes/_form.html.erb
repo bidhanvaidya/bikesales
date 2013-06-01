@@ -1,0 +1,142 @@
+
+
+<%= form_for @bike, :html => { :class => 'form-horizontal' } do |f| %>
+  
+
+  <div class="control-group">
+    <%= f.label :year, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :year, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :make, :class => 'control-label' %>
+    <div class="controls">
+       <%= f.select :make, BikeSpec.all.distinct(:make), as: :select,:prompt => 'Select Make'%>
+      
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :model, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :model, BikeSpec.all.distinct(:model), as: :select,:prompt => 'Select model' %>
+    
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :variant, :class => 'control-label' %>
+    <div class="controls">
+     <%= f.select :variant, BikeSpec.all.distinct(:variant), as: :select,:prompt => 'Select variant'%>
+    
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :price, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :price, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :odometer, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :odometer, :class => 'text_field' %>
+    </div>
+  </div>
+  
+  <div class="control-group">
+    <%= f.label :type, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :type, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :color, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :color, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :engine_capacity, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :engine_capacity, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :rego_no, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :rego_no, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :reg_expiry, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :reg_expiry, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :vin_no, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :vin_no, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :address, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :address, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :phone, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :phone, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :comment, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :comment, :class => 'text_field' %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                bikes_path, :class => 'btn' %>
+  </div>
+<% end %>
+<div id= "test">
+hel</div>
+<script type="text/javascript">
+$('select#bike_make').change(function() {
+
+  $("select#bike_model").empty();
+  
+  $("select#bike_make option:selected").each(function () {
+            console.log($(this).text());
+            str = $(this).text();
+  });
+  $.ajax({
+                url: "<%=change_model_bikes_path%>",
+               
+                
+                data: {make:str },
+                 success:"True",
+             });
+});
+$('select#bike_model').change(function() {
+
+  
+  $("select#bike_model option:selected").each(function () {
+            console.log($(this).text());
+            str = $(this).text();
+  });
+  $.ajax({
+                url: "<%=change_variant_bikes_path%>",
+               
+                
+                data: {model:str },
+                 success:"True",
+             });
+});
+
+</script>

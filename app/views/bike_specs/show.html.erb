@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Make:</b>
+  <%= @bike_spec.make %>
+</p>
+
+<p>
+  <b>Model:</b>
+  <%= @bike_spec.model %>
+</p>
+
+<p>
+  <b>Body:</b>
+  <%= @bike_spec.body %>
+</p>
+
+<p>
+  <b>Variant:</b>
+  <%= @bike_spec.variant %>
+</p>
+
+
+<%= link_to 'Edit', edit_bike_spec_path(@bike_spec) %> |
+<%= link_to 'Back', bike_specs_path %>

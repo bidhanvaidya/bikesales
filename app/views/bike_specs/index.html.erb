@@ -1,0 +1,29 @@
+<h1>Listing bike_specs</h1>
+
+<table>
+  <tr>
+    <th>Make</th>
+    <th>Model</th>
+    <th>Body</th>
+    <th>Variant</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @bike_specs.each do |bike_spec| %>
+  <tr>
+    <td><%= bike_spec.make %></td>
+    <td><%= bike_spec.model %></td>
+    <td><%= bike_spec.body %></td>
+    <td><%= bike_spec.variant %></td>
+    <td><%= link_to 'Show', bike_spec %></td>
+    <td><%= link_to 'Edit', edit_bike_spec_path(bike_spec) %></td>
+    <td><%= link_to 'Destroy', bike_spec, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Bike spec', new_bike_spec_path %>

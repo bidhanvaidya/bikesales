@@ -1,0 +1,10 @@
+
+  $("select#bike_variant").empty();
+  
+<% @bikes.each do |variant|%>
+console.log("<%=variant%>");
+var options = $('<option></option>').attr("value", "<%=variant%>").text("<%=variant%>");
+$("select#bike_variant").append(options);
+ 	
+ <%end%>
+ 
