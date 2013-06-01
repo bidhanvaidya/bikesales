@@ -9,6 +9,14 @@
   </div>
 
   <div class = "span6">
+    <div class = "picture">
+      <%= image_tag "big2.png", id: "bike_picture" %>
+    </div>
+    <ul class = "image_list">
+
+   <li><%= image_tag "test.png", id: "test" %></li>
+  <li><%= image_tag "2test.png", id: "2test" %></li>
+    </ul>
     
     <div class = "result">
     <div class = "bike_details">
@@ -66,3 +74,20 @@
               :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
               :class => 'btn btn-danger' %>
 </div>
+<script type="text/javascript">
+$('li').hover(function() {
+
+  console.log("test")
+  var img;
+  img= $(':first-child', this).attr("id");
+
+  $.ajax({
+                url: "<%=change_picture_bikes_path%>",
+               
+                
+                data: {path: img },
+                 success:"True",
+             });
+});
+
+</script>

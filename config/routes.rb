@@ -9,6 +9,7 @@ Bikesales::Application.routes.draw do
     get "change_model"
     get "change_variant"
     get "color"
+    get "change_picture"
   end
 end
 root to: "bikes#index"

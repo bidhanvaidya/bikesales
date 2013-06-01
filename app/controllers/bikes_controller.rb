@@ -142,4 +142,13 @@ class BikesController < ApplicationController
     format.js
   end
   end
+  def change_picture
+    path= params[:path] + "1.png"
+    @picture_path = view_context.image_path(path)
+  respond_to do |format|
+    print view_context.image_path("test.png")
+    format.js
+  end
+    
+  end
 end
