@@ -1,0 +1,70 @@
+<div class = "results">
+    <div class = "header">
+        <%= pluralize(@bikes.count, 'Match')%>
+
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th>AD</th>
+      
+      
+    </tr>
+  </thead>
+  <tbody>
+    <% @bikes.each do |bike| %>
+    
+      <tr>
+        <td>
+        
+        
+      <div class= "search_result_div">
+        <a href="<%= bike_path(bike) %>">
+<div class="row">
+   
+  <div class= "span5"> 
+    <%=image_tag "test1.png"%>
+  </div> <!-- span5 Image of the searched bike --> 
+  <div class= "span7">
+   
+      <table class= "result_table">
+        <tr>
+          <td>
+            <b> <%= bike.year %>  <%= bike.make %>  <%= bike.model %>  <%= bike.variant %></b>
+          </td>
+          <td>
+            <h3><%= number_to_currency(bike.price,:unit => "Rs ",:precision => 0) %></h3>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <ul>
+              <li>
+                <%= bike.odometer %>  
+              </li>
+              <li>
+                <%= bike.body %> 
+              </li>
+              <li>
+                <%= bike.address %>
+              </li>
+            </ul> 
+          <td>
+            
+            <%= link_to 'View bike',
+                        bike_path(bike), :class => 'btn btn-inverse' %>
+          </td>
+        </tr>
+      </table>
+  
+  </div> <!-- span7 Summary of the searched bike --> 
+    </div>
+          </a>
+ 
+    </div>  </td>
+     </tr>
+ 
+    <% end %>
+  </tbody>
+</table>
+</div><!--div results -->

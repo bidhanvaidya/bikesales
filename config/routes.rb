@@ -1,18 +1,19 @@
 Bikesales::Application.routes.draw do
  
 
-  resources :bike_specs
+  resources :bike_specs # Specification of bikes
 
 
-  resources :bikes do
+  resources :bikes do # Advertisement of bikes
     collection do
-    get "change_model"
-    get "change_variant"
-    get "color"
-    get "change_picture"
+    get "change_model" # Changes the model after make input
+    get "change_variant" # Changes the variant after model input
+    get "change_picture" # Chnages the bike picture on mouse hover
+    get "search_page" # Outputs the search result of the bikes
+    get "main_page" #Home page of the website
   end
 end
-root to: "bikes#index"
+root to: "bikes#index" #Home page
 devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   # The priority is based upon order of creation:

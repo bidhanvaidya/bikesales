@@ -149,6 +149,65 @@ class BikesController < ApplicationController
     print view_context.image_path("test.png")
     format.js
   end
+
+  end
+
+  def search_page
+    @bikes = Bike.all
+
+    b= Bike.full_text_search(params[:search]).size
+    print b
+    @type_selection = params[:type]
+    @make_selection = params[:make]
+    @model_selection = params[:model]
+    @color_selection = params[:color]
+    @body_selection =  params[:body]
+    @bikes=@bikes.where(type: @type_selection ) if !@type_selection.nil?
+    @bikes=@bikes.make(@make_selection) if !@make_selection.nil?
+    @bikes=@bikes.where(model: @model_selection) if !@model_selection.nil?
+
+    @bikes=@bikes.where(color: @color_selection) if !@color_selection.nil?
+    if @body_selection == "Sports"
+      @bikes= @bikes.where(body: "sports")
+    end
+  if params[:sort] == "price" and params[:direction] == "asc" 
+    @bikes = @bikes.asc(:price)
+  elsif params[:sort].nil?
+    
+    @bikes= @bikes.desc(:price)
+  elsif params[:sort] == "price" and params[:direction] == "desc"
+    @bikes= @bikes.desc(:price)
     
   end
+  if params[:sort] == "year" and params[:direction] == "asc" 
+    @bikes = @bikes.asc(:year)
+  elsif params[:sort] == "year" and params[:direction] == "desc"
+    @bikes= @bikes.desc(:year)
+    
+  end
+  @types= @bikes.distinct(:type)
+  @models= @bikes.distinct(:model)
+
+  @makes= @bikes.distinct(:make)
+  @colors= @bikes.distinct(:color)
+  
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @bikes }
+    end
+
+
+  end
+  def main_page
+    @bikes = Bike.all
+
+ 
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @bikes }
+    end
+
+    
+  end
+
 end
