@@ -28,7 +28,10 @@ class Bike
      def self.model(model)
     where(model: model)
   end
-     def self.type(type)
+     def self.type_selection(type)
     where(type: type)
+  end
+  def self.type(color)
+    where(color: color)
   end
 end

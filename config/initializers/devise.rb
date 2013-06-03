@@ -15,7 +15,8 @@ Devise.setup do |config|
   # available as additional gems.
   require 'devise/orm/mongoid'
   require "omniauth-facebook"
-  config.omniauth :facebook, "  637463949617048", "2d97b3a37a475fe8ee23efe5f072ca77"
+  config.omniauth :facebook, "  637463949617048", "2d97b3a37a475fe8ee23efe5f072ca77",
+                  :scope => 'email,publish_actions', :display => 'popup'
   OmniAuth.config.allowed_request_methods = [:post, :get]
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating a user. The default is

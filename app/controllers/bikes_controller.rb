@@ -20,7 +20,7 @@ class BikesController < ApplicationController
 
     @bikes=@bikes.where(color: @color_selection) if !@color_selection.nil?
     if @body_selection == "Sports"
-      @bikes= @bikes.where(body: "sports")
+      @bikes= @bikes.where(body: "Sports")
     end
   if params[:sort] == "price" and params[:direction] == "asc" 
     @bikes = @bikes.asc(:price)
@@ -42,6 +42,7 @@ class BikesController < ApplicationController
 
   @makes= @bikes.distinct(:make)
   @colors= @bikes.distinct(:color)
+
   
     respond_to do |format|
       format.html # index.html.erb
@@ -53,7 +54,51 @@ class BikesController < ApplicationController
   # GET /bikes/1.json
   def show
     @bike = Bike.find(params[:id])
+    @bikes= Bike.all
+    @type_selection = params[:type]
+    @make_selection = params[:make]
+    @model_selection = params[:model]
+    @color_selection = params[:color]
+    @body_selection =  params[:body]
+    @bikes=@bikes.where(type: @type_selection ) if !@type_selection.nil?
+    @bikes=@bikes.make(@make_selection) if !@make_selection.nil?
+    @bikes=@bikes.where(model: @model_selection) if !@model_selection.nil?
 
+    @bikes=@bikes.where(color: @color_selection) if !@color_selection.nil?
+    if @body_selection == "Sports"
+      @bikes= @bikes.where(body: "Sports")
+    end
+  if params[:sort] == "price" and params[:direction] == "asc" 
+    @bikes = @bikes.asc(:price)
+  elsif params[:sort].nil?
+    
+    @bikes= @bikes.desc(:price)
+  elsif params[:sort] == "price" and params[:direction] == "desc"
+    @bikes= @bikes.desc(:price)
+    
+  end
+  if params[:sort] == "year" and params[:direction] == "asc" 
+    @bikes = @bikes.asc(:year)
+  elsif params[:sort] == "year" and params[:direction] == "desc"
+    @bikes= @bikes.desc(:year)
+    
+  end
+    found = false
+    @previous_bike = @bikes.first
+  @bikes.each do |search_bike|
+    if found == false
+      if search_bike.id == @bike.id
+        
+        found=true
+      else
+        @previous_bike = search_bike
+      end
+    else
+        @next_bike= search_bike
+        break
+      
+    end
+  end
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @bike }
@@ -84,8 +129,21 @@ class BikesController < ApplicationController
     @bike.bike_spec_id = bike_spec.id
     @bike.body = bike_spec.body
     @bike.user_id = current_user.id
+    
+
     respond_to do |format|
       if @bike.save
+        if current_user.provider == 'facebook'
+        @user = FbGraph::User.me(current_user.facebook_token).fetch
+
+        link= 'http://localhost:3000/bikes/'+@bike.id+ '.html'
+        @user.feed!(
+        :message => 'I am selling my byke',
+        :picture => 'http://liveimages.bikesales.com.au/bikesales/general/content/gc4943126384701195668.jpg',
+        :link => link,
+        :name => 'BikeSales',
+        :description =>  @bike.comment  )
+      end
         format.html { redirect_to @bike, notice: 'Bike was successfully created.' }
         format.json { render json: @bike, status: :created, location: @bike }
       else
@@ -107,6 +165,17 @@ class BikesController < ApplicationController
 
     respond_to do |format|
       if @bike.update_attributes(params[:bike])
+        if current_user.provider == 'facebook'
+          @user = FbGraph::User.me(current_user.facebook_token).fetch
+
+          link= 'http://localhost:3000/bikes/'+@bike.id+ '.html'
+          @user.feed!(
+          :message => 'I am selling my byke',
+          :picture => 'http://liveimages.bikesales.com.au/bikesales/general/content/gc4943126384701195668.jpg',
+          :link => link,
+          :name => 'BikeSales',
+          :description =>  @bike.comment  )
+        end
         format.html { redirect_to @bike, notice: 'Bike was successfully updated.' }
         format.json { head :no_content }
       else
@@ -207,6 +276,9 @@ class BikesController < ApplicationController
       format.json { render json: @bikes }
     end
 
+    
+  end
+  def facebook_post
     
   end
 

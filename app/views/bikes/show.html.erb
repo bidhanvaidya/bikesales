@@ -5,10 +5,13 @@
 
 <div class = "row">
   <div class = "span3">
-
+    <%=render "current_selection"%>
   </div>
 
   <div class = "span6">
+    <%= link_to "Previous", bike_path(@previous_bike, sort: params[:sort], :direction => params[:direction], body: params[:body], make: params[:make], model: params[:model], color: params[:color],type: params[:type]), class:"btn btn-primary" if @previous_bike!= @bike%>
+    <%= link_to "Next", bike_path(@next_bike, sort: params[:sort], :direction => params[:direction], body: params[:body], make: params[:make], model: params[:model], color:params[:color],type: params[:type]), class:"btn btn-primary" if !@next_bike.nil?%>
+  
     <div class = "picture">
       <%= image_tag "big2.png", id: "bike_picture" %>
     </div>
@@ -73,6 +76,7 @@
               :method => 'delete',
               :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
               :class => 'btn btn-danger' %>
+  
 </div>
 <script type="text/javascript">
 $('li').hover(function() {
