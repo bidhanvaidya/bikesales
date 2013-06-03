@@ -1,7 +1,7 @@
 class BikesController < ApplicationController
   # GET /bikes
   # GET /bikes.json
-   before_filter :authenticate_user!, :only => [:edit, :update, :destroy]
+   before_filter :authenticate_user!, :only => [:new, :create,:edit, :update, :destroy]
 
   def index
     
