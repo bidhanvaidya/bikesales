@@ -18,7 +18,10 @@
 <div class="span9">    
 <div class = "bikes">
 	Your Ads
+	<div class = "results">
 <%=render "bikes/search_bikes"%>
+<%= will_paginate @bikees %>
+</div>
 </div>
 </div>
 </div>

@@ -32,6 +32,9 @@ gem 'omniauth-facebook'
 gem 'devise'
 gem 'bson_ext'
 gem 'fb_graph'
+gem 'will_paginate'
+gem "will_paginate_mongoid"
+gem "mongoid-paperclip", :require => "mongoid_paperclip"
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

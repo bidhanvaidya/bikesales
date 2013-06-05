@@ -1,6 +1,9 @@
 class Bike
   include Mongoid::Document
   include Mongoid::Search
+  include Mongoid::Paperclip
+
+  has_mongoid_attached_file :avatar, :styles => { :medium => "330x229>", :thumb => "100x100>" }
   field :year, type: Integer
   field :make, type: String
   field :model, type: String

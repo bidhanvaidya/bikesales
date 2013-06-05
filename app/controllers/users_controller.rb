@@ -3,7 +3,7 @@ class UsersController < ApplicationController
  before_filter :user_profile
 def profile
 	@user=  current_user
-	@bikes= @user.bikes
+	@bikees= @user.bikes.paginate(:page => params[:page], :per_page => 4)
 	
 
 end

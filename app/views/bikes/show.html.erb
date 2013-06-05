@@ -17,7 +17,7 @@
     </div>
     <ul class = "image_list">
 
-   <li><%= image_tag "test.png", id: "test" %></li>
+   <li><%= image_tag @bike.avatar.url(:thumb) %></li>
   <li><%= image_tag "2test.png", id: "2test" %></li>
     </ul>
     
@@ -58,7 +58,7 @@
           <td><%=@bike.year%></td>
         </tr>
         <tr>
-
+         
       </table>
   </div>
   </div>
@@ -79,19 +79,25 @@
   
 </div>
 <script type="text/javascript">
+//<![CDATA[
+
+
 $('li').hover(function() {
 
   console.log("test")
-  var img;
-  img= $(':first-child', this).attr("id");
+  var id;
+  id= "<%= @bike.id %>";
+
 
   $.ajax({
                 url: "<%=change_picture_bikes_path%>",
                
                 
-                data: {path: img },
+                data: {id: id },
                  success:"True",
              });
 });
+    // insert teh codez
 
+//]]>
 </script>

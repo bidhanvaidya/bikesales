@@ -35,6 +35,10 @@ GEM
     bson_ext (1.8.6)
       bson (~> 1.8.6)
     builder (3.0.4)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.1)
+      climate_control (>= 0.0.3, < 1.0)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -88,6 +92,8 @@ GEM
       moped (~> 1.2)
       origin (~> 1.0)
       tzinfo (~> 0.3.22)
+    mongoid-paperclip (0.0.8)
+      paperclip (>= 2.3.6)
     mongoid_search (0.3.2)
       fast-stemmer (~> 1.0.0)
       mongoid (>= 3.0.0)
@@ -110,6 +116,12 @@ GEM
       omniauth (~> 1.0)
     origin (1.1.0)
     orm_adapter (0.4.0)
+    paperclip (3.4.2)
+      activemodel (>= 3.0.0)
+      activerecord (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      cocaine (~> 0.5.0)
+      mime-types
     polyglot (0.3.3)
     rack (1.4.5)
     rack-cache (1.2)
@@ -174,6 +186,10 @@ GEM
       multi_json (~> 1.0, >= 1.0.2)
     warden (1.2.1)
       rack (>= 1.0)
+    will_paginate (3.0.4)
+    will_paginate_mongoid (1.1.0)
+      mongoid (>= 2.4)
+      will_paginate (~> 3.0)
 
 PLATFORMS
   ruby
@@ -186,6 +202,7 @@ DEPENDENCIES
   jquery-rails
   less-rails
   mongoid (~> 3.0.0)
+  mongoid-paperclip
   mongoid_search
   omniauth
   omniauth-facebook
@@ -194,3 +211,5 @@ DEPENDENCIES
   thin
   twitter-bootstrap-rails
   uglifier (>= 1.0.3)
+  will_paginate
+  will_paginate_mongoid

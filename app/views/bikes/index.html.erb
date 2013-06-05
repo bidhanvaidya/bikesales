@@ -1,8 +1,5 @@
-<%= form_tag bikes_path, :method => 'get', :id => "bikes_search" do %>
-  <p>
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search", :name => nil %>
-  </p>
+
+   <%div = params[:page].to_i%>
   <div class="span12">
     <div class="row">
     <div class="span3">
@@ -64,10 +61,52 @@
 
 <div class="span9">    
 <div class = "bikes">
-<%=render "search_bikes"%>
+<div class = "header">
+<%= pluralize(@bikes.count, 'Match')%>
+
+</div>
+
+<div class = "results">
+    <div class = "scroll">
+
+    <%=render "search_bikes"%>
+
+</div>
+<div class = "1"></div>
+<% (2..@bikees.total_pages).each do |i|%> <!-- Creating empty div with respect to page number-->
+
+   <div class = "<%= i%>"></div>
+<%end%>
+
+</div><!--div results -->
+
+
+
+
+</div>
+
 </div>
 </div>
-</div>
-<% end %>
+<script type="text/javascript">
+var div =1
+ $(window).scroll(function() { 
+ 
+    if($(window).scrollTop() + $(window).height() == $(document).height()) {
+       
+        div=div+1
+        <%if(params.has_key?(:type) or params.has_key?(:body) or params.has_key?(:make) or params.has_key?(:model) or params.has_key?(:color) or params.has_key?(:sort) or params.has_key?(:direction))%>
+        var link= "<%= bikes_path(sort: params[:sort], :direction => params[:direction], type: params[:type],body: params[:body], make: params[:make], model: params[:model], color: params[:color] )%>"+'&amp;page='+ div.toString()+ ' div.scroll'
+        <%else%>
+        var link='/bikes?page='+ div.toString()+ ' div.scroll' 
+        <%end%>
+        $("div." +div.toString()).load(link, function() {
+  console.log(link)
+ 
+});
+
+        
+    }
+});
+</script>
 
 <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>

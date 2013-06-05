@@ -1,18 +1,9 @@
-<div class = "results">
-    <div class = "header">
-        <%= pluralize(@bikes.count, 'Match')%>
 
-</div>
+
 <table class="table">
-  <thead>
-    <tr>
-      <th>AD</th>
-      
-      
-    </tr>
-  </thead>
+ 
   <tbody>
-    <% @bikes.each do |bike| %>
+    <% @bikees.each do |bike| %>
     
       <tr>
         <td>
@@ -67,4 +58,4 @@
     <% end %>
   </tbody>
 </table>
-</div><!--div results -->
+
