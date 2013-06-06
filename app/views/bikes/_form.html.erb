@@ -1,6 +1,6 @@
 
 
-<%= form_for @bike, :html => { :class => 'form-horizontal' } do |f| %>
+<%= form_for @bike, :html => { :multipart => true,:class => 'form-horizontal' } do |f| %>
   
 
   <div class="control-group">
@@ -97,7 +97,7 @@
       <%= f.text_field :comment, :class => 'text_field' %>
     </div>
   </div>
- <%= f.file_field :avatar %>
+ <%= file_field_tag('bike_pictures_attributes_file', :html => {:multipart => true},multiple: true, name: "bike[pictures_attributes][][file]") %>
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),

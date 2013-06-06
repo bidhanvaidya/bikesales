@@ -212,7 +212,8 @@ class BikesController < ApplicationController
   end
   end
   def change_picture
-   @bike= Bike.find(params[:id])
+   bike= Bike.find(params[:id])
+   @picture= bike.pictures.find(params[:pic_id])
   
   respond_to do |format|
     print view_context.image_path("test.png")

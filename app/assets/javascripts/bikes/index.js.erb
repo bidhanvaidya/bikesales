@@ -1,0 +1,14 @@
+$('ul#selection.nav.nav-list > li').children().hide(),
+$('i.icon-plus-sign').show(),
+
+
+
+$('i.icon-minus-sign').click(function(){
+$(this).parent().children().hide(),
+$(this).parent().find(">:first-child").show()
+});
+$('i.icon-plus-sign').click(function(){
+$(this).parent().children().show(),
+$(this).hide()
+});
+

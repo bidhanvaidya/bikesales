@@ -6,56 +6,56 @@
     
         <%= render "current_selection"%>   
           <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-                <li class="nav-header">Sidebar</li>
-                <li><a href= <%= bikes_path(sort: "price", :direction => "desc", body: params[:body]) %>> Price Highest to lowest </a></li>
-                <li><a href= <%= bikes_path(sort: "price", :direction => "asc",body: params[:body]) %>>Price Lowest to Highest</a></li>
-                <li>
-                    <b>Type:</b>
-                    <ul class = "type">
-                        
-                        <% @types.each do |type| %>
-                            <li> <%= link_to type + " ("+@bikes.where(type: type).count.to_s+")", bikes_path(sort: params[:sort], :direction => params[:direction], body: params[:body], make: params[:make], model: params[:model], color: params[:color], type: type )%> 
-                            </li>
-                         <% end %>
-                    </ul>
-                </li>
-                <li>Body
-                    <ul>
-                        <li>
-                            <a href= <%= bikes_path(sort: params[:sort], :direction => params[:direction], type: params[:type], body: "Sports") %>>Sports(<%=@bikes.where(body:"Sports").count%>)</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>Make
-                    <ul>
-                        <% @makes.each do |make| %>
+                <ul class="nav nav-list" id = "selection">
+                    <li class="nav-header">Sidebar</li>
+                    <li><a href= <%= bikes_path(sort: "price", :direction => "desc", body: params[:body]) %>> Price Highest to lowest </a></li>
+                    <li><a href= <%= bikes_path(sort: "price", :direction => "asc",body: params[:body]) %>>Price Lowest to Highest</a></li>
+                    <li>
+                        Type: <i class="icon-plus-sign"><a></a></i><i class="icon-minus-sign"><a></a></i>
+                        <ul class = "type">
+                            
+                            <% @types.each do |type| %>
+                                <li> <%= link_to type + " ("+@bikes.where(type: type).count.to_s+")", bikes_path(sort: params[:sort], :direction => params[:direction], body: params[:body], make: params[:make], model: params[:model], color: params[:color], type: type )%> 
+                                </li>
+                             <% end %>
+                        </ul>
+                    </li>
+                    <li>Body<i class="icon-plus-sign"><a></a></i><i class="icon-minus-sign"><a></a></i>
+                        <ul>
                             <li>
-                                <%= link_to make, bikes_path(sort: params[:sort], :direction => params[:direction], body: params[:body], model: params[:model], color: params[:color],type: params[:type],make: make)%>(<%=@bikes.where(make: make).count%>)
+                                <a href= <%= bikes_path(sort: params[:sort], :direction => params[:direction], type: params[:type], body: "Sports") %>>Sports(<%=@bikes.where(body:"Sports").count%>)</a>
                             </li>
-                        <% end %>
-                    </ul>
-                </li>
-                <li>Models
-                    <ul>
-                        <% @models.each do |model| %>
-                            <li>
-                                <%= link_to model, bikes_path(sort: params[:sort], :direction => params[:direction], body: params[:body], make: params[:make], color: params[:color],type: params[:type],model: model)%>(<%=@bikes.where(model: model).count%>)
-                            </li>  
-                        <% end %>
-                    </ul>
-                </li>
-                <li>Colour
-                    <ul>  
-                        <% @colors.each do |color| %>
-                            <li>
-                                <%= link_to color, bikes_path(sort: params[:sort], :direction => params[:direction], type: params[:type],body: params[:body], make: params[:make], model: params[:model], color: color )%>(<%=@bikes.where(color: color).count%>)
-                                
-                            </li>
-                        <% end %>
-                    </ul>
-                </li>
-
+                        </ul>
+                    </li>
+                    <li>Make<i class="icon-plus-sign"><a></a></i><i class="icon-minus-sign"><a></a></i>
+                        <ul>
+                            <% @makes.each do |make| %>
+                                <li>
+                                    <%= link_to make, bikes_path(sort: params[:sort], :direction => params[:direction], body: params[:body], model: params[:model], color: params[:color],type: params[:type],make: make)%>(<%=@bikes.where(make: make).count%>)
+                                </li>
+                            <% end %>
+                        </ul>
+                    </li>
+                    <li>Models<i class="icon-plus-sign"><a></a></i><i class="icon-minus-sign"><a></a></i>
+                        <ul>
+                            <% @models.each do |model| %>
+                                <li>
+                                    <%= link_to model, bikes_path(sort: params[:sort], :direction => params[:direction], body: params[:body], make: params[:make], color: params[:color],type: params[:type],model: model)%>(<%=@bikes.where(model: model).count%>)
+                                </li>  
+                            <% end %>
+                        </ul>
+                    </li>
+                    <li>Colour<i class="icon-plus-sign"><a></a></i><i class="icon-minus-sign"><a></a></i>
+                        <ul>  
+                            <% @colors.each do |color| %>
+                                <li>
+                                    <%= link_to color, bikes_path(sort: params[:sort], :direction => params[:direction], type: params[:type],body: params[:body], make: params[:make], model: params[:model], color: color )%>(<%=@bikes.where(color: color).count%>)
+                                    
+                                </li>
+                            <% end %>
+                        </ul>
+                    </li>
+                </ul>
               </div><!--/.well -->
         </div><!--/span-->
 
@@ -88,6 +88,8 @@
 </div>
 </div>
 <script type="text/javascript">
+
+
 var div =1
  $(window).scroll(function() { 
  
@@ -108,5 +110,5 @@ var div =1
     }
 });
 </script>
-
+<%= javascript_include_tag "bikes/index" %>
 <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>

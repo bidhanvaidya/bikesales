@@ -13,12 +13,12 @@
     <%= link_to "Next", bike_path(@next_bike, sort: params[:sort], :direction => params[:direction], body: params[:body], make: params[:make], model: params[:model], color:params[:color],type: params[:type]), class:"btn btn-primary" if !@next_bike.nil?%>
   
     <div class = "picture">
-      <%= image_tag "big2.png", id: "bike_picture" %>
+      <%= image_tag @bike.pictures.last.file.url(:medium), id: "bike_picture" %>
     </div>
     <ul class = "image_list">
-
-   <li><%= image_tag @bike.avatar.url(:thumb) %></li>
-  <li><%= image_tag "2test.png", id: "2test" %></li>
+      <%@bike.pictures.each do |image| %>
+   <li><%= image_tag image.file.url(:thumb), id: image.id %></li>
+      <% end %>
     </ul>
     
     <div class = "result">
@@ -84,20 +84,21 @@
 
 $('li').hover(function() {
 
-  console.log("test")
-  var id;
-  id= "<%= @bike.id %>";
-
+  
+  var id= "<%=@bike.id%>";
+  var pic_id = $(':first-child', this).attr("id");
 
   $.ajax({
                 url: "<%=change_picture_bikes_path%>",
                
                 
-                data: {id: id },
-                 success:"True",
+                data: {id: id, pic_id: pic_id },
+                 success:console.log("test"),
+
              });
 });
     // insert teh codez
 
 //]]>
 </script>
+<%= javascript_include_tag "bike_index" %>

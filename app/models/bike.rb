@@ -1,9 +1,13 @@
 class Bike
   include Mongoid::Document
   include Mongoid::Search
-  include Mongoid::Paperclip
 
-  has_mongoid_attached_file :avatar, :styles => { :medium => "330x229>", :thumb => "100x100>" }
+      attr_accessible :year, :make, :model, :variant, :price, :odometer, :body, :type, :color, :engine_capacity, :rego_no, :reg_expiry, :vin_no, :address, :phone, :comment,:pictures_attributes
+
+      embeds_many :pictures, :cascade_callbacks => true
+      accepts_nested_attributes_for :pictures, :allow_destroy => true
+
+  
   field :year, type: Integer
   field :make, type: String
   field :model, type: String
