@@ -1,0 +1,41 @@
+<div class = "results">
+
+ 
+<table class="table">
+  <thead>
+    <tr>
+      
+      <form>
+  <%=form_tag(search_bikes_path, :method => "get") do %>
+
+    <legend>Search Bikes</legend>
+    <div class = "row">
+    	<div class= "span6">
+  				<%= select_tag 'bikes_make', options_from_collection_for_select(@bikes, :make, :make), :prompt => "Any Make", :class=>"input-drop-down" %>
+
+			<%= text_field_tag :price_from, nil, :placeholder =>"Price From" ,:class=>"input-large" %>
+			<%= text_field_tag :location, nil, :placeholder =>"Location" ,:class=>"input-large" %>
+		</div>
+		<div class= "span6">
+  				<%= select_tag 'bikes_model', options_from_collection_for_select(@bikes, :model, :model),  :prompt => "Any Model",:class=>"input-drop-down" %>
+			<%= text_field_tag :price_to, nil, :placeholder =>"Price To" ,:class=>"input-large" %>
+			<%= text_field_tag :type, nil, :placeholder =>"Ad Type" ,:class=>"input-large" %>
+		</div>
+    	
+    </div>
+    
+      
+
+  <input class="btn btn-primary" name="commit" type="submit" formaction="<%= search_bikes_path%>" value="Search" >
+<% end %>
+
+  
+</form>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+  </tbody>
+</table>
+</div><!--div results -->

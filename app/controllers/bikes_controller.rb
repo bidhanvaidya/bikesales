@@ -14,11 +14,18 @@ class BikesController < ApplicationController
     @model_selection = params[:model]
     @color_selection = params[:color]
     @body_selection =  params[:body]
+    @price_from_selection = params[:price_from]
+    @price_to_selection = params[:price_to]
+    @location_selection = params[:location]
+
     @bikes=@bikes.where(type: @type_selection ) if !@type_selection.nil?
     @bikes=@bikes.make(@make_selection) if !@make_selection.nil?
     @bikes=@bikes.where(model: @model_selection) if !@model_selection.nil?
-
     @bikes=@bikes.where(color: @color_selection) if !@color_selection.nil?
+    @bikes=@bikes.where(:price.gt => @price_from_selection) if !@price_from_selection.nil?
+    @bikes=@bikes.where(:price.lt => @price_to_selection) if !@price_to_selection.nil?
+    @bikes=@bikes.where(address: @location_selection) if !@location_selection.nil?
+
     if @body_selection == "Sports"
       @bikes= @bikes.where(body: "Sports")
     end
@@ -42,6 +49,7 @@ class BikesController < ApplicationController
 
   @makes= @bikes.distinct(:make)
   @colors= @bikes.distinct(:color)
+  @location= @bikes.distinct(:address)
 
   @bikees=@bikes.paginate(:page => params[:page], :per_page => 10)
     respond_to do |format|
@@ -281,6 +289,25 @@ class BikesController < ApplicationController
   end
   def facebook_post
     
+  end
+
+  def search
+    make=nil
+    model=nil
+    price_from=nil
+    price_to= nil
+    location=nil
+    type=nil
+    make=params[:bikes_make] if !params[:bikes_make].empty?
+    model=params[:bikes_model] if !params[:bikes_model].empty?
+    price_from=params[:price_from] if !params[:price_from].empty?
+    price_to=params[:price_to] if !params[:price_to].empty?
+    location=params[:location] if !params[:location].empty?
+    type=params[:type] if !params[:type].empty?
+
+    redirect_to bikes_path(make: make, model: model, type: type, 
+      price_from: price_from, price_to: price_to, location: location)
+
   end
 
 end

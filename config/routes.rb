@@ -11,9 +11,10 @@ Bikesales::Application.routes.draw do
     get "change_picture" # Chnages the bike picture on mouse hover
     get "search_page" # Outputs the search result of the bikes
     get "main_page" #Home page of the website
+    get "search" #Homepage search button
   end
 end
-root to: "bikes#index" #Home page
+root to: "bikes#main_page" #Home page
 devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
  resources :users do 
   member do

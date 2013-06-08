@@ -1,5 +1,9 @@
+$("select#bike_variant").empty();
+
 var option = $('<option></option>').attr("value", "").text("Select Model");
 $("select#bike_model").append(option);
+var option_variant = $('<option></option>').attr("value", "").text("Select Variant");
+ $("select#bike_variant").append(option_variant);
  	console.log("test");
 <%@bikes.each do |model|%>
 

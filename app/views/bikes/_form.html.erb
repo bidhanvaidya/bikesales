@@ -124,7 +124,7 @@ $('select#bike_make').change(function() {
              });
 });
 $('select#bike_model').change(function() {
-
+ $("select#bike_variant").empty();
   
   $("select#bike_model option:selected").each(function () {
             console.log($(this).text());
