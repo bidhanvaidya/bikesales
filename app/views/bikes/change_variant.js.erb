@@ -1,10 +1,9 @@
-var option = $('<option></option>').attr("value", "").text("Select Variant");
- $("select#bike_variant").append(option);
+
   
 <% @bikes.each do |variant|%>
-console.log("<%=variant%>");
-var options = $('<option></option>').attr("value", "<%=variant%>").text("<%=variant%>");
-$("select#bike_variant").append(options);
+
+var option = $('<option></option>').attr("value", "<%=variant%>").text("<%=variant%>");
+$("select#bike_variant").append(option);
  	
  <%end%>
  

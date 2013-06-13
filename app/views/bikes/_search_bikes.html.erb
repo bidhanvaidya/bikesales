@@ -14,14 +14,19 @@
 <div class="row">
    
   <div class= "span5"> 
-    <%=image_tag "test1.png"%>
+   <% if bike.pictures.empty?%>
+      <%=image_tag "default_image.jpg"%>
+    <%else%>
+
+    <%= image_tag bike.pictures.last.file.url(:medium), id: "bike_picture" %>
+    <%end%>
   </div> <!-- span5 Image of the searched bike --> 
   <div class= "span7">
    
       <table class= "result_table">
-        <tr>
+        <tr id = "result_header">
           <td>
-            <b> <%= bike.year %>  <%= bike.make %>  <%= bike.model %>  <%= bike.variant %></b>
+            <b> <%= bike.year %>  <%= bike.make %>  <%= bike.model %>  <%= bike.variant if !bike.variant.nil? %></b>
           </td>
           <td>
             <h3><%= number_to_currency(bike.price,:unit => "Rs ",:precision => 0) %></h3>

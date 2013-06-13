@@ -1,4 +1,4 @@
-<div class = "results">
+<div class = "results_main_page">
 
  
 <table class="table">
@@ -6,20 +6,22 @@
     <tr>
       
       <form>
-  <%=form_tag(search_bikes_path, :method => "get") do %>
+  <%=form_tag(search_bikes_path, :method => "put") do %>
 
     <legend>Search Bikes</legend>
     <div class = "row">
     	<div class= "span6">
-  				<%= select_tag 'bikes_make', options_from_collection_for_select(@bikes, :make, :make), :prompt => "Any Make", :class=>"input-drop-down" %>
+  				<%= select_tag "make", options_for_select(@makes), :prompt => "Any Make", :class=>"input-drop-down" %>
 
 			<%= text_field_tag :price_from, nil, :placeholder =>"Price From" ,:class=>"input-large" %>
-			<%= text_field_tag :location, nil, :placeholder =>"Location" ,:class=>"input-large" %>
+			<%= select_tag :location, options_for_select(["Any Cities","Kathmandu", "Latitpur", "Bhaktapur"]),:class=>"input-drop-down" %>
 		</div>
 		<div class= "span6">
-  				<%= select_tag 'bikes_model', options_from_collection_for_select(@bikes, :model, :model),  :prompt => "Any Model",:class=>"input-drop-down" %>
+  		<%= select_tag "model", options_for_select(@models), :prompt => "Any Model", :class=>"input-drop-down" %>
+		
+
 			<%= text_field_tag :price_to, nil, :placeholder =>"Price To" ,:class=>"input-large" %>
-			<%= text_field_tag :type, nil, :placeholder =>"Ad Type" ,:class=>"input-large" %>
+			<%= select_tag :type, options_for_select(['Any Type',"Dealer New", "Dealer Used", "Private Seller"]),:class=>"input-drop-down" %>
 		</div>
     	
     </div>

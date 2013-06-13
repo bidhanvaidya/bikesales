@@ -1,4 +1,4 @@
-<%= form_for(@bike_spec) do |f| %>
+<%= form_for @bike_spec,:html => { :multipart => true,:class => 'form-horizontal' } do |f| %>
   <% if @bike_spec.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@bike_spec.errors.count, "error") %> prohibited this bike_spec from being saved:</h2>
@@ -10,22 +10,35 @@
       </ul>
     </div>
   <% end %>
-
   <div class="field">
-    <%= f.label :make %><br />
+    <%= f.label :year %>
+    <%= f.text_field :year %>
+  </div>
+  <div class="field">
+    <%= f.label :make %>
     <%= f.text_field :make %>
   </div>
   <div class="field">
-    <%= f.label :model %><br />
+    <%= f.label :model %>
     <%= f.text_field :model %>
   </div>
   <div class="field">
-    <%= f.label :body %><br />
-    <%= f.text_field :body %>
+    <%= f.label :body %>
+    <%= f.select :body,options_for_select(["Sports","Cruiser", "Trail", "Standard", "Scooter", "Super Sport"]) %>
   </div>
   <div class="field">
-    <%= f.label :variant %><br />
+    <%= f.label :variant %>
     <%= f.text_field :variant %>
+  </div>
+   <div class="field">
+    <%= f.label :MRP %>
+    <%= f.text_field :price %>
+  </div>
+  <div class="field">
+    <%= f.label :attach_images %>
+  
+     <%= file_field_tag('bike_spec_pictures_attributes_file', :html => {:multipart => true},multiple: true, name: "bike_spec[pictures_attributes][][file]") %><br>
+     #Hold Ctrl button to select mutple images
   </div>
   <div class="actions">
     <%= f.submit %>

@@ -1,0 +1,53 @@
+    <div class="well sidebar-nav">
+        <ul class="nav nav-list">    
+
+
+
+            <li class="nav-header">Current Selection</li>
+            <% if !@type_selection.nil?%>
+                <li>
+
+
+                <a href = "<%=bikes_path(sort: params[:sort], :direction => params[:direction], body: params[:body], make: params[:make], model: params[:model], color: params[:color],type: nil )%>"><%= @type_selection %>   <i class = "icon-remove"></i></a>
+                </li>
+            <%end%>
+
+            <% if !@body_selection.nil?%>
+                <li>
+
+
+                <a href = "<%=bikes_path(sort: params[:sort], :direction => params[:direction], body: nil, make: params[:make], model: params[:model], color: params[:color],type: params[:type] )%>"><%= @body_selection %>   <i class = "icon-remove"></i></a>
+                </li>
+            <%end%>
+            <% if !@make_selection.nil?%>
+                <li>
+
+
+                <a href = "<%=bikes_path(sort: params[:sort], :direction => params[:direction], body: params[:body], make: nil, model: nil, color: params[:color],type: params[:type] )%>"><%= @make_selection %>   <i class = "icon-remove"></i></a>
+                </li>
+            <%end%>
+            <% if !@model_selection.nil?%>
+                <li>
+
+
+                <a href = "<%=bikes_path(sort: params[:sort], :direction => params[:direction], body: params[:body], make: params[:make], model: nil, color: params[:color],type: params[:type] )%>"><%= @model_selection %>   <i class = "icon-remove"></i></a>
+                </li>
+            <%end%>
+            <% if !@color_selection.nil?%>
+                <li>
+                <div>
+
+                <a href = "<%=bikes_path(sort: params[:sort], :direction => params[:direction], body: params[:body], make: params[:make], model: params[:model], color: nil,type: params[:type] )%>"><%= @color_selection %>   <i class = "icon-remove"></i></a>
+                </div>
+                </li>
+            <%end%>
+            <% if !@location_selection.nil?%>
+                <li>
+                <div>
+
+                <a href = "<%=bikes_path(sort: params[:sort], :direction => params[:direction], body: params[:body], make: params[:make], model: params[:model], color: params[:color],type: params[:type], location:nil )%>"><%= @location_selection %>   <i class = "icon-remove"></i></a>
+                </div>
+                </li>
+            <%end%>
+        </ul>
+    </div>

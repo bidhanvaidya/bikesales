@@ -1,25 +1,99 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>Make:</b>
-  <%= @bike_spec.make %>
-</p>
-
-<p>
-  <b>Model:</b>
-  <%= @bike_spec.model %>
-</p>
-
-<p>
-  <b>Body:</b>
-  <%= @bike_spec.body %>
-</p>
-
-<p>
-  <b>Variant:</b>
-  <%= @bike_spec.variant %>
-</p>
 
 
-<%= link_to 'Edit', edit_bike_spec_path(@bike_spec) %> |
-<%= link_to 'Back', bike_specs_path %>
+
+<div class = "row">
+  
+
+  <div class = "span6">
+
+  
+    <div class = "picture">
+      <%= image_tag @bike_spec.pictures.last.file.url(:medium), id: "bike_picture" if !@bike_spec.pictures.empty?%>
+    </div>
+    <% if !@bike_spec.pictures.empty?%>
+
+      <ul class = "image_list">
+        <%@bike_spec.pictures.each do |image| %>
+          <li><%= image_tag image.file.url(:thumb), id: image.id %></li>
+        <% end %>
+      </ul>
+    <%end%>
+    
+    
+    <div class = "result">
+    <div class = "bike_details">
+      Bike Details
+    </div>
+
+      <table class= "table"><tr>
+
+        <td>Bike:<td> 
+          <td><%=@bike_spec.model%></td>
+        </tr>
+        <tr>
+
+        <td>Make:<td> 
+          <td><%=@bike_spec.make%></td>
+        </tr>
+      
+        <tr>
+
+        <td>Price:<td> 
+          <td><%=@bike_spec.price%></td>
+        </tr>
+        <tr>
+
+        <td>Variant:<td> 
+          <td><%=@bike_spec.variant%></td>
+        </tr>
+        <tr>
+
+        <td>Year:<td> 
+          <td><%=@bike_spec.year%></td>
+        </tr>
+        <tr>
+         
+      </table>
+  </div>
+  </div>
+<div class = "span3">
+    <%=render "current_selection"%>
+  </div>
+  <div class = "span3"></div>
+</div>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              bike_specs_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_bike_spec_path(@bike_spec), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              bike_spec_path(@bike_spec),
+              :method => 'delete',
+              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+              :class => 'btn btn-danger' %>
+  
+</div>
+<script type="text/javascript">
+//<![CDATA[
+
+
+$('li').hover(function() {
+
+  
+  var id= "<%=@bike_spec.id%>";
+  var pic_id = $(':first-child', this).attr("id");
+
+  $.ajax({
+                url: "<%=change_picture_bike_specs_path%>",
+               
+                
+                data: {id: id, pic_id: pic_id },
+                 success:console.log("test"),
+
+             });
+});
+    // insert teh codez
+
+//]]>
+</script>

@@ -1,29 +1,66 @@
-<h1>Listing bike_specs</h1>
+  <div class="span12">
+    <div class="row">
+    <div class="span3">
+    
+        <%= render "current_selection"%>   
+          <div class="well sidebar-nav">
+                <ul class="nav nav-list" id = "selection">
+                    <li class="nav-header">Sidebar</li>
+                    <li><a href= <%= bike_specs_path(sort: "price", :direction => "desc", body: params[:body]) %>> Price Highest to lowest </a></li>
+                    <li><a href= <%= bike_specs_path(sort: "price", :direction => "asc",body: params[:body]) %>>Price Lowest to Highest</a></li>
+                    
+                    <li><i class="icon-plus-sign"><a></a></i><i class="icon-minus-sign"><a></a></i>Body
+                        <ul>
+                            <li>
+                                <a href= <%= bike_specs_path(sort: params[:sort], :direction => params[:direction], type: params[:type], body: "Sports") %>>Sports (<%=@bikes.where(body:"Sports").count%>)</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><i class="icon-plus-sign"><a></a></i><i class="icon-minus-sign"><a></a></i>Make
+                        <ul>
+                            <% @makes.each do |make| %>
+                                <li>
+                                    <%= link_to make, bike_specs_path(sort: params[:sort], :direction => params[:direction], body: params[:body], model: params[:model] ,make: make)%> (<%=@bikes.where(make: make).count%>)
+                                </li>
+                            <% end %>
+                        </ul>
+                    </li>
+                    <li><i class="icon-plus-sign"><a></a></i><i class="icon-minus-sign"><a></a></i>Models
+                        <ul>
+                            <% @models.each do |model| %>
+                                <li>
+                                    <%= link_to model, bike_specs_path(sort: params[:sort], :direction => params[:direction], body: params[:body], make: params[:make],model: model)%> (<%=@bikes.where(model: model).count%>)
+                                </li>  
+                            <% end %>
+                        </ul>
+                    </li>
+                    
+                    
+                </ul>
+              </div><!--/.well -->
+        </div><!--/span-->
 
-<table>
-  <tr>
-    <th>Make</th>
-    <th>Model</th>
-    <th>Body</th>
-    <th>Variant</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<div class="span9">    
+<div class = "bikes">
+<div class = "header">
+<%= pluralize(@bikes.count, 'Match')%>
 
-<% @bike_specs.each do |bike_spec| %>
-  <tr>
-    <td><%= bike_spec.make %></td>
-    <td><%= bike_spec.model %></td>
-    <td><%= bike_spec.body %></td>
-    <td><%= bike_spec.variant %></td>
-    <td><%= link_to 'Show', bike_spec %></td>
-    <td><%= link_to 'Edit', edit_bike_spec_path(bike_spec) %></td>
-    <td><%= link_to 'Destroy', bike_spec, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+</div>
 
-<br />
+<div class = "results">
+    <div class = "scroll">
 
+    <%=render "search_bikes"%>
+
+</div>
+
+</div><!--div results -->
+
+
+
+
+</div>
+
+</div>
+</div>
 <%= link_to 'New Bike spec', new_bike_spec_path %>

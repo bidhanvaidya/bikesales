@@ -1,0 +1,9 @@
+
+
+
+<%@bikes.each do |make|%>
+
+	var option = $('<option></option>').attr("value", "<%=make%>").text("<%=make%>");
+	$("select#bike_make").append(option);
+	 	
+ <%end%>

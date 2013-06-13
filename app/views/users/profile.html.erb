@@ -8,10 +8,24 @@
     <div class="span3">
     
          
-          <div class="well sidebar-nav">
+          <div class="saved_bikes">
             <ul class="nav nav-list">
-                <li class="nav-header">Saved Bikes</li>
-                
+                <legend>Saved Bikes</legend>
+                <%@favourites.each do |fav_bike|%>
+                 <li>
+                 <%bike=Bike.find(fav_bike.bike_id)%>
+                 <a href= "<%=bike_path(bike)%>">
+                 <table>
+                    <tr>
+                      <td><%= image_tag bike.pictures.last.file.url(:thumb)%>
+                      </td>
+                      <td><%= bike.year %>  <%= bike.make %>  <%= bike.model %>  <%= bike.variant if !bike.variant.nil? %>
+                      </td>
+                    </tr>
+                 </table>
+               </a>
+               </li>
+                <%end%>
               </div><!--/.well -->
         </div><!--/span-->
 

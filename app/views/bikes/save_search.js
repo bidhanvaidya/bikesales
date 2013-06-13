@@ -1,0 +1,1 @@
+$('div.save_search').html("Saved")

@@ -8,8 +8,7 @@
           <div class="well sidebar-nav">
                 <ul class="nav nav-list" id = "selection">
                     <li class="nav-header">Sidebar</li>
-                    <li><a href= <%= bikes_path(sort: "price", :direction => "desc", body: params[:body]) %>> Price Highest to lowest </a></li>
-                    <li><a href= <%= bikes_path(sort: "price", :direction => "asc",body: params[:body]) %>>Price Lowest to Highest</a></li>
+                    
                     <li><i class="icon-plus-sign"><a></a></i><i class="icon-minus-sign"><a></a></i>Type
                         <ul class = "type">
                             
@@ -21,9 +20,11 @@
                     </li>
                     <li><i class="icon-plus-sign"><a></a></i><i class="icon-minus-sign"><a></a></i>Body
                         <ul>
-                            <li>
-                                <a href= <%= bikes_path(sort: params[:sort], :direction => params[:direction], type: params[:type], body: "Sports") %>>Sports (<%=@bikes.where(body:"Sports").count%>)</a>
-                            </li>
+                            <% @bodies.each do |body| %>
+                                <li>
+                                    <%= link_to body, bikes_path(sort: params[:sort], :direction => params[:direction], body: body, make: params[:make], color: params[:color],type: params[:type], model: params[:model])%> (<%=@bikes.where(body: body).count%>)
+                                </li>  
+                            <% end %>
                         </ul>
                     </li>
                     <li><i class="icon-plus-sign"><a></a></i><i class="icon-minus-sign"><a></a></i>Make
@@ -69,12 +70,22 @@
         </div><!--/span-->
 
 <div class="span9">    
+    
 <div class = "bikes">
+
 <div class = "header">
 <%= pluralize(@bikes.count, 'Match')%>
+<select class="sort_select">
+    <option value= "1">Sort By:</option>
+    <option value= "2">Sort By: Price(High to Low)</option>
 
+    <option value = "3">Sort By: Price(Low to High)</option>
+  <option><a href= <%= bikes_path(sort: "price", :direction => "desc", body: params[:body]) %>> Price Highest to lowest </a></option>
+  <option><a href= <%= bikes_path(sort: "price", :direction => "asc",body: params[:body]) %>>Price Lowest to Highest</a></option>
+
+</select>
 </div>
-
+<div class = "bikes_sort">
 <div class = "results">
     <div class = "scroll">
 
@@ -87,9 +98,9 @@
    <div class = "<%= i%>"></div>
 <%end%>
 
+
+</div><!--div bike sort-->
 </div><!--div results -->
-
-
 
 
 </div>
@@ -118,6 +129,25 @@ var div =1
         
     }
 });
+ $("select.sort_select").change(function() {
+    
+ 
+ $("select.sort_select option:selected").each(function () {
+            console.log($(this).attr("value"));
+            str = $(this).attr("value");
+  });
+ if (str =="2"){
+    $('div.bikes_sort').load('<%= bikes_path(sort: "sort", :direction => "desc", type: params[:type],body: params[:body], make: params[:make], model: params[:model], color: params[:color], location: params[:location] ) + " div.results"%>');
+    
+
+    
+    //window.location.replace("<%= bikes_path(sort: "price", :direction => "desc", body: params[:body]) %>");
+ };
+  if (str =="3"){
+    $('div.bikes_sort').load('<%= bikes_path(sort: "price", :direction => "asc", type: params[:type],body: params[:body], make: params[:make], model: params[:model], color: params[:color], location: params[:location] ) + " div.results"%>');
+    
+ };
+  });
 </script>
 <%= javascript_include_tag "bikes/index" %>
-<%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
+

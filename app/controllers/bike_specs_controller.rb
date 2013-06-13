@@ -2,12 +2,50 @@ class BikeSpecsController < ApplicationController
   # GET /bike_specs
   # GET /bike_specs.json
   def index
-    @bike_specs = BikeSpec.all
+    @bikes = BikeSpec.all
 
+    @make_selection = params[:make]
+    @model_selection = params[:model]
+    @body_selection =  params[:body]
+    @price_from_selection = params[:price_from]
+    @price_to_selection = params[:price_to]
+   
+
+    @bikes=@bikes.where(type: @type_selection ) if !@type_selection.nil?
+    @bikes=@bikes.where(make: @make_selection) if !@make_selection.nil?
+    @bikes=@bikes.where(model: @model_selection) if !@model_selection.nil?
+    @bikes=@bikes.where(color: @color_selection) if !@color_selection.nil?
+    @bikes=@bikes.where(:price.gt => @price_from_selection) if !@price_from_selection.nil?
+    @bikes=@bikes.where(:price.lt => @price_to_selection) if !@price_to_selection.nil?
+    @bikes=@bikes.where(location: @location_selection) if !@location_selection.nil?
+
+    if @body_selection == "Sports"
+      @bikes= @bikes.where(body: "Sports")
+    end
+  if params[:sort] == "price" and params[:direction] == "asc" 
+    @bikes = @bikes.asc(:price)
+  elsif params[:sort].nil?
+    
+    @bikes= @bikes.desc(:price)
+  elsif params[:sort] == "price" and params[:direction] == "desc"
+    @bikes= @bikes.desc(:price)
+    
+  end
+  if params[:sort] == "year" and params[:direction] == "asc" 
+    @bikes = @bikes.asc(:year)
+  elsif params[:sort] == "year" and params[:direction] == "desc"
+    @bikes= @bikes.desc(:year)
+    
+  end
+  @models= @bikes.distinct(:model)
+
+  @makes= @bikes.distinct(:make)
+  @bikees=@bikes.paginate(:page => params[:page], :per_page => 10)
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @bike_specs }
+      format.json { render json: @bikes }
     end
+    
   end
 
   # GET /bike_specs/1
@@ -80,4 +118,13 @@ class BikeSpecsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  def change_picture
+   bike= BikeSpec.find(params[:id])
+   @picture= bike.pictures.find(params[:pic_id])
+  
+  respond_to do |format|
+    print view_context.image_path("test.png")
+    format.js
+  end
+end
 end

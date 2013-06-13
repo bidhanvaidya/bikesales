@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-
+<%= javascript_include_tag "jquery.min" %>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= content_for?(:title) ? yield(:title) : "Bikesales" %></title>
@@ -71,39 +70,7 @@
       
 
     </div> <!-- /container -->
-    <footer>
-        <p>&copy; Company 2013</p>
-      </footer>
-    <!-- Javascripts
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <%= javascript_include_tag "application" %>
-    <div class="navbar navbar-fixed-bottom">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-          <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand-footer" >Bikesales</a>
-          <div class="container-fluid nav-collapse">
-            <ul class="nav">
-              <li><%= link_to "Link1", "/path1"  %></li>
-              <li><%= link_to "Link2", "/path2"  %></li>
-              <% if user_signed_in?%>
-              <li><%= link_to "Sign Out", destroy_user_session_path, method: "delete"  %></li>
-              <%else%>
-              <li><%= link_to "Sign in", new_user_session_path%></li>
-              <%end%>
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-    </div>
-    
- 
-<!-- Modal -->
+    <!-- Modal -->
     <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -125,9 +92,40 @@
      
       </div>
     </div>
+    
+    <!-- Javascripts
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <%= javascript_include_tag "application" %>
+    <div class="navbar navbar-fixed-bottom">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand-footer" >Bikesales</a>
+          <div class="container-fluid nav-collapse">
+            <ul class="nav">
+              <li><p>&copy; Company 2013</p></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+    
+ 
+
 
   </body>
 </html>
 <script type="text/javascript">
-$(div.modal_body).load("<%=new_user_path%>")
+$("document").ready(function() {
+  console.log($(window).width())
+  if ($(window).width() <= 979 && $(window).width() >=600){
+      setTimeout(function() {
+          $("a.btn.btn-navbar").trigger('click');
+      },1);}
+});
 </script>

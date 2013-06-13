@@ -24,11 +24,9 @@ class BikesController < ApplicationController
     @bikes=@bikes.where(color: @color_selection) if !@color_selection.nil?
     @bikes=@bikes.where(:price.gt => @price_from_selection) if !@price_from_selection.nil?
     @bikes=@bikes.where(:price.lt => @price_to_selection) if !@price_to_selection.nil?
-    @bikes=@bikes.where(address: @location_selection) if !@location_selection.nil?
-
-    if @body_selection == "Sports"
-      @bikes= @bikes.where(body: "Sports")
-    end
+    @bikes=@bikes.where(location: @location_selection) if !@location_selection.nil?
+    @bikes=@bikes.where(body: @body_selection) if !@body_selection.nil?
+  
   if params[:sort] == "price" and params[:direction] == "asc" 
     @bikes = @bikes.asc(:price)
   elsif params[:sort].nil?
@@ -46,10 +44,11 @@ class BikesController < ApplicationController
   end
   @types= @bikes.distinct(:type)
   @models= @bikes.distinct(:model)
-
+  @bodies= @bikes.distinct(:body)
+  
   @makes= @bikes.distinct(:make)
   @colors= @bikes.distinct(:color)
-  @location= @bikes.distinct(:address)
+  @location= @bikes.distinct(:location)
 
   @bikees=@bikes.paginate(:page => params[:page], :per_page => 10)
     respond_to do |format|
@@ -155,7 +154,7 @@ class BikesController < ApplicationController
         format.html { redirect_to @bike, notice: 'Bike was successfully created.' }
         format.json { render json: @bike, status: :created, location: @bike }
       else
-        format.html { render action: "new" }
+        format.html { render action: "new", errors: @bike.errors.full_messages}
         format.json { render json: @bike.errors, status: :unprocessable_entity }
       end
     end
@@ -204,20 +203,24 @@ class BikesController < ApplicationController
       format.json { head :no_content }
     end
   end
+  def change_make
+    @bikes=BikeSpec.where(year: params[:year]).distinct(:make)
+    respond_to do |format|
+      format.js
+    end
+  end
 
   def change_model
     @bikes=BikeSpec.where(make: params[:make]).distinct(:model)
-    print "hel"
     respond_to do |format|
-    format.js
-  end
+      format.js
+    end
   end
     def change_variant
     @bikes=BikeSpec.where(model: params[:model]).distinct(:variant)
-    print "hel"
     respond_to do |format|
-    format.js
-  end
+      format.js
+    end
   end
   def change_picture
    bike= Bike.find(params[:id])
@@ -278,7 +281,8 @@ class BikesController < ApplicationController
   end
   def main_page
     @bikes = Bike.all
-
+@models= @bikes.distinct(:model)
+@makes= @bikes.distinct(:make)
  
     respond_to do |format|
       format.html # index.html.erb
@@ -298,16 +302,23 @@ class BikesController < ApplicationController
     price_to= nil
     location=nil
     type=nil
-    make=params[:bikes_make] if !params[:bikes_make].empty?
-    model=params[:bikes_model] if !params[:bikes_model].empty?
+    make=params[:bikes_make] if !params[:bikes_make].nil?
+    model=params[:bikes_model] if !params[:bikes_model].nil?
     price_from=params[:price_from] if !params[:price_from].empty?
     price_to=params[:price_to] if !params[:price_to].empty?
-    location=params[:location] if !params[:location].empty?
-    type=params[:type] if !params[:type].empty?
+    location=params[:location] if params[:location] != "Any Cities"
+    type=params[:type] if params[:type]!= 'Any Type'
 
     redirect_to bikes_path(make: make, model: model, type: type, 
       price_from: price_from, price_to: price_to, location: location)
 
   end
-
+  def save_search
+    bike= Bike.find(params[:id])
+    current_user.favourites.create(bike_id: bike.id)
+    respond_to do |format|
+      format.js
+     
+    end
+  end
 end

@@ -1,6 +1,6 @@
 
-<div class = "results">
- 
+<div class = "results_main_page">
+ <h2>New Bikes</h2>
 <table >
   <thead>
     <tr>
@@ -10,14 +10,14 @@
       
       	<tr>
       		<td><ul>
-      			<li>Hero Honda</li>
-      		<li>Bajaj</li>
-      		<li>TVS</li>
+      			<li><%=link_to "Hero Honda", bike_specs_path(make: "Hero Honda")%></li>
+      		<li><%=link_to "Bajaj", bike_specs_path(make: "Bajaj")%></li>
+      		<li><%=link_to "TVS", bike_specs_path(make: "TVS")%></li>
       		</ul></td>
       		<td><ul>
-      		<li>Yamaha</li>
-      		<li>Suzuki</li>
-      		<li>Honda</li>
+      		<li><%=link_to "Yamaha", bike_specs_path(make: "Yamaha")%></li>
+      		<li><%=link_to "Suzuki", bike_specs_path(make: "Suzuki")%></li>
+      		<li><%=link_to "Honda", bike_specs_path(make: "Honda")%></li>
       		</ul></td>
 
       		
@@ -34,6 +34,13 @@
     
   </tbody>
 </table>
+<div class = "sell_your_bike">
+  <h2>Sell your Bike</h2>
+  <div class="sell-call-to-action">
+    <a href="/bikes/new" class="create-ad">Create Ad</a>
 
+  </div>
+  <a class="manage-ad">Manage your Ad</a>
+</div>
 
 </div><!--div results -->

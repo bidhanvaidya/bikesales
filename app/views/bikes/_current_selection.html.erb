@@ -1,9 +1,13 @@
-    <div class="well sidebar-nav">
-        <ul class="nav nav-list">    
+    <div class="current_selection">
+        <ul class="nav nav-list"> 
+        <legend>Current Selection</legend></li>   
 
+            <% if @type_selection.nil? and @body_selection.nil? and @make_selection.nil? and @model_selection.nil? and @color_selection.nil? and @location_selection.nil? %>
+            No options selected. Please choose one or more options below.
+                <%= link_to "New search", bikes_path%>
 
-
-            <li class="nav-header">Current Selection</li>
+                <%end%>    
+            
             <% if !@type_selection.nil?%>
                 <li>
 

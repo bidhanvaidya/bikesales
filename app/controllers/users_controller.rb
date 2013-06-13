@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 def profile
 	@user=  current_user
 	@bikees= @user.bikes.paginate(:page => params[:page], :per_page => 4)
-	
+	@favourites=current_user.favourites.limit(3)
 
 end
 def user_profile

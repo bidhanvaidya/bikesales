@@ -35,9 +35,17 @@ body {
 .row {
 margin-left: 0px;
 }.row-fluid {
-width: 80%;
-margin-left: 8%;
+width: 100%;
+
 }
+@media (min-width: 979px){
+.row {
+margin-left: 0px;
+}.row-fluid {
+width: 979px;
+margin: auto;
+}}
+
 .ad_title {
 background: grey;
 border-radius: 5px;
@@ -63,13 +71,14 @@ color: white;
 .results {
 border-color: #F1F1F1;
 border: 1px solid #B8AAAA;
-border-radius: 15px;
+border-radius: 0px;
 padding: 7.5px;
+background: white;
 }
 .header {
-background: #F50215;
-border-radius: 15px;
-padding: 3px;
+background: #0070B7;
+border-radius: 0px;
+padding: 10px;
 color: white;
 }
 .result_div {
@@ -97,6 +106,30 @@ background: #fdfdfe url(bg-body.png) left top repeat-x;
 bottom: 0;
 height: 31px;
 }
+@media (min-width: 768px) and (max-width: 979px){
+	.navbar-fixed-bottom .navbar-inner{
+	padding: 0px;
+	padding-left: 5px;
+	margin-left: -20px;
+	margin-right: -20px;
+	}
+}
+
+@media (min-width: 768px) and (max-width: 979px){
+	.navbar-fixed-top .navbar-inner{
+	padding: 0px;
+	padding-left: 5px;
+	margin-left: -20px;
+	}
+}
+@media (min-width: 480px) and (max-width: 768px){
+	.navbar-fixed-top .navbar-inner{
+	padding: 0px;
+	padding-left: 0px;
+	margin-left: 0px;
+	}
+}
+
 
 //Brand-footer properties
 .brand-footer {
@@ -105,6 +138,13 @@ font-weight: bold;
 }
 //*****************************SHOW PAGE***********************************************************
 //***************************************************************************************************
+
+.result {
+border: 1px solid;
+border-radius: 5px;
+box-shadow: 5px 2px 15px #888888;
+}
+
 .bike_details {
 background: black;
 color: white;
@@ -113,9 +153,109 @@ padding: 5px;
 margin: 5px;
 font-weight: bold;
 }
-.result {
-border: solid 1px black;
-border-radius: 7px;
+#main_page_border {
+border-right: solid 1px silver;
+border: solid 4px #006dbc;
+box-shadow: 10px 10px 15px #888888;
+border-radius: 5px;
+}
+.results_main_page {
+padding: 7.5px;
+border-right: solid 1px silver;
+box-shadow: 5px 0px 15px #888888;
+.btn.btn-primary {
+float: right;
+}
+h2 {
+font-size: 16px;
+color: #2c79b1;
+font-weight: bold;
+line-height: 17px;
+margin: 10px;
+}
+.sell_your_bike h2{
+	font-weight: bold;
+font-size: 16px;
+line-height: 16px;
+margin-bottom: 6px;
+color: #ff6600;
+text-decoration: none;
+}}
+.sell_your_bike {
+border-top: solid 1px grey;
+.create-ad {
+font-weight: bold;
+font-size: 12px;
+color: #fff;
+background: #ff8533;
+background: -moz-linear-gradient(top, #ffad5c 0%, #ff8533 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffad5c), color-stop(100%,#ff8533));
+background: -webkit-linear-gradient(top, #ffad5c 0%,#ff8533 100%);
+background: -o-linear-gradient(top, #ffad5c 0%,#ff8533 100%);
+background: -ms-linear-gradient(top, #ffad5c 0%,#ff8533 100%);
+background: linear-gradient(top, #ffad5c 0%,#ff8533 100%);
+border: 1px solid #ff8533;
+-moz-border-radius: 3px;
+border-radius: 3px;
+padding: 1px 0;
+width: 85px;
+text-align: center;
+float: left;
+text-decoration: none;
+margin-bottom: -1px;
+}
+.manage-ad {
+font-size: 11px;
+text-decoration: underline;
+color: #333;
+}}
+.sell-call-to-action {
+width: 100%;
+float: right;
+position: relative;
+right: -20px;
+}
+#new_bike {
+margin-left: 3px;
+margin-top: 3.00%;
+}
+#sponsored_links {
+margin-left: -5px;
+margin-top: 2.5%;
+}
+.toolbox {
+background: white;
+padding-left: 15px;
+padding-bottom: 15px;
+padding-right: 15px;
+box-shadow: 10px 0px 10px #888888;
+margin-bottom: 10px;
+}
+.current_selection {
+background: white;
+box-shadow: 10px 0px 10px #888888;
+padding-top: 5px;
+padding-bottom: 10px;
+margin-bottom: 10px;
+}
+.show-page-header {
+	text-align: center;
+	padding-bottom: 10px;
+	border-bottom: 4px solid #006dbc;
+	margin-bottom: 15px;
+	h1 {
+	font-size: 23px;
+	line-height: 20px;
+	display: inline;
+	}
+
+	.btn.btn-primary {
+	color: white;
+	float: right;
+	}
+	#previous {
+	float: left;
+	}
 }
 //***************************************Images*************************************************
 .image_list li {
@@ -125,13 +265,14 @@ padding-top: 5px;
 display: inline;
 }
 #bike_picture {
-padding-bottom: 9px;
+box-shadow: 10px 10px 10px #888888;
+margin-bottom: 15px;
 }
 //**********************************END OF SHOW PAGE*************************************************
 //####################################################################################################
 .result_table {
 width: 100%;
-border-bottom: solid 1px grey;
+//border-bottom: solid 1px grey;
 }
 .btn.btn-inverse {
 color: white;
@@ -162,34 +303,106 @@ padding-left: 16px;
 background: transparent;
 text-decoration: none;
 }
-#new_bike {
-margin-left: 3px;
-}
-#sponsored_links {
-margin-left: 3px;
-}
+
 .input-large {
 width: 95%;
 }
 .input-drop-down {
 width: 99%;
 }
-.new_bike_make_table td ul {
+.new_bike_make_table td ul li a{
 font-size: 11px;
 }
-@media (max-width: 810px){
-.modal.fade.in {
-top: 35%;
+.new_bike_make_table td ul li a:hover{
+font-size: 11px;
+text-decoration: none;
+background: transparent;
+color: black;
 }
-.container-fluid {
-padding-right: 0px;
-padding-left: 0px;
+@media (min-width: 479px) (max-width: 979px){
+	.new_bike_make_table td ul li{
+margin-left: -8px;
 }
-.row-fluid {
-width: 100%;
-margin-left: 0%;
-}}
+}
+
+@media (max-width:600px){
+	.modal.fade.in {
+	top: 35%;
+	}
+}
+
+@media (min-width:600px) and (max-width: 810px){
+	.modal.fade.in {
+	top: 85%;
+	}
+	.container-fluid {
+	padding-right: 0px;
+	padding-left: 0px;
+	}
+	.row-fluid {
+	width: 100%;
+	margin-left: 0%;
+	}
+}
 @media (min-width: 811px) and (max-width: 1080px){
 .modal.fade.in {
 top: 70%;
 }}
+legend {
+border-bottom: 4px solid #006dbc;
+}
+@media  (min-width: 811px) and (max-width: 979px){
+body {
+padding-top: 0;
+padding-left: 0px;
+}}
+@media (min-width:600px) and (max-width: 979px){
+.nav-collapse .nav > li {
+float: left;
+}
+.nav-collapse .nav {
+float: left;
+}
+.nav-collapse {
+clear: none;
+padding-top: 15px;
+}}
+@media (min-width: 600px) {
+  .nav-collapse.collapse {
+    height: auto !important;
+    overflow: visible !important;
+  }
+ .navbar .btn-navbar {
+	display: none;
+	}
+}
+.search_result_div {
+border-bottom: solid 1px grey;
+}
+select.sort_select{
+	float: right;
+	width: 170px;
+font-size: 11px;
+font-weight: bold;
+padding: 0px;
+
+}
+.saved_bikes {
+	background: white;
+	border-radius: 5px;
+	padding: 5px;
+	padding-bottom: 10px;
+	box-shadow: 10px 2px 10px #888888;
+	legend {
+		border-bottom: 4px solid #006dbc;
+		margin-bottom: 15px;
+	}
+	.nav > li > a:hover {
+		text-decoration: none;
+		background-color: #f1f1f1;
+		color: black;
+	}
+	.nav-list > li > a {
+		color: black;
+		}
+}

@@ -1,17 +1,22 @@
 Bikesales::Application.routes.draw do
  
 
-  resources :bike_specs # Specification of bikes
-
-
+  resources :bike_specs do  # Specification of bikes
+   collection do
+      get "change_picture" # Chnages the bike picture on mouse hover
+      
+  end
+end
   resources :bikes do # Advertisement of bikes
     collection do
-    get "change_model" # Changes the model after make input
-    get "change_variant" # Changes the variant after model input
-    get "change_picture" # Chnages the bike picture on mouse hover
-    get "search_page" # Outputs the search result of the bikes
-    get "main_page" #Home page of the website
-    get "search" #Homepage search button
+      get "change_make" #Changes make after year input
+      get "change_model" # Changes the model after make input
+      get "change_variant" # Changes the variant after model input
+      get "change_picture" # Chnages the bike picture on mouse hover
+      get "search_page" # Outputs the search result of the bikes
+      get "main_page" #Home page of the website
+      get "search" #Homepage search button
+      get "save_search"
   end
 end
 root to: "bikes#main_page" #Home page
@@ -20,6 +25,7 @@ devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_call
   member do
     get "profile"
   end
+
 end
 
 

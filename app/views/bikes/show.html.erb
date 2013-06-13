@@ -1,26 +1,46 @@
 <%- model_class = @bike.class -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
-</div>
+
 
 <div class = "row">
   <div class = "span3">
+    
+    <div class = "toolbox">
+      <legend>Toolbox</legend>
+     <i class = " icon-chevron-left"> </i> <%= link_to " Back to search", bikes_path(sort: params[:sort], :direction => params[:direction], type: params[:type],body: params[:body], make: params[:make], model: params[:model], color: params[:color], location: params[:location])%>
+      <div class = "save_search">
+        <% if current_user.favourites.where(bikes_id: @bike.id).nil?%>
+          <i class = "icon-star"></i><a id= "save_search"> Save Search</a>
+        <%else%>
+          Saved
+        <%end%>
+      </div>
+      <i class= "icon-envelope"></i><a href=""> Send to a Friend</a>
+
+    </div>
     <%=render "current_selection"%>
   </div>
 
   <div class = "span6">
-    <%= link_to "Previous", bike_path(@previous_bike, sort: params[:sort], :direction => params[:direction], body: params[:body], make: params[:make], model: params[:model], color: params[:color],type: params[:type]), class:"btn btn-primary" if @previous_bike!= @bike%>
-    <%= link_to "Next", bike_path(@next_bike, sort: params[:sort], :direction => params[:direction], body: params[:body], make: params[:make], model: params[:model], color:params[:color],type: params[:type]), class:"btn btn-primary" if !@next_bike.nil?%>
+    <div class="show-page-header">
+  <%= link_to "Previous", bike_path(@previous_bike, sort: params[:sort], :direction => params[:direction], body: params[:body], make: params[:make], model: params[:model], color: params[:color],type: params[:type]),  id: "previous",class:"btn btn-primary" if @previous_bike!= @bike%>
+
+  <h1><%= @bike.year %>  <%= @bike.make %>  <%= @bike.model %>  <%= @bike.variant if !@bike.variant.nil? %></h1>
+
+      <%= link_to "Next", bike_path(@next_bike, sort: params[:sort], :direction => params[:direction], body: params[:body], make: params[:make], model: params[:model], color:params[:color],type: params[:type]),class:"btn btn-primary" if !@next_bike.nil?%>
+</div>
   
     <div class = "picture">
-      <%= image_tag @bike.pictures.last.file.url(:medium), id: "bike_picture" %>
+      <%= image_tag @bike.pictures.last.file.url(:medium), id: "bike_picture" if !@bike.pictures.empty? %>
     </div>
-    <ul class = "image_list">
-      <%@bike.pictures.each do |image| %>
-   <li><%= image_tag image.file.url(:thumb), id: image.id %></li>
-      <% end %>
-    </ul>
     
+    <% if !@bike.pictures.empty?%>
+
+      <ul class = "image_list">
+      <%@bike.pictures.each do |image| %>
+      <li><%= image_tag image.file.url(:thumb), id: image.id %></li>
+      <% end %>
+      </ul>
+    <%end%>
     <div class = "result">
     <div class = "bike_details">
       Bike Details
@@ -80,7 +100,14 @@
 </div>
 <script type="text/javascript">
 //<![CDATA[
+$('a#save_search').click(function(){
 
+  $.ajax({
+    url: "<%=save_search_bikes_path%>",
+    data: {id: "<%=@bike.id%>" },
+    success:console.log("test"),
+  })
+});
 
 $('li').hover(function() {
 

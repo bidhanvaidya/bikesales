@@ -2,7 +2,8 @@ class Bike
   include Mongoid::Document
   include Mongoid::Search
 
-      attr_accessible :year, :make, :model, :variant, :price, :odometer, :body, :type, :color, :engine_capacity, :rego_no, :reg_expiry, :vin_no, :address, :phone, :comment,:pictures_attributes
+      attr_accessible :year, :make, :model, :variant, :price, :odometer, :body, :type, :color, :engine_capacity, 
+      :rego_no, :reg_expiry, :vin_no, :address, :location, :phone, :description,:comment,:pictures_attributes
 
       embeds_many :pictures, :cascade_callbacks => true
       accepts_nested_attributes_for :pictures, :allow_destroy => true
@@ -22,13 +23,16 @@ class Bike
   field :reg_expiry, type: Date
   field :vin_no, type: String
   field :address, type: String
+  field :location, type: String
   field :phone, type: String
   field :comment, type: String
+  field :description, type: String
   belongs_to :bike_spec
   belongs_to :user
+  has_many :favourites
   search_in :make, :model
 
-
+validates_presence_of :year, :make, :model, :price, :type, :phone, :location
    def self.make(make)
     where(make: make)
   end
