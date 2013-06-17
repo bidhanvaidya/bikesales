@@ -17,6 +17,9 @@ end
       get "main_page" #Home page of the website
       get "search" #Homepage search button
       get "save_search"
+      get "send_to_friend"
+      get "enquiry"
+      post "delete_picture"
   end
 end
 root to: "bikes#main_page" #Home page

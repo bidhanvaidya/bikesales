@@ -1,0 +1,14 @@
+<a href= "<%=bike_path(@bike)%>">
+                 <table>
+                    <tr>
+                      <td><% if !@bike.pictures.last.nil?%>
+                        <%= image_tag @bike.pictures.last.file.url(:thumb)%>
+                        <%else%>
+                         <%=image_tag "default_image.jpg"%>
+                        <%end%>
+                      </td>
+                      <td><%= @bike.year %>  <%= @bike.make %>  <%= @bike.model %>  <%= @bike.variant if !@bike.variant.nil? %>
+                      </td>
+                    </tr>
+                 </table>
+               </a>

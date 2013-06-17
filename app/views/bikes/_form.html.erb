@@ -29,7 +29,7 @@
   <div class="control-group">
     <%= f.label :color, :class => 'control-label' %>
     <div class="controls">
-      <%= f.select :color, options_for_select(["Biege", "Black", "Blue", "Bronze", "Brown","Gold", "Green","Grey","Maroon", "Orange","Pink", "Purple", "Racing Colour","Red", "Silver", "Unknown", "White", "Yellow"]),:prompt => 'Select Colour',:required => true %>
+      <%= f.select :color, options_for_select(["Beige", "Black", "Blue", "Bronze", "Brown","Gold", "Green","Grey","Maroon", "Orange","Pink", "Purple", "Racing Colour","Red", "Silver", "Unknown", "White", "Yellow"]),:prompt => 'Select Colour',:required => true %>
     </div>
   </div></td>
 </tr>
@@ -110,13 +110,13 @@
 <td> <div class="control-group">
     <label class="control-label" for="bike_phone">Phone *</label>
     <div class="controls">
-      <%= f.text_field :phone, :class => 'text_field_required' %>
+      <%= f.text_field :phone, :class => 'text_field',:required => true %>
     </div>
   </div></td>
 <td><div class="control-group">
     <%= f.label :comment, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_area :comment, :class => 'textarea', rows: "2" %>
+      <%= f.text_area :comment, :class => 'textarea', rows: "2", maxlength:"100" %>
     </div>
   </div></td>
 </tr>
@@ -151,6 +151,23 @@
      <%= file_field_tag('bike_pictures_attributes_file', :html => {:multipart => true},multiple: true, name: "bike[pictures_attributes][][file]") %><br>
      #Hold Ctrl button to select mutple images
   </div>
+  </div>
+
+    <%if !params[:id].nil?%>
+    <div class="control-group">
+   <label class ="control-label">Your existing pictures:</label>
+    
+   </div>
+     <% if !@bike.pictures.empty?%>
+
+      <ul class = "image_list">
+      <%@bike.pictures.each do |image| %>
+      <li><a id= 'delete_picture' data-toggle="tooltip" data-placement="top" title="Click to Delete"><%= image_tag image.file.url(:thumb), id: image.id %></a></li>
+      <% end %>
+      </ul>
+    <%end%>
+    <% end %>
+  
  
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
@@ -280,4 +297,35 @@ $('select#bike_model').change(function() {
              });
 });
 
+$('a#delete_picture').click(function() {
+  var x;
+var r=confirm("Are you sure you want to remove this picture?");
+if (r==true)
+  {
+  var pic_id = $(':first-child', this).attr("id");
+   
+   console.log("hello");
+   $.ajax({
+                url: "<%=delete_picture_bikes_path%>",
+               
+                type: "POST",
+                data: {id:"<%= @bike.id%>", picture_id:pic_id },
+                 success:"True",
+             });
+
+ $().parent().hide();
+  }
+
+});
+$('ul.image_list li').mouseenter(function() {
+   console.log("hello");
+
+ $(this).css( "opacity", ".5" );
+
+});
+$('ul.image_list li').mouseleave(function() {
+   console.log("hello");
+
+ $(this).css( "opacity", "1" );
+});
 </script>

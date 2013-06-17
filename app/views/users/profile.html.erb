@@ -1,41 +1,73 @@
 
 
 <div class="span12">
-<div class = "well">
-	Profile info here
+<div class = "profile_info">
+  <legend>Your Details<%=link_to "Edit", edit_user_registration_path(@user), class: "btn btn-primary"%></legend>
+  <div class = "row">
+  <div class = "span6">Name: <%= @user.name%></div>
+
+  <div class = "span6">Email: <%= @user.email%></div>
 </div>
-    <div class="row">
+</div>
+ <div class="row">
+<%if params[:saved_bikes]=="true" %>
+
     <div class="span3">
+     <div class="saved_bikes">
+            <ul class="nav nav-list">
+            <legend>
+              Your Listings
+
+            </legend>
+            <%@listings.each do |bike|%>
+            <%@bike= bike%>
+              <%=render "side_bar"%>
+            <%end%>
+            
+            </ul>
+            <div class = "profile_see_all"><%= link_to "See all", profile_user_path()%></div>
+              </div><!--/.well -->
+        </div><!--/span-->
+
+      <div class="span9">    
+      <div class = "bikes">
+      	
+      	<div class = "results">
+            <legend>Saved Bikes</legend>
+          
+            <%=render "bikes/search_bikes"%>
+          </div>
+      </div>
+      </div>
+<%else %>
+      <!----------------ksksksksksk-->
+
+    
+
+      <div class="span9">    
+      <div class = "bikes">
+        
+        <div class = "results">
+           <legend>Your Listings</legend>
+          <%=render "bikes/search_bikes"%>
+          </div>
+      </div>
+      </div>
+      <div class="span3">
     
          
           <div class="saved_bikes">
             <ul class="nav nav-list">
-                <legend>Saved Bikes</legend>
-                <%@favourites.each do |fav_bike|%>
-                 <li>
-                 <%bike=Bike.find(fav_bike.bike_id)%>
-                 <a href= "<%=bike_path(bike)%>">
-                 <table>
-                    <tr>
-                      <td><%= image_tag bike.pictures.last.file.url(:thumb)%>
-                      </td>
-                      <td><%= bike.year %>  <%= bike.make %>  <%= bike.model %>  <%= bike.variant if !bike.variant.nil? %>
-                      </td>
-                    </tr>
-                 </table>
-               </a>
-               </li>
-                <%end%>
+              <legend>Saved Bikes</legend><%= link_to "See all", profile_user_path(saved_bikes: "true")%>
+              <%@favourites.each do |fav_bike|%>
+                <li>
+                  <%@bike=Bike.find(fav_bike.bike_id)%>
+                  <%=render "side_bar"%>
+                </li>
+              <%end%>
+            </ul>
               </div><!--/.well -->
         </div><!--/span-->
-
-<div class="span9">    
-<div class = "bikes">
-	Your Ads
-	<div class = "results">
-<%=render "bikes/search_bikes"%>
-<%= will_paginate @bikees %>
-</div>
-</div>
-</div>
+      <!----------------ksksksksksk-->
+ <%end%>     
 </div>

@@ -15,7 +15,7 @@
     <%= stylesheet_link_tag "application", :media => "all" %>
 
 
-    <link href="images/favicon.ico" rel="shortcut icon">
+    <link href='<%=image_tag "favicon.ico"%>' rel="shortcut icon">
     <link href="images/apple-touch-icon.png" rel="apple-touch-icon">
     <link href="images/apple-touch-icon-72x72.png" rel="apple-touch-icon" sizes="72x72">
     <link href="images/apple-touch-icon-114x114.png" rel="apple-touch-icon" sizes="114x114">
@@ -44,6 +44,7 @@
                           <i class="icon-user icon-white"></i><%=current_user.name%> <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                           <li><%= link_to "Profile", profile_user_path(current_user)%></li>
+                          <li><%= link_to "Edit Account", edit_user_registration_path(current_user)%></li>
 
                           <li class="divider"></li>
                           <li><%= link_to "Sign Out", destroy_user_session_path, method: "delete"  %></li>
@@ -61,7 +62,9 @@
 
     <div class="container-fluid">
       <div class="row-fluid">
-        
+        <div class= "span12" id="main_page_header">
+          <%= render "shared/logo"%>
+        </div>
         <div class="span12">
           <%= yield %>
         </div>

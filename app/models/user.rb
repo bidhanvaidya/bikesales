@@ -4,13 +4,14 @@ class User
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   ## Database authenticatable
   field :email,              :type => String, :default => ""
   field :encrypted_password, :type => String, :default => ""
   field :uid 
   field :name
+  field :provider
   field :facebook_token
   validates_presence_of :email
   validates_presence_of :encrypted_password
@@ -31,10 +32,10 @@ class User
   field :last_sign_in_ip,    :type => String
 
   ## Confirmable
-  # field :confirmation_token,   :type => String
-  # field :confirmed_at,         :type => Time
-  # field :confirmation_sent_at, :type => Time
-  # field :unconfirmed_email,    :type => String # Only if using reconfirmable
+  field :confirmation_token,   :type => String
+  field :confirmed_at,         :type => Time
+  field :confirmation_sent_at, :type => Time
+  field :unconfirmed_email,    :type => String # Only if using reconfirmable
 
   ## Lockable
   # field :failed_attempts, :type => Integer, :default => 0 # Only if lock strategy is :failed_attempts
@@ -44,7 +45,7 @@ class User
   ## Token authenticatable
   # field :authentication_token, :type => String
   embeds_many :favourites, :cascade_callbacks => true
-  
+  accepts_nested_attributes_for :favourites, :allow_destroy => true
   has_many :bikes
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     
@@ -57,6 +58,7 @@ class User
          password:Devise.friendly_token[0,20],
        
          )
+      user.skip_confirmation! 
     end
     user
   end

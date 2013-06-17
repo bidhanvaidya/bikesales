@@ -1,14 +1,13 @@
 class BikesController < ApplicationController
   # GET /bikes
   # GET /bikes.json
-   before_filter :authenticate_user!, :only => [:new, :create,:edit, :update, :destroy]
+   before_filter :authenticate_user!, :only => [:new, :create,:edit, :update, :destroy, :save_search]
 
   def index
     
     @bikes = Bike.all
 
-    b= Bike.full_text_search(params[:search]).size
-    print b
+
     @type_selection = params[:type]
     @make_selection = params[:make]
     @model_selection = params[:model]
@@ -27,21 +26,7 @@ class BikesController < ApplicationController
     @bikes=@bikes.where(location: @location_selection) if !@location_selection.nil?
     @bikes=@bikes.where(body: @body_selection) if !@body_selection.nil?
   
-  if params[:sort] == "price" and params[:direction] == "asc" 
-    @bikes = @bikes.asc(:price)
-  elsif params[:sort].nil?
-    
-    @bikes= @bikes.desc(:price)
-  elsif params[:sort] == "price" and params[:direction] == "desc"
-    @bikes= @bikes.desc(:price)
-    
-  end
-  if params[:sort] == "year" and params[:direction] == "asc" 
-    @bikes = @bikes.asc(:year)
-  elsif params[:sort] == "year" and params[:direction] == "desc"
-    @bikes= @bikes.desc(:year)
-    
-  end
+  
   @types= @bikes.distinct(:type)
   @models= @bikes.distinct(:model)
   @bodies= @bikes.distinct(:body)
@@ -49,7 +34,22 @@ class BikesController < ApplicationController
   @makes= @bikes.distinct(:make)
   @colors= @bikes.distinct(:color)
   @location= @bikes.distinct(:location)
-
+  if params[:sort] == "price" and params[:direction] == "asc" 
+    @bikes = @bikes.asc(:price)
+  elsif params[:sort] == "price" and params[:direction] == "desc"
+    @bikes= @bikes.desc(:price)
+    
+  elsif params[:sort] == "year" and params[:direction] == "asc" 
+    @bikes = @bikes.asc(:year)
+  elsif params[:sort] == "year" and params[:direction] == "desc"
+    @bikes= @bikes.desc(:year)
+     elsif params[:sort] == "latest"
+    @bikes= @bikes.desc(:created)
+  else
+      @bikes= @bikes.desc(:created)
+    
+    
+  end
   @bikees=@bikes.paginate(:page => params[:page], :per_page => 10)
     respond_to do |format|
       format.html # index.html.erb
@@ -61,50 +61,66 @@ class BikesController < ApplicationController
   # GET /bikes/1.json
   def show
     @bike = Bike.find(params[:id])
+    @clicked=@bike.clicked+1
+    @bike.update_attributes(clicked: @clicked)
     @bikes= Bike.all
     @type_selection = params[:type]
     @make_selection = params[:make]
     @model_selection = params[:model]
     @color_selection = params[:color]
     @body_selection =  params[:body]
+    @price_from_selection = params[:price_from]
+    @price_to_selection = params[:price_to]
+    @location_selection = params[:location]
+
     @bikes=@bikes.where(type: @type_selection ) if !@type_selection.nil?
     @bikes=@bikes.make(@make_selection) if !@make_selection.nil?
     @bikes=@bikes.where(model: @model_selection) if !@model_selection.nil?
-
     @bikes=@bikes.where(color: @color_selection) if !@color_selection.nil?
-    if @body_selection == "Sports"
-      @bikes= @bikes.where(body: "Sports")
-    end
+    @bikes=@bikes.where(:price.gt => @price_from_selection) if !@price_from_selection.nil?
+    @bikes=@bikes.where(:price.lt => @price_to_selection) if !@price_to_selection.nil?
+    @bikes=@bikes.where(location: @location_selection) if !@location_selection.nil?
+    @bikes=@bikes.where(body: @body_selection) if !@body_selection.nil?
+  
+  
+  @types= @bikes.distinct(:type)
+  @models= @bikes.distinct(:model)
+  @bodies= @bikes.distinct(:body)
+  
+  @makes= @bikes.distinct(:make)
+  @colors= @bikes.distinct(:color)
+  @location= @bikes.distinct(:location)
   if params[:sort] == "price" and params[:direction] == "asc" 
     @bikes = @bikes.asc(:price)
-  elsif params[:sort].nil?
-    
-    @bikes= @bikes.desc(:price)
   elsif params[:sort] == "price" and params[:direction] == "desc"
     @bikes= @bikes.desc(:price)
     
-  end
-  if params[:sort] == "year" and params[:direction] == "asc" 
+  elsif params[:sort] == "year" and params[:direction] == "asc" 
     @bikes = @bikes.asc(:year)
   elsif params[:sort] == "year" and params[:direction] == "desc"
     @bikes= @bikes.desc(:year)
+     elsif params[:sort] == "latest"
+    @bikes= @bikes.desc(:created)
+  else
+      @bikes= @bikes.desc(:created)
+    
     
   end
-    found = false
-    @previous_bike = @bikes.first
+  found = false
+  @previous_bike = @bikes.first
   @bikes.each do |search_bike|
-    if found == false
-      if search_bike.id == @bike.id
-        
-        found=true
-      else
-        @previous_bike = search_bike
-      end
-    else
-        @next_bike= search_bike
-        break
+  if found == false
+    if search_bike.id == @bike.id
       
+      found=true
+    else
+      @previous_bike = search_bike
     end
+  else
+      @next_bike= search_bike
+      break
+    
+  end
   end
     respond_to do |format|
       format.html # show.html.erb
@@ -167,6 +183,7 @@ class BikesController < ApplicationController
     bike_spec= BikeSpec.where(variant: params[:bike][:variant]).first
     @bike.bike_spec_id = bike_spec.id
     @bike.body = bike_spec.body
+    @bike.updated = Time.now
 
     @bike.user_id = current_user.id
 
@@ -320,5 +337,40 @@ class BikesController < ApplicationController
       format.js
      
     end
+  end
+  def send_to_friend
+    name= params[:name]
+    to = params[:to]
+    bike=Bike.find(params[:bike])
+    UserMailer.send_to_friend(name, to, bike).deliver  
+    respond_to do |format|
+      format.js
+     
+    end
+  end
+  def enquiry
+    name = params[:name]
+    email= params[:email]
+    tel= params[:tel]
+    comment= params[:comment]
+    bike= Bike.find(params[:bike_id])
+    UserMailer.enquiry(name, email, tel, comment, bike).deliver  
+    respond_to do |format|
+      format.js
+     
+    end
+    
+  end
+  def delete_picture
+     bike= Bike.find(params[:id])
+     picture= bike.pictures.find(params[:picture_id])
+     picture.file= nil
+     picture.save
+     picture.delete
+     respond_to do |format|
+      format.js
+     
+    end
+     
   end
 end

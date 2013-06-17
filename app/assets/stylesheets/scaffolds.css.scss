@@ -40,27 +40,30 @@ div {
 }
 
 .field_with_errors {
-  padding: 2px;
-  background-color: red;
+  //padding: 2px;
+  //background-color: red;
+  color: red;
   display: table;
 }
 
 #error_explanation {
-  width: 450px;
-  border: 2px solid red;
+  width: 90%;
+  border: 2px solid rgb(164, 173, 164);
   padding: 7px;
   padding-bottom: 0;
   margin-bottom: 20px;
   background-color: #f0f0f0;
+  border-radius: 5px;
+  box-shadow: 15px 15px 10px #888888;
   h2 {
+    color: black;
+    background-color: white;
     text-align: left;
-    font-weight: bold;
-    padding: 5px 5px 5px 15px;
+    border-bottom: 4px solid #006dbc;
+    margin-bottom: 15px;
     font-size: 12px;
-    margin: -7px;
-    margin-bottom: 0px;
-    background-color: #c00;
-    color: #fff;
+    padding: 0px;
+    padding-left: 15px;
   }
   ul li {
     font-size: 12px;
