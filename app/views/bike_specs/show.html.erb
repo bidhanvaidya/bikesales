@@ -329,7 +329,7 @@
                  <table>
                     <tr>
                       <td><% if !bike.pictures.last.nil?%>
-                        <%= image_tag bike.pictures.last.file.url(:medium), size: "250x150"%>
+                        <%= image_tag bike.pictures.last.file.url(:original), size: "250x150"%>
                         <%else%>
                          <%=image_tag "default_image.jpg"%>
                         <%end%>
