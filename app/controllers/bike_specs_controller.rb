@@ -1,46 +1,38 @@
 class BikeSpecsController < ApplicationController
+  before_filter :owner, :only => [:new, :create,:edit, :update, :destroy, :delete_picture]
   # GET /bike_specs
   # GET /bike_specs.json
   def index
-    @bikes = BikeSpec.all
+    last_year= Time.now.year-2
+    @bikes = BikeSpec.where(:year.gt => last_year)
 
     @make_selection = params[:make]
     @model_selection = params[:model]
     @body_selection =  params[:body]
-    @price_from_selection = params[:price_from]
-    @price_to_selection = params[:price_to]
-   
 
-    @bikes=@bikes.where(type: @type_selection ) if !@type_selection.nil?
     @bikes=@bikes.where(make: @make_selection) if !@make_selection.nil?
     @bikes=@bikes.where(model: @model_selection) if !@model_selection.nil?
-    @bikes=@bikes.where(color: @color_selection) if !@color_selection.nil?
-    @bikes=@bikes.where(:price.gt => @price_from_selection) if !@price_from_selection.nil?
-    @bikes=@bikes.where(:price.lt => @price_to_selection) if !@price_to_selection.nil?
-    @bikes=@bikes.where(location: @location_selection) if !@location_selection.nil?
+   
 
-    if @body_selection == "Sports"
-      @bikes= @bikes.where(body: "Sports")
-    end
+     @bikes=@bikes.where(body: @body_selection) if !@body_selection.nil?
   if params[:sort] == "price" and params[:direction] == "asc" 
     @bikes = @bikes.asc(:price)
-  elsif params[:sort].nil?
-    
-    @bikes= @bikes.desc(:price)
   elsif params[:sort] == "price" and params[:direction] == "desc"
     @bikes= @bikes.desc(:price)
     
-  end
-  if params[:sort] == "year" and params[:direction] == "asc" 
+  elsif params[:sort] == "year" and params[:direction] == "asc" 
     @bikes = @bikes.asc(:year)
   elsif params[:sort] == "year" and params[:direction] == "desc"
     @bikes= @bikes.desc(:year)
     
+  else
+    @bikes = @bikes.desc(:year)
   end
   @models= @bikes.distinct(:model)
-
+  @bodies= @bikes.distinct(:body)
+  
   @makes= @bikes.distinct(:make)
-  @bikees=@bikes.paginate(:page => params[:page], :per_page => 2)
+  @bikees=@bikes.paginate(:page => params[:page], :per_page => 10)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @bikes }
@@ -52,7 +44,7 @@ class BikeSpecsController < ApplicationController
   # GET /bike_specs/1.json
   def show
     @bike_spec = BikeSpec.find(params[:id])
-
+    @makers_bike = BikeSpec.where(make: @bike_spec.make).asc(:year).limit(3)
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @bike_spec }
@@ -127,4 +119,59 @@ class BikeSpecsController < ApplicationController
     format.js
   end
 end
+
+def delete_picture
+     bike= BikeSpec.find(params[:id])
+     picture= bike.pictures.find(params[:picture_id])
+     picture.file= nil
+     picture.save
+     picture.delete
+     respond_to do |format|
+      format.js
+     
+    end
+     
+  end
+
+def showroom
+  last_year= Time.now.year-2
+  @bikes = BikeSpec.where(:year.gt => last_year).desc(:year)
+  @latest_bike = @bikes.desc(:year).limit(3)
+  @models= @bikes.distinct(:model)
+
+  @makes= @bikes.distinct(:make)
+  
+end
+
+  def search
+    make=nil
+    model=nil
+    body=nil
+    make=params[:make] if !params[:make].empty?
+    model=params[:model] if !params[:model].empty?
+    body=params[:body] if params[:body]!= 'Any Type'
+
+    redirect_to bike_specs_path(make: make, model: model, body: body)
+
+  end
+  def change_model
+    last_year= Time.now.year-2
+    
+  
+    @bikes = BikeSpec.where(:year.gt => last_year, make: params[:make])
+    @models= @bikes.distinct(:model)
+    print "bidhan"
+    respond_to do |format|
+      format.js
+    end
+  end
+  private
+  def owner
+    if current_user == User.first || current_user.email == "bidhanvaidya@gmail.com"
+      return true
+    else
+      redirect_to bike_specs_path
+    end
+  end
+  
 end

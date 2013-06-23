@@ -1,0 +1,6 @@
+<%@models.each do |model|%>
+
+var option = $('<option></option>').attr("value", "<%=model%>").text("<%=model%>");
+$("select#model").append(option);
+ <%end%>
+  

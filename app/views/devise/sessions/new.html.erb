@@ -1,4 +1,12 @@
-<h2>Sign in</h2>
+<div class = "edit_login_user_page">
+<a href = "<%=user_omniauth_authorize_path(:facebook)%>" id= "facebook-signin"> 
+          <div class = "facebook_login">
+            Sign In with Facebook
+          </div>
+        </a>
+        <h2>OR</h2>
+<legend>Sign in with email</legend>
+
 
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
   <div><%= f.label :email %><br />
@@ -15,3 +23,4 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
+</div>

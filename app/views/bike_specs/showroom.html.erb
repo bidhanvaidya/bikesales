@@ -1,0 +1,152 @@
+<div class= "showroom_header">New Bike Showroom</div>
+<div class= "showroom_search">
+<form> 
+<%=form_tag(search_bike_specs_path, :method => "put") do %>
+
+    <legend>Search Bikes</legend>
+    <div class = "row">
+      <div class= "span3">
+        <div  class="input-prepend">
+          <span class="add-on">Make: </span>
+          <%= select_tag "make", options_for_select(@makes), :prompt => "Any Make", :class=>"input-drop-down" %>
+        </div>
+      </div>
+        <div class= "span3">
+          <div  class="input-prepend">
+          <span class="add-on">Model: </span>     
+      <%= select_tag "model", options_for_select(@models), :prompt => "Any Model", :class=>"input-drop-down" %>
+      </div>
+    </div>
+    <div class= "span3">
+         <div  class="input-prepend">
+          <span class="add-on">Body: </span>     
+      <%= select_tag :body, options_for_select(['Any Type',"Cruiser", "Scooter", "Sports", "Super Sport", "Standard", "Trail"]),:class=>"input-drop-down" %>
+        </div>
+    </div>
+     <div class= "span3">
+     <input class="btn btn-primary" name="commit" type="submit" formaction="<%= search_bike_specs_path%>" value="Search" >
+   </div>
+   </div>
+<%end%>
+</div>
+<div class = "row">
+<div class = "span4" id = "showroom_browse">
+<legend>Browse by body type</legend>
+<table class= "browse_body_type">
+      <tr>
+        <td><a href = '<%=bike_specs_path(body: "Cruiser")%>'><div class= "image_border"><%=image_tag "cruiser.jpg", size: "200x100"%>Cruiser</a></div></td>
+        <td><a href = '<%=bike_specs_path(body: "Scooter")%>'><div class= "image_border"><%= image_tag "scooter.jpg", size: "200x100"%>Scooter</a></div></td>
+      </tr>
+      <tr>
+        <td><a href = '<%=bike_specs_path(body: "Sports")%>'><div class= "image_border"><%= image_tag "sport.jpg", size: "200x100"%>Sport</a></div></td>
+        <td><a href = "<%=bike_specs_path(body: 'Super Sport')%>"><div class= "image_border"><%= image_tag "supersport.jpg", size: "200x100"%>Super Sport</a></div></td>
+     </tr>
+     <tr>
+        <td><a href = "<%=bike_specs_path(body: 'Standard')%>"><div class= "image_border"><%= image_tag "standard.jpg", size: "200x100"%>Standard</a></div></td>
+        <td><a href = '<%=bike_specs_path(body: "Trail")%>'><div class= "image_border"><%= image_tag "trail.jpg", size: "200x100"%>Trail</a></div></td>
+      </tr> 
+    </table> 
+</div>
+<div class = "span4" id = "showroom_browse">
+<legend>Browse By: Top Makers</legend>
+    <table class= "browse_maker">
+      <tr>
+        <td><a href = '<%=bike_specs_path(make: "Bajaj")%>'><div class= "image_border"><%=image_tag "bajaj.jpg", size: "105x60"%></a></div></td>
+        <td><a href = '<%=bike_specs_path(make: "Daelim")%>'><div class= "image_border"><%= image_tag "daelim.jpg", size: "105x60"%></a></div></td>
+        <td><a href = '<%=bike_specs_path(make: "Hero Honda")%>'><div class= "image_border"><%= image_tag "hero-honda.jpg", size: "105x60"%></a></div></td>
+       
+        <td><a href = "<%=bike_specs_path(make: 'Honda')%>"><div class= "image_border"><%= image_tag "honda.jpg", size: "105x60"%></a></div></td>
+         </tr>
+      <tr>
+        <td><a href = "<%=bike_specs_path(make: 'Hyosung')%>"><div class= "image_border"><%= image_tag "hyosung.jpg", size: "105x60"%></a></div></td>
+        <td><a href = "<%=bike_specs_path(make: 'Royal Enfield')%>"><div class= "image_border"><%= image_tag "royal-enfield.jpg", size: "105x60"%></a></div></td>
+        
+        <td><a href = '<%=bike_specs_path(make: "Suzuki")%>'><div class= "image_border"><%= image_tag "suzuki.jpg", size: "105x60"%></a></div></td>
+        <td><a href = '<%=bike_specs_path(make: "TVS")%>'><div class= "image_border"><%= image_tag "tvs.jpg", size: "105x60"%></a></div></td>
+        </tr>
+      <tr>
+        <td><a href = '<%=bike_specs_path(make: "Yamaha")%>'><div class= "image_border"><%= image_tag "yamaha.jpg", size: "105x60"%></a></div></td>
+      </tr> 
+    </table>  
+
+</div>
+    <div class = "span4">
+    <div class=  "latest_bikes">
+    <legend>Latest Bikes</legend>
+    <table class= "browse_maker">
+       <tr>
+        
+      <%@latest_bike.each do |bike|%>
+      <td>
+      <table>
+        <tr>
+          <td>
+        <% if !bike.pictures.last.nil?%>
+          <a href = '<%=bike_spec_path(bike)%>'><div class= "image_border"><%=image_tag bike.pictures.last.file.url(:medium), size: "150x100"%></a></div>
+          <%else%>
+          <a href = '<%=bike_spec_path(bike)%>'><div class= "image_border"><%=image_tag "default_image.jpg", size: "150x100"%></a></div>
+          <%end%>
+
+        </td>
+    </tr>
+        <tr>
+
+        <td><a href = '<%=bike_spec_path(bike)%>'><%= bike.year %>  <%= bike.make %>  <%= bike.model %>  <%= bike.variant if !bike.variant.nil? %></a></div></td>
+      </tr>
+    </td>
+     </table>
+      <%end%>
+      
+       </tr> 
+    </table>  
+    <div class="fb-like-box" data-href="https://www.facebook.com/FacebookDevelopers" data-width="292" data-show-faces="true" data-stream="false" data-show-border="true" data-header="true"></div>
+    </div>
+  </div>
+<script type="text/javascript">
+$('select#make').change(function() {
+
+  
+  
+  $("select#make option:selected").each(function () {
+            console.log($(this).text());
+            str = $(this).text();
+  });
+
+if (str== "Any Make"){
+   $("select#model").empty();
+   var option_model = $('<option></option>').attr("value", "").text("Any Model");
+$("select#model").append(option_model);
+<%@models.each do |model|%>
+
+var option = $('<option></option>').attr("value", "<%=model%>").text("<%=model%>");
+$("select#model").append(option);
+ <%end%>
+}
+else{
+  $("select#model").empty();
+var option_model = $('<option></option>').attr("value", "").text("Any Model");
+$("select#model").append(option_model);
+  console.log("test");
+  $.ajax({
+                url: "<%=change_model_bike_specs_path%>",
+               
+                
+                data: {make:str },
+                 success:console.log("test"),
+             });
+};
+});
+$('select#model').change(function() {
+  $("select#model option:selected").each(function () {
+            console.log($(this).text());
+            str = $(this).text();
+  });
+if (str== "Any Model"){
+  $('select#body').removeAttr('disabled');
+}
+else{
+  $('select#body').attr('disabled', 'disabled')
+  }
+ 
+});
+</script>

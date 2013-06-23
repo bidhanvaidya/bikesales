@@ -12,9 +12,11 @@
                     
                     <li><i class="icon-plus-sign"><a></a></i><i class="icon-minus-sign"><a></a></i>Body
                         <ul>
-                            <li>
-                                <a href= <%= bike_specs_path(sort: params[:sort], :direction => params[:direction], type: params[:type], body: "Sports") %>>Sports (<%=@bikes.where(body:"Sports").count%>)</a>
-                            </li>
+                            <% @bodies.each do |body| %>
+                                <li>
+                                    <%= link_to body, bike_specs_path(sort: params[:sort], :direction => params[:direction], body: body, make: params[:make],model: params[:model] )%> (<%=@bikes.where(body: body).count%>)
+                                </li>  
+                            <% end %>
                         </ul>
                     </li>
                     <li><i class="icon-plus-sign"><a></a></i><i class="icon-minus-sign"><a></a></i>Make
@@ -100,6 +102,42 @@ var div =1
         });
     }
 });
+ $(document).scroll(function() {
+      if ($(window).width() > 979){
+      var height =  $(".current_selection").height()+ 90
+    if ($(this).scrollTop() > 186) {
+        $('.current_selection').css({ 
+            "position" : 'fixed',
+            "width": '226',
+            "margin-top": 63,
+            "top" : 0 });
+        $(".icon-remove").css({
+          "position": "fixed",
+          "left": "28%"
+          
+        })
+        $('.sidebar-nav').css({ 
+            "position" : 'fixed',
+            "width": '226',
+            "margin-top": height,
+            "top" : 0 });
+        $('.header').css({ 
+            "position" : 'fixed',
+            "width": '708',
+            "height": '18',
+            "margin-top": 63,
+            "top" : 0 });
+    } else {
+        $('.current_selection').css({ "position" : 'relative', "top" : 0,"margin-top": 0, "width" : '100%' });
+        $('.sidebar-nav').css({ "position" : 'relative', "top" : 0,"margin-top": 0, "width" : '100%' });
+         $('.header').css({ "position" : 'relative', "top" : 0,"margin-top": 0,"width": '708' });
+         $(".icon-remove").css({
+          "position": "absolute",
+          "left":"84%"
+        })
+    }
+  }
+})
 $("select.sort_select").change(function() {
 
 

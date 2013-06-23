@@ -33,22 +33,20 @@
           <a class="brand" href="/">Bikesales</a>
           <div class="container-fluid nav-collapse">
             <ul class="nav">
-              <li><%= link_to "Create Ad", new_bike_path  %></li>
-              <li><%= link_to "Bike Spec Page", bike_specs_path  %></li>
+              <li><%= link_to "Bikes For Sale", bikes_path%></li>
+
+              <li><%= link_to "Sell your Bike", new_bike_path  %></li>
+              <li><%= link_to "New Bike Showroom", showroom_bike_specs_path  %></li>
               
             </ul>
             <ul class = "nav pull-right">  
               <% if user_signed_in?%>
-              <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                          <i class="icon-user icon-white"></i><%=current_user.name%> <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                          <li><%= link_to "Profile", profile_user_path(current_user)%></li>
-                          <li><%= link_to "Edit Account", edit_user_registration_path(current_user)%></li>
-
-                          <li class="divider"></li>
-                          <li><%= link_to "Sign Out", destroy_user_session_path, method: "delete"  %></li>
-                        </ul>
+                          
+                         
+                          <li><a href="<%=profile_user_path(current_user)%>" ><i class="icon-user icon-white"></i><%=current_user.name%> </a></li>
+                        
+                          <li><%= link_to "Sign Out", destroy_user_session_path, method: "delete"  %>
+                       
                 </li>
               
               <%else%>
@@ -99,7 +97,13 @@
     <!-- Javascripts
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
+    
+   
+
+
     <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag "facebook" %>
+
     <div class="navbar navbar-fixed-bottom">
       <div class="navbar-inner">
         <div class="container-fluid">
@@ -118,7 +122,7 @@
       </div>
     </div>
     
- 
+  
 
 
   </body>

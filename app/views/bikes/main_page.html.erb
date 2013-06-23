@@ -17,6 +17,7 @@
 <div class= "span12">
 <div  id = "sponsored_links">
     <%=render "sponsored_links"%>    
+
   </div>
 
 </div>
@@ -24,7 +25,11 @@
 
 <div id="main_page_browse" class= "span12">
   <div class = "row">
-  <div class= "span9">
+  <div class= "span8">
+    
+
+
+    <div class = "row">
     <div class = "main_page_browse_by">
     <legend>Browse By: Body Type</legend>
     <table class= "browse_body_type">
@@ -38,16 +43,9 @@
       </tr> 
     </table>  
     </div><!--main_page_browse_by-->
-  </div><!--span9-->
-
-  
-  <div id= "new_bike"class= "span3">
-    Optional span 3
   </div>
-</div><!--row-->
-
-<div class = "row">
-  <div class= "span9">
+  <div class = "row">
+  
     <div class = "main_page_browse_by">
     <legend>Browse By: Top Makers</legend>
     <table class= "browse_makers">
@@ -64,16 +62,18 @@
       </tr> 
     </table>  
     </div><!--main_page_browse_by-->
-  </div><!--span9-->
-
-  
-  <div id= "new_bike"class= "span3">
-    Optional span 3
+  </div>
+  </div>
+  <div id= "facebook_page"class= "span4">
+    <div class="fb-like-box" data-href="https://www.facebook.com/FacebookDevelopers" data-width="292" data-height="405" data-show-faces="true" data-stream="true" data-show-border="true" data-header="false"></div>
   </div>
 </div><!--row-->
 
+</div><!--span9-->
 
-
+  
+ 
+<div id="main_page_browse" class= "span12">
 <div  class= "row">
   <div class= "span6">
     <div class = "main_page_browse_by">
@@ -97,7 +97,7 @@
           <li><%= link_to "Rs. 3,00,000 to Rs. 4,00,000",bikes_path(price_from: "299999", price_to: "400001")%></li>
           <li><%= link_to "Rs. 4,00,000 to Rs. 5,00,000",bikes_path(price_from: "399999", price_to: "500001")%></li>
           <li><%= link_to "Rs. 5,00,000 to Rs. 10,00,000",bikes_path(price_from: "499999", price_to: "1000001")%></li>
-          <li><%= link_to "More than Rs. 10,00,000",bikes_path(price_from: "999999", price_to: "99999999999")%></li>
+          <li><%= link_to "More than Rs. 10,00,000",bikes_path(price_from: "999999", price_to: nil)%></li>
         </ul>
       </td>
     </tr></table>
@@ -151,8 +151,8 @@
     </div>
   </div>
   </div><!--row-->
-
 </div>
+
   
   
 

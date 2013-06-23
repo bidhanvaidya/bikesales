@@ -47,6 +47,7 @@ class User
   embeds_many :favourites, :cascade_callbacks => true
   accepts_nested_attributes_for :favourites, :allow_destroy => true
   has_many :bikes
+  has_many :bike_specs
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     
     user = User.where(:provider => auth.provider, :uid => auth.uid).first

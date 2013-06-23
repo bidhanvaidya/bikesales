@@ -1,4 +1,11 @@
-<h2>Sign up</h2>
+<div class = "edit_login_user_page">
+  <a href = "<%=user_omniauth_authorize_path(:facebook)%>" id= "facebook-signin"> 
+          <div class = "facebook_login">
+            Sign Up using Facebook
+          </div>
+        </a>
+        <h2>OR</h2>
+<legend>Sign up with Email</legend>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
@@ -18,3 +25,4 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
+</div>

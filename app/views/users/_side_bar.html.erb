@@ -1,7 +1,7 @@
 <a href= "<%=bike_path(@bike)%>">
                  <table>
                     <tr>
-                      <td><% if !@bike.pictures.last.nil?%>
+                      <td><% if !@bike.pictures.nil?%>
                         <%= image_tag @bike.pictures.last.file.url(:thumb)%>
                         <%else%>
                          <%=image_tag "default_image.jpg"%>

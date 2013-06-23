@@ -2,7 +2,7 @@
         <ul class="nav nav-list"> 
         <legend>Current Selection</legend>  
 
-            <% if @type_selection.nil? and @body_selection.nil? and @make_selection.nil? and @model_selection.nil? and @color_selection.nil? and @location_selection.nil? %>
+            <% if @type_selection.nil? and @body_selection.nil? and @make_selection.nil? and @model_selection.nil? and @color_selection.nil? and @location_selection.nil? and @price_from_selection.nil? and @price_to_selection.nil? %>
             No options selected. Please choose one or more options below.
                 <%= link_to "New search", bikes_path%>
 
@@ -12,7 +12,7 @@
                 <li>
 
 
-                <a href = "<%=bikes_path(sort: params[:sort], :direction => params[:direction], body: params[:body], make: params[:make], model: params[:model], color: params[:color],type: nil )%>"><%= @type_selection %>   <i class = "icon-remove"></i></a>
+                <a href = "<%=bikes_path(sort: params[:sort], :direction => params[:direction], body: params[:body], make: params[:make], model: params[:model], color: params[:color],type: nil, price_from: params[:price_from], price_to: params[:price_to] )%>"><%= @type_selection %>   <i class = "icon-remove"></i></a>
                 </li>
             <%end%>
 
@@ -20,28 +20,28 @@
                 <li>
 
 
-                <a href = "<%=bikes_path(sort: params[:sort], :direction => params[:direction], body: nil, make: params[:make], model: params[:model], color: params[:color],type: params[:type] )%>"><%= @body_selection %>   <i class = "icon-remove"></i></a>
+                <a href = "<%=bikes_path(sort: params[:sort], :direction => params[:direction], body: nil, make: params[:make], model: params[:model], color: params[:color],type: params[:type], price_from: params[:price_from], price_to: params[:price_to] )%>"><%= @body_selection %>   <i class = "icon-remove"></i></a>
                 </li>
             <%end%>
             <% if !@make_selection.nil?%>
                 <li>
 
 
-                <a href = "<%=bikes_path(sort: params[:sort], :direction => params[:direction], body: params[:body], make: nil, model: nil, color: params[:color],type: params[:type] )%>"><%= @make_selection %>   <i class = "icon-remove"></i></a>
+                <a href = "<%=bikes_path(sort: params[:sort], :direction => params[:direction], body: params[:body], make: nil, model: nil, color: params[:color],type: params[:type], price_from: params[:price_from], price_to: params[:price_to] )%>"><%= @make_selection %>   <i class = "icon-remove"></i></a>
                 </li>
             <%end%>
             <% if !@model_selection.nil?%>
                 <li>
 
 
-                <a href = "<%=bikes_path(sort: params[:sort], :direction => params[:direction], body: params[:body], make: params[:make], model: nil, color: params[:color],type: params[:type] )%>"><%= @model_selection %>   <i class = "icon-remove"></i></a>
+                <a href = "<%=bikes_path(sort: params[:sort], :direction => params[:direction], body: params[:body], make: params[:make], model: nil, color: params[:color],type: params[:type], price_from: params[:price_from], price_to: params[:price_to] )%>"><%= @model_selection %>   <i class = "icon-remove"></i></a>
                 </li>
             <%end%>
             <% if !@color_selection.nil?%>
                 <li>
                 <div>
 
-                <a href = "<%=bikes_path(sort: params[:sort], :direction => params[:direction], body: params[:body], make: params[:make], model: params[:model], color: nil,type: params[:type] )%>"><%= @color_selection %>   <i class = "icon-remove"></i></a>
+                <a href = "<%=bikes_path(sort: params[:sort], :direction => params[:direction], body: params[:body], make: params[:make], model: params[:model], color: nil,type: params[:type], price_from: params[:price_from], price_to: params[:price_to] )%>"><%= @color_selection %>   <i class = "icon-remove"></i></a>
                 </div>
                 </li>
             <%end%>
@@ -49,9 +49,32 @@
                 <li>
                 <div>
 
-                <a href = "<%=bikes_path(sort: params[:sort], :direction => params[:direction], body: params[:body], make: params[:make], model: params[:model], color: params[:color],type: params[:type], location:nil )%>"><%= @location_selection %>   <i class = "icon-remove"></i></a>
+                <a href = "<%=bikes_path(sort: params[:sort], :direction => params[:direction], body: params[:body], make: params[:make], model: params[:model], color: params[:color],type: params[:type], location:nil, price_from: params[:price_from], price_to: params[:price_to] )%>"><%= @location_selection %>   <i class = "icon-remove"></i></a>
+                </div>
+                </li>
+            <%end%>
+            <% if !@price_from_selection.nil? or !@price_to_selection.nil?%>
+                
+                <li>
+
+                <div>
+                    <a href = "<%=bikes_path(price_from: nil, price_to: nil,sort: params[:sort], :direction => params[:direction], type: params[:type],body: params[:body], make: params[:make], model: params[:model], color: params[:color], location: params[:location])%>"><b>Price:</b></br> 
+                        <% if !@price_from_selection.nil?%>
+                            Rs. <%= @price_from_selection %> - 
+                        <% else %>
+                        Min. - 
+                        <%end%>
+                        <% if !@price_to_selection.nil?%>
+                            Rs. <%= @price_to_selection %>   
+                        <% else %>
+                        Max.
+                        
+                        <%end%>
+                        <i class = "icon-remove"></i>
+                    </a>
                 </div>
                 </li>
             <%end%>
         </ul>
     </div>
+    

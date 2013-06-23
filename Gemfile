@@ -35,6 +35,8 @@ gem 'fb_graph'
 gem 'will_paginate'
 gem "will_paginate_mongoid"
 gem "mongoid-paperclip", :require => "mongoid_paperclip"
+gem 'aws-sdk', '~> 1.3.4'
+gem 'unicorn'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

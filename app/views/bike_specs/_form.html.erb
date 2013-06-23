@@ -40,7 +40,225 @@
      <%= file_field_tag('bike_spec_pictures_attributes_file', :html => {:multipart => true},multiple: true, name: "bike_spec[pictures_attributes][][file]") %><br>
      #Hold Ctrl button to select mutple images
   </div>
+  <%if !params[:id].nil?%>
+    <div class="control-group">
+   <label class ="control-label">Your existing pictures:</label>
+   </div>
+  <% if !@bike_spec.pictures.empty?%>
+
+      <ul class = "image_list">
+      <%@bike_spec.pictures.each do |image| %>
+      <li><a id= 'delete_picture' data-toggle="tooltip" data-placement="top" title="Click to Delete"><%= image_tag image.file.url(:thumb), id: image.id %></a></li>
+      <% end %>
+      </ul>
+    <%end%>
+    <% end %>
+
+  <div class="field">
+    <%= f.label :top_speed %>
+    <%= f.text_field :top_speed %> kmph
+  </div>
+  <div class="field">
+    <%= f.label :fuel_consumption_city  %>
+    <%= f.text_field :fuel_consumption_city  %> kmpl 
+  </div>
+  <div class="field">
+    <%= f.label :fuel_consumption_highway%>
+    <%= f.text_field :fuel_consumption_highway   %> kmpl
+  </div>
+  <div class="field">
+    <%= f.label :displacement%>
+    <%= f.text_field :displacement   %> cc
+  </div>
+  <div class="field">
+    <%= f.label :engine  %>
+    <%= f.text_field :engine   %>
+  </div>
+  <div class="field">
+    <%= f.label :max_power  %>
+    <%= f.text_field :max_power  %>
+  </div>
+  <div class="field">
+    <%= f.label :max_torque  %>
+    <%= f.text_field :max_torque  %>
+  </div>
+  <div class="field">
+    <%= f.label :transmission  %>
+    <%= f.text_field :transmission   %>
+  </div>
+  <div class="field">
+    <%= f.label :clutch  %>
+    <%= f.text_field :clutch  %>
+  </div>
+  <div class="field">
+    <%= f.label :bore  %>
+    <%= f.text_field :bore   %>
+  </div>
+  <div class="field">
+    <%= f.label :stroke  %>
+    <%= f.text_field :stroke   %>
+  </div>
+  <div class="field">
+    <%= f.label :no_of_cylinders  %>
+    <%= f.number_field :no_of_cylinders  %>
+  </div>
+  <div class="field">
+    <%= f.label :valve_per_cylinder  %>
+    <%= f.number_field :valve_per_cylinder  %>
+  </div>
+  <div class="field">
+    <%= f.label :chassis_type  %>
+    <%= f.text_field :chassis_type   %>
+  </div>
+  <div class="field">
+    <%= f.label :cooling_type %>
+    <%= f.text_field :cooling_type   %> 
+  </div>
+  <b>DIMENSIONS</b>
+  <div class="field">
+    <%= f.label :length  %>
+    <%= f.text_field :length  %> mm
+  </div>
+  <div class="field">
+    <%= f.label :width  %>
+    <%= f.text_field :width  %> mm
+  </div>
+  <div class="field">
+    <%= f.label :height %>
+    <%= f.text_field :height  %> mm
+ </div>
+
+<b> OTHER SPECIFICATIONS</b>
+  
+ 
+  <div class="field">
+    <%= f.label :weight  %>
+    <%= f.text_field :weight  %> kg
+  </div>
+  <div class="field">
+    <%= f.label :ground_clearance  %>
+    <%= f.text_field :ground_clearance  %> mm
+  </div>
+  <div class="field">
+    <%= f.label :fuel_tank %>
+    <%= f.text_field :fuel_tank  %> ltrs
+  </div>
+  <div class="field">
+    <%= f.label :wheelbase %>
+    <%= f.text_field :wheelbase  %> mm
+  </div>
+  <div class="field">
+    <%= f.label :headlamp %>
+    <%= f.text_field :headlamp  %>
+  </div>
+  <div class="field">
+    <%= f.label :battery_type%>
+    <%= f.text_field :battery_type  %>
+  </div>
+  <div class="field">
+    <%= f.label :battery_voltage%>
+    <%= f.text_field :battery_voltage  %> V
+  </div>
+  <div class="field">
+    <%= f.label :battery_capacity %>
+    <%= f.text_field :battery_capacity  %> Ah
+  </div>
+  <div class="field">
+    <%= f.label :wheel_type %>
+    <%= f.text_field :wheel_type  %>
+  </div>
+  <div class="field">
+    <%= f.label :wheel_size %>
+    <%= f.text_field :wheel_size  %>
+
+  </div>
+  <div class="field">
+    <%= f.label :tyre_type  %>
+    <%= f.text_field :tyre_type  %>
+</div>
+
+
+<b> ACTIVE AND PASSIVE SAFETY</b>
+ 
+
+  <div class="field">
+    <%= f.label :suspension_front%>
+    <%= f.text_field :suspension_front  %>
+  </div>
+  <div class="field">
+    <%= f.label :suspension_rear%>
+    <%= f.text_field :suspension_rear  %>
+  </div>
+  <div class="field">
+    <%= f.label :brakes_front%>
+    <%= f.text_field :brakes_front  %>
+  </div>
+  <div class="field">
+    <%= f.label :brakes_rear %>
+    <%= f.text_field :brakes_rear  %>
+  </div>
+  <div class="field">
+    <%= f.label :stand_alarm %>
+    <%= f.text_field :stand_alarm  %>
+</div>
+
+<b> COMFORT AND CONVENIENCE</b>
+
+
+  <div class="field">
+    <%= f.label :fuel_gauge %>
+    <%= f.text_field :fuel_gauge  %>
+  </div>
+  <div class="field">
+    <%= f.label :ignition %>
+    <%= f.text_field :ignition  %>
+  </div>
+  <div class="field">
+    <%= f.label :tacho_meter %>
+    <%= f.text_field :tacho_meter  %>
+  </div>
+  <div class="field">
+    <%= f.label :trip_meter %>
+    <%= f.text_field :trip_meter  %>
+  </div>
+  <div class="field">
+    <%= f.label :speedometer%>
+    <%= f.text_field :speedometer  %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+<script type="text/javascript">
+
+$('a#delete_picture').click(function() {
+  var x;
+var r=confirm("Are you sure you want to remove this picture?");
+if (r==true)
+  {
+  var pic_id = $(':first-child', this).attr("id");
+   
+   console.log("hello");
+   $.ajax({
+                url: "<%=delete_picture_bike_specs_path%>",
+               
+                type: "POST",
+                data: {id:"<%= @bike_spec.id%>", picture_id:pic_id },
+                 success:"True",
+             });
+
+ $(this).parent().hide();
+  }
+
+});
+$('ul.image_list li').mouseenter(function() {
+   console.log("hello");
+
+ $(this).css( "opacity", ".5" );
+
+});
+$('ul.image_list li').mouseleave(function() {
+   console.log("hello");
+
+ $(this).css( "opacity", "1" );
+});</script>

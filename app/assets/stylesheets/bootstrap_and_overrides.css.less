@@ -73,11 +73,6 @@ body
 	border-top: 1px solid rgba(221, 221, 221, 0);
 }
 
-.table-striped tbody tr:nth-child(odd) td, .table-striped tbody tr:nth-child(odd) th 
-{
-	background-color: #e1eaf3;
-	border-radius:15px;
-}
 
 .btn.btn-primary 
 {
@@ -100,6 +95,7 @@ body
 	border-radius: 0px;
 	padding: 10px;
 	color: white;
+	z-index: 1
 }
 
 .result_div 
@@ -109,10 +105,32 @@ body
 	border-radius: 15px;
 }
 
-.icon-remove 
+@media (min-width: 980px)
 {
-	right: -48%;
-	position: relative;
+	.icon-remove 
+	{
+		position: absolute;
+		left: 28%;
+
+	}
+}
+@media (min-width:100px) and (max-width: 480px)
+{
+	.icon-remove 
+	{
+		position: absolute;
+		left: 50%;
+	}
+	
+}
+@media (min-width:768px) and (max-width: 979px)
+{
+	.icon-remove 
+	{
+		position: absolute;
+		left: 20%;
+	}
+	
 }
 
 //Background image gradient
@@ -567,11 +585,13 @@ div.input-prepend
 {
 	padding: 15px;
 	margin-bottom: 25px;
+
 }
 
 #main_page_browse 
 {
 	box-shadow: 5px 0px 15px #888888;
+	margin-left: 0px;
 }
 
 .image_border 
@@ -579,7 +599,7 @@ div.input-prepend
 	margin: 1px;
 	border-radius: 3px;
 	box-shadow: 2px 2px 5px #888888;
-	border-left: solid 1px #d7d7d7;
+	border: solid 1px #d7d7d7;
 }
 
 .browse_body_type 
@@ -675,15 +695,11 @@ div.input-prepend
 .show-page-header 
 {
 	text-align: center;
-	padding-bottom: 10px;
+	padding-bottom: 15px;
 	border-bottom: 4px solid #006dbc;
 	margin-bottom: 15px;
-	h1 
-	{
-		font-size: 23px;
-		line-height: 20px;
-		display: inline;
-	}
+	font-size: 20px;
+	
 	.btn.btn-primary 
 	{
 		color: white;
@@ -709,6 +725,7 @@ div.input-prepend
 {
 	box-shadow: 10px 10px 10px #888888;
 	margin-bottom: 15px;
+	margin-top: 10px;
 }
 
 
@@ -717,6 +734,7 @@ div.input-prepend
 .result_table 
 {
 	width: 100%;
+	position: relative;
 	//border-bottom: solid 1px grey;
 }
 
@@ -729,7 +747,67 @@ div.search_result_div a
 {
 	color: #666;
 }
-
+td.view_bike_link{
+	position: absolute;
+	bottom: 0%;
+	right: 10%;
+}
+#result_header
+{
+	position:relative;
+	legend 
+	{
+		border-bottom: 4px solid #006dbc;
+		position: absolute;
+		right: 5px;
+		width: 35%;
+		text-align: center;
+		font-size: 18px;
+		
+	}
+}
+@media(min-width: 729px)
+{
+	#result_header
+	{
+		legend
+		{
+			
+			border-bottom: 4px solid rgb(7, 69, 114);
+			position: absolute;
+			right: 5px;
+			width: 45%;
+			text-align: left;
+			background: rgb(222, 223, 224);
+			margin-right: -10%;
+			padding-left: 15px;
+			border-top-left-radius: 15px;
+			border-bottom-right-radius: 15px;
+		}
+	}
+}
+@media(max-width: 420px)
+{
+	#result_header
+	{
+		legend
+		{
+			
+			border-bottom: 4px solid #006dbc;
+		position: absolute;
+		right: 5px;
+		width: 35%;
+		text-align: center;
+		font-size: 14px;
+		}
+	}
+}
+td.listing_title 
+{
+	font-size: 18px;
+	width: 55%;
+	font-weight: bold;
+}
 
 //##############################facebook login model#################################
 .facebook_login 
@@ -974,10 +1052,11 @@ padding-right: 15px;
 padding-left: 15px;
 padding-bottom: 30px;
 width: 105px;
+position: relative;
 
 }
 .b {
-background: rgba(0, 109, 188, 0.71) url(color-pallet-shade.png) repeat-x 0 0;
+background: rgba(0, 109, 188, 0.95);
 padding: 20px;
 margin-top: 0px;
 border-radius: 5px;
@@ -1003,13 +1082,57 @@ background: rgba(241, 238, 238, 0.93) url(color-pallet-shade.png) repeat-x 0 0;
 height: 135px;
 width: 65px;
 position: absolute;
-left: 18%;
-top: 80px;
+left: 38%;
+top: -12px;
 box-shadow: 5px 5px 5px #888888;
 border-radius: 5px;
 }
+#image_logo {
+border-top-left-radius: 101px;
+border-top-right-radius: 112px;
+border-bottom-right-radius: 9px;
+box-shadow: 16px 0px 36px rgba(7, 2, 2, 0.53);
+}
+.logo {
+font-size: 30px;
+
+background: -moz-linear-gradient(top,  rgba(30,87,153,1) 0%, rgba(125,185,232,0) 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(30,87,153,1)), color-stop(100%,rgba(125,185,232,0)));
+background: -webkit-linear-gradient(top,  rgba(30,87,153,1) 0%,rgba(125,185,232,0) 100%);
+background: -o-linear-gradient(top,  rgba(30,87,153,1) 0%,rgba(125,185,232,0) 100%);
+background: -ms-linear-gradient(top,  rgba(30,87,153,1) 0%,rgba(125,185,232,0) 100%);
+background: linear-gradient(to bottom,  rgba(30,87,153,1) 0%,rgba(125,185,232,0) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#007db9e8',GradientType=0 );
+
+border-top-left-radius: 95px;
+border-top-right-radius: 123px;
+z-index: -1;
+width: 100%;
+position: relative;
+text-indent: -10px;
+}
+@media(min-width: 769px){
+	#main_page_border {
+margin-top: 0px;
+}
+}
+#main_page_header {
+margin-bottom: 46px;
+}
+@media(max-width: 624px) and (min-width: 462px){
+.logo {
+font-size: 14px;
+
+}
+}
+@media(max-width: 462px){
+.logo {
+font-size: 0px;
+background: transparent
+}
+}
 //####################Registration page#################################################
-.edit_user_page
+.edit_login_user_page
 {
 	padding: 15px;
 	width: 320px;
@@ -1040,4 +1163,70 @@ border-radius: 5px;
 	font-weight: bold;
 	color: black;
 	border-bottom: solid 2px;
+}
+#facebook_page
+{
+	padding: 0px;
+	margin: 10px;
+	
+	margin-top: 15px;
+	border-right: none;
+}
+.info 
+{
+	background: white;
+	padding: 15px;
+	margin-top: 10px;
+	margin-bottom: 15px;
+	box-shadow: 10px 5px 10px #888888;
+border-radius: 5px;
+border: 1px solid #888888;
+}
+#bike_spec_span 
+{
+	padding: 15px;
+	background: white;
+	box-shadow: 10px 5px 10px #888888;
+	border: #888888 solid 1px;
+	border-radius: 5px;
+}
+#showroom_browse
+{
+	background: white;
+	padding: 12px;
+	margin-top: 10px;
+	box-shadow: 5px 5px 10px #888888;
+}
+.latest_bikes 
+{
+	box-shadow: 5px 5px 10px #888888;
+	background: white;
+	margin-top: 10px;
+	padding: 15px;
+}
+.showroom_header 
+{
+	padding: 15px;
+	margin-top: 15px;
+	font-size: 18px;
+	box-shadow: 3px 2px 5px #888888;
+	font-weight: bold;
+	color: white;
+	
+	background: #1e589a;
+	background: -moz-linear-gradient(top,  #1e589a 0%, #207bca 37%, #2a8ad8 64%, #7ebae8 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#1e589a), color-stop(37%,#207bca), color-stop(64%,#2a8ad8), color-stop(100%,#7ebae8));
+	background: -webkit-linear-gradient(top,  #1e589a 0%,#207bca 37%,#2a8ad8 64%,#7ebae8 100%);
+	background: -o-linear-gradient(top,  #1e589a 0%,#207bca 37%,#2a8ad8 64%,#7ebae8 100%);
+	background: -ms-linear-gradient(top,  #1e589a 0%,#207bca 37%,#2a8ad8 64%,#7ebae8 100%);
+	background: linear-gradient(to bottom,  #1e589a 0%,#207bca 37%,#2a8ad8 64%,#7ebae8 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e589a', endColorstr='#7ebae8',GradientType=0 );
+
+}
+.showroom_search 
+{
+	background: white;
+	padding: 12px;
+	margin-top: 10px;
+	box-shadow: 10px 5px 10px #888888;
 }

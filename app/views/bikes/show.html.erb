@@ -29,13 +29,16 @@
     <div class="show-page-header">
   <%= link_to "Previous", bike_path(@previous_bike, sort: params[:sort], :direction => params[:direction], body: params[:body], make: params[:make], model: params[:model], color: params[:color],type: params[:type]),  id: "previous",class:"btn btn-primary" if @previous_bike!= @bike%>
 
-  <h1><%= @bike.year %>  <%= @bike.make %>  <%= @bike.model %>  <%= @bike.variant if !@bike.variant.nil? %></h1>
+  
 
       <%= link_to "Next", bike_path(@next_bike, sort: params[:sort], :direction => params[:direction], body: params[:body], make: params[:make], model: params[:model], color:params[:color],type: params[:type]),class:"btn btn-primary" if !@next_bike.nil?%>
+     <%= @bike.year %>  <%= @bike.make %>  <%= @bike.model %>  <%= @bike.variant if !@bike.variant.nil? %>
 </div>
-  
+  <div class="fb-like" data-send="true" data-layout="button_count" data-width="45" data-show-faces="false"></div><a id = "share">
+  Share on Facebook
+</a>
     <div class = "picture">
-      <%= image_tag @bike.pictures.last.file.url(:medium), id: "bike_picture" if !@bike.pictures.empty? %>
+      <%= image_tag @bike.pictures.last.file.url(:original), id: "bike_picture" if !@bike.pictures.empty? %>
     </div>
     
     <% if !@bike.pictures.empty?%>
@@ -90,9 +93,19 @@
 
   <div class = "span3">
     <%= render "enquiry"%>
+
   </div>
 </div>
-
+<div class = "row">
+  <div class=  "span3"></div>
+<div class="span6" id= "bike_spec_span">
+  <legend>
+    <a href="<%bikes_path(@bike)%>" data-remote="true" id="more">Bike Info <i class= "icon-chevron-down"> </i></a>
+    <a id = "less"> Bike Info <i class= "icon-chevron-down"> </i><i class= "icon-chevron-up"> </i></a>
+  </legend>
+</div>
+</div>
+<% if @bike.user==current_user%>
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
               bikes_path, :class => 'btn'  %>
@@ -105,10 +118,35 @@
               :class => 'btn btn-danger' %>
   
   </div>
- <!-- Modal -->
+<%end%>
     
 <script type="text/javascript">
 //<![CDATA[
+$("document").ready(function() {
+  $('a#less').hide();
+});
+
+
+
+$('a#more').click(function(){
+$('a#more').hide();
+$('a#less').show();
+$('i.icon-chevron-down').hide();
+  
+});
+$('a#less').click(function(){
+$('div#bike_specs').toggle();
+  if ($("div#bike_specs").is(':visible')) {
+  $('i.icon-chevron-down').hide();
+   $('i.icon-chevron-up').show();
+ }
+  else{
+     $('i.icon-chevron-down').show();
+      $('i.icon-chevron-up').hide();
+  }
+
+});
+
 $('a#save_search').click(function(){
 
   $.ajax({
@@ -149,6 +187,11 @@ $('ul.image_list li').hover(function() {
              });
 });
     // insert teh codez
+$('a#share').click(function(){
 
+  var sharer = "https://www.facebook.com/sharer/sharer.php?u=";
+window.open(sharer + location.href, 'sharer', 'width=626,height=436');
+});
 //]]>
+
 </script>

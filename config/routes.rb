@@ -3,8 +3,12 @@ Bikesales::Application.routes.draw do
 
   resources :bike_specs do  # Specification of bikes
    collection do
+    get "change_model"
       get "change_picture" # Chnages the bike picture on mouse hover
-      
+      post "delete_picture"
+      get "showroom"
+      get "search"
+       # Changes the model after make input
   end
 end
   resources :bikes do # Advertisement of bikes

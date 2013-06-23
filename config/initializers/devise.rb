@@ -15,7 +15,10 @@ Devise.setup do |config|
   # available as additional gems.
   require 'devise/orm/mongoid'
   require "omniauth-facebook"
-  config.omniauth :facebook, "  637463949617048", "2d97b3a37a475fe8ee23efe5f072ca77",
+  CONFIG = YAML.load_file(Rails.root.join("config/facebook.yml"))[Rails.env]
+  APP_ID = CONFIG['app_id']
+  SECRET = CONFIG['secret_key']
+  config.omniauth :facebook, APP_ID, SECRET,
                   :scope => 'email,publish_actions', :display => 'popup'
   OmniAuth.config.allowed_request_methods = [:post, :get]
   # ==> Configuration for any authentication mechanism
