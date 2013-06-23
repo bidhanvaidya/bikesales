@@ -82,7 +82,7 @@
         <tr>
           <td>
         <% if !bike.pictures.last.nil?%>
-          <a href = '<%=bike_spec_path(bike)%>'><div class= "image_border"><%=image_tag bike.pictures.last.file.url(:medium), size: "150x100"%></a></div>
+          <a href = '<%=bike_spec_path(bike)%>'><div class= "image_border"><%=image_tag bike.pictures.last.file.url(:original), size: "150x100"%></a></div>
           <%else%>
           <a href = '<%=bike_spec_path(bike)%>'><div class= "image_border"><%=image_tag "default_image.jpg", size: "150x100"%></a></div>
           <%end%>
