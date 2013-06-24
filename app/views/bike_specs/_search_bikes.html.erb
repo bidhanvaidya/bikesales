@@ -24,12 +24,12 @@
   <div class= "span7">
    
       <table class= "result_table">
-        <tr>
-          <td>
-            <b> <%= bike.year %>  <%= bike.make %>  <%= bike.model %>  <%= bike.variant %></b>
+        <tr id = "result_header">
+          <td class= "listing_title">
+            <%= bike.year %>  <%= bike.make %>  <%= bike.model %>  <%= bike.variant %>
           </td>
           <td>
-            <h3><%= number_to_currency(bike.price,:unit => "Rs ",:precision => 0) %></h3>
+            <legend><%= number_to_currency(bike.price,:unit => "Rs ",:precision => 0) %></legend>
           </td>
         </tr>
         <tr>
@@ -45,7 +45,7 @@
                
               </li>
             </ul> 
-          <td>
+          <td class= "view_bike_link">
             
             <%= link_to 'View bike',
                         bike_spec_path(bike.id), :class => 'btn btn-inverse' %>

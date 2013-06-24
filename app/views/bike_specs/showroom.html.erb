@@ -34,16 +34,16 @@
 <legend>Browse by body type</legend>
 <table class= "browse_body_type">
       <tr>
-        <td><a href = '<%=bike_specs_path(body: "Cruiser")%>'><div class= "image_border"><%=image_tag "cruiser.jpg", size: "200x100"%>Cruiser</a></div></td>
-        <td><a href = '<%=bike_specs_path(body: "Scooter")%>'><div class= "image_border"><%= image_tag "scooter.jpg", size: "200x100"%>Scooter</a></div></td>
+        <td><a href = '<%=bike_specs_path(body: "Cruiser")%>'><div class= "image_border"><%=image_tag "cruiser.jpg", size: "133x120"%>Cruiser</a></div></td>
+        <td><a href = '<%=bike_specs_path(body: "Scooter")%>'><div class= "image_border"><%= image_tag "scooter.jpg", size: "133x120"%>Scooter</a></div></td>
       </tr>
       <tr>
-        <td><a href = '<%=bike_specs_path(body: "Sports")%>'><div class= "image_border"><%= image_tag "sport.jpg", size: "200x100"%>Sport</a></div></td>
-        <td><a href = "<%=bike_specs_path(body: 'Super Sport')%>"><div class= "image_border"><%= image_tag "supersport.jpg", size: "200x100"%>Super Sport</a></div></td>
+        <td><a href = '<%=bike_specs_path(body: "Sports")%>'><div class= "image_border"><%= image_tag "sport.jpg", size: "133x120"%>Sport</a></div></td>
+        <td><a href = "<%=bike_specs_path(body: 'Super Sport')%>"><div class= "image_border"><%= image_tag "supersport.jpg", size: "133x120"%>Super Sport</a></div></td>
      </tr>
      <tr>
-        <td><a href = "<%=bike_specs_path(body: 'Standard')%>"><div class= "image_border"><%= image_tag "standard.jpg", size: "200x100"%>Standard</a></div></td>
-        <td><a href = '<%=bike_specs_path(body: "Trail")%>'><div class= "image_border"><%= image_tag "trail.jpg", size: "200x100"%>Trail</a></div></td>
+        <td><a href = "<%=bike_specs_path(body: 'Standard')%>"><div class= "image_border"><%= image_tag "standard.jpg", size: "133x120"%>Standard</a></div></td>
+        <td><a href = '<%=bike_specs_path(body: "Trail")%>'><div class= "image_border"><%= image_tag "trail.jpg", size: "133x120"%>Trail</a></div></td>
       </tr> 
     </table> 
 </div>
@@ -51,21 +51,21 @@
 <legend>Browse By: Top Makers</legend>
     <table class= "browse_maker">
       <tr>
-        <td><a href = '<%=bike_specs_path(make: "Bajaj")%>'><div class= "image_border"><%=image_tag "bajaj.jpg", size: "105x60"%></a></div></td>
-        <td><a href = '<%=bike_specs_path(make: "Daelim")%>'><div class= "image_border"><%= image_tag "daelim.jpg", size: "105x60"%></a></div></td>
-        <td><a href = '<%=bike_specs_path(make: "Hero Honda")%>'><div class= "image_border"><%= image_tag "hero-honda.jpg", size: "105x60"%></a></div></td>
+        <td><a href = '<%=bike_specs_path(make: "Bajaj")%>'><div class= "image_border"><%=image_tag "bajaj.jpg", size: "67x62"%></a></div></td>
+        <td><a href = '<%=bike_specs_path(make: "Daelim")%>'><div class= "image_border"><%= image_tag "daelim.jpg", size: "67x62"%></a></div></td>
+        <td><a href = '<%=bike_specs_path(make: "Hero Honda")%>'><div class= "image_border"><%= image_tag "hero-honda.jpg", size: "67x62"%></a></div></td>
        
-        <td><a href = "<%=bike_specs_path(make: 'Honda')%>"><div class= "image_border"><%= image_tag "honda.jpg", size: "105x60"%></a></div></td>
+        <td><a href = "<%=bike_specs_path(make: 'Honda')%>"><div class= "image_border"><%= image_tag "honda.jpg", size: "67x62"%></a></div></td>
          </tr>
       <tr>
-        <td><a href = "<%=bike_specs_path(make: 'Hyosung')%>"><div class= "image_border"><%= image_tag "hyosung.jpg", size: "105x60"%></a></div></td>
-        <td><a href = "<%=bike_specs_path(make: 'Royal Enfield')%>"><div class= "image_border"><%= image_tag "royal-enfield.jpg", size: "105x60"%></a></div></td>
+        <td><a href = "<%=bike_specs_path(make: 'Hyosung')%>"><div class= "image_border"><%= image_tag "hyosung.jpg", size: "67x62"%></a></div></td>
+        <td><a href = "<%=bike_specs_path(make: 'Royal Enfield')%>"><div class= "image_border"><%= image_tag "royal-enfield.jpg", size: "67x62"%></a></div></td>
         
-        <td><a href = '<%=bike_specs_path(make: "Suzuki")%>'><div class= "image_border"><%= image_tag "suzuki.jpg", size: "105x60"%></a></div></td>
-        <td><a href = '<%=bike_specs_path(make: "TVS")%>'><div class= "image_border"><%= image_tag "tvs.jpg", size: "105x60"%></a></div></td>
+        <td><a href = '<%=bike_specs_path(make: "Suzuki")%>'><div class= "image_border"><%= image_tag "suzuki.jpg", size: "67x62"%></a></div></td>
+        <td><a href = '<%=bike_specs_path(make: "TVS")%>'><div class= "image_border"><%= image_tag "tvs.jpg", size: "67x62"%></a></div></td>
         </tr>
       <tr>
-        <td><a href = '<%=bike_specs_path(make: "Yamaha")%>'><div class= "image_border"><%= image_tag "yamaha.jpg", size: "105x60"%></a></div></td>
+        <td><a href = '<%=bike_specs_path(make: "Yamaha")%>'><div class= "image_border"><%= image_tag "yamaha.jpg", size: "67x62"%></a></div></td>
       </tr> 
     </table>  
 
@@ -82,9 +82,9 @@
         <tr>
           <td>
         <% if !bike.pictures.last.nil?%>
-          <a href = '<%=bike_spec_path(bike)%>'><div class= "image_border"><%=image_tag bike.pictures.last.file.url(:original), size: "150x100"%></a></div>
+          <a href = '<%=bike_spec_path(bike)%>'><div class= "image_border"><%=image_tag bike.pictures.last.file.url(:original), size: "85x100"%></a></div>
           <%else%>
-          <a href = '<%=bike_spec_path(bike)%>'><div class= "image_border"><%=image_tag "default_image.jpg", size: "150x100"%></a></div>
+          <a href = '<%=bike_spec_path(bike)%>'><div class= "image_border"><%=image_tag "default_image.jpg", size: "85x100"%></a></div>
           <%end%>
 
         </td>

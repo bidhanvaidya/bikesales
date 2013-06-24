@@ -3,11 +3,11 @@
  
 <table class="table">
   <thead>
-    <tr>
+
       
       <form>
   <%=form_tag(search_bikes_path, :method => "put") do %>
-
+    <tr>
     <legend>Search Bikes</legend>
     <div class = "row">
     	<div class= "span6">
@@ -83,13 +83,13 @@
     
       
   <input class="btn btn-primary" name="commit" type="submit" formaction="<%= search_bikes_path%>" value="Search" >
-
+    </tr>
 <% end %>
 
   
 </form>
       
-    </tr>
+
   </thead>
   <tbody>
     
