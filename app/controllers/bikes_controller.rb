@@ -373,6 +373,7 @@ class BikesController < ApplicationController
     end
     
   end
+
   def delete_picture
     bike= Bike.find(params[:id])
     picture= bike.pictures.find(params[:picture_id])

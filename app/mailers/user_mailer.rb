@@ -13,9 +13,20 @@ class UserMailer < ActionMailer::Base
   	@name = name
   	@tel= tel
   	@comment = comment
+    @email = email
   	@bike= bike
   	enquiry= "Enquiry"
   	mail(:to => @bike.user.email, :subject => enquiry) 
   	
+  end
+  def contact(name, email, tel, comment)  
+    @name = name
+    @email= email
+
+    @tel= tel
+    @comment = comment
+    enquiry= "User Contact Us Enquiry"
+    mail(:to => "contactus@bikes.bechnu.com", :subject => enquiry) 
+    
   end
 end

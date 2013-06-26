@@ -26,6 +26,14 @@ end
       post "delete_picture"
   end
 end
+resources :contacts do
+  collection do
+    post "post_email"
+  end
+end
+resources :terms_and_conditions
+resources :about_us
+resources :how_it_works
 root to: "bikes#main_page" #Home page
 devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
  resources :users do 
