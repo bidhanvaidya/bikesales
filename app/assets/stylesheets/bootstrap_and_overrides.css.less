@@ -191,9 +191,12 @@ body
 
 .result 
 {
-	border: 1px solid;
+	border: 1px solid #888888;
 	border-radius: 5px;
-	box-shadow: 5px 2px 15px #888888;
+	box-shadow: 10px 5px 10px #888888;
+	margin-bottom: 5px;
+	margin-top:10px;
+	padding:15px;
 }
 
 .bike_details 
@@ -248,7 +251,14 @@ div.input-prepend
 	min-width: 51px;
 }
 
-
+#bike_spec_span_padding 
+{
+	padding: 15px;
+}
+#bottom_margin
+{
+	margin-bottom: 45px;
+}
 //#################################color###########################################################
 @media (max-width: 600px)
 {
@@ -481,6 +491,7 @@ div.input-prepend
 .results_main_page 
 {
 	padding: 7.5px;
+	padding-bottom: 20px;
 	border-right: solid 1px silver;
 	box-shadow: 5px 0px 15px #888888;
 	.btn.btn-primary 
@@ -505,6 +516,10 @@ div.input-prepend
 		color: #ff6600;
 		text-decoration: none;
 	}
+}
+.results_main_page_sub 
+{
+	margin-bottom: -15px;
 }
 
 @media (min-width: 100px) and (max-width:360px)
@@ -642,6 +657,10 @@ div.input-prepend
 		text-decoration: underline;
 		color: #333;
 	}
+	a.manage-ad:hover
+	{
+		background: inherit;
+	}
 }
 
 .sell-call-to-action 
@@ -655,7 +674,7 @@ div.input-prepend
 #new_bike 
 {
 	margin-left: 3px;
-	margin-top: 17px;
+	margin-top: 12px;
 }
 
 #sponsored_links 
@@ -1171,7 +1190,6 @@ a#logo_link:hover {
 	float: right;
 	font-weight: bold;
 	color: black;
-	border-bottom: solid 2px;
 }
 #facebook_page
 {
@@ -1188,8 +1206,9 @@ a#logo_link:hover {
 	margin-top: 10px;
 	margin-bottom: 15px;
 	box-shadow: 10px 5px 10px #888888;
-border-radius: 5px;
-border: 1px solid #888888;
+	border-radius: 5px;
+	border: 1px solid #888888;
+	margin-bottom: 50px;
 }
 #bike_spec_span 
 {
@@ -1206,6 +1225,7 @@ border: 1px solid #888888;
 	padding: 12px;
 	margin-top: 10px;
 	box-shadow: 5px 5px 10px #888888;
+	margin-bottom: 50px;
 }
 .latest_bikes 
 {
@@ -1268,4 +1288,10 @@ float: right;
 }
 .icon-chevron-up {
 float: right
+}
+
+
+form 
+{
+	margin: 0 0 30px;
 }

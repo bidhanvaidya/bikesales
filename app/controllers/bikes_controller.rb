@@ -1,7 +1,8 @@
+#Indentation Complete
 class BikesController < ApplicationController
   # GET /bikes
   # GET /bikes.json
-   before_filter :authenticate_user!, :only => [:new, :edit,:create, :owner,:save_search]
+  before_filter :authenticate_user!, :only => [:new, :edit,:create, :owner,:save_search]
   before_filter :owner, :only => [:edit, :update, :destroy, :delete_picture]
 
   def index

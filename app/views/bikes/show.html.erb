@@ -50,9 +50,9 @@
       </ul>
     <%end%>
     <div class = "result">
-    <div class = "bike_details">
+    <legend>
       Bike Details
-    </div>
+    </legend>
 
       <table class= "table"><tr>
 
@@ -98,11 +98,13 @@
 </div>
 <div class = "row">
   <div class=  "span3"></div>
-<div class="span6" id= "bike_spec_span">
+  <div class="span6" id= "bike_spec_span_padding">
+<div class="span12" id= "bike_spec_span">
   <legend>
     <a href="<%bikes_path(@bike)%>" data-remote="true" id="more">Bike Info <i class= "icon-chevron-down"> </i></a>
     <a id = "less"> Bike Info <i class= "icon-chevron-down"> </i><i class= "icon-chevron-up"> </i></a>
   </legend>
+</div>
 </div>
 </div>
 <% if @bike.user==current_user%>
@@ -135,15 +137,6 @@ $('i.icon-chevron-down').hide();
   
 });
 $('a#less').click(function(){
-$('div#bike_specs').toggle();
-  if ($("div#bike_specs").is(':visible')) {
-  $('i.icon-chevron-down').hide();
-   $('i.icon-chevron-up').show();
- }
-  else{
-     $('i.icon-chevron-down').show();
-      $('i.icon-chevron-up').hide();
-  }
 
 });
 

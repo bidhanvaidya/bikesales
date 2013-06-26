@@ -1,331 +1,309 @@
-
-
+<!--Indentation Complete-->
 <%= form_for @bike, :html => { :multipart => true,:class => 'form-horizontal' } do |f| %>
-  
-<table>
-<tr>
-<td><div class="control-group">
-    <label class="control-label" for="bike_year">Year *</label>
-    <div class="controls">
-      <%= f.select :year,BikeSpec.all.distinct(:year), as: :select,:prompt => 'Select Year',:required => true  %>
-    </div>
-  </div></td>
-<td><div class="control-group">
-    <label class="control-label" for="bike_type">Type *</label>
-    <div class="controls">
-      <%= f.select :type, options_for_select(["Dealer New", "Dealer Used", "Private Seller"]),:required => true,:prompt => 'Select Type' %>
-    </div>
-  </div></td>
-</tr>
-<tr>
-<td><div class="control-group">
-    <label class="control-label" for="bike_make">Make *</label>
-    <div class="controls">
-       <%= f.select :make, BikeSpec.all.distinct(:make), as: :select,:prompt => 'Select Make',:required => true%>
-      
-    </div>
-  </div></td>
-<td>
-  <div class="control-group">
-    <%= f.label :color, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.select :color, options_for_select(["Beige", "Black", "Blue", "Bronze", "Brown","Gold", "Green","Grey","Maroon", "Orange","Pink", "Purple", "Racing Colour","Red", "Silver", "Unknown", "White", "Yellow"]),:prompt => 'Select Colour',:required => true %>
-    </div>
-  </div></td>
-</tr>
-<tr>
-<td><div class="control-group">
-    <label class="control-label" for="bike_model">Model *</label>
-    <div class="controls">
-      <%= f.select :model, BikeSpec.all.distinct(:model), as: :select,:prompt => 'Select model' %>
-    
-    </div>
-  </div></td>
-<td>
-  <div class="control-group">
-    <%= f.label :odometer, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :odometer, :class => 'text_field' %>
-    </div>
-  </div></td>
-</tr>
-<tr>
-<td><div class="control-group">
-    <%= f.label :variant, :class => 'control-label' %>
-    <div class="controls">
-     <%= f.select :variant, BikeSpec.all.distinct(:variant), as: :select,:prompt => 'Select variant'%>
-    
-    </div>
-  </div></td>
-<td><div class="control-group">
-    <%= f.label :engine_capacity, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :engine_capacity, :class => 'text_field' %>
-    </div>
-  </div></td>
-</tr>
-<tr>
-<td> <div class="control-group">
-    <label class="control-label" for="bike_price">Price *</label>
-    <div class="controls">
-      <%= f.text_field :price, :class => 'text_field',:required => true %>
-    </div>
-  </div></td>
-<td><div class="control-group">
-    <%= f.label :rego_no, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :rego_no, :class => 'text_field' %>
-    </div>
-  </div></td>
-</tr>
-<tr>
-<td><div class="control-group">
-    <%= f.label :address, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_area :address, :class => 'textarea', rows: "2" %>
-    </div>
-  </div></td>
-<td><div class="control-group">
-    <%= f.label :reg_expiry, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :reg_expiry, :class => 'text_field' %>
-    </div>
-  </div></td>
-</tr>
-<tr>
-<td><div class="control-group">
-    <label class="control-label" for="bike_city">City *</label>
-    <div class="controls">
-     <%= f.select :location, options_for_select(["Kathmandu", "Latitpur", "Bhaktapur"]),:prompt => 'Select City',:class => "required" %>
-    </div>
-  </div>  </td>
-<td><div class="control-group">
-    <%= f.label :vin_no, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :vin_no, :class => 'text_field' %>
-    </div>
-  </div></td>
-</tr>
-<tr>
-<td> <div class="control-group">
-    <label class="control-label" for="bike_phone">Phone *</label>
-    <div class="controls">
-      <%= f.text_field :phone, :class => 'text_field',:required => true %>
-    </div>
-  </div></td>
-<td><div class="control-group">
-    <%= f.label :comment, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_area :comment, :class => 'textarea', rows: "2", maxlength:"100" %>
-    </div>
-  </div></td>
-</tr>
-</table>
+  <table>
+    <tr>
+      <td>
+        <div class="control-group">
+          <label class="control-label" for="bike_year">Year *</label>
+          <div class="controls">
+            <%= f.select :year,BikeSpec.all.distinct(:year), as: :select,:prompt => 'Select Year',:required => true  %>
+          </div>
+        </div>
+      </td>
+      <td>
+        <div class="control-group">
+          <label class="control-label" for="bike_type">Type *</label>
+            <div class="controls">
+            <%= f.select :type, options_for_select(["Dealer New", "Dealer Used", "Private Seller"]),:required => true,:prompt => 'Select Type' %>
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="control-group">
+          <label class="control-label" for="bike_make">Make *</label>
+          <div class="controls">
+             <%= f.select :make, BikeSpec.all.distinct(:make), as: :select,:prompt => 'Select Make',:required => true%>
+          </div>
+        </div>
+      </td>
+      <td>
+        <div class="control-group">
+          <%= f.label :color, :class => 'control-label' %>
+          <div class="controls">
+            <%= f.select :color, options_for_select(["Beige", "Black", "Blue", "Bronze", "Brown","Gold", "Green","Grey","Maroon", "Orange","Pink", "Purple", "Racing Colour","Red", "Silver", "Unknown", "White", "Yellow"]),:prompt => 'Select Colour',:required => true %>
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="control-group">
+          <label class="control-label" for="bike_model">Model *</label>
+          <div class="controls">
+            <%= f.select :model, BikeSpec.all.distinct(:model), as: :select,:prompt => 'Select model' %>
+          </div>
+        </div>
+      </td>
+      <td>
+        <div class="control-group">
+          <%= f.label :odometer, :class => 'control-label' %>
+          <div class="controls">
+            <%= f.text_field :odometer, :class => 'text_field' %>
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="control-group">
+          <%= f.label :variant, :class => 'control-label' %>
+          <div class="controls">
+           <%= f.select :variant, BikeSpec.all.distinct(:variant), as: :select,:prompt => 'Select variant'%>
+          </div>
+        </div>
+      </td>
+      <td><div class="control-group">
+          <%= f.label :engine_capacity, :class => 'control-label' %>
+          <div class="controls">
+            <%= f.text_field :engine_capacity, :class => 'text_field' %>
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td> 
+        <div class="control-group">
+          <label class="control-label" for="bike_price">Price *</label>
+          <div class="controls">
+            <%= f.text_field :price, :class => 'text_field',:required => true %>
+          </div>
+        </div>
+      </td>
+      <td>
+        <div class="control-group">
+          <%= f.label :rego_no, :class => 'control-label' %>
+          <div class="controls">
+            <%= f.text_field :rego_no, :class => 'text_field' %>
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="control-group">
+          <%= f.label :address, :class => 'control-label' %>
+          <div class="controls">
+            <%= f.text_area :address, :class => 'textarea', rows: "2" %>
+          </div>
+        </div>
+      </td>
+      <td>
+        <div class="control-group">
+          <%= f.label :reg_expiry, :class => 'control-label' %>
+          <div class="controls">
+            <%= f.text_field :reg_expiry, :class => 'text_field' %>
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="control-group">
+          <label class="control-label" for="bike_city">City *</label>
+          <div class="controls">
+           <%= f.select :location, options_for_select(["Kathmandu", "Latitpur", "Bhaktapur"]),:prompt => 'Select City',:class => "required" %>
+          </div>
+        </div>
+      </td>
+      <td>
+        <div class="control-group">
+          <%= f.label :vin_no, :class => 'control-label' %>
+          <div class="controls">
+            <%= f.text_field :vin_no, :class => 'text_field' %>
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="control-group">
+          <label class="control-label" for="bike_phone">Phone *</label>
+          <div class="controls">
+            <%= f.text_field :phone, :class => 'text_field',:required => true %>
+          </div>
+        </div>
+      </td>
+      <td>
+        <div class="control-group">
+          <%= f.label :comment, :class => 'control-label' %>
+          <div class="controls">
+            <%= f.text_area :comment, :class => 'textarea', rows: "2", maxlength:"100" %>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </table>
 
-  
-  
-  
-  
- 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
- 
-  
-    <div class="control-group">
+  <div class="control-group">
     <%= f.label :description, :class => 'control-label' %>
     <div class="controls">
       <%= f.text_area :description, :class => 'textarea', rows: "3" %>
     </div>
   </div>
-    <div class="control-group">
+  <div class="control-group">
     <%= f.label :attach_images, :class => 'control-label' %>
     <div class="controls">
      <%= file_field_tag('bike_pictures_attributes_file', :html => {:multipart => true},multiple: true, name: "bike[pictures_attributes][][file]") %><br>
      #Hold Ctrl button to select mutple images
-  </div>
+    </div>
   </div>
 
-    <%if !params[:id].nil?%>
+  <%if !params[:id].nil?%>
     <div class="control-group">
-   <label class ="control-label">Your existing pictures:</label>
-    
-   </div>
-     <% if !@bike.pictures.empty?%>
-
+     <label class ="control-label">Your existing pictures:</label>
+    </div>
+    <% if !@bike.pictures.empty?%>
       <ul class = "image_list">
-      <%@bike.pictures.each do |image| %>
-      <li><a id= 'delete_picture' data-toggle="tooltip" data-placement="top" title="Click to Delete"><%= image_tag image.file.url(:thumb), id: image.id %></a></li>
-      <% end %>
+        <%@bike.pictures.each do |image| %>
+        <li><a id= 'delete_picture' data-toggle="tooltip" data-placement="top" title="Click to Delete"><%= image_tag image.file.url(:thumb), id: image.id %></a></li>
+        <% end %>
       </ul>
     <%end%>
-    <% end %>
-  
- 
+  <% end %>
+
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                bikes_path, :class => 'btn' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), bikes_path, :class => 'btn' %>
   </div>
 <% end %>
-<div id= "test">
-hel</div>
+
 <script type="text/javascript">
 
-$(document).ready(function () {
-
-
-
-  
-  $("select#bike_make").empty();
-  $("select#bike_model").empty();
-  $("select#bike_variant").empty();
-  <%if params[:id].nil?%>
-  var option_make = $('<option></option>').attr("value", "").text("Select Make");
-$("select#bike_make").append(option_make);
-var option_model = $('<option></option>').attr("value", "").text("Select Model");
- $("select#bike_model").append(option_model);
- var option_variant = $('<option></option>').attr("value", "").text("Select Variant");
- $("select#bike_variant").append(option_variant);
-  
-  <%else%>
-   
-  make ="<%=@bike.make%>"
-  model="<%=@bike.model%>"
-  year= "<%=@bike.year%>"
-   $.ajax({
-                url: "<%=change_make_bikes_path%>",
-               
-                
-                data: {year:year },
-                 success:"True",
-             });
-
-  $.ajax({
-                url: "<%=change_model_bikes_path%>",
-               
-                
-                data: {make:make },
-                 success:"True",
-             });
-  $.ajax({
-                url: "<%=change_variant_bikes_path%>",
-               
-                
-                data: {model:model },
-                 success:"True",
-             });
-  <%end%>
-  
-
-});
-
-
-$('select#bike_year').change(function() {
-
-  $("select#bike_make").empty();
-  
-  $("select#bike_year option:selected").each(function () {
-            str = $(this).text();
-  });
-  $("select#bike_variant").empty();
-$("select#bike_model").empty();
-$("select#bike_make").empty();
-
-
-var option_make = $('<option></option>').attr("value", "").text("Select Make");
-$("select#bike_make").append(option_make);
-var option_model = $('<option></option>').attr("value", "").text("Select Model");
- $("select#bike_model").append(option_model);
- var option_variant = $('<option></option>').attr("value", "").text("Select Variant");
- $("select#bike_variant").append(option_variant);
-  
-
-  $.ajax({
-                url: "<%=change_make_bikes_path%>",
-               
-                
-                data: {year:str },
-                 success:"True",
-             });
-});
-$('select#bike_make').change(function() {
-
-  $("select#bike_model").empty();
-  
-  $("select#bike_make option:selected").each(function () {
-            console.log($(this).text());
-            str = $(this).text();
-  });
-  $("select#bike_variant").empty();
-
-var option_model = $('<option></option>').attr("value", "").text("Select Model");
-$("select#bike_model").append(option_model);
-var option_variant = $('<option></option>').attr("value", "").text("Select Variant");
- $("select#bike_variant").append(option_variant);
-  console.log("test");
-  $.ajax({
-                url: "<%=change_model_bikes_path%>",
-               
-                
-                data: {make:str },
-                 success:"True",
-             });
-});
-$('select#bike_model').change(function() {
- $("select#bike_variant").empty();
-  
-  $("select#bike_model option:selected").each(function () {
-            console.log($(this).text());
-            str = $(this).text();
-  });
-  var option_variant = $('<option></option>').attr("value", "").text("Select Variant");
- $("select#bike_variant").append(option_variant);
-  $.ajax({
-                url: "<%=change_variant_bikes_path%>",
-               
-                
-                data: {model:str },
-                 success:"True",
-             });
-});
-
-$('a#delete_picture').click(function() {
-  var x;
-var r=confirm("Are you sure you want to remove this picture?");
-if (r==true)
+  $(document).ready(function () 
   {
-  var pic_id = $(':first-child', this).attr("id");
-   
-   console.log("hello");
-   $.ajax({
-                url: "<%=delete_picture_bikes_path%>",
-               
-                type: "POST",
-                data: {id:"<%= @bike.id%>", picture_id:pic_id },
-                 success:"True",
-             });
+    $("select#bike_make").empty();
+    $("select#bike_model").empty();
+    $("select#bike_variant").empty();
+    <%if params[:id].nil?%>
+      var option_make = $('<option></option>').attr("value", "").text("Select Make");
+      $("select#bike_make").append(option_make);
+      var option_model = $('<option></option>').attr("value", "").text("Select Model");
+      $("select#bike_model").append(option_model);
+      var option_variant = $('<option></option>').attr("value", "").text("Select Variant");
+      $("select#bike_variant").append(option_variant);
+    <%else%>
+      make ="<%=@bike.make%>"
+      model="<%=@bike.model%>"
+      year= "<%=@bike.year%>"
+      $.ajax(
+      {
+        url: "<%=change_make_bikes_path%>",
+        data: {year:year },
+        success:"True",
+      });
+      $.ajax(
+      {
+        url: "<%=change_model_bikes_path%>",
+        data: {make:make },
+        success:"True",
+      });
+      $.ajax(
+      {
+        url: "<%=change_variant_bikes_path%>",
+        data: {model:model },
+        success:"True",
+      });
+    <%end%>
+  });
+  
+  $('select#bike_year').change(function() 
+  {
+    $("select#bike_make").empty();
+    $("select#bike_year option:selected").each(function () 
+    {
+      str = $(this).text();
+    });
+    $("select#bike_variant").empty();
+    $("select#bike_model").empty();
+    $("select#bike_make").empty();
+    var option_make = $('<option></option>').attr("value", "").text("Select Make");
+    $("select#bike_make").append(option_make);
+    var option_model = $('<option></option>').attr("value", "").text("Select Model");
+    $("select#bike_model").append(option_model);
+    var option_variant = $('<option></option>').attr("value", "").text("Select Variant");
+    $("select#bike_variant").append(option_variant);
+    $.ajax(
+    {
+      url: "<%=change_make_bikes_path%>",
+      data: {year:str },
+      success:"True",
+    });
+  });
+  
+  $('select#bike_make').change(function() 
+  {
+    $("select#bike_model").empty();
+    $("select#bike_make option:selected").each(function () 
+    {
+      str = $(this).text();
+    });
+    $("select#bike_variant").empty();
+    var option_model = $('<option></option>').attr("value", "").text("Select Model");
+    $("select#bike_model").append(option_model);
+    var option_variant = $('<option></option>').attr("value", "").text("Select Variant");
+    $("select#bike_variant").append(option_variant);
+    $.ajax(
+    {
+      url: "<%=change_model_bikes_path%>",
+      data: {make:str },
+      success:"True",
+    });
+  });
 
- $(this).parent().hide();
-  }
+  $('select#bike_model').change(function() 
+  {
+    $("select#bike_variant").empty();
+    $("select#bike_model option:selected").each(function () 
+    {
+      str = $(this).text();
+    });
+    var option_variant = $('<option></option>').attr("value", "").text("Select Variant");
+    $("select#bike_variant").append(option_variant);
+    $.ajax(
+    {
+      url: "<%=change_variant_bikes_path%>",
+      data: {model:str },
+      success:"True",
+    });
+  });
+  
+  $('a#delete_picture').click(function() 
+  {
+    var x;
+    var r=confirm("Are you sure you want to remove this picture?");
+    if (r==true)
+    {
+      var pic_id = $(':first-child', this).attr("id");
+      $.ajax(
+      {
+        url: "<%=delete_picture_bikes_path%>",
+        type: "POST",
+        data: {id:"<%= @bike.id%>", picture_id:pic_id },
+        success:"True",
+      });
+      $(this).parent().hide();
+    }
+  });
 
-});
-$('ul.image_list li').mouseenter(function() {
-   console.log("hello");
+  $('ul.image_list li').mouseenter(function() 
+  {
+    $(this).css( "opacity", ".5" );
+  });
 
- $(this).css( "opacity", ".5" );
-
-});
-$('ul.image_list li').mouseleave(function() {
-   console.log("hello");
-
- $(this).css( "opacity", "1" );
-});
+  $('ul.image_list li').mouseleave(function() 
+  {
+    $(this).css( "opacity", "1" );
+  });
 </script>

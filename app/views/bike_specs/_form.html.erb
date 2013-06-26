@@ -1,12 +1,12 @@
+<!--Indentation Complete-->
 <%= form_for @bike_spec,:html => { :multipart => true,:class => 'form-horizontal' } do |f| %>
   <% if @bike_spec.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@bike_spec.errors.count, "error") %> prohibited this bike_spec from being saved:</h2>
-
       <ul>
-      <% @bike_spec.errors.full_messages.each do |msg| %>
+        <% @bike_spec.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
-      <% end %>
+        <% end %>
       </ul>
     </div>
   <% end %>
@@ -42,18 +42,16 @@
   </div>
   <%if !params[:id].nil?%>
     <div class="control-group">
-   <label class ="control-label">Your existing pictures:</label>
-   </div>
-  <% if !@bike_spec.pictures.empty?%>
-
+      <label class ="control-label">Your existing pictures:</label>
+    </div>
+    <% if !@bike_spec.pictures.empty?%>
       <ul class = "image_list">
-      <%@bike_spec.pictures.each do |image| %>
-      <li><a id= 'delete_picture' data-toggle="tooltip" data-placement="top" title="Click to Delete"><%= image_tag image.file.url(:thumb), id: image.id %></a></li>
-      <% end %>
+        <%@bike_spec.pictures.each do |image| %>
+          <li><a id= 'delete_picture' data-toggle="tooltip" data-placement="top" title="Click to Delete"><%= image_tag image.file.url(:thumb), id: image.id %></a></li>
+        <% end %>
       </ul>
     <%end%>
-    <% end %>
-
+  <% end %>
   <div class="field">
     <%= f.label :top_speed %>
     <%= f.text_field :top_speed %> kmph
@@ -126,11 +124,10 @@
   <div class="field">
     <%= f.label :height %>
     <%= f.text_field :height  %> mm
- </div>
+  </div>
 
 <b> OTHER SPECIFICATIONS</b>
-  
- 
+   
   <div class="field">
     <%= f.label :weight  %>
     <%= f.text_field :weight  %> kg
@@ -170,16 +167,13 @@
   <div class="field">
     <%= f.label :wheel_size %>
     <%= f.text_field :wheel_size  %>
-
   </div>
   <div class="field">
     <%= f.label :tyre_type  %>
     <%= f.text_field :tyre_type  %>
-</div>
-
+  </div>
 
 <b> ACTIVE AND PASSIVE SAFETY</b>
- 
 
   <div class="field">
     <%= f.label :suspension_front%>
@@ -200,10 +194,9 @@
   <div class="field">
     <%= f.label :stand_alarm %>
     <%= f.text_field :stand_alarm  %>
-</div>
+  </div>
 
 <b> COMFORT AND CONVENIENCE</b>
-
 
   <div class="field">
     <%= f.label :fuel_gauge %>
@@ -229,36 +222,31 @@
     <%= f.submit %>
   </div>
 <% end %>
+
 <script type="text/javascript">
-
-$('a#delete_picture').click(function() {
-  var x;
-var r=confirm("Are you sure you want to remove this picture?");
-if (r==true)
+  $('a#delete_picture').click(function() 
   {
-  var pic_id = $(':first-child', this).attr("id");
-   
-   console.log("hello");
-   $.ajax({
-                url: "<%=delete_picture_bike_specs_path%>",
-               
-                type: "POST",
-                data: {id:"<%= @bike_spec.id%>", picture_id:pic_id },
-                 success:"True",
-             });
-
- $(this).parent().hide();
-  }
-
-});
-$('ul.image_list li').mouseenter(function() {
-   console.log("hello");
-
- $(this).css( "opacity", ".5" );
-
-});
-$('ul.image_list li').mouseleave(function() {
-   console.log("hello");
-
- $(this).css( "opacity", "1" );
-});</script>
+    var x;
+    var r=confirm("Are you sure you want to remove this picture?");
+    if (r==true)
+    {
+      var pic_id = $(':first-child', this).attr("id");
+      $.ajax(
+      {
+        url: "<%=delete_picture_bike_specs_path%>",
+        type: "POST",
+        data: {id:"<%= @bike_spec.id%>", picture_id:pic_id },
+        success:"True",
+      });
+      $(this).parent().hide();
+    }
+  });
+  $('ul.image_list li').mouseenter(function() 
+  {
+    $(this).css( "opacity", ".5" );
+  });
+  $('ul.image_list li').mouseleave(function() 
+  {
+    $(this).css( "opacity", "1" );
+  });
+</script>
