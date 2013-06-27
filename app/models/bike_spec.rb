@@ -1,6 +1,6 @@
 class BikeSpec
   include Mongoid::Document
-  attr_accessible :make, :model, :body, :variant, :year, :price,
+  attr_accessible :make, :model, :body, :variant, :year, :price, :updated, :created,
 
 :top_speed, :fuel_consumption_city, :fuel_consumption_highway, :displacement, :engine, :max_power, :max_torque,  
 :transmission, :clutch, :bore, :stroke, :no_of_cylinders, :valve_per_cylinder, :chassis_type, :cooling_type,
@@ -22,7 +22,8 @@ class BikeSpec
   field :variant, type: String
   field :year, type: Integer
   field :price, type: Integer
-  
+  field :updated, type: Time, default: ->{ Time.now }
+  field :created, type: Time, default: ->{ Time.now }
 
   field :top_speed,type: Float
   field :fuel_consumption_city, type: Float

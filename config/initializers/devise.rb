@@ -19,7 +19,8 @@ Devise.setup do |config|
   APP_ID = CONFIG['app_id']
   SECRET = CONFIG['secret_key']
   config.omniauth :facebook, APP_ID, SECRET,
-                  :scope => 'email,publish_actions', :display => 'popup'
+                  
+                  :authorize_params => { :scope => 'email,publish_actions', :display => 'popup' }
   OmniAuth.config.allowed_request_methods = [:post, :get]
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating a user. The default is

@@ -26,7 +26,7 @@ class BikeSpecsController < ApplicationController
     @bikes= @bikes.desc(:year)
     
   else
-    @bikes = @bikes.desc(:year)
+    @bikes = @bikes.desc(:year, :created)
   end
   @models= @bikes.distinct(:model)
   @bodies= @bikes.distinct(:body)
@@ -71,7 +71,7 @@ class BikeSpecsController < ApplicationController
   # POST /bike_specs.json
   def create
     @bike_spec = BikeSpec.new(params[:bike_spec])
-
+    @bike_spec.updated = Time.now
     respond_to do |format|
       if @bike_spec.save
         format.html { redirect_to @bike_spec, notice: 'Bike spec was successfully created.' }
@@ -87,7 +87,7 @@ class BikeSpecsController < ApplicationController
   # PUT /bike_specs/1.json
   def update
     @bike_spec = BikeSpec.find(params[:id])
-
+    @bike_spec.updated = Time.now
     respond_to do |format|
       if @bike_spec.update_attributes(params[:bike_spec])
         format.html { redirect_to @bike_spec, notice: 'Bike spec was successfully updated.' }

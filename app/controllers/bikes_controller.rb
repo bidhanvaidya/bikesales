@@ -162,21 +162,25 @@ class BikesController < ApplicationController
     @bike.bike_spec_id = bike_spec.id
     @bike.body = bike_spec.body
     @bike.user_id = current_user.id
-    
+    @bike.updated = Time.now
 
     respond_to do |format|
       if @bike.save
-        if current_user.provider == 'facebook'
-        @user = FbGraph::User.me(current_user.facebook_token).fetch
+          if current_user.provider == 'facebook'
 
-        link= 'http://localhost:3000/bikes/'+@bike.id+ '.html'
-        @user.feed!(
-        :message => 'I am selling my byke',
-        :picture => 'http://liveimages.bikesales.com.au/bikesales/general/content/gc4943126384701195668.jpg',
-        :link => link,
-        :name => 'BikeSales',
-        :description =>  @bike.comment  )
-      end
+            @user = FbGraph::User.me(current_user.facebook_token).fetch
+            if @user.permissions.include?(:publish_actions)
+            
+              link= 'http://bikes.bechnu.com/bikes/'+@bike.id+ '.html'
+              @user.feed!(
+              :message => @bike.comment,
+              :picture => @bike.pictures.first.file.url,
+              :link => link,
+              :name => 'BikeSales',
+              :description =>  @bike.description )
+            end
+
+          end
         format.html { redirect_to @bike, notice: 'Bike was successfully created.' }
         format.json { render json: @bike, status: :created, location: @bike }
       else
@@ -200,15 +204,19 @@ class BikesController < ApplicationController
       respond_to do |format|
         if @bike.update_attributes(params[:bike])
           if current_user.provider == 'facebook'
-            @user = FbGraph::User.me(current_user.facebook_token).fetch
 
-            link= 'http://localhost:3000/bikes/'+@bike.id+ '.html'
-            @user.feed!(
-            :message => 'I am selling my byke',
-            :picture => 'http://liveimages.bikesales.com.au/bikesales/general/content/gc4943126384701195668.jpg',
-            :link => link,
-            :name => 'BikeSales',
-            :description =>  @bike.comment  )
+            @user = FbGraph::User.me(current_user.facebook_token).fetch
+            if @user.permissions.include?(:publish_actions)
+            
+              link= 'http://bikes.bechnu.com/bikes/'+@bike.id+ '.html'
+              @user.feed!(
+              :message => @bike.comment,
+              :picture => @bike.pictures.first.file.url,
+              :link => link,
+              :name => 'BikeSales',
+              :description =>  @bike.description )
+            end
+
           end
           format.html { redirect_to @bike, notice: 'Bike was successfully updated.' }
           format.json { head :no_content }

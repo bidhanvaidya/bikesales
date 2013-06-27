@@ -10,37 +10,42 @@
             
             <% if !@type_selection.nil?%>
                 <li>
-
-
+                    <div>
+                    <b> Type: </b></br>
                 <a href = "<%=bikes_path(sort: params[:sort], :direction => params[:direction], body: params[:body], make: params[:make], model: params[:model], color: params[:color],type: nil, price_from: params[:price_from], price_to: params[:price_to] )%>"><%= @type_selection %>   <i class = "icon-remove"></i></a>
+                    </div>
                 </li>
             <%end%>
 
             <% if !@body_selection.nil?%>
                 <li>
-
-
+                    <div>
+                    <b> Body: </b></br>
                 <a href = "<%=bikes_path(sort: params[:sort], :direction => params[:direction], body: nil, make: params[:make], model: params[:model], color: params[:color],type: params[:type], price_from: params[:price_from], price_to: params[:price_to] )%>"><%= @body_selection %>   <i class = "icon-remove"></i></a>
+                    </div>
                 </li>
             <%end%>
             <% if !@make_selection.nil?%>
                 <li>
-
-
+                    <div>
+                    <b>Make: </b></br>
                 <a href = "<%=bikes_path(sort: params[:sort], :direction => params[:direction], body: params[:body], make: nil, model: nil, color: params[:color],type: params[:type], price_from: params[:price_from], price_to: params[:price_to] )%>"><%= @make_selection %>   <i class = "icon-remove"></i></a>
+                    </div>
                 </li>
             <%end%>
             <% if !@model_selection.nil?%>
                 <li>
-
-
+                    <div>
+                    <b> Model: </b></br>
                 <a href = "<%=bikes_path(sort: params[:sort], :direction => params[:direction], body: params[:body], make: params[:make], model: nil, color: params[:color],type: params[:type], price_from: params[:price_from], price_to: params[:price_to] )%>"><%= @model_selection %>   <i class = "icon-remove"></i></a>
+                    </div>
                 </li>
             <%end%>
             <% if !@color_selection.nil?%>
                 <li>
                 <div>
 
+                <b> Colour: </b></br>
                 <a href = "<%=bikes_path(sort: params[:sort], :direction => params[:direction], body: params[:body], make: params[:make], model: params[:model], color: nil,type: params[:type], price_from: params[:price_from], price_to: params[:price_to] )%>"><%= @color_selection %>   <i class = "icon-remove"></i></a>
                 </div>
                 </li>
@@ -48,7 +53,7 @@
             <% if !@location_selection.nil?%>
                 <li>
                 <div>
-
+                <b>Location: </b></br>
                 <a href = "<%=bikes_path(sort: params[:sort], :direction => params[:direction], body: params[:body], make: params[:make], model: params[:model], color: params[:color],type: params[:type], location:nil, price_from: params[:price_from], price_to: params[:price_to] )%>"><%= @location_selection %>   <i class = "icon-remove"></i></a>
                 </div>
                 </li>
@@ -60,12 +65,12 @@
                 <div>
                     <a href = "<%=bikes_path(price_from: nil, price_to: nil,sort: params[:sort], :direction => params[:direction], type: params[:type],body: params[:body], make: params[:make], model: params[:model], color: params[:color], location: params[:location])%>"><b>Price:</b></br> 
                         <% if !@price_from_selection.nil?%>
-                            Rs. <%= @price_from_selection %> - 
+                            Rs. <%= @price_from_selection.to_i+1 %> - 
                         <% else %>
                         Min. - 
                         <%end%>
                         <% if !@price_to_selection.nil?%>
-                            Rs. <%= @price_to_selection %>   
+                            Rs. <%= @price_to_selection.to_i-1 %>   
                         <% else %>
                         Max.
                         
