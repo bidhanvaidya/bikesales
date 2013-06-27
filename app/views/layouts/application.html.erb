@@ -25,11 +25,47 @@
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
-          <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
+          
+          <ul class = "nav pull-right">  
+              <% if user_signed_in?%>
+                          <li>
+                           <div class="btn-group">
+                            <a class="btn btn-primary dropdown-toggle" id = "icon_button" data-toggle="dropdown" href="#">
+                              <i class="icon-user icon-white"></i> 
+                               <span id ="username"> 
+                              <%=current_user.name%> 
+                              </span>
+                              
+                              
+                            </a>
+                            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <!-- dropdown menu links -->
+                              <li><a href="<%=profile_user_path(current_user)%>" >Profile </a></li>
+                              <li><%= link_to "Sign Out", destroy_user_session_path, method: "delete"  %>
+                       
+                              </li>
+                            </ul>
+                          </div>
+                          </li>
+                        
+                          
+              
+              <%else%>
+              <li>
+                <div class="btn-group">
+                <a href="#myModal" class= "btn btn-primary dropdown-toggle" data-toggle="modal">Sign in</a>
+                </div>
+              </li>
+              <%end%>
+              <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse" id= "toggle">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
+            </ul>
           <a class="brand" href="/">Bikes.Bechnu</a>
           <div class="container-fluid nav-collapse">
             <ul class="nav">
@@ -39,21 +75,9 @@
               <li><%= link_to "New Bike Showroom", showroom_bike_specs_path  %></li>
               
             </ul>
-            <ul class = "nav pull-right">  
-              <% if user_signed_in?%>
-                          
-                         
-                          <li><a href="<%=profile_user_path(current_user)%>" ><i class="icon-user icon-white"></i><%=current_user.name%> </a></li>
-                        
-                          <li><%= link_to "Sign Out", destroy_user_session_path, method: "delete"  %>
-                       
-                </li>
-              
-              <%else%>
-              <li><a href="#myModal" data-toggle="modal">Sign in</a></li>
-              <%end%>
-            </ul>
-          </div><!--/.nav-collapse -->
+          </div>
+            
+          <!--/.nav-collapse -->
         </div>
       </div>
     </div>
@@ -106,14 +130,8 @@
 
     <div class="navbar navbar-fixed-bottom">
       <div class="navbar-inner">
-        <div class="container-fluid">
-          <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          
-          <div class="container-fluid nav-collapse">
+        
+          <div class="container-fluid">
             <ul class="nav" id = "footer">
               <li> <a href="<%=terms_and_conditions_path%>"> Terms and Conditions </a></li>
               <li> <a href="<%=about_us_path%>"> Our Team </a></li>
@@ -125,7 +143,6 @@
               <li></li>
             </ul>
           </div><!--/.nav-collapse -->
-        </div>
       </div>
     </div>
     
@@ -135,12 +152,16 @@
   </body>
 </html>
 <script type="text/javascript">
-$("document").ready(function() {
   console.log($(window).width())
+  $(window).resize(function() {
+
   if ($(window).width() <= 979 && $(window).width() >=600){
       setTimeout(function() {
-          $("a.btn.btn-navbar").trigger('click');
+          $("#toggle").trigger('click');
       },1);}
+
+       
+});
      var width= $(window).width()/5
       
         $("div.logo").animate({
@@ -149,7 +170,7 @@ $("document").ready(function() {
 
     
   }, 3600 );
-});
+
 
 //Google Analytics 
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
