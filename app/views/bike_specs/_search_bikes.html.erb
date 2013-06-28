@@ -18,14 +18,14 @@
       <%=image_tag "default_image.jpg"%>
     <%else%>
 
-    <%= image_tag bike.pictures.last.file.url(:original), id: "bike_picture" %>
+    <%= image_tag bike.pictures.last.file.url(:original), class: "bike_picture" %>
     <%end%>
   </div> <!-- span5 Image of the searched bike --> 
   <div class= "span7">
    
-      <table class= "result_table">
-        <tr id = "result_header">
-          <td class= "listing_title">
+      <table class = "result_table">
+        <tr class = "result_header">
+          <td class = "listing_title">
             <%= bike.year %>  <%= bike.make %>  <%= bike.model %>  <%= bike.variant %>
           </td>
           <td>
@@ -45,7 +45,7 @@
                
               </li>
             </ul> 
-          <td class= "view_bike_link">
+          <td class = "view_bike_link">
             
             <%= link_to 'View bike',
                         bike_spec_path(bike.id), :class => 'btn btn-inverse' %>
