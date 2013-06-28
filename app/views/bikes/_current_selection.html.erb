@@ -12,7 +12,7 @@
                 <li>
                     <div>
                     <b> Type: </b></br>
-                <a href = "<%=bikes_path(sort: params[:sort], :direction => params[:direction], body: params[:body], make: params[:make], model: params[:model], color: params[:color],type: nil, price_from: params[:price_from], price_to: params[:price_to] )%>"><%= @type_selection %>   <icons class = "icon-remove"></icons></a>
+                <a href = "<%=bikes_path(sort: params[:sort], :direction => params[:direction], body: params[:body], make: params[:make], model: params[:model], color: params[:color],type: nil, price_from: params[:price_from], price_to: params[:price_to] )%>"><%= @type_selection %>   <is class = "icon-remove"></is></a>
                     </div>
                 </li>
             <%end%>
@@ -21,7 +21,7 @@
                 <li>
                     <div>
                     <b> Body: </b></br>
-                <a href = "<%=bikes_path(sort: params[:sort], :direction => params[:direction], body: nil, make: params[:make], model: params[:model], color: params[:color],type: params[:type], price_from: params[:price_from], price_to: params[:price_to] )%>"><%= @body_selection %>   <icons class = "icon-remove"></icons></a>
+                <a href = "<%=bikes_path(sort: params[:sort], :direction => params[:direction], body: nil, make: params[:make], model: params[:model], color: params[:color],type: params[:type], price_from: params[:price_from], price_to: params[:price_to] )%>"><%= @body_selection %>   <is class = "icon-remove"></is></a>
                     </div>
                 </li>
             <%end%>
@@ -29,7 +29,7 @@
                 <li>
                     <div>
                     <b>Make: </b></br>
-                <a href = "<%=bikes_path(sort: params[:sort], :direction => params[:direction], body: params[:body], make: nil, model: nil, color: params[:color],type: params[:type], price_from: params[:price_from], price_to: params[:price_to] )%>"><%= @make_selection %>   <icons class = "icon-remove"></icons></a>
+                <a href = "<%=bikes_path(sort: params[:sort], :direction => params[:direction], body: params[:body], make: nil, model: nil, color: params[:color],type: params[:type], price_from: params[:price_from], price_to: params[:price_to] )%>"><%= @make_selection %>   <is class = "icon-remove"></is></a>
                     </div>
                 </li>
             <%end%>
@@ -37,7 +37,7 @@
                 <li>
                     <div>
                     <b> Model: </b></br>
-                <a href = "<%=bikes_path(sort: params[:sort], :direction => params[:direction], body: params[:body], make: params[:make], model: nil, color: params[:color],type: params[:type], price_from: params[:price_from], price_to: params[:price_to] )%>"><%= @model_selection %>   <icons class = "icon-remove"></icons></a>
+                <a href = "<%=bikes_path(sort: params[:sort], :direction => params[:direction], body: params[:body], make: params[:make], model: nil, color: params[:color],type: params[:type], price_from: params[:price_from], price_to: params[:price_to] )%>"><%= @model_selection %>   <is class = "icon-remove"></is></a>
                     </div>
                 </li>
             <%end%>
@@ -46,7 +46,7 @@
                 <div>
 
                 <b> Colour: </b></br>
-                <a href = "<%=bikes_path(sort: params[:sort], :direction => params[:direction], body: params[:body], make: params[:make], model: params[:model], color: nil,type: params[:type], price_from: params[:price_from], price_to: params[:price_to] )%>"><%= @color_selection %>   <icons class = "icon-remove"></icons></a>
+                <a href = "<%=bikes_path(sort: params[:sort], :direction => params[:direction], body: params[:body], make: params[:make], model: params[:model], color: nil,type: params[:type], price_from: params[:price_from], price_to: params[:price_to] )%>"><%= @color_selection %>   <is class = "icon-remove"></is></a>
                 </div>
                 </li>
             <%end%>
@@ -54,7 +54,7 @@
                 <li>
                 <div>
                 <b>Location: </b></br>
-                <a href = "<%=bikes_path(sort: params[:sort], :direction => params[:direction], body: params[:body], make: params[:make], model: params[:model], color: params[:color],type: params[:type], location:nil, price_from: params[:price_from], price_to: params[:price_to] )%>"><%= @location_selection %>   <icons class = "icon-remove"></icons></a>
+                <a href = "<%=bikes_path(sort: params[:sort], :direction => params[:direction], body: params[:body], make: params[:make], model: params[:model], color: params[:color],type: params[:type], location:nil, price_from: params[:price_from], price_to: params[:price_to] )%>"><%= @location_selection %>   <is class = "icon-remove"></is></a>
                 </div>
                 </li>
             <%end%>
@@ -75,7 +75,7 @@
                         Max.
                         
                         <%end%>
-                        <icons class = "icon-remove"></icons>
+                        <is class = "icon-remove"></is>
                     </a>
                 </div>
                 </li>

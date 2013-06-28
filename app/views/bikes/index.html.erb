@@ -9,7 +9,7 @@
                 <ul class="nav nav-list" id = "selection">
                      <legend>Refine Search</legend>
                     
-                    <li><icons class="icon-chevron-right"><a></a></icons><icons class="icon-chevron-up"><a></a></icons>Type
+                    <li><is class="icon-chevron-right"><a></a></is><is class="icon-chevron-up"><a></a></is>Type
                         <ul class = "type">
                             
                             <% @types.each do |type| %>
@@ -18,7 +18,7 @@
                              <% end %>
                         </ul>
                     </li>
-                    <li><icons class="icon-chevron-right"><a></a></icons><icons class="icon-chevron-up"><a></a></icons>Body
+                    <li><is class="icon-chevron-right"><a></a></is><is class="icon-chevron-up"><a></a></is>Body
                         <ul>
                             <% @bodies.each do |body| %>
                                 <li>
@@ -27,7 +27,7 @@
                             <% end %>
                         </ul>
                     </li>
-                    <li><icons class="icon-chevron-right"><a></a></icons><icons class="icon-chevron-up"><a></a></icons>Make
+                    <li><is class="icon-chevron-right"><a></a></is><is class="icon-chevron-up"><a></a></is>Make
                         <ul>
                             <% @makes.each do |make| %>
                                 <li>
@@ -36,7 +36,7 @@
                             <% end %>
                         </ul>
                     </li>
-                    <li><icons class="icon-chevron-right"><a></a></icons><icons class="icon-chevron-up"><a></a></icons>Models
+                    <li><is class="icon-chevron-right"><a></a></is><is class="icon-chevron-up"><a></a></is>Models
                         <ul>
                             <% @models.each do |model| %>
                                 <li>
@@ -45,7 +45,7 @@
                             <% end %>
                         </ul>
                     </li>
-                    <li><icons class="icon-chevron-right"><a></a></icons><icons class="icon-chevron-up"><a></a></icons>Colour
+                    <li><is class="icon-chevron-right"><a></a></is><is class="icon-chevron-up"><a></a></is>Colour
                         <ul>  
                             <% @colors.each do |color| %>
                                 <li>
@@ -55,7 +55,7 @@
                             <% end %>
                         </ul>
                     </li>
-                    <li><icons class="icon-chevron-right"><a></a></icons><icons class="icon-chevron-up"><a></a></icons>Location
+                    <li><is class="icon-chevron-right"><a></a></is><is class="icon-chevron-up"><a></a></is>Location
                         <ul>  
                             <% @location.each do |location| %>
                                 <li>
@@ -66,7 +66,7 @@
                         </ul>
                     </li>
                     
-                    <li><icons class="icon-chevron-right"><a></a></icons><icons class="icon-chevron-up"><a></a></icons>Price
+                    <li><is class="icon-chevron-right"><a></a></is><is class="icon-chevron-up"><a></a></is>Price
                         <ul>
                           <li><%= link_to "Up to Rs. 10,000",bikes_path(price_from: "0", price_to: "10001", sort: params[:sort], :direction => params[:direction], type: params[:type],body: params[:body], make: params[:make], model: params[:model], color: params[:color], location: params[:location])%></li>
                           <li><%= link_to "Rs. 10,000 to Rs. 25,000",bikes_path(price_from: "9999", price_to: "25001", sort: params[:sort], :direction => params[:direction], type: params[:type],body: params[:body], make: params[:make], model: params[:model], color: params[:color], location: params[:location])%></li>
