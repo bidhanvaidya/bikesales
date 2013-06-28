@@ -272,9 +272,6 @@ class BikesController < ApplicationController
 
   def search_page
     @bikes = Bike.all
-
-    b= Bike.full_text_search(params[:search]).size
-    print b
     @type_selection = params[:type]
     @make_selection = params[:make]
     @model_selection = params[:model]
@@ -339,8 +336,8 @@ class BikesController < ApplicationController
     price_to= nil
     location=nil
     type=nil
-    make=params[:bikes_make] if !params[:bikes_make].nil?
-    model=params[:bikes_model] if !params[:bikes_model].nil?
+    make=params[:make] if !params[:make].empty?
+    model=params[:model] if !params[:model].empty?
     price_from=params[:price_from] if !params[:price_from].empty?
     price_to=params[:price_to] if !params[:price_to].empty?
     location=params[:location] if params[:location] != "Any Cities"

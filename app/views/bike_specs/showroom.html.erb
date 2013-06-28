@@ -1,8 +1,7 @@
 <!--Indentation Complete-->
 <div class= "showroom_header">New Bike Showroom</div>
   <div class= "showroom_search">
-    <form> 
-      <%=form_tag(search_bike_specs_path, :method => "put") do %>
+      <%=form_tag(search_bike_specs_path, :method => "get") do %>
       <legend>Search Bikes</legend>
         <div class = "row">
           <div class= "span3">
@@ -24,11 +23,10 @@
             </div>
           </div>
           <div class= "span3">
-            <input class="btn btn-primary" name="commit" type="submit" formaction="<%= search_bike_specs_path%>" value="Search" >
+            <input class="btn btn-primary" name="commit" type="submit" value="Search" >
           </div>
         </div>
       <%end%>
-    </form>
   </div>
 
 <div class = "row">
@@ -115,6 +113,7 @@
       <%@models.each do |model|%>
       var option = $('<option></option>').attr("value", "<%=model%>").text("<%=model%>");
       $("select#model").append(option);
+       $('select#body').removeAttr('disabled');
       <%end%>
     }
     else
