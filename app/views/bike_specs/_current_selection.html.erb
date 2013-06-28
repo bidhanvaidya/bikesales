@@ -10,21 +10,21 @@
                 <li>
 
 
-                <a href = "<%=bike_specs_path(sort: params[:sort], :direction => params[:direction], body: nil, make: params[:make], model: params[:model], color: params[:color],type: params[:type] )%>"><%= @body_selection %>   <icon class = "icon-remove"></icon></a>
+                <a href = "<%=bike_specs_path(sort: params[:sort], :direction => params[:direction], body: nil, make: params[:make], model: params[:model], color: params[:color],type: params[:type] )%>"><%= @body_selection %>   <icons class = "icon-remove"></icons></a>
                 </li>
             <%end%>
             <% if !@make_selection.nil?%>
                 <li>
 
 
-                <a href = "<%=bike_specs_path(sort: params[:sort], :direction => params[:direction], body: params[:body], make: nil, model: nil, color: params[:color],type: params[:type] )%>"><%= @make_selection %>   <icon class = "icon-remove"></icon></a>
+                <a href = "<%=bike_specs_path(sort: params[:sort], :direction => params[:direction], body: params[:body], make: nil, model: nil, color: params[:color],type: params[:type] )%>"><%= @make_selection %>   <icons class = "icon-remove"></icons></a>
                 </li>
             <%end%>
             <% if !@model_selection.nil?%>
                 <li>
 
 
-                <a href = "<%=bike_specs_path(sort: params[:sort], :direction => params[:direction], body: params[:body], make: params[:make], model: nil, color: params[:color],type: params[:type] )%>"><%= @model_selection %>   <icon class = "icon-remove"></icon></a>
+                <a href = "<%=bike_specs_path(sort: params[:sort], :direction => params[:direction], body: params[:body], make: params[:make], model: nil, color: params[:color],type: params[:type] )%>"><%= @model_selection %>   <icons class = "icon-remove"></icons></a>
                 </li>
             <%end%>
     
