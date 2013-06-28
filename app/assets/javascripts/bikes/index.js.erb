@@ -1,9 +1,9 @@
 $('ul#selection.nav.nav-list > li').children().hide(),
-$('i.icon-chevron-right').show(),
+$('.icon-chevron-right').show(),
 
 
 
-$('i.icon-chevron-up').click(function(){
+$('.icon-chevron-up').click(function(){
 $(this).parent().children().hide(),
 $(this).parent().find(">:first-child").show()
 $(this).parent().css("color", "#333")
@@ -11,7 +11,7 @@ $(this).parent().css("font-weight", "normal")
 
 
 });
-$('i.icon-chevron-right').click(function(){
+$('.icon-chevron-right').click(function(){
 $(this).parent().children().show(),
 $(this).parent().css("color", "#2c7abf")
 $(this).parent().css("font-weight", "bold")

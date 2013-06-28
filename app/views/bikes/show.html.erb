@@ -7,28 +7,28 @@
     
     <div class = "toolbox">
       <legend>Toolbox</legend>
-     <i class = " icon-chevron-left"> </i> <%= link_to " Back to search", bikes_path(sort: params[:sort], :direction => params[:direction], type: params[:type],body: params[:body], make: params[:make], model: params[:model], color: params[:color], location: params[:location])%>
+     <icon class = " icon-chevron-left"> </icon> <%= link_to " Back to search", bikes_path(sort: params[:sort], :direction => params[:direction], type: params[:type],body: params[:body], make: params[:make], model: params[:model], color: params[:color], location: params[:location])%>
       <div class = "save_search">
         <% if current_user and current_user.favourites.where(bike_id: @bike.id).empty?%>
-          <i class = "icon-star"></i><a id= "save_search" style="cursor:pointer"> Save Search</a>
+          <icon class = "icon-star"></icon><a id= "save_search" style="cursor:pointer"> Save Search</a>
         <%elsif !current_user%>
-         <i class = "icon-star"></i>
+         <icon class = "icon-star"></icon>
           <a href="#" data-toggle="tooltip" title="Sign in First" style="cursor:pointer">Save Search</a>
         <%else%>
           Saved
         <%end%>
       </div>
       <div>
-      <a href="#send_to_friend" data-toggle="modal"><i class= "icon-envelope"></i> Send to Friend</a>
+      <a href="#send_to_friend" data-toggle="modal"><icon class= "icon-envelope"></icon> Send to Friend</a>
       </div>
       <div><a id = "share" style="cursor:pointer">
-            <i class = "icon-share"> </i>Share on Facebook
+            <icon class = "icon-share"> </icon>Share on Facebook
           </a>
       </div>
     <% if @bike.user==current_user%>
-   <div><i class = "icon-edit"></i><%= link_to ' Edit this Post', edit_bike_path(@bike) %></div>
+   <div><icon class = "icon-edit"></icon><%= link_to ' Edit this Post', edit_bike_path(@bike) %></div>
    <div>
-      <i class = "icon-trash"></i><%= link_to ' Remove this Post',bike_path(@bike),:method => 'delete',
+      <icon class = "icon-trash"></icon><%= link_to ' Remove this Post',bike_path(@bike),:method => 'delete',
               :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) %>
   </div>  
   <%end%>
@@ -111,8 +111,8 @@
   <div class="span6" id= "bike_spec_span_padding">
 <div class="span12" id= "bike_spec_span">
   <legend>
-    <a href="<%bikes_path(@bike)%>" data-remote="true" id="more">Bike Info <i class= "icon-chevron-down"> </i></a>
-    <a id = "less"> Bike Info <i class= "icon-chevron-down"> </i><i class= "icon-chevron-up"> </i></a>
+    <a href="<%bikes_path(@bike)%>" data-remote="true" id="more">Bike Info <icon class= "icon-chevron-down"> </icon></a>
+    <a id = "less"> Bike Info <icon class= "icon-chevron-down"> </icon><icon class= "icon-chevron-up"> </icon></a>
   </legend>
 </div>
 </div>
