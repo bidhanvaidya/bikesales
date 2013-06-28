@@ -7,10 +7,7 @@
           <div class="sidebar-nav">
                 <ul class="nav nav-list" id = "selection">
                     <legend>Filters</legend>
-                    <li><a href= <%= bike_specs_path(sort: "price", :direction => "desc", body: params[:body]) %>> Price Highest to lowest </a></li>
-                    <li><a href= <%= bike_specs_path(sort: "price", :direction => "asc",body: params[:body]) %>>Price Lowest to Highest</a></li>
-                    
-                    <li><i class="icon-plus-sign"><a></a></i><i class="icon-minus-sign"><a></a></i>Body
+                    <li><i class="icon-chevron-right"><a></a></i><i class="icon-chevron-up"><a></a></i>Body
                         <ul>
                             <% @bodies.each do |body| %>
                                 <li>
@@ -19,7 +16,7 @@
                             <% end %>
                         </ul>
                     </li>
-                    <li><i class="icon-plus-sign"><a></a></i><i class="icon-minus-sign"><a></a></i>Make
+                    <li><i class="icon-chevron-right"><a></a></i><i class="icon-chevron-up"><a></a></i>Make
                         <ul>
                             <% @makes.each do |make| %>
                                 <li>
@@ -28,7 +25,7 @@
                             <% end %>
                         </ul>
                     </li>
-                    <li><i class="icon-plus-sign"><a></a></i><i class="icon-minus-sign"><a></a></i>Models
+                    <li><i class="icon-chevron-right"><a></a></i><i class="icon-chevron-up"><a></a></i>Models
                         <ul>
                             <% @models.each do |model| %>
                                 <li>

@@ -6,9 +6,18 @@ $('i.icon-chevron-right').show(),
 $('i.icon-chevron-up').click(function(){
 $(this).parent().children().hide(),
 $(this).parent().find(">:first-child").show()
+$(this).parent().css("color", "#333")
+$(this).parent().css("font-weight", "normal")
+
+
 });
 $('i.icon-chevron-right').click(function(){
 $(this).parent().children().show(),
+$(this).parent().css("color", "#2c7abf")
+$(this).parent().css("font-weight", "bold")
+
+$(this).parent().children().css("color", "#333")
+$(this).parent().children().css("font-weight", "normal")
 $(this).hide()
 });
 

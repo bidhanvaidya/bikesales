@@ -361,8 +361,9 @@ class BikesController < ApplicationController
   def send_to_friend
     name= params[:name]
     to = params[:to]
+    comment = params[:comment]
     bike=Bike.find(params[:bike])
-    UserMailer.send_to_friend(name, to, bike).deliver  
+    UserMailer.send_to_friend(name, to, bike, comment).deliver  
     respond_to do |format|
       format.js
      

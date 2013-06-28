@@ -4,18 +4,43 @@
         <legend>Send Email</legend>
       </div>
       <div class="modal-body"><div class= "modal_body">
+       <form id= "send_to_friend">
+<div class="control-group">
+    <label class="control-label"> From: </label>
+    <div class="controls">
+      <%= text_field_tag :sender, nil, :placeholder =>"Your Name" ,:class=>"input-large" %>
       
-
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label"> TO: </label>
+    <div class="controls">
+      <%= text_field_tag :name, nil, :placeholder =>"To" ,:required => "true", :class=>"input-large" %>
+      
+    </div>
+      </div><div class="control-group">
+    <label class="control-label"> Email: </label>
+    <div class="controls">
+      <%= email_field_tag :to, nil, :placeholder =>"To email" ,:class=>"input-large" %>
+    </div>
+  </div>
+  </div><div class="control-group">
+    <label class="control-label">Cooment: </label>
+    <div class="controls">
+    <%= text_area_tag :comment, nil,:class => 'textarea', rows: "4", maxlength:"200", required: "true" %>
+    </div>
+  </div>
         
     
-        <form id= "send_to_friend">
-      From: <%= text_field_tag :sender, nil, :placeholder =>"Your Name" ,:class=>"input-large" %>
-       TO:<%= text_field_tag :name, nil, :placeholder =>"To" ,:required => "true", :class=>"input-large" %>
-       Email<%= email_field_tag :to, nil, :placeholder =>"To email" ,:class=>"input-large" %>
-       <%= hidden_field_tag :bike, @bike.id %>
+       
       
+      
+      
+       
+       
+    <%= hidden_field_tag :bike, @bike.id %>
+ 
    
-        </div>
         </div>
         <div class="modal-footer">
         <input type="submit" class="btn btn-primary">

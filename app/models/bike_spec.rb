@@ -4,7 +4,7 @@ class BikeSpec
 
 :top_speed, :fuel_consumption_city, :fuel_consumption_highway, :displacement, :engine, :max_power, :max_torque,  
 :transmission, :clutch, :bore, :stroke, :no_of_cylinders, :valve_per_cylinder, :chassis_type, :cooling_type,
-:lengt, :width, :height, :weight, :ground_clearance, :fuel_tank, :wheelbase, :headlamp, :battery_type, :battery_voltage,
+:length, :width, :height, :weight, :ground_clearance, :fuel_tank, :wheelbase, :headlamp, :battery_type, :battery_voltage,
 :battery_capacity, :wheel_type, :wheel_size, :tyre_type, :suspension_front, :suspension_rear, 
 :brakes_front, :brakes_rear, :stand_alarm, :fuel_gauge, :ignition, :tacho_meter, :trip_meter, :speedometer,
 :pictures_attributes

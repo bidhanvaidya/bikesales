@@ -348,7 +348,7 @@
       <legend>Other Bikes from <%= @bike_spec.make%></legend>
     
     <%@makers_bike.each do |bike|%>
-    <a href= "<%=bike_spec_path(@bike_spec)%>">
+    <a href= "<%=bike_spec_path(bike)%>">
                  <table>
                     <tr>
                       <td><% if !bike.pictures.last.nil?%>
