@@ -9,7 +9,7 @@
       <meta name="google-site-verification" content="32_zx750zT1Sza8yRMpdrHe4P8pPJRlW-DWrO0R1rkA" />
       <title><%= content_for?(:title) ? yield(:title) : "Bikesales" %></title>
       <%= csrf_meta_tags %>
-
+      <%= javascript_include_tag "jquery.min" %>
       <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
       <!--[if lt IE 9]>
         <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
@@ -42,7 +42,7 @@
                             <li>
                              <div class="btn-group">
                               <a class="btn btn-primary dropdown-toggle" id = "icon_button" data-toggle="dropdown" href="#">
-                                <i class="icon-user icon-white"></i> 
+                                <div class="icon-user icon-white"></div> 
                                  <span id ="username"> 
                                 <%=current_user.name%> 
                                 </span>
@@ -54,8 +54,8 @@
                               </button>
                               <ul class="dropdown-menu">
                                 <!-- dropdown menu links -->
-                                <li><a href="<%=profile_user_path(current_user)%>" ><i class= "icon-asterisk"></i> Profile </a></li>
-                                <li><a href="<%= edit_user_registration_path(@user)%>"><i class= "icon-edit"></i> Edit</a></li>
+                                <li><a href="<%=profile_user_path(current_user)%>" ><div class= "icon-asterisk"></div> Profile </a></li>
+                                <li><a href="<%= edit_user_registration_path(@user)%>"><div class= "icon-edit"></div> Edit</a></li>
                                 <li class="divider"></li>
                                 <li><%= link_to "Sign Out", destroy_user_session_path, method: "delete"  %>
                          
@@ -141,7 +141,7 @@
 
       <%= javascript_include_tag "application" %>
       <%= javascript_include_tag "facebook" %>
-      <%= javascript_include_tag "jquery.min" %>
+
       <script  data-cfasync="false" type="text/javascript">
             $(window).resize(function() {
 
