@@ -129,29 +129,41 @@
     <tr>
       <td>
         <div class="control-group">
-          <label class="control-label" for="bike_phone">Phone *</label>
+          <label class="control-label" for="bike_phone">Contact Name *</label>
           <div class="controls">
-            <%= f.text_field :phone, :class => 'text_field',:required => true %>
+            <%= f.text_field :contact_name, :class => 'text_field',:required => true %>
           </div>
         </div>
       </td>
       <td>
         <div class="control-group">
-          <%= f.label :comment, :class => 'control-label' %>
+          <label class="control-label" for="bike_phone">Phone *</label>
           <div class="controls">
-            <%= f.text_area :comment, :class => 'textarea', rows: "2", maxlength:"100" %>
+            <%= f.text_field :phone, :class => 'text_field',:required => true %>
+          </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="control-group">
+          <label class="control-label" for="bike_phone">Comment </label>
+          <div class="controls">
+            <%= f.text_field :comment, :class => 'text_field' %>
+          </div>
+        </div>
+      </td>
+      <td>
+        <div class="control-group">
+          <%= f.label :description, :class => 'control-label' %>
+          <div class="controls">
+            <%= f.text_area :description, :class => 'textarea', rows: "3" %>
           </div>
         </div>
       </td>
     </tr>
   </table>
 
-  <div class="control-group">
-    <%= f.label :description, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_area :description, :class => 'textarea', rows: "3" %>
-    </div>
-  </div>
+  
   <div class="control-group">
     <%= f.label :attach_images, :class => 'control-label' %>
     <div class="controls">

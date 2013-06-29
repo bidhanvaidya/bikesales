@@ -231,11 +231,14 @@ class BikesController < ApplicationController
   # DELETE /bikes/1.json
   def destroy
     @bike = Bike.find(params[:id])
-    @bike.destroy
+    @bike.expired= true
+
 
     respond_to do |format|
-      format.html { redirect_to bikes_url }
-      format.json { head :no_content }
+      if @bike.save
+        format.html { redirect_to bikes_url }
+        format.json { head :no_content }
+      end
     end
   end
   def change_make
@@ -356,11 +359,12 @@ class BikesController < ApplicationController
     end
   end
   def send_to_friend
+    sender = params[:sender]
     name= params[:name]
     to = params[:to]
     comment = params[:comment]
     bike=Bike.find(params[:bike])
-    UserMailer.send_to_friend(name, to, bike, comment).deliver  
+    UserMailer.send_to_friend(sender,name, to, bike, comment).deliver  
     respond_to do |format|
       format.js
      
@@ -398,7 +402,7 @@ class BikesController < ApplicationController
     if current_user==@bike.user || current_user == User.first
       return true
     else
-      redirect_to :back
+      redirect_to @bike
     end
   end
   

@@ -8,7 +8,9 @@ def profile
 	saved_bikes= Array.new
 	@favourites=current_user.favourites
 	@favourites.each do |bike|
-		saved_bikes = saved_bikes << Bike.find(bike.bike_id)
+		if !Bike.unscoped.find(bike.bike_id).expired?
+			saved_bikes = saved_bikes << Bike.find(bike.bike_id)
+		end
 	end
 	@bikees = saved_bikes
 	@listings = @user.bikes.desc(:created).limit(3)

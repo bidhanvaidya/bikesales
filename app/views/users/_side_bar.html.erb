@@ -2,7 +2,7 @@
                  <table>
                     <tr>
                       <td><% if !@bike.pictures.nil?%>
-                        <%= image_tag @bike.pictures.last.file.url(:thumb)%>
+                        <%= image_tag @bike.pictures.first.file.url(:thumb)%>
                         <%else%>
                          <%=image_tag "default_image.jpg"%>
                         <%end%>

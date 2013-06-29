@@ -4,8 +4,9 @@ class UserMailer < ActionMailer::Base
     mail(:to => user.email, :subject => "Registered")  
   end
 
-  def send_to_friend(name, to, bike, comment)
-  	@name = name
+  def send_to_friend(sender, name, to, bike, comment)
+  	@sender = sender
+    @name = name
     @comment= comment
   	@bike= bike
     attachments.inline['logo.jpg'] = File.read("app/assets/images/logo.jpg")

@@ -3,7 +3,7 @@ class Bike
   include Mongoid::Search
 
       attr_accessible :year, :make, :model, :variant, :price, :odometer, :body, :type, :color, :engine_capacity, 
-      :rego_no, :reg_expiry, :vin_no, :address, :location, :updated, :expired,:clicked,:phone, :description,:comment,:pictures_attributes
+      :rego_no, :reg_expiry, :vin_no, :address, :contact_name, :location, :updated, :expired,:clicked,:phone, :description,:comment,:pictures_attributes
 
       embeds_many :pictures, :cascade_callbacks => true
       accepts_nested_attributes_for :pictures, :allow_destroy => true
@@ -25,6 +25,7 @@ class Bike
   field :address, type: String
   field :location, type: String
   field :phone, type: String
+  field :contact_name, type: String
   field :comment, type: String
   field :description, type: String
   field :expired, type: Boolean, default: false

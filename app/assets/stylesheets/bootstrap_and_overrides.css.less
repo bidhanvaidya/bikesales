@@ -101,7 +101,8 @@ body
 {
 	.header
 	{
-		background: #56B8B4
+		background: #56B8B4;
+		padding-bottom:14px
 	}
 }
 .result_div 
@@ -744,7 +745,19 @@ div.input-prepend
 		float: left;
 	}
 }
-
+.seller_info 
+{
+	background: white;
+	padding-left: 20px;
+	padding-right: 15px;
+	padding-bottom: 5px;
+	margin-bottom: 10px;
+	box-shadow: 10px 0px 10px #888888;
+	div h5
+	{
+	display: inline-block
+	}
+}
 
 //***************************************Images*************************************************
 .image_list li 
@@ -755,13 +768,28 @@ div.input-prepend
 	display: inline;
 }
 
-.bike_picture 
+#bike_picture 
 {
 	box-shadow: 10px 10px 10px #888888;
 	margin-bottom: 15px;
 	margin-top: 10px;
+	max-height:358px;
 }
+.picture 
+{
+	height: 370px;
 
+}
+#spec_show_page 
+{
+	padding: 30px;
+	background: white;
+}
+.bike_new_page 
+{
+	background: white;
+	padding: 15px;
+}
 
 //**********************************END OF SHOW PAGE*************************************************
 //####################################################################################################
@@ -780,6 +808,13 @@ div.input-prepend
 div.search_result_div a
 {
 	color: #666;
+	#bike_picture 
+	{
+		box-shadow: 10px 10px 10px #888888;
+		margin-bottom: 15px;
+		margin-top: 10px;
+		max-height: 220px;
+	}
 }
 td.view_bike_link{
 	position: absolute;
@@ -1183,7 +1218,7 @@ z-index: -1;
 width: 100%;
 position: relative;
 text-indent: -10px;
-padding-bottom: 65px;
+padding-bottom: 44px;
 }
 @media(min-width: 769px){
 	#main_page_border {

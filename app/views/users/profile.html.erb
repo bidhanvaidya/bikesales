@@ -61,8 +61,11 @@
               <legend>Saved Bikes</legend><%= link_to "See all", profile_user_path(saved_bikes: "true")%>
               <%@favourites.each do |fav_bike|%>
                 <li>
-                  <%@bike=Bike.find(fav_bike.bike_id)%>
-                  <%=render "side_bar"%>
+                  
+                  <%if !Bike.unscoped.find(fav_bike.bike_id).expired?%>
+                    <%@bike=Bike.find(fav_bike.bike_id)%>
+                    <%=render "side_bar"%>
+                  <%end%>
                 </li>
               <%end%>
             </ul>
