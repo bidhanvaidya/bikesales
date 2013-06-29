@@ -10,7 +10,7 @@
         
         
       <div class= "search_result_div">
-        <a href="<%= bike_path(bike, sort: params[:sort], :direction => params[:direction], body: params[:body], make: params[:make], model: params[:model], color: nil,type: params[:type] ) %>">
+        <a href="<%= bike_path(bike, sort: params[:sort], :direction => params[:direction], body: params[:body], make: params[:make], model: params[:model], color: params[:color],type: params[:type] ) %>">
 <div class="row">
    
   <div class= "span5"> 
@@ -24,7 +24,7 @@
   <div class= "span7">
    
       <table class= "result_table">
-        <tr id = "result_header">
+        <tr class = "result_header">
           <td class= "listing_title">
              <%= bike.year %>  <%= bike.make %>  <%= bike.model %>  <%= bike.variant if !bike.variant.nil? %>
           </td>
@@ -48,8 +48,7 @@
             </ul> 
           <td class= "view_bike_link">
             
-            <%= link_to 'View bike',
-                        bike_path(bike, sort: params[:sort], :direction => params[:direction], body: params[:body], make: params[:make], model: params[:model], color: params[:color],type: params[:type]), :class => 'btn btn-inverse' %>
+            <div  class = 'btn btn-inverse'> View bike </div>
           </td>
         </tr>
       </table>
