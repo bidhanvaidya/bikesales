@@ -4,7 +4,7 @@
 <div class = "row" id= "spec_show_page">
  <div class= "row" id= "spec_show_page_header">
  <div class = "span12" >
-<legend><%= @bike_spec.year %>  <%= @bike_spec.make %>  <%= @bike_spec.model %>  <%= @bike_spec.variant %></legend>
+<legen><%= @bike_spec.year %>  <%= @bike_spec.make %>  <%= @bike_spec.model %>  <%= @bike_spec.variant %></legen>
 </div>
 </div>
 <div class= "row">
@@ -25,9 +25,9 @@
   </div>
     <div class = "span6">
       <div class= "info">
-        <legend>
+        <legen>
           <%=@bike_spec.make%> <%=@bike_spec.model%>  <div class="fb-like" data-send="true" data-layout="button_count" data-width="45" data-show-faces="false"></div>
-        </legend>
+        </legen>
     <table class= "table"><tr>
 
         <td>Bike:</td> 
@@ -88,9 +88,9 @@
     <div class = "result">
    
       <div class = "spec_toggle">
-        <legend>
+        <legen>
       Bike Details
-    </legend>
+    </legen>
       <a id= "basic_info">
         Basic Info 
         <i class="icon-chevron-right"> </i>
@@ -351,7 +351,7 @@
 </div>
 <div class= "span6">
     <div class= "info">
-      <legend>Other Bikes from <%= @bike_spec.make%></legend>
+      <legen>Other Bikes from <%= @bike_spec.make%></legen>
     
     <%@makers_bike.each do |bike|%>
     <a href= "<%=bike_spec_path(bike)%>">

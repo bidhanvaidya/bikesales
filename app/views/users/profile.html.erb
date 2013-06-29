@@ -2,7 +2,7 @@
 
 <div class="span12">
 <div class = "profile_info">
-  <legend>Your Details<%=link_to "Edit", edit_user_registration_path(@user), class: "btn btn-primary"%></legend>
+  <legen>Your Details<%=link_to "Edit", edit_user_registration_path(@user), class: "btn btn-primary"%></legen>
   <div class = "row">
   <div class = "span6">Name: <%= @user.name%></div>
 
@@ -15,10 +15,10 @@
     <div class="span3">
      <div class="saved_bikes">
             <ul class="nav nav-list">
-            <legend>
+            <legen>
               Your Listings
 
-            </legend>
+            </legen>
             <%@listings.each do |bike|%>
             <%@bike= bike%>
               <%=render "side_bar"%>
@@ -33,7 +33,7 @@
       <div class = "bikes">
       	
       	<div class = "results">
-            <legend>Saved Bikes</legend>
+            <legen>Saved Bikes</legen>
           
             <%=render "bikes/search_bikes"%>
           </div>
@@ -48,7 +48,7 @@
       <div class = "bikes">
         
         <div class = "results">
-           <legend>Your Listings</legend>
+           <legen>Your Listings</legen>
           <%=render "bikes/search_bikes"%>
           </div>
       </div>
@@ -58,7 +58,7 @@
          
           <div class="saved_bikes">
             <ul class="nav nav-list">
-              <legend>Saved Bikes</legend><%= link_to "See all", profile_user_path(saved_bikes: "true")%>
+              <legen>Saved Bikes</legen><%= link_to "See all", profile_user_path(saved_bikes: "true")%>
               <%@favourites.each do |fav_bike|%>
                 <li>
                   
