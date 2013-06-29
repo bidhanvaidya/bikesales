@@ -24,7 +24,7 @@
   </div>
   <div class="field">
     <%= f.label :body %>
-    <%= f.select :body,options_for_select(["Sports","Cruiser", "Trail", "Standard", "Scooter", "Super Sport"]) %>
+    <%= f.select :body, options_for_select(["Sports","Cruiser", "Trail", "Standard", "Scooter", "Super Sport"], f.object.body) %>
   </div>
   <div class="field">
     <%= f.label :variant %>

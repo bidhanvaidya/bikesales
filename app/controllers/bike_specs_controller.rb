@@ -26,7 +26,7 @@ class BikeSpecsController < ApplicationController
     @bikes= @bikes.desc(:year)
     
   else
-    @bikes = @bikes.desc(:year, :created)
+    @bikes = @bikes.desc(:year, :updated)
   end
   @models= @bikes.distinct(:model)
   @bodies= @bikes.distinct(:body)

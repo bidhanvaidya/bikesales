@@ -2,8 +2,12 @@
 
 
 <div class = "row" id= "spec_show_page">
- 
-
+ <div class= "row" id= "spec_show_page_header">
+ <div class = "span12" >
+<legend><%= @bike_spec.year %>  <%= @bike_spec.make %>  <%= @bike_spec.model %>  <%= @bike_spec.variant %></legend>
+</div>
+</div>
+<div class= "row">
   <div class = "span6" >
 
   
@@ -38,7 +42,7 @@
         <tr>
 
         <td>Price:</td> 
-          <td><%=@bike_spec.price%></td>
+          <td>Rs. <%=@bike_spec.price%></td>
         </tr>
         <tr>
 
@@ -51,28 +55,29 @@
           <td><%=@bike_spec.year%></td>
         </tr>
         <tr>
+        <tr>
 
-        <td>Year:</td> 
-          <td><%=@bike_spec.year%></td>
+        <td>Body Type:</td> 
+          <td><%=@bike_spec.body%></td>
+        </tr>
+
+        <td>Top Speed:</td> 
+          <td><%=@bike_spec.top_speed%> kmph</td>
         </tr><tr>
 
-        <td>Year:</td> 
-          <td><%=@bike_spec.year%></td>
+        <td>Mileage(City):</td> 
+          <td><%=@bike_spec.fuel_consumption_city%> kmpl</td>
         </tr><tr>
 
-        <td>Year:</td> 
-          <td><%=@bike_spec.year%></td>
+        <td>Mileage(Highway):</td> 
+          <td><%=@bike_spec.fuel_consumption_highway%> kmpl</td>
         </tr>
         <tr>
 
-        <td>Year:</td> 
-          <td><%=@bike_spec.year%></td>
+        <td>Engine Displacement:</td> 
+          <td><%=@bike_spec.displacement%> cc</td>
         </tr>
-        <tr>
 
-        <td>Year:</td> 
-          <td><%=@bike_spec.year%></td>
-        </tr>
       </table>
     </div>
 </div>
@@ -378,7 +383,7 @@
 //<![CDATA[
 
 
-$('ul.image_list li').hover(function() {
+$('ul.image_list li').click(function() {
 
   
   var id= "<%=@bike_spec.id%>";

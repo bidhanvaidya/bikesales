@@ -16,29 +16,7 @@
 
 //= require_tree .
 
-	    $(window).resize(function() {
-
-	  if ($(window).width() <= 979 && $(window).width() >=600){
-	      setTimeout(function() {
-	          $("#toggle").trigger('click');
-	      },1);}
-
-	       
-	});
-	  if ($(window).width() <= 979 && $(window).width() >=600){
-	      setTimeout(function() {
-	          $("#toggle").trigger('click');
-	      },1);}
-
-	     var width= $(window).width()/5
-	      
-	        $("div.logo").animate({
 	    
-	    textIndent: width,
-
-	    
-	  }, 3600 );
-
 
 	//Google Analytics 
 	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
