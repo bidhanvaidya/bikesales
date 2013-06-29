@@ -1,6 +1,6 @@
 <div class= "span4"></div>
 <div class= "span4" id= "edit_login_user_page">
-<legen>Forgot your password?</legen>
+<div class = "legen">Forgot your password?</div>
 
 <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
   <%= devise_error_messages! %>

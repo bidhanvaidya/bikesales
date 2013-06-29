@@ -1,6 +1,6 @@
 <div class= "span4"></div>
 <div class= "span4" id= "edit_login_user_page">
-<legen>Resend confirmation instructions</legen>
+<div class = "legen">Resend confirmation instructions</div>
 
 <%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f| %>
   <%= devise_error_messages! %>

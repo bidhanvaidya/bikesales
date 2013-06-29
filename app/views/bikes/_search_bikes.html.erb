@@ -29,7 +29,8 @@
              <%= bike.year %>  <%= bike.make %>  <%= bike.model %>  <%= bike.variant if !bike.variant.nil? %>
           </td>
           <td>
-            <legen><%= number_to_currency(bike.price,:unit => "Rs ",:precision => 0) %></legen>
+            <div class= "legen"><%= number_to_currency(bike.price,:unit => "Rs ",:precision => 0) %>
+            </div>
           </td>
         </tr>
         <tr>

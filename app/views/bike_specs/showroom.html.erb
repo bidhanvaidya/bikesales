@@ -2,7 +2,7 @@
 <div class= "showroom_header">New Bike Showroom</div>
   <div class= "showroom_search">
       <%=form_tag(search_bike_specs_path, :method => "get") do %>
-      <legen>Search Bikes</legen>
+      <div class = "legen">Search Bikes</div>
         <div class = "row">
           <div class= "span3">
             <div  class="input-prepend">
@@ -31,7 +31,7 @@
 
 <div class = "row">
   <div class = "span4 showroom_browse">
-    <legen>Browse by body type</legen>
+    <div class = "legen">Browse by body type</div>
     <table class= "browse_body_type">
       <tr>
         <td><a href = '<%=bike_specs_path(body: "Cruiser")%>'><div class= "image_border"><%=image_tag "cruiser.jpg", size: "133x120"%>Cruiser</div></a></td>
@@ -48,7 +48,7 @@
     </table> 
   </div>
   <div class = "span4 showroom_browse">
-    <legen>Browse By: Top Makers</legen>
+    <div class = "legen">Browse By: Top Makers</div>
       <table class= "browse_maker">
         <tr>
           <td><a href = '<%=bike_specs_path(make: "Bajaj")%>'><div class= "image_border"><%=image_tag "bajaj.jpg", size: "67x62"%></div></a></td>
@@ -72,7 +72,7 @@
     </div>
     <div class = "span4">
       <div class=  "latest_bikes">
-      <legen>Latest Bikes</legen>
+      <div class = "legen">Latest Bikes</div>
         <table class= "browse_maker">
           <tr>
             <%@latest_bike.each do |bike|%>

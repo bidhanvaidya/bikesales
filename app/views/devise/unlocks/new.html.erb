@@ -1,6 +1,6 @@
 <div class= "span4"></div>
 <div class= "span4" id= "edit_login_user_page">
-<legen>Resend unlock instructions</legen>
+<div class = "legen">Resend unlock instructions</div>
 
 <%= form_for(resource, :as => resource_name, :url => unlock_path(resource_name), :html => { :method => :post }) do |f| %>
   <%= devise_error_messages! %>

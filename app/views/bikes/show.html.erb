@@ -6,7 +6,7 @@
   <div class = "span3">
 
     <div class = "toolbox">
-      <legend>Toolbox</legend>
+      <div class = "legen">Toolbox</div>
       <i class = " icon-chevron-left"> </i> <%= link_to " Back to search", bikes_path(sort: params[:sort], :direction => params[:direction], type: params[:type],body: params[:body], make: params[:make], model: params[:model], color: params[:color], location: params[:location])%>
       <div class = "save_search">
         <% if current_user and current_user.favourites.where(bike_id: @bike.id).empty?%>
@@ -61,9 +61,9 @@
   </ul>
   <%end%>
   <div class = "result">
-    <legend>
+    <div class = "legen">
       Bike Details
-    </legend>
+    </div>
 
     <table class= "table">
       <tr>
@@ -125,7 +125,7 @@
 <div class = "span3">
 
   <div class= "seller_info">
-    <legend> Seller Info</legend>
+    <div class = "legen"> Seller Info</div>
     <div>
       <h5>Contact Name: </h5> <%=@bike.contact_name%> 
     </div>
@@ -152,10 +152,10 @@
   <div class=  "span3"></div>
   <div class="span6" id= "bike_spec_span_padding">
     <div class="span12" id= "bike_spec_span">
-      <legend>
+      <div class = "legen">
         <a href="<%bikes_path(@bike)%>" data-remote="true" id="more">Bike Info <i class= "icon-chevron-down"> </i></a>
         <a id = "less"> Bike Info <i class= "icon-chevron-down"> </i><i class= "icon-chevron-up"> </i></a>
-      </legend>
+      </div>
     </div>
   </div>
 </div>
