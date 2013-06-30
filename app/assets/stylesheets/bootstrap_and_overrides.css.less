@@ -290,14 +290,26 @@ div.input-prepend
 	margin-bottom: 45px;
 }
 //#################################color###########################################################
-@media (max-width: 600px)
+.browse_price ul
 {
-	table.browse_price tr td ul li
+	width: 40%;
+	display: inline-table;
+}
+
+.browse_colour a
+{
+	width: 11%;
+	display: inline-block;
+	vertical-align: middle;
+	margin-bottom: 5px;	
+}
+@media (max-width: 400px)
+{
+	.browse_price ul li
 	{
-		font-size: 10px;
-		max-width: 85px;
+		font-size: 11px;
 	}
-	table.browse_colour tr td
+	.browse_colour
 	{
 		font-size: 10px;
 	}
@@ -576,56 +588,6 @@ div.input-prepend
 	}
 }
 
-@media (min-width:360px) and (max-width: 480px)
-{
-	.browse_body_type 
-	{
-		margin-left: -12px;
-		margin-right: -12px;
-		tr td
-		{
-			font-size: 10px;
-		}
-	}
-	div.image_border
-	{
-		img
-		{
-			width: 75px;
-			height:40px
-		}
-	}
-}
-@media (max-width: 400px)
-{
-	.browse_body_type 
-	{
-		margin-left: -12px;
-		margin-right: -12px;
-		tr td
-		{
-			font-size: 10px;
-		}
-	}
-	.browse_makers 
-	{
-		tr td
-		{
-			font-size: 0px;
-		}
-	}
-
-	div.image_border
-	{
-		img
-		{
-			width: 55px;
-			height:30px
-		}
-	}
-}
-
-
 .main_page_browse_by 
 {
 	padding: 15px;
@@ -650,19 +612,82 @@ div.input-prepend
 .browse_body_type 
 {
 	text-align: center;
+	a
+	{
+		width: 15%;
+		display: inline-table;
+	}
 	a:hover
 	{
 		background: inherit;
 		color: black;
 	}
 }
+@media (max-width: 480px)
+{
+	.browse_body_type a
+	{
+		width:25%
+	}
+}
+.span4.showroom_browse .browse_body_type
+{
+	a
+	{
+		width: 48%;
+	}
+}
+
 .browse_makers 
 {
+	font-size: 11px;
 	text-align: center;
+	a
+	{
+		width: 10%;
+		display: inline-table;
+	}
 	a:hover
 	{
 		background: inherit;
 		color: black;
+	}
+}
+@media(max-width: 512px)
+{
+	.browse_makers 
+	{
+		a
+		{
+			width: 30%;
+			.image_border
+			{
+				min-height: 58px;
+				img
+				{
+					margin-right: 20px;
+
+				}
+			}
+		}
+	}
+
+	
+}
+.browse_maker
+{
+	a 
+	{
+		display: inline-table;
+		width: 24%;
+	}
+}
+.latest_bikes .browse_maker
+{
+	padding-bottom: 15px;
+	a 
+	{
+		width: 40%;
 	}
 }
 
