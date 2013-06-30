@@ -58,7 +58,7 @@ class BikesController < ApplicationController
       
       
     end
-    @bikees=@bikes.paginate(:page => params[:page], :per_page => 10)
+    @bikees=@bikes.paginate(:page => params[:page], :per_page => 4)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @bikes }

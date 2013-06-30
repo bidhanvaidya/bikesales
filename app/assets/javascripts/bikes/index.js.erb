@@ -8,16 +8,91 @@ $(this).parent().children().hide(),
 $(this).parent().find(">:first-child").show()
 $(this).parent().css("color", "#333")
 $(this).parent().css("font-weight", "normal")
-
+$("#selection").navscroll();
+$("#selection").navheight();
 
 });
 $('.icon-chevron-right').click(function(){
 $(this).parent().children().show(),
 $(this).parent().css("color", "#2c7abf")
 $(this).parent().css("font-weight", "bold")
-
+$("#selection").navscroll();
 $(this).parent().children().css("color", "#333")
 $(this).parent().children().css("font-weight", "normal")
 $(this).hide()
 });
 
+$(document).scroll(function() {
+    if ($(window).width() > 979){
+
+
+
+      var height =  $(".current_selection").height()+ 90
+      if ($(this).scrollTop() > 186) {
+        $('.current_selection').css({ 
+          "position" : 'fixed',
+          "width": '226',
+          "margin-top": 63,
+          "top" : 0});
+        $('.sidebar-nav').css({ 
+          "position" : 'fixed',
+          "width": '226',
+          "margin-top": height,
+          "top" : 0 });
+        $('.header').css({ 
+          "position" : 'fixed',
+          "width": '708',
+          "height": '18',
+          "margin-top": 63,
+          "top" : 0 , 
+          "background": "#0070B7"});
+        $("#selection").navscroll();
+      }
+      else {
+        $('.current_selection').css({ "position" : 'relative', "top" : 0,"margin-top": 0, "width" : '100%' });
+        $('.sidebar-nav').css({ "position" : 'relative', "top" : 0,"margin-top": 0, "width" : '100%' });
+        $('.header').css({ "position" : 'relative', "top" : 0,"margin-top": 0,"width": '708', "background": "#2a2a2a" });
+        $(".icon-remove").css({
+          "position": "absolute",
+          "left":"84%"
+        })
+      }
+    }
+  })
+console.log( $("#selection").children().height())
+$(window).resize(function() {
+
+  $("#selection").navscroll();
+});
+$.fn.navscroll = function(){
+	if ($(window).width() > 979){
+	var test=$(window).height()- $(".current_selection").height()-147
+	
+
+    if ($("#selection").height()+$(".current_selection").height()+147 > $(window).height()){
+     console.log( "$(window).height()")
+
+        $('#selection').css({ 
+          "overflow" : 'auto',
+          "height": test,
+      });
+
+
+    }   
+        
+
+}
+    };
+    $.fn.navheight = function(){
+    	 
+	 if ($(window).height()>733){
+     console.log( "$(window).height()")
+
+        $('#selection').css({ 
+          "height": "auto",
+      });
+
+        $("#selection").navscroll();
+    };
+    };
+ 
