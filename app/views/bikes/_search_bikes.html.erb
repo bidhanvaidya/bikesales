@@ -1,69 +1,49 @@
-
-
-<table class="table">
- 
+<div class="search_bike_table">
   <tbody>
     <% @bikees.each do |bike| %>
-    
-      <tr>
-        <td>
-        
-        
       <div class= "search_result_div">
         <a href="<%= bike_path(bike, sort: params[:sort], :direction => params[:direction], body: params[:body], make: params[:make], model: params[:model], color: params[:color],type: params[:type] ) %>">
-<div class="row">
-   
-  <div class= "span5"> 
-   <% if bike.pictures.empty?%>
-      <%=image_tag "default_image.jpg"%>
-    <%else%>
-
-    <%= image_tag bike.pictures.last.file.url(:original), id: "bike_picture" %>
-    <%end%>
-  </div> <!-- span5 Image of the searched bike --> 
-  <div class= "span7">
-   
-      <table class= "result_table">
-        <tr class = "result_header">
-          <td class= "listing_title">
-             <%= bike.year %>  <%= bike.make %>  <%= bike.model %>  <%= bike.variant if !bike.variant.nil? %>
-          </td>
-          <td>
-            <div class= "legen"><%= number_to_currency(bike.price,:unit => "Rs ",:precision => 0) %>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <ul>
-              <li>
-                <%= bike.odometer %>  
-              </li>
-              <li>
-                <%= bike.body %> 
-              </li>
-              <li>
-                <%= bike.location %>
-              </li>
-            </ul> 
-          <td class= "view_bike_link">
-            
-            <div  class = 'btn btn-inverse'> View bike </div>
-          </td>
-        </tr>
-      </table>
-      <div class = "comment">
-      &ldquo; <%= bike.comment%> &rdquo;
-    </div>
-  
-  </div> <!-- span7 Summary of the searched bike --> 
-    </div>
-          </a>
- 
-    </div>  </td>
-     </tr>
- 
+          <div class="row">
+            <div class= "span5"> 
+              <% if bike.pictures.empty?%>
+              <%=image_tag "default_image.jpg"%>
+              <%else%>
+              <%= image_tag bike.pictures.last.file.url(:original), id: "bike_picture" %>
+              <%end%>
+            </div> <!-- span5 Image of the searched bike --> 
+            <div class= "span7">
+              <div class= "result_table">
+                <div class = "result_header">
+                  <div class= "listing_title">
+                    <%= bike.year %>  <%= bike.make %>  <%= bike.model %>  <%= bike.variant if !bike.variant.nil? %>
+                  </div>
+                  <div class= "legen"><%= number_to_currency(bike.price,:unit => "Rs ",:precision => 0) %>
+                  </div>
+                </div>
+                <ul>
+                  <li>
+                    <%= bike.odometer %>  
+                  </li>
+                  <li>
+                    <%= bike.body %> 
+                  </li>
+                  <li>
+                    <%= bike.location %>
+                  </li>
+                </ul> 
+                <div class= "view_bike_link">
+                  <div  class = 'btn btn-inverse'> View bike 
+                  </div>
+                </div>
+                <div class = "comment">
+                  &ldquo; <%= bike.comment%> &rdquo;
+                </div>
+              </div>  
+            </div> <!-- span7 Summary of the searched bike --> 
+          </div>
+        </a>
+      </div>
     <% end %>
   </tbody>
-</table>
+</div>
 

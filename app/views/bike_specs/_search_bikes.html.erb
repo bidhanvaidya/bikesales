@@ -1,64 +1,48 @@
-
-
-<table class="table">
- 
+<div class="search_bike_table">
   <tbody>
     <% @bikees.each do |bike| %>
-    
-      <tr>
-        <td>
-        
-        
       <div class= "search_result_div">
         <a href="<%= bike_spec_path(bike, sort: params[:sort], :direction => params[:direction], body: params[:body], make: params[:make], model: params[:model], color: nil,type: params[:type] ) %>">
-<div class="row">
-   
-  <div class= "span5"> 
-    <% if bike.pictures.empty?%>
-      <%=image_tag "default_image.jpg"%>
-    <%else%>
+          <div class="row">
+            <div class= "span5"> 
+              <% if bike.pictures.empty?%>
+              <%=image_tag "default_image.jpg"%>
+              <%else%>
+              <%= image_tag bike.pictures.last.file.url(:original), class: "bike_picture" %>
+              <%end%>
+            </div> <!-- span5 Image of the searched bike --> 
+            <div class= "span7">
+              <div class = "result_table">
+                <div class = "result_header">
+                  <div class = "listing_title">
+                    <%= bike.year %>  <%= bike.make %>  <%= bike.model %>  <%= bike.variant %>
+                  </div>
+                  <div class = "legen"><%= number_to_currency(bike.price,:unit => "Rs ",:precision => 0)%>
+                  </div>
+                </div>
+                <div>
+                  <ul>
+                    <li>
+                      <%=  %>  
+                    </li>
+                    <li>
+                      <%= bike.body %> 
+                    </li>
+                    <li>
 
-    <%= image_tag bike.pictures.last.file.url(:original), class: "bike_picture" %>
+                    </li>
+                  </ul> 
+                  <div class = "view_bike_link">
+                    <div  class = 'btn btn-inverse'> View bike 
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> <!-- span7 Summary of the searched bike --> 
+          </div>
+        </a>
+      </div>  
     <%end%>
-  </div> <!-- span5 Image of the searched bike --> 
-  <div class= "span7">
-   
-      <table class = "result_table">
-        <tr class = "result_header">
-          <td class = "listing_title">
-            <%= bike.year %>  <%= bike.make %>  <%= bike.model %>  <%= bike.variant %>
-          </td>
-          <td>
-            <div class = "legen"><%= number_to_currency(bike.price,:unit => "Rs ",:precision => 0) %></div>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <ul>
-              <li>
-                <%=  %>  
-              </li>
-              <li>
-                <%= bike.body %> 
-              </li>
-              <li>
-               
-              </li>
-            </ul> 
-          <td class = "view_bike_link">
-            <div  class = 'btn btn-inverse'> View bike </div>
-          </td>
-        </tr>
-      </table>
-  
-  </div> <!-- span7 Summary of the searched bike --> 
-    </div>
-          </a>
- 
-    </div>  </td>
-     </tr>
- 
-    <% end %>
   </tbody>
-</table>
+</div>
 
