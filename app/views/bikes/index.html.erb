@@ -1,3 +1,4 @@
+<!--Indentation Complete-->
 <%div = params[:page].to_i%>
 <div class="span12">
   <div class="row">
@@ -80,18 +81,18 @@
             </li>
           </ul>
         </div><!--/.well -->
-      </div><!--/span-->
-      <div class="span9">    
-        <div class = "bikes">
-          <div class = "header">
-            <%= pluralize(@bikes.count, 'Match')%>
-            <select class="sort_select">
-              <option value= "1">Sort By: Latest</option>
-              <option value= "2">Sort By: Price(High to Low)</option>
-              <option value = "3">Sort By: Price(Low to High)</option>
-              <option value= "4">Sort By: Year Made(High to Low)</option>
-              <option value = "5">Sort By: Year Made(Low to High)</option>
-            </select>
+    </div><!--/span-->
+    <div class="span9">    
+      <div class = "bikes">
+        <div class = "header">
+          <%= pluralize(@bikes.count, 'Match')%>
+          <select class="sort_select">
+            <option value= "1">Sort By: Latest</option>
+            <option value= "2">Sort By: Price(High to Low)</option>
+            <option value = "3">Sort By: Price(Low to High)</option>
+            <option value= "4">Sort By: Year Made(High to Low)</option>
+            <option value = "5">Sort By: Year Made(Low to High)</option>
+          </select>
         </div>
         <div class = "bikes_sort">
           <div class = "results">
@@ -126,38 +127,37 @@
   $(document).scroll(function() {
     if ($(window).width() > 979){
       var height =  $(".current_selection").height()+ 90
-    if ($(this).scrollTop() > 186) {
-      $('.current_selection').css({ 
-        "position" : 'fixed',
-        "width": '226',
-        "margin-top": 63,
-        "top" : 0});
-      $('.sidebar-nav').css({ 
-        "position" : 'fixed',
-        "width": '226',
-        "margin-top": height,
-        "top" : 0 });
-      $('.header').css({ 
-        "position" : 'fixed',
-        "width": '708',
-        "height": '18',
-        "margin-top": 63,
-        "top" : 0 , 
-        "background": "#0070B7"});
+      if ($(this).scrollTop() > 186) {
+        $('.current_selection').css({ 
+          "position" : 'fixed',
+          "width": '226',
+          "margin-top": 63,
+          "top" : 0});
+        $('.sidebar-nav').css({ 
+          "position" : 'fixed',
+          "width": '226',
+          "margin-top": height,
+          "top" : 0 });
+        $('.header').css({ 
+          "position" : 'fixed',
+          "width": '708',
+          "height": '18',
+          "margin-top": 63,
+          "top" : 0 , 
+          "background": "#0070B7"});
+      }
+      else {
+        $('.current_selection').css({ "position" : 'relative', "top" : 0,"margin-top": 0, "width" : '100%' });
+        $('.sidebar-nav').css({ "position" : 'relative', "top" : 0,"margin-top": 0, "width" : '100%' });
+        $('.header').css({ "position" : 'relative', "top" : 0,"margin-top": 0,"width": '708', "background": "#2a2a2a" });
+        $(".icon-remove").css({
+          "position": "absolute",
+          "left":"84%"
+        })
+      }
     }
-    else {
-      $('.current_selection').css({ "position" : 'relative', "top" : 0,"margin-top": 0, "width" : '100%' });
-      $('.sidebar-nav').css({ "position" : 'relative', "top" : 0,"margin-top": 0, "width" : '100%' });
-      $('.header').css({ "position" : 'relative', "top" : 0,"margin-top": 0,"width": '708', "background": "#2a2a2a" });
-      $(".icon-remove").css({
-        "position": "absolute",
-        "left":"84%"
-      })
-    }
-  }
-})
-   
- $("select.sort_select").change(function() {
+  })
+  $("select.sort_select").change(function() {
     $("select.sort_select option:selected").each(function () {
       str = $(this).attr("value");
     });

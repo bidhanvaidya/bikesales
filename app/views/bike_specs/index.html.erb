@@ -1,18 +1,18 @@
-  <%div = params[:page].to_i%>
-  <div class="span12">
+<!--Indentation Complete-->
+<%div = params[:page].to_i%>
+<div class="span12">
     <div class="row">
-    <div class="span3">
-    
-        <%= render "current_selection"%>   
-          <div class="sidebar-nav">
+        <div class="span3">
+            <%= render "current_selection"%>   
+            <div class="sidebar-nav">
                 <ul class="nav nav-list" id = "selection">
-                     <li class= "refine_search"><div class = "legen">Refine Search</div></li>
+                    <li class= "refine_search"><div class = "legen">Refine Search</div></li>
                     <li><div class="icon-chevron-right"><a></a></div><div class="icon-chevron-up"><a></a></div>Body
                         <ul>
                             <% @bodies.each do |body| %>
-                                <li>
-                                    <%= link_to body, bike_specs_path(sort: params[:sort], :direction => params[:direction], body: body, make: params[:make],model: params[:model] )%> (<%=@bikes.where(body: body).count%>)
-                                </li>  
+                            <li>
+                                <%= link_to body, bike_specs_path(sort: params[:sort], :direction => params[:direction], body: body, make: params[:make],model: params[:model] )%> (<%=@bikes.where(body: body).count%>)
+                            </li>  
                             <% end %>
                         </ul>
                     </li>
@@ -34,136 +34,114 @@
                             <% end %>
                         </ul>
                     </li>
-                    
-                    
                 </ul>
-              </div><!--/.well -->
+            </div><!--/.well -->
         </div><!--/span-->
-
-<div class="span9">    
-<div class = "bikes">
-<div class = "header">
-<%= pluralize(@bikes.count, 'Match')%>
-<select class="sort_select">
-    <option value= "1">Sort By: Latest</option>
-    <option value= "2">Sort By: Price(High to Low)</option>
-
-    <option value = "3">Sort By: Price(Low to High)</option>
-    <option value= "4">Sort By: Year Made(High to Low)</option>
-
-    <option value = "5">Sort By: Year Made(Low to High)</option>
-</select>
+        <div class="span9">    
+            <div class = "bikes">
+                <div class = "header">
+                    <%= pluralize(@bikes.count, 'Match')%>
+                    <select class="sort_select">
+                        <option value= "1">Sort By: Latest</option>
+                        <option value= "2">Sort By: Price(High to Low)</option>
+                        <option value = "3">Sort By: Price(Low to High)</option>
+                        <option value= "4">Sort By: Year Made(High to Low)</option>
+                        <option value = "5">Sort By: Year Made(Low to High)</option>
+                    </select>
+                </div>
+                <div class = "bikes_sort">
+                    <div class = "results">
+                        <div class = "scroll">
+                            <%=render "search_bikes"%>
+                        </div>
+                        <div class = "1"></div>
+                        <% (2..@bikees.total_pages).each do |i|%> <!-- Creating empty div with respect to page number-->
+                            <div class = "<%= i%>"></div>
+                        <%end%>
+                    </div><!--div bike sort-->
+                </div><!--div results -->
+            </div>
+        </div>
+    </div>
 </div>
 
-<div class = "bikes_sort">
-<div class = "results">
-    <div class = "scroll">
-
-    <%=render "search_bikes"%>
-
-</div>
-<div class = "1"></div>
-<% (2..@bikees.total_pages).each do |i|%> <!-- Creating empty div with respect to page number-->
-
-   <div class = "<%= i%>"></div>
-<%end%>
-
-
-</div><!--div bike sort-->
-</div><!--div results -->
-
-
-
-
-</div>
-
-</div>
-</div>
-</div>
 <script type="text/javascript">
-var div =1
- $(window).scroll(function() 
- { 
- 
-    if($(window).scrollTop() + $(window).height() == $(document).height()) 
-    {
-       
-        div=div+1
-        <%if(params.has_key?(:type) or params.has_key?(:body) or params.has_key?(:make) or params.has_key?(:model) or params.has_key?(:color) or params.has_key?(:sort) or params.has_key?(:direction))%>
-             var link= "<%= bike_specs_path(sort: params[:sort], :direction => params[:direction], type: params[:type],body: params[:body], make: params[:make], model: params[:model], color: params[:color] )%>"+'&amp;page='+ div.toString()+ ' div.scroll'
-        <%else%>
-             var link='/bike_specs?page='+ div.toString()+ ' div.scroll' 
-        <%end%>
-        $("div." +div.toString()).load(link, function() {
-        console.log(link)
-        });
-    }
-});
- $(document).scroll(function() {
-      if ($(window).width() > 979){
-      var height =  $(".current_selection").height()+ 90
-    if ($(this).scrollTop() > 186) {
-        $('.current_selection').css({ 
-            "position" : 'fixed',
-            "width": '226',
-            "margin-top": 63,
-            "top" : 0 });
-        $(".icon-remove").css({
-          "position": "fixed",
-          "left": "28%"
-          
-        })
-        $('.sidebar-nav').css({ 
-            "position" : 'fixed',
-            "width": '226',
-            "margin-top": height,
-            "top" : 0 });
-        $('.header').css({ 
-            "position" : 'fixed',
-            "width": '708',
-            "height": '18',
-            "margin-top": 63,
-            "background": "#0070B7",
-            "top" : 0 });
-    } else {
-        $('.current_selection').css({ "position" : 'relative', "top" : 0,"margin-top": 0, "width" : '100%' });
-        $('.sidebar-nav').css({ "position" : 'relative', "top" : 0,"margin-top": 0, "width" : '100%' });
-         $('.header').css({ "position" : 'relative', "top" : 0,"margin-top": 0,"width": '708', "background": "#2a2a2a" });
-         $(".icon-remove").css({
-          "position": "absolute",
-          "left":"84%"
-        })
-    }
-  }
-})
-$("select.sort_select").change(function() {
-
-
-    $("select.sort_select option:selected").each(function () {
-            console.log($(this).attr("value"));
-            str = $(this).attr("value");
+    var div =1
+    $(window).scroll(function() 
+    { 
+        if($(window).scrollTop() + $(window).height() == $(document).height()) 
+        {
+            div=div+1
+            <%if(params.has_key?(:type) or params.has_key?(:body) or params.has_key?(:make) or params.has_key?(:model) or params.has_key?(:color) or params.has_key?(:sort) or params.has_key?(:direction))%>
+                var link= "<%= bike_specs_path(sort: params[:sort], :direction => params[:direction], type: params[:type],body: params[:body], make: params[:make], model: params[:model], color: params[:color] )%>"+'&amp;page='+ div.toString()+ ' div.scroll'
+            <%else%>
+                var link='/bike_specs?page='+ div.toString()+ ' div.scroll' 
+            <%end%>
+            $("div." +div.toString()).load(link, function() {
+            });
+        }
     });
-    if (str =="1"){
-        $('div.bikes_sort').load('<%= bike_specs_path(sort: "latest", type: params[:type],body: params[:body], make: params[:make], model: params[:model], color: params[:color], location: params[:location] ) + " div.results"%>');
-        div=1;
-    };
-    if (str =="2"){
-        $('div.bikes_sort').load('<%= bike_specs_path(sort: "price", :direction => "desc", type: params[:type],body: params[:body], make: params[:make], model: params[:model], color: params[:color], location: params[:location] ) + " div.results"%>');
-        div=1;
-    //window.location.replace("<%= bikes_path(sort: "price", :direction => "desc", body: params[:body]) %>");
-    };
-    if (str =="3"){
-        $('div.bikes_sort').load('<%= bike_specs_path(sort: "price", :direction => "asc", type: params[:type],body: params[:body], make: params[:make], model: params[:model], color: params[:color], location: params[:location] ) + " div.results"%>');
-        div=1;
-    };
-    if (str =="4"){
-        $('div.bikes_sort').load('<%= bike_specs_path(sort: "year", :direction => "desc", type: params[:type],body: params[:body], make: params[:make], model: params[:model], color: params[:color], location: params[:location] ) + " div.results"%>');
-        div=1;
-
-    };  if (str =="5"){
-        $('div.bikes_sort').load('<%= bike_specs_path(sort: "year", :direction => "asc", type: params[:type],body: params[:body], make: params[:make], model: params[:model], color: params[:color], location: params[:location] ) + " div.results"%>');
-        div=1;
-
-    };
-});
+    $(document).scroll(function() {
+        if ($(window).width() > 979){
+            var height =  $(".current_selection").height()+ 90
+            if ($(this).scrollTop() > 186) {
+                $('.current_selection').css({ 
+                        "position" : 'fixed',
+                        "width": '226',
+                        "margin-top": 63,
+                        "top" : 0 });
+                $(".icon-remove").css({
+                    "position": "fixed",
+                    "left": "28%"
+                })
+                $('.sidebar-nav').css({ 
+                    "position" : 'fixed',
+                    "width": '226',
+                    "margin-top": height,
+                    "top" : 0 });
+                $('.header').css({ 
+                    "position" : 'fixed',
+                    "width": '708',
+                    "height": '18',
+                    "margin-top": 63,
+                    "background": "#0070B7",
+                    "top" : 0 });
+            } 
+            else {
+                $('.current_selection').css({ "position" : 'relative', "top" : 0,"margin-top": 0, "width" : '100%' });
+                $('.sidebar-nav').css({ "position" : 'relative', "top" : 0,"margin-top": 0, "width" : '100%' });
+                $('.header').css({ "position" : 'relative', "top" : 0,"margin-top": 0,"width": '708', "background": "#2a2a2a" });
+                $(".icon-remove").css({
+                "position": "absolute",
+                "left":"84%"
+                })
+            }
+        }
+    })
+    $("select.sort_select").change(function() {
+        $("select.sort_select option:selected").each(function () {
+            str = $(this).attr("value");
+        });
+        if (str =="1"){
+            $('div.bikes_sort').load('<%= bike_specs_path(sort: "latest", type: params[:type],body: params[:body], make: params[:make], model: params[:model], color: params[:color], location: params[:location] ) + " div.results"%>');
+            div=1;
+        };
+        if (str =="2"){
+            $('div.bikes_sort').load('<%= bike_specs_path(sort: "price", :direction => "desc", type: params[:type],body: params[:body], make: params[:make], model: params[:model], color: params[:color], location: params[:location] ) + " div.results"%>');
+            div=1;
+            //window.location.replace("<%= bikes_path(sort: "price", :direction => "desc", body: params[:body]) %>");
+        };
+        if (str =="3"){
+            $('div.bikes_sort').load('<%= bike_specs_path(sort: "price", :direction => "asc", type: params[:type],body: params[:body], make: params[:make], model: params[:model], color: params[:color], location: params[:location] ) + " div.results"%>');
+            div=1;
+        };
+        if (str =="4"){
+            $('div.bikes_sort').load('<%= bike_specs_path(sort: "year", :direction => "desc", type: params[:type],body: params[:body], make: params[:make], model: params[:model], color: params[:color], location: params[:location] ) + " div.results"%>');
+            div=1;
+        };  
+        if (str =="5"){
+            $('div.bikes_sort').load('<%= bike_specs_path(sort: "year", :direction => "asc", type: params[:type],body: params[:body], make: params[:make], model: params[:model], color: params[:color], location: params[:location] ) + " div.results"%>');
+            div=1;
+        };
+    });
 </script>

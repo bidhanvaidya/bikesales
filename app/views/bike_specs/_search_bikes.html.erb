@@ -1,3 +1,4 @@
+<!--Indentation Complete-->
 <div class="search_bike_table">
   <% @bikees.each do |bike| %>
     <div class= "search_result_div">
@@ -19,17 +20,29 @@
                 <div class = "legen"><%= number_to_currency(bike.price,:unit => "Rs ",:precision => 0)%>
                 </div>
               </div>
-              <div>
+              <div class = "result_specs">
                 <ul>
                   <li>
-                    <%=  %>  
+                    Body: <%=bike.body%>  
                   </li>
                   <li>
-                    <%= bike.body %> 
+                    Top Speed: <%=bike.top_speed%> km/h
                   </li>
                   <li>
-
+                    Engine Displacement: <%=bike.displacement%> cc
                   </li>
+                  <li>
+                    Max Power: <%=bike.max_power%> 
+                  </li>
+                  <li>
+                    Max Torque: <%=bike.max_torque%>
+                  </li>   
+                  <li>
+                    Mileage (City): <%=bike.fuel_consumption_city%> km/L
+                  </li>
+                  <li>
+                    Mileage (Highway): <%=bike.fuel_consumption_highway%> km/L
+                  </li>                                
                 </ul> 
                 <div class = "view_bike_link">
                   <div  class = 'btn btn-inverse'> View bike 
@@ -43,4 +56,3 @@
     </div>  
   <%end%>
 </div>
-

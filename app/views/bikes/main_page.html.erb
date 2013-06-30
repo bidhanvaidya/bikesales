@@ -1,74 +1,66 @@
+<!--Indentation Complete-->
+<div id="main_page_border" class= "span12">
+  <div class= "span9">
+    <div class = "main_page">
+      <%=render "main_search_tool"%>
+    </div>
+  </div>
+  <div id= "new_bike" class= "span3">
+    <%=render "new_bike"%>    
+  </div>
+</div>
 
-  <div id="main_page_border" class= "span12">
-    <div class= "span9">
-      <div class = "main_page">
-        <%=render "main_search_tool"%>
+<div class= "span12">
+  <div  id = "sponsored_links">
+    <%=render "sponsored_links"%>    
+  </div>
+</div>
+
+<div class= "span12 main_page_browse">
+  <div class = "row">
+    <div class= "span8">
+      <div class = "row">
+        <div class = "main_page_browse_by">
+          <div class= "legen">Browse By: Body Type</div>
+          <div class= "browse_body_type">
+            <a href = '<%=bikes_path(body: "Cruiser")%>'><div class= "image_border"><%=image_tag "cruiser.jpg", size: "95x80"%>Cruiser</div></a>
+            <a href = '<%=bikes_path(body: "Scooter")%>'><div class= "image_border"><%= image_tag "scooters.jpg", size: "95x80"%>Scooter</div></a>
+            <a href = '<%=bikes_path(body: "Sports")%>'><div class= "image_border"><%= image_tag "sport.jpg", size: "95x80"%>Sport</div></a>
+            <a href = "<%=bikes_path(body: 'Super Sport')%>"><div class= "image_border"><%= image_tag "supersport.jpg", size: "95x80"%>Super Sport</div></a>
+            <a href = "<%=bikes_path(body: 'Standard')%>"><div class= "image_border"><%= image_tag "standard.jpg", size: "95x80"%>Standard</div></a>
+            <a href = '<%=bikes_path(body: "Trail")%>'><div class= "image_border"><%= image_tag "trail.jpg", size: "95x80"%>Trail</div></a>
+          </div>  
+        </div><!--main_page_browse_by-->
       </div>
-    </div>
-    <div id= "new_bike" class= "span3">
-      <%=render "new_bike"%>    
-    </div>
-  </div>
-
-  <div class= "span12">
-    <div  id = "sponsored_links">
-      <%=render "sponsored_links"%>    
-    </div>
-  </div>
-
-  <div class= "span12 main_page_browse">
-    <div class = "row">
-      <div class= "span8">
-        <div class = "row">
-          <div class = "main_page_browse_by">
-            <div class= "legen">Browse By: Body Type</div>
-            <div class= "browse_body_type">
-              
-                <a href = '<%=bikes_path(body: "Cruiser")%>'><div class= "image_border"><%=image_tag "cruiser.jpg", size: "95x80"%>Cruiser</div></a>
-                <a href = '<%=bikes_path(body: "Scooter")%>'><div class= "image_border"><%= image_tag "scooters.jpg", size: "95x80"%>Scooter</div></a>
-                <a href = '<%=bikes_path(body: "Sports")%>'><div class= "image_border"><%= image_tag "sport.jpg", size: "95x80"%>Sport</div></a>
-                <a href = "<%=bikes_path(body: 'Super Sport')%>"><div class= "image_border"><%= image_tag "supersport.jpg", size: "95x80"%>Super Sport</div></a>
-                <a href = "<%=bikes_path(body: 'Standard')%>"><div class= "image_border"><%= image_tag "standard.jpg", size: "95x80"%>Standard</div></a>
-                <a href = '<%=bikes_path(body: "Trail")%>'><div class= "image_border"><%= image_tag "trail.jpg", size: "95x80"%>Trail</div></a>
-               
-            </div>  
-          </div><!--main_page_browse_by-->
-        </div>
-        <div class = "row">
-          <div class = "main_page_browse_by">
-            <div class= "legen">Browse By: Top Makers</div>
-            <div class= "browse_makers">
-              
-                <a href = '<%=bikes_path(make: "Bajaj")%>'><div class= "image_border"><%=image_tag "bajaj.jpg", size: "40x40"%>Bajaj</div></a>
-                <a href = '<%=bikes_path(make: "Daelim")%>'><div class= "image_border"><%= image_tag "daelim.jpg", size: "40x40"%>Daelim</div></a>
-                <a href = '<%=bikes_path(make: "Hero Honda")%>'><div class= "image_border"><%= image_tag "hero-honda.jpg", size: "40x40"%>Hero</div></a>
-                <a href = "<%=bikes_path(make: 'Honda')%>"><div class= "image_border"><%= image_tag "honda.jpg", size: "40x40"%>Honda</div></a>
-                <a href = "<%=bikes_path(make: 'Hyosung')%>"><div class= "image_border"><%= image_tag "hyosung.jpg", size: "40x40"%>Hyosung</div></a>
-                <a href = "<%=bikes_path(make: 'Royal Enfield')%>"><div class= "image_border"><%= image_tag "royal-enfield.jpg", size: "40x40"%>Enfield</div></a>
-                <a href = '<%=bikes_path(make: "Suzuki")%>'><div class= "image_border"><%= image_tag "suzuki.jpg", size: "40x40"%>Suzuki</div></a>
-                <a href = '<%=bikes_path(make: "TVS")%>'><div class= "image_border"><%= image_tag "tvs.jpg", size: "40x40"%>TVS</div></a>
-                <a href = '<%=bikes_path(make: "Yamaha")%>'><div class= "image_border"><%= image_tag "yamaha.jpg", size: "40x40"%>Yamaha</div></a>
-               
-            </div>  
-          </div><!--main_page_browse_by-->
-    </div>
+      <div class = "row">
+        <div class = "main_page_browse_by">
+          <div class= "legen">Browse By: Top Makers</div>
+          <div class= "browse_makers">
+            <a href = '<%=bikes_path(make: "Bajaj")%>'><div class= "image_border"><%=image_tag "bajaj.jpg", size: "40x40"%>Bajaj</div></a>
+            <a href = '<%=bikes_path(make: "Daelim")%>'><div class= "image_border"><%= image_tag "daelim.jpg", size: "40x40"%>Daelim</div></a>
+            <a href = '<%=bikes_path(make: "Hero Honda")%>'><div class= "image_border"><%= image_tag "hero-honda.jpg", size: "40x40"%>Hero</div></a>
+            <a href = "<%=bikes_path(make: 'Honda')%>"><div class= "image_border"><%= image_tag "honda.jpg", size: "40x40"%>Honda</div></a>
+            <a href = "<%=bikes_path(make: 'Hyosung')%>"><div class= "image_border"><%= image_tag "hyosung.jpg", size: "40x40"%>Hyosung</div></a>
+            <a href = "<%=bikes_path(make: 'Royal Enfield')%>"><div class= "image_border"><%= image_tag "royal-enfield.jpg", size: "40x40"%>Enfield</div></a>
+            <a href = '<%=bikes_path(make: "Suzuki")%>'><div class= "image_border"><%= image_tag "suzuki.jpg", size: "40x40"%>Suzuki</div></a>
+            <a href = '<%=bikes_path(make: "TVS")%>'><div class= "image_border"><%= image_tag "tvs.jpg", size: "40x40"%>TVS</div></a>
+            <a href = '<%=bikes_path(make: "Yamaha")%>'><div class= "image_border"><%= image_tag "yamaha.jpg", size: "40x40"%>Yamaha</div></a>
+          </div>  
+        </div><!--main_page_browse_by-->
+      </div>
     </div>
     <div id= "facebook_page" class= "span4">
       <div class="fb-like-box" data-href="https://www.facebook.com/FacebookDevelopers" data-width="292" data-height="405" data-show-faces="true" data-stream="true" data-show-border="true" data-header="false"></div>
     </div>
   </div><!--row-->
-
-  </div><!--span9-->
-
-    
-   
-  <div class= "span12 main_page_browse">
+</div><!--span12-->
+ 
+<div class= "span12 main_page_browse">
   <div  class= "row">
     <div class= "span6">
       <div class = "main_page_browse_by">
-      <div class= "legen">Browse By: Price</div>
-      <div class="browse_price">
-        
+        <div class= "legen">Browse By: Price</div>
+        <div class="browse_price">
           <ul>
             <li><%= link_to "Up to Rs. 10,000",bikes_path(price_from: "0", price_to: "10001")%></li>
             <li><%= link_to "Rs. 10,000 to Rs. 25,000",bikes_path(price_from: "9999", price_to: "25001")%></li>
@@ -77,9 +69,6 @@
             <li><%= link_to "Rs. 75,000 to Rs. 1,00,000",bikes_path(price_from: "74999", price_to: "100001")%></li>
             <li><%= link_to "Rs. 1,00,000 to Rs. 1,50,000",bikes_path(price_from: "99999", price_to: "150001")%></li>
           </ul>
-
-        
-        
           <ul>
             <li><%= link_to "Rs. 1,50,000 to Rs. 2,00,000",bikes_path(price_from: "149999", price_to: "200001")%></li>
             <li><%= link_to "Rs. 2,00,000 to Rs. 3,00,000",bikes_path(price_from: "199999", price_to: "300001")%></li>
@@ -88,15 +77,13 @@
             <li><%= link_to "Rs. 5,00,000 to Rs. 10,00,000",bikes_path(price_from: "499999", price_to: "1000001")%></li>
             <li><%= link_to "More than Rs. 10,00,000",bikes_path(price_from: "999999", price_to: nil)%></li>
           </ul>
-        
-      </div>
+        </div>
       </div>
     </div>
-   <div class= "span6">
+    <div class= "span6">
       <div class = "main_page_browse_by">
-      <div class= "legen">Browse By: Colour</div>
-      <div class="browse_colour">
-        
+        <div class= "legen">Browse By: Colour</div>
+        <div class="browse_colour">
           <a href="<%=bikes_path(color: "Beige")%>"><div class= "color_box_beige"></div></a>
           <%= link_to "Beige", bikes_path(color: "Beige")%>
           <a href="<%=bikes_path(color: "Black")%>"><div class= "color_box_black"></div></a>
@@ -105,8 +92,7 @@
           <%= link_to "Blue", bikes_path(color: "Blue")%>
           <a href="<%=bikes_path(color: "Bronze")%>"><div class= "color_box_bronze"></div></a>
           <%= link_to "Bronze", bikes_path(color: "Bronze")%>
-        
-        
+      
           <a href="<%=bikes_path(color: "Brown")%>"><div class= "color_box_brown"></div></a>
           <%= link_to "Brown", bikes_path(color: "Brown")%>
           <a href="<%=bikes_path(color: "Gold")%>"><div class= "color_box_gold"></div></a>
@@ -133,14 +119,11 @@
           <%= link_to "White", bikes_path(color: "White")%>
           <a href="<%=bikes_path(color: "Yellow")%>"><div class= "color_box_yellow"></div></a>
           <%= link_to "Yellow", bikes_path(color: "Yellow")%>
-        
-
-
-      </div>
+        </div>
       </div>
     </div>
-    </div><!--row-->
-  </div>
+  </div><!--row-->
+</div>
     
     
 

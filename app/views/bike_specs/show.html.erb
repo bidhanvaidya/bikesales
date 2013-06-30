@@ -1,476 +1,397 @@
-
-
-
+<!--Indentation Complete-->
 <div class = "row" id= "spec_show_page">
- <div class= "row" id= "spec_show_page_header">
- <div class = "span12" >
-<div class = "legen"><%= @bike_spec.year %>  <%= @bike_spec.make %>  <%= @bike_spec.model %>  <%= @bike_spec.variant %></div>
-</div>
-</div>
-<div class= "row">
-  <div class = "span6" >
-
-  
-    <div class = "picture">
-      <%= image_tag @bike_spec.pictures.last.file.url(:original), id: "bike_picture" if !@bike_spec.pictures.empty?%>
+  <div class= "row" id= "spec_show_page_header">
+    <div class = "span12" >
+      <div class = "legen"><%= @bike_spec.year %>  <%= @bike_spec.make %>  <%= @bike_spec.model %>  <%= @bike_spec.variant %>
+      </div>
     </div>
-    <% if !@bike_spec.pictures.empty?%>
-
-      <ul class = "image_list">
-        <%@bike_spec.pictures.each do |image| %>
-          <li><%= image_tag image.file.url(:thumb), id: image.id %></li>
-        <% end %>
-      </ul>
-    <%end%>
   </div>
+  <div class= "row">
+    <div class = "span6" >
+      <div class = "picture">
+        <%= image_tag @bike_spec.pictures.last.file.url(:original), id: "bike_picture" if !@bike_spec.pictures.empty?%>
+      </div>
+      <% if !@bike_spec.pictures.empty?%>
+        <ul class = "image_list">
+          <%@bike_spec.pictures.each do |image| %>
+            <li><%= image_tag image.file.url(:thumb), id: image.id %></li>
+          <% end %>
+        </ul>
+      <%end%>
+    </div>
     <div class = "span6">
       <div class= "info">
         <div class = "legen">
           <%=@bike_spec.make%> <%=@bike_spec.model%>  <div class="fb-like" data-send="true" data-layout="button_count" data-width="45" data-show-faces="false"></div>
         </div>
-    <table class= "table"><tr>
-
-        <td>Bike:</td> 
-          <td><%=@bike_spec.model%></td>
-        </tr>
-        <tr>
-
-        <td>Make:</td> 
-          <td><%=@bike_spec.make%></td>
-        </tr>
-      
-        <tr>
-
-        <td>Price:</td> 
-          <td>Rs. <%=@bike_spec.price%></td>
-        </tr>
-        <tr>
-
-        <td>Variant:</td> 
-          <td><%=@bike_spec.variant%></td>
-        </tr>
-        <tr>
-
-        <td>Year:</td> 
-          <td><%=@bike_spec.year%></td>
-        </tr>
-        <tr>
-        <tr>
-
-        <td>Body Type:</td> 
-          <td><%=@bike_spec.body%></td>
-        </tr>
-
-        <td>Top Speed:</td> 
-          <td><%=@bike_spec.top_speed%> kmph</td>
-        </tr><tr>
-
-        <td>Mileage(City):</td> 
-          <td><%=@bike_spec.fuel_consumption_city%> kmpl</td>
-        </tr><tr>
-
-        <td>Mileage(Highway):</td> 
-          <td><%=@bike_spec.fuel_consumption_highway%> kmpl</td>
-        </tr>
-        <tr>
-
-        <td>Engine Displacement:</td> 
-          <td><%=@bike_spec.displacement%> cc</td>
-        </tr>
-
-      </table>
-    </div>
-</div>
- 
-</div>
-    <div class = "row">
-<div class = "span6" id= "bottom_margin">
-    <div class = "result">
-   
-      <div class = "spec_toggle">
-        <div class = "legen">
-      Bike Details
-    </div>
-      <a id= "basic_info">
-        Basic Info 
-        <div class="icon-chevron-right"> </div>
-        <div class="icon-chevron-up"> </div>
-      </a><div class= "basic_info">
-    <table class= "table table-striped">
-    <tr>
-      <td>Top Speed </td>
-      <td><%= @bike_spec.top_speed %> kmph
-    </td>
-        </tr>
-        <tr>
-    <td>Fuel Consumption City  </td>
-    <td><%= @bike_spec.fuel_consumption_city  %> kmpl 
-    </td>
-        </tr>
-        <tr>
-    <td>Fuel Consumption Highway</td>
-    <td><%= @bike_spec.fuel_consumption_highway   %> kmpl
-    </td>
-        </tr>
-        <tr>
-    <td>Displacement</td>
-    <td><%= @bike_spec.displacement   %> cc
-    </td>
-        </tr>
-        <tr>
-    <td>Engine  </td>
-    <td><%= @bike_spec.engine   %>
-    </td>
-        </tr>
-        <tr>
-    <td>Max Power  </td>
-    <td><%= @bike_spec.max_power  %>
-    </td>
-        </tr>
-        <tr>
-    <td>Max Torque  </td>
-    <td><%= @bike_spec.max_torque  %>
-    </td>
-        </tr>
-        <tr>
-    <td>Transmission  </td>
-    <td><%= @bike_spec.transmission   %>
-    </td>
-        </tr>
-        <tr>
-    <td>Clutch  </td>
-    <td><%= @bike_spec.clutch  %>
-    </td>
-        </tr>
-        <tr>
-    <td>Bore  </td>
-    <td><%= @bike_spec.bore   %>
-    </td>
-        </tr>
-        <tr>
-    <td>Stroke  </td>
-    <td><%= @bike_spec.stroke   %>
-    </td>
-        </tr>
-        <tr>
-    <td>No of Cylinders  </td>
-    <td><%= @bike_spec.no_of_cylinders  %>
-    </td>
-        </tr>
-        <tr>
-    <td>Valve per Cylinder  </td>
-    <td><%= @bike_spec.valve_per_cylinder  %>
-    </td>
-        </tr>
-        <tr>
-    <td>Chassis Type  </td>
-    <td><%= @bike_spec.chassis_type   %>
-    </td>
-        </tr>
-        <tr>
-    <td>Cooling Type </td>
-    <td><%= @bike_spec.cooling_type   %> 
-    </td>
-        </tr>
-      </table>
-      </div></div>
-      <div class = "spec_toggle">
-        <a id= "dimension">Dimension
-        <div class="icon-chevron-right"> </div>
-        <div class="icon-chevron-up"> </div>
-        </a><div class= "dimension">
-
-        <table class= "table table-striped">
-                <tr>
-          
-          <td>Length  </td>
-            <td><%= @bike_spec.length  %> mm
-         </td>
-                </tr>
-                <tr>
-          <td>Width  </td>
-            <td><%= @bike_spec.width  %> mm
-         </td>
-                </tr>
-                <tr>
-          <td>Height </td>
-            <td><%= @bike_spec.height  %> mm
-        </td>
-                </tr>
-              </table>
-      </div></div>
-      <div class = "spec_toggle">
-        <a id= "other_spec">Other Specification
-         <div class="icon-chevron-right"> </div>
-        <div class="icon-chevron-up"> </div></a>
-        <div class= "other_spec">
-        <table class= "table table-striped">
-      <tr>
-      <td>Weight  </td>
-        <td><%= @bike_spec.weight  %> kg
-      </td>
-            </tr>
-            <tr>
-      <td>Ground_clearance  </td>
-        <td><%= @bike_spec.ground_clearance  %> mm
-      </td>
-            </tr>
-            <tr>
-      <td>Fuel Tank </td>
-        <td><%= @bike_spec.fuel_tank  %> ltrs
-      </td>
-            </tr>
-            <tr>
-      <td>Wheelbase </td>
-        <td><%= @bike_spec.wheelbase  %> mm
-      </td>
-            </tr>
-            <tr>
-      <td>Headlamp </td>
-        <td><%= @bike_spec.headlamp  %>
-      </td>
-            </tr>
-            <tr>
-      <td>Battery Type</td>
-        <td><%= @bike_spec.battery_type  %>
-      </td>
-            </tr>
-            <tr>
-      <td>Battery Voltage</td>
-        <td><%= @bike_spec.battery_voltage  %> V
-      </td>
-            </tr>
-            <tr>
-      <td>Battery Capacity </td>
-        <td><%= @bike_spec.battery_capacity  %> Ah
-      </td>
-            </tr>
-            <tr>
-      <td>Wheel Type </td>
-        <td><%= @bike_spec.wheel_type  %>
-      </td>
-            </tr>
-            <tr>
-      <td>Wheel Size </td>
-        <td><%= @bike_spec.wheel_size  %>
-
-      </td>
-            </tr>
-            <tr>
-      <td>Tyre Type  </td>
-        <td><%= @bike_spec.tyre_type  %>
-      </td>
-      </tr>
-    </table>
-      </div></div>
-      <div class = "spec_toggle">
-        <a id= "safety">Active and Passive Safety
-         <div class="icon-chevron-right"> </div>
-        <div class="icon-chevron-up"> </div></a>
-      <div class= "safety">
-      <table class= "table table-striped">
-        <td>Suspension Front</td>
-          <td><%= @bike_spec.suspension_front  %>
-       </td>
-              </tr>
-              <tr>
-        <td>Suspension Rear</td>
-          <td><%= @bike_spec.suspension_rear  %>
-       </td>
-              </tr>
-              <tr>
-        <td>Brakes Front</td>
-          <td><%= @bike_spec.brakes_front  %>
-       </td>
-              </tr>
-              <tr>
-        <td>Brakes Rear </td>
-          <td><%= @bike_spec.brakes_rear  %>
-       </td>
-              </tr>
-              <tr>
-        <td>Stand Alarm </td>
-          <td><%= @bike_spec.stand_alarm  %>
-      </td>
-      </tr>
-      </table>
-      </div></div>
-      <div class = "spec_toggle">
-        <a id= "comfort">Comfort and Convienience
-         <div class="icon-chevron-right"> </div>
-        <div class="icon-chevron-up"> </div></a>
-        <div class= "comfort">
-        <table class= "table table-striped">
-
-
-
-          <td>Fuel Gauge </td>
-            <td><%= @bike_spec.fuel_gauge  %>
-         </td>
-                </tr>
-                <tr>
-          <td>Ignition </td>
-            <td><%= @bike_spec.ignition  %>
-         </td>
-                </tr>
-                <tr>
-          <td>Tacho_meter </td>
-            <td><%= @bike_spec.tacho_meter  %>
-         </td>
-                </tr>
-                <tr>
-          <td>Trip_meter </td>
-            <td><%= @bike_spec.trip_meter  %>
-         </td>
-                </tr>
-                <tr>
-          <td>Speedometer</td>
-            <td><%= @bike_spec.speedometer  %>
-         </td>
-                </tr>
+        <table class= "table">
+          <tr>
+            <td>Bike:</td> 
+            <td><%=@bike_spec.model%></td>
+          </tr>
+          <tr>
+            <td>Make:</td> 
+            <td><%=@bike_spec.make%></td>
+          </tr>
+          <tr>
+            <td>Price:</td> 
+            <td>Rs. <%=@bike_spec.price%></td>
+          </tr>
+          <tr>
+            <td>Variant:</td> 
+            <td><%=@bike_spec.variant%></td>
+          </tr>
+          <tr>
+            <td>Year:</td> 
+            <td><%=@bike_spec.year%></td>
+          </tr>
+          <tr>
+            <td>Body Type:</td> 
+            <td><%=@bike_spec.body%></td>
+          </tr>
+          <tr>
+            <td>Top Speed:</td> 
+            <td><%=@bike_spec.top_speed%> kmph</td>
+          </tr>
+          <tr>
+            <td>Mileage(City):</td> 
+            <td><%=@bike_spec.fuel_consumption_city%> kmpl</td>
+          </tr>
+          <tr>
+            <td>Mileage(Highway):</td> 
+            <td><%=@bike_spec.fuel_consumption_highway%> kmpl</td>
+          </tr>
+          <tr>
+            <td>Engine Displacement:</td> 
+            <td><%=@bike_spec.displacement%> cc</td>
+          </tr>
         </table>
-        </div></div>
-      <%if user_signed_in?%>
-      <%  if current_user == User.first || current_user.email == "bidhanvaidya@gmail.com"%>
-      <div class="form-actions">
-  <%= link_to t('.back', :default => t("helpers.links.back")),
-              bike_specs_path, :class => 'btn'  %>
-  <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_bike_spec_path(@bike_spec), :class => 'btn' %>
-  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              bike_spec_path(@bike_spec),
-              :method => 'delete',
-              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
-              :class => 'btn btn-danger' %>
-  
-</div>
-<%end%>
-<%end%>
-
+      </div>
+    </div>
   </div>
-</div>
-<div class= "span6">
-    <div class= "info">
-      <div class = "legen">Other Bikes from <%= @bike_spec.make%></div>
-    
-    <%@makers_bike.each do |bike|%>
-    <a href= "<%=bike_spec_path(bike)%>">
-                 <table>
-                    <tr>
-                      <td><% if !bike.pictures.last.nil?%>
-                        <%= image_tag bike.pictures.last.file.url(:original), size: "250x150"%>
-                        <%else%>
-                         <%=image_tag "default_image.jpg"%>
-                        <%end%>
-                      </td>
-                      <td><%= bike.year %>  <%= bike.make %>  <%= bike.model %>  <%= bike.variant if !bike.variant.nil? %>
-                      </td>
-                    </tr>
-                 </table>
-               </a>
-    <%end%>
-    <div class = "profile_see_all"><%= link_to "See all", bike_specs_path(make: @bike_spec.make)%></div>
+  <div class = "row">
+    <div class = "span6" id= "bottom_margin">
+      <div class = "result">
+        <div class = "spec_toggle">
+          <div class = "legen">Bike Details</div>
+          <a id= "basic_info">Basic Info
+            <div class="icon-chevron-right"> </div>
+            <div class="icon-chevron-up"> </div>
+          </a>
+          <div class= "basic_info">
+            <table class= "table table-striped">
+              <tr>
+                <td>Top Speed </td>
+                <td><%= @bike_spec.top_speed %> kmph</td>
+              </tr>
+              <tr>
+                <td>Fuel Consumption City  </td>
+                <td><%= @bike_spec.fuel_consumption_city  %> kmpl</td>
+              </tr>
+              <tr>
+                <td>Fuel Consumption Highway</td>
+                <td><%= @bike_spec.fuel_consumption_highway   %> kmpl</td>
+              </tr>
+              <tr>
+                <td>Displacement</td>
+                <td><%= @bike_spec.displacement   %> cc</td>
+              </tr>
+              <tr>
+                <td>Engine  </td>
+              <td><%= @bike_spec.engine   %></td>
+              </tr>
+              <tr>
+                <td>Max Power  </td>
+                <td><%= @bike_spec.max_power  %></td>
+              </tr>
+              <tr>
+                <td>Max Torque  </td>
+                <td><%= @bike_spec.max_torque  %></td>
+              </tr>
+              <tr>
+                <td>Transmission  </td>
+                <td><%= @bike_spec.transmission   %></td>
+              </tr>
+              <tr>
+                <td>Clutch  </td>
+                <td><%= @bike_spec.clutch  %></td>
+              </tr>
+              <tr>
+                <td>Bore  </td>
+                <td><%= @bike_spec.bore   %></td>
+              </tr>
+              <tr>
+                <td>Stroke  </td>
+                <td><%= @bike_spec.stroke   %></td>
+              </tr>
+              <tr>
+                <td>No of Cylinders  </td>
+                <td><%= @bike_spec.no_of_cylinders  %></td>
+              </tr>
+              <tr>
+                <td>Valve per Cylinder  </td>
+                <td><%= @bike_spec.valve_per_cylinder  %></td>
+              </tr>
+              <tr>
+                <td>Chassis Type  </td>
+                <td><%= @bike_spec.chassis_type   %></td>
+              </tr>
+              <tr>
+                <td>Cooling Type </td>
+                <td><%= @bike_spec.cooling_type   %> </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div class = "spec_toggle">
+          <a id= "dimension">Dimension
+            <div class="icon-chevron-right"> </div>
+            <div class="icon-chevron-up"> </div>
+          </a>
+          <div class= "dimension">
+            <table class= "table table-striped">
+              <tr>
+                <td>Length  </td>
+                <td><%= @bike_spec.length  %> mm</td>
+              </tr>
+              <tr>
+                <td>Width  </td>
+                <td><%= @bike_spec.width  %> mm</td>
+              </tr>
+              <tr>
+                <td>Height </td>
+                <td><%= @bike_spec.height  %> mm</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div class = "spec_toggle">
+          <a id= "other_spec">Other Specification
+            <div class="icon-chevron-right"> </div>
+            <div class="icon-chevron-up"> </div>
+          </a>
+          <div class= "other_spec">
+            <table class= "table table-striped">
+              <tr>
+                <td>Weight  </td>
+                <td><%= @bike_spec.weight  %> kg</td>
+              </tr>
+              <tr>
+                <td>Ground_clearance  </td>
+                <td><%= @bike_spec.ground_clearance  %> mm</td>
+              </tr>
+              <tr>
+                <td>Fuel Tank </td>
+                <td><%= @bike_spec.fuel_tank  %> ltrs</td>
+              </tr>
+              <tr>
+                <td>Wheelbase </td>
+                <td><%= @bike_spec.wheelbase  %> mm</td>
+              </tr>
+              <tr>
+                <td>Headlamp </td>
+                <td><%= @bike_spec.headlamp  %></td>
+              </tr>
+              <tr>
+                <td>Battery Type</td>
+                <td><%= @bike_spec.battery_type  %></td>
+              </tr>
+              <tr>
+                <td>Battery Voltage</td>
+                <td><%= @bike_spec.battery_voltage  %> V</td>
+              </tr>
+              <tr>
+                <td>Battery Capacity </td>
+                <td><%= @bike_spec.battery_capacity  %> Ah</td>
+              </tr>
+              <tr>
+                <td>Wheel Type </td>
+                <td><%= @bike_spec.wheel_type  %></td>
+              </tr>
+              <tr>
+                <td>Wheel Size </td>
+                <td><%= @bike_spec.wheel_size  %></td>
+              </tr>
+              <tr>
+                <td>Tyre Type  </td>
+                <td><%= @bike_spec.tyre_type  %></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div class = "spec_toggle">
+          <a id= "safety">Active and Passive Safety
+            <div class="icon-chevron-right"> </div>
+            <div class="icon-chevron-up"> </div>
+          </a>
+          <div class= "safety">
+            <table class= "table table-striped">
+              <tr>  
+                <td>Suspension Front</td>
+                <td><%= @bike_spec.suspension_front  %></td>
+              </tr>
+              <tr>
+                <td>Suspension Rear</td>
+                <td><%= @bike_spec.suspension_rear  %></td>
+              </tr>
+              <tr>
+                <td>Brakes Front</td>
+                <td><%= @bike_spec.brakes_front  %></td>
+              </tr>
+              <tr>
+                <td>Brakes Rear </td>
+                <td><%= @bike_spec.brakes_rear  %></td>
+              </tr>
+              <tr>
+                <td>Stand Alarm </td>
+                <td><%= @bike_spec.stand_alarm  %></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div class = "spec_toggle">
+          <a id= "comfort">Comfort and Convienience
+            <div class="icon-chevron-right"> </div>
+            <div class="icon-chevron-up"> </div>
+          </a>
+          <div class= "comfort">
+            <table class= "table table-striped">
+              <tr>
+                <td>Fuel Gauge </td>
+                <td><%= @bike_spec.fuel_gauge  %></td>
+              </tr>
+              <tr>
+                <td>Ignition </td>
+                <td><%= @bike_spec.ignition  %></td>
+              </tr>
+              <tr>
+                <td>Tacho_meter </td>
+                <td><%= @bike_spec.tacho_meter  %></td>
+              </tr>
+              <tr>
+                <td>Trip_meter </td>
+                <td><%= @bike_spec.trip_meter  %></td>
+              </tr>
+              <tr>
+                <td>Speedometer</td>
+                <td><%= @bike_spec.speedometer  %></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <%if user_signed_in?%>
+          <%  if current_user == User.first || current_user.email == "bidhanvaidya@gmail.com"%>
+            <div class="form-actions">
+              <%= link_to t('.back', :default => t("helpers.links.back")),
+                  bike_specs_path, :class => 'btn'  %>
+              <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                  edit_bike_spec_path(@bike_spec), :class => 'btn' %>
+              <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                  bike_spec_path(@bike_spec),
+                  :method => 'delete',
+                  :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+                  :class => 'btn btn-danger' %>
+            </div>
+          <%end%>
+        <%end%>
+      </div>
+    </div>
+    <div class= "span6">
+      <div class= "info">
+        <div class = "legen">Other Bikes from <%= @bike_spec.make%></div>
+        <%@makers_bike.each do |bike|%>
+          <a href= "<%=bike_spec_path(bike)%>">
+            <table>
+              <tr>
+                <td><% if !bike.pictures.last.nil?%>
+                  <%= image_tag bike.pictures.last.file.url(:original), size: "250x150"%>
+                  <%else%>
+                  <%=image_tag "default_image.jpg"%>
+                  <%end%>
+                </td>
+                <td><%= bike.year %>  <%= bike.make %>  <%= bike.model %>  <%= bike.variant if !bike.variant.nil? %>
+                </td>
+              </tr>
+            </table>
+          </a>
+        <%end%>
+        <div class = "profile_see_all"><%= link_to "See all", bike_specs_path(make: @bike_spec.make)%></div>
+      </div>
+    </div>
   </div>
-  </div>
-</div>
-
-
-  
-
-
+</div>  
 
 <script type="text/javascript">
 //<![CDATA[
-
-
-$('ul.image_list li').click(function() {
-
-  
-  var id= "<%=@bike_spec.id%>";
-  var pic_id = $(':first-child', this).attr("id");
-
-  $.ajax({
-                url: "<%=change_picture_bike_specs_path%>",
-               
-                
-                data: {id: id, pic_id: pic_id },
-                 success:console.log("test"),
-
-             });
-});
-$('div.basic_info').hide();
-$('div.dimension').hide();
-$('div.other_spec').hide();
-$('div.comfort').hide();
-$('div.safety').hide();
-$('.icon-chevron-up').hide();
-$('a#basic_info').click(function()
-{
-
-  $('div.basic_info').toggle();
-  if ($("div.basic_info").is(':visible')) {
-    console.log("test")
-  $(this).find('.icon-chevron-right').hide();
-   $(this).find('.icon-chevron-up').show();
- }
-  else{     
-
-     $(this).find('.icon-chevron-right').show();
-   $(this).find('.icon-chevron-up').hide();
-  };
-
-})
-$('a#dimension').click(function(){
-  $('div.dimension').toggle();
-  if ($("div.dimension").is(':visible')) {
-  $(this).find('.icon-chevron-right').hide();
-   $(this).find('.icon-chevron-up').show();
- }
-  else{     
-
-     $(this).find('.icon-chevron-right').show();
-   $(this).find('.icon-chevron-up').hide();
-  };
-
-})
-$('a#other_spec').click(function(){
-  $('div.other_spec').toggle();
-  if ($("div.other_spec").is(':visible')) {
-  $(this).find('.icon-chevron-right').hide();
-   $(this).find('.icon-chevron-up').show();
- }
-  else{     
-
-     $(this).find('.icon-chevron-right').show();
-   $(this).find('.icon-chevron-up').hide();
-  };
-
-})
-$('a#comfort').click(function(){
-  $('div.comfort').toggle();
-  if ($("div.comfort").is(':visible')) {
-  $(this).find('.icon-chevron-right').hide();
-   $(this).find('.icon-chevron-up').show();
- }
-  else{     
-
-     $(this).find('.icon-chevron-right').show();
-   $(this).find('.icon-chevron-up').hide();
-  };
-
-})
-$('a#safety').click(function(){
-  $('div.safety').toggle();
-  if ($("div.safety").is(':visible')) {
-  $(this).find('.icon-chevron-right').hide();
-   $(this).find('.icon-chevron-up').show();
- }
-  else{     
-
-     $(this).find('.icon-chevron-right').show();
-   $(this).find('.icon-chevron-up').hide();
-  };
-
-})
+  $('ul.image_list li').click(function() {
+    var id= "<%=@bike_spec.id%>";
+    var pic_id = $(':first-child', this).attr("id");
+    $.ajax({
+      url: "<%=change_picture_bike_specs_path%>",
+      data: {id: id, pic_id: pic_id },
+    });
+  });
+  $('div.basic_info').hide();
+  $('div.dimension').hide();
+  $('div.other_spec').hide();
+  $('div.comfort').hide();
+  $('div.safety').hide();
+  $('.icon-chevron-up').hide();
+  $('a#basic_info').click(function()
+  {
+    $('div.basic_info').toggle();
+    if ($("div.basic_info").is(':visible')) {
+      $(this).find('.icon-chevron-right').hide();
+      $(this).find('.icon-chevron-up').show();
+    }
+    else{     
+      $(this).find('.icon-chevron-right').show();
+      $(this).find('.icon-chevron-up').hide();
+    };
+  })
+  $('a#dimension').click(function(){
+    $('div.dimension').toggle();
+    if ($("div.dimension").is(':visible')) {
+      $(this).find('.icon-chevron-right').hide();
+      $(this).find('.icon-chevron-up').show();
+    }
+    else{     
+      $(this).find('.icon-chevron-right').show();
+      $(this).find('.icon-chevron-up').hide();
+    };
+  })
+  $('a#other_spec').click(function(){
+    $('div.other_spec').toggle();
+    if ($("div.other_spec").is(':visible')) {
+      $(this).find('.icon-chevron-right').hide();
+      $(this).find('.icon-chevron-up').show();
+    }
+    else{     
+      $(this).find('.icon-chevron-right').show();
+      $(this).find('.icon-chevron-up').hide();
+    };
+  })
+  $('a#comfort').click(function(){
+    $('div.comfort').toggle();
+    if ($("div.comfort").is(':visible')) {
+      $(this).find('.icon-chevron-right').hide();
+      $(this).find('.icon-chevron-up').show();
+    }
+    else{     
+      $(this).find('.icon-chevron-right').show();
+      $(this).find('.icon-chevron-up').hide();
+    };
+  })
+  $('a#safety').click(function(){
+    $('div.safety').toggle();
+    if ($("div.safety").is(':visible')) {
+      $(this).find('.icon-chevron-right').hide();
+      $(this).find('.icon-chevron-up').show();
+    }
+    else{     
+      $(this).find('.icon-chevron-right').show();
+      $(this).find('.icon-chevron-up').hide();
+    };
+  })
 //]]>
 </script>

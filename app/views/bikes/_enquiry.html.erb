@@ -1,57 +1,43 @@
+<!--Indentation Complete-->
 <div class = "enquiry">
-<form class = "enquiry">
-	<div class = "legen">Bike Enquiry</div>
-	
-	<div class="control-group">
-		<label class="control-label">Name: </label>
-		<div class="controls">
-			<input type= "text" name = "name" required= "true">
+	<form class = "enquiry">
+		<div class = "legen">Bike Enquiry</div>
+		<div class="control-group">
+			<label class="control-label">Name: </label>
+			<div class="controls">
+				<input type= "text" name = "name" required= "true">
+			</div>
 		</div>
-	</div>
-	<div class="control-group">
-		<label class="control-label">Email: </label>
-		<div class="controls">
-			<input type="email" name="email" required= "true">
+		<div class="control-group">
+			<label class="control-label">Email: </label>
+			<div class="controls">
+				<input type="email" name="email" required= "true">
+			</div>
 		</div>
-	</div>
-	<div class="control-group">
-		<label class="control-label">Phone Number: </label>
-		<div class="controls">
-			<input type="tel" name="tel" required= "true">
+		<div class="control-group">
+			<label class="control-label">Phone Number: </label>
+			<div class="controls">
+				<input type="tel" name="tel" required= "true">
+			</div>
 		</div>
-	</div>
-	<div class="control-group">
-		<label class="control-label">Your Message: </label>
-		<div class="controls">
-			<%= text_area_tag :comment, nil,:class => 'textarea', rows: "4", maxlength:"200", required: "true" %>
-			
+		<div class="control-group">
+			<label class="control-label">Your Message: </label>
+			<div class="controls">
+				<%= text_area_tag :comment, nil,:class => 'textarea', rows: "4", maxlength:"200", required: "true" %>
+			</div>
 		</div>
-	</div>
-	
-	
-	
-	
-	
-	<input type= "hidden" name= "bike_id" value= "<%=@bike.id%>">
-	<input class = "btn btn-primary "type="submit">
-</form>
+		<input type= "hidden" name= "bike_id" value= "<%=@bike.id%>">
+		<input class = "btn btn-primary "type="submit">
+	</form>
 </div>
+
 <script type="text/javascript">
-$("form.enquiry").submit(function(event) {
-  
-  
-  console.log( $("form.enquiry").serialize() )
-  
-  
-  $.ajax({
-    url: "<%=enquiry_bikes_path%>",
-    data: $("form.enquiry").serialize(),
-    success:alert("Your message has been sent successfully"),
-  });
-
-  return false
-
-
-});
-  
+	$("form.enquiry").submit(function(event) {
+		$.ajax({
+		    url: "<%=enquiry_bikes_path%>",
+		    data: $("form.enquiry").serialize(),
+		    success:alert("Your message has been sent successfully"),
+  		});
+	return false
+	});
 </script>

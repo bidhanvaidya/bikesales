@@ -1,57 +1,45 @@
+<!--Indentation Complete-->
 <div class= "span4"></div>
 <div class= "span4" id= "edit_login_user_page">
-
-<form class = "enquiry">
-	<div class = "legen">Contact Us</div>
-	
-	<div class="control-group">
-		<label class="control-label">Name: </label>
-		<div class="controls">
-			<input type= "text" name = "name" required= "true">
+	<form class = "enquiry">
+		<div class = "legen">Contact Us</div>
+		<div class="control-group">
+			<label class="control-label">Name: </label>
+			<div class="controls">
+				<input type= "text" name = "name" required= "true">
+			</div>
 		</div>
-	</div>
-	<div class="control-group">
-		<label class="control-label">Email: </label>
-		<div class="controls">
-			<input type="email" name="email" required= "true">
+		<div class="control-group">
+			<label class="control-label">Email: </label>
+			<div class="controls">
+				<input type="email" name="email" required= "true">
+			</div>
 		</div>
-	</div>
-	<div class="control-group">
-		<label class="control-label">Phone Number: </label>
-		<div class="controls">
-			<input type="tel" name="tel" required= "true">
+		<div class="control-group">
+			<label class="control-label">Phone Number: </label>
+			<div class="controls">
+				<input type="tel" name="tel" required= "true">
+			</div>
 		</div>
-	</div>
-	<div class="control-group">
-		<label class="control-label">Your Message: </label>
-		<div class="controls">
-			<%= text_area_tag :comment, nil,:class => 'textarea', rows: "4", maxlength:"400", required: "true" %>
-			
+		<div class="control-group">
+			<label class="control-label">Your Message: </label>
+			<div class="controls">
+				<%= text_area_tag :comment, nil,:class => 'textarea', rows: "4", maxlength:"400", required: "true" %>
+			</div>
 		</div>
-	</div>
-	<input class = "btn btn-primary "type="submit">
-</form>
-
-
+		<input class = "btn btn-primary "type="submit">
+	</form>
 </div>
 
 <script type="text/javascript">
-$("form.enquiry").submit(function(event) {
-  
-  
-  console.log( $("form.enquiry").serialize() )
-  
-  
-  $.ajax({
-    url: "<%=post_email_contacts_path%>",
-    data: $("form.enquiry").serialize(),
-    success:alert("Your message has been sent successfully"),
-    type: "POST"
-  });
-$('form.enquiry')[0].reset();
-  return false
-
-
-});
-  
+	$("form.enquiry").submit(function(event) {
+	  	$.ajax({
+		    url: "<%=post_email_contacts_path%>",
+		    data: $("form.enquiry").serialize(),
+		    success:alert("Your message has been sent successfully"),
+		    type: "POST"
+		});
+		$('form.enquiry')[0].reset();
+  			return false
+	}); 
 </script>

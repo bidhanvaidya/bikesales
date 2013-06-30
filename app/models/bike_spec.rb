@@ -24,7 +24,6 @@ class BikeSpec
   field :price, type: Integer
   field :updated, type: Time, default: ->{ Time.now }
   field :created, type: Time, default: ->{ Time.now }
-
   field :top_speed,type: Float
   field :fuel_consumption_city, type: Float
   field :fuel_consumption_highway, type: Float

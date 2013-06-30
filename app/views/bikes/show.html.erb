@@ -1,153 +1,138 @@
+<!--Indentation Complete-->
 <%- model_class = @bike.class -%>
-
-
 <%= render "send_to_friend_modal"%>
 <div class = "row">
   <div class = "span3">
-
     <div class = "toolbox">
       <div class = "legen">Toolbox</div>
-      <div class = " icon-chevron-left"> </div> <%= link_to " Back to search", bikes_path(sort: params[:sort], :direction => params[:direction], type: params[:type],body: params[:body], make: params[:make], model: params[:model], color: params[:color], location: params[:location])%>
+      <div class = " icon-chevron-left"> </div> 
+      <%= link_to " Back to search", bikes_path(sort: params[:sort], :direction => params[:direction], type: params[:type],body: params[:body], make: params[:make], model: params[:model], color: params[:color], location: params[:location])%>
       <div class = "save_search">
         <% if current_user and current_user.favourites.where(bike_id: @bike.id).empty?%>
-        <div class = "icon-star"></div><a id= "save_search" style="cursor:pointer"> Save Search</a>
+          <div class = "icon-star"></div><a id= "save_search" style="cursor:pointer"> Save Search</a>
         <%elsif !current_user%>
-        <div class = "icon-star"></div>
-        <a href="#" data-toggle="tooltip" title="Sign in First" style="cursor:pointer">Save Search</a>
+          <div class = "icon-star"></div>
+          <a href="#" data-toggle="tooltip" title="Sign in First" style="cursor:pointer">Save Search</a>
         <%else%>
-        Saved
+          Saved
         <%end%>
       </div>
       <div>
         <a href="#send_to_friend" data-toggle="modal"><div class= "icon-envelope"></div> Send to Friend</a>
       </div>
-      <div class="alert alert-success"> <button type="button" class="close" data-dismiss="alert">&times;</button>
-          This page has been emailed to your friend</div>
-      <div><a id = "share" style="cursor:pointer">
-        <div class = "icon-share"> </div>Share on Facebook
-      </a>
+      <div class="alert alert-success"> 
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+          This page has been emailed to your friend
+      </div>
+      <div>
+        <a id = "share" style="cursor:pointer">
+          <div class = "icon-share"> </div>Share on Facebook
+        </a>
+      </div>
+      <% if @bike.user==current_user%>
+        <div>
+          <div class = "icon-edit"></div><%= link_to ' Edit this Post', edit_bike_path(@bike) %>
+        </div>
+        <div>
+          <div class = "icon-trash"></div><%= link_to ' Remove this Post',bike_path(@bike),:method => 'delete',
+            :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) %>
+        </div>  
+      <%end%>
     </div>
-    <% if @bike.user==current_user%>
-    <div><div class = "icon-edit"></div><%= link_to ' Edit this Post', edit_bike_path(@bike) %></div>
-    <div>
-      <div class = "icon-trash"></div><%= link_to ' Remove this Post',bike_path(@bike),:method => 'delete',
-      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) %>
-    </div>  
+    <%=render "current_selection"%>
+  </div>
+  <div class = "span6" id= "bike_info">
+    <div class="show-page-header">
+      <%= link_to "Previous", bike_path(@previous_bike, sort: params[:sort], :direction => params[:direction], body: params[:body], make: params[:make], model: params[:model], color: params[:color],type: params[:type]),  id: "previous",class:"btn btn-primary" if @previous_bike!= @bike%>
+      <%= link_to "Next", bike_path(@next_bike, sort: params[:sort], :direction => params[:direction], body: params[:body], make: params[:make], model: params[:model], color:params[:color],type: params[:type]),class:"btn btn-primary" if !@next_bike.nil?%>
+      <%= @bike.year %>  <%= @bike.make %>  <%= @bike.model %>  <%= @bike.variant if !@bike.variant.nil? %>
+    </div>
+    <div class="fb-like" data-send="true" data-layout="button_count" data-width="45" data-show-faces="false">
+    </div>
+    <div class = "picture">
+      <%= image_tag @bike.pictures.last.file.url(:original), id: "bike_picture" if !@bike.pictures.empty? %>
+    </div>
+    <% if !@bike.pictures.empty?%>
+      <ul class = "image_list">
+        <%@bike.pictures.each do |image| %>
+          <li><%= image_tag image.file.url(:thumb), id: image.id %></li>
+        <% end %>
+      </ul>
     <%end%>
-  </div>
-  <%=render "current_selection"%>
-</div>
-
-<div class = "span6" id= "bike_info">
-  <div class="show-page-header">
-    <%= link_to "Previous", bike_path(@previous_bike, sort: params[:sort], :direction => params[:direction], body: params[:body], make: params[:make], model: params[:model], color: params[:color],type: params[:type]),  id: "previous",class:"btn btn-primary" if @previous_bike!= @bike%>
-
-
-
-    <%= link_to "Next", bike_path(@next_bike, sort: params[:sort], :direction => params[:direction], body: params[:body], make: params[:make], model: params[:model], color:params[:color],type: params[:type]),class:"btn btn-primary" if !@next_bike.nil?%>
-    <%= @bike.year %>  <%= @bike.make %>  <%= @bike.model %>  <%= @bike.variant if !@bike.variant.nil? %>
-  </div>
-  <div class="fb-like" data-send="true" data-layout="button_count" data-width="45" data-show-faces="false"></div>
-  <div class = "picture">
-    <%= image_tag @bike.pictures.last.file.url(:original), id: "bike_picture" if !@bike.pictures.empty? %>
-  </div>
-
-  <% if !@bike.pictures.empty?%>
-
-  <ul class = "image_list">
-    <%@bike.pictures.each do |image| %>
-    <li><%= image_tag image.file.url(:thumb), id: image.id %></li>
-    <% end %>
-  </ul>
-  <%end%>
-  <div class = "result">
-    <div class = "legen">
-      Bike Details
-    </div>
-
-    <table class= "table">
-      <tr>
-        <th>Bike:<th> 
-        <td><%=@bike.model%></td>
-      </tr>
-      <tr>
-        <th>Make:<th> 
-        <td><%=@bike.make%></td>
-      </tr>
-      <tr>
-        <th>Type:<th> 
-        <td><%=@bike.type%></td>
-      </tr>
-      <tr>
-        <th>Price:<th> 
-        <td>RS. <%=@bike.price%></td>
-      </tr>
-      <tr>
-        <th>Variant:<th> 
-        <td><%=@bike.variant%></td>
-      </tr>
-      <tr>
-        <th>Year:<th> 
-        <td><%=@bike.year%></td>
-      </tr>
-      <tr>
-        <th>Colour:<th> 
-        <td><%=@bike.color%></td>
-      </tr>
-      <tr>
-        <th>Engine Capacity:<th> 
-        <td><%=@bike.engine_capacity%></td>
-      </tr>
-      <tr>
-        <th>Registration Plate No:<th> 
-        <td><%=@bike.rego_no%></td>
-      </tr>
-      <tr>
-        <th>Registration Expiry:<th> 
-        <td><%=@bike.reg_expiry%></td>
-      </tr>
-      <tr>
-        <th>Engine Vin Number:<th> 
-        <td><%=@bike.vin_no%></td>
-      </tr>
-      <tr>
-        <th>Comment:<th> 
-        <td><%=@bike.comment%></td>
-      </tr>
-      <tr>
-        <th>Description:<th> 
-        <td><%=@bike.description%></td>
-      </tr>
-
-    </table>
-  </div>
-</div>
-<div class = "span3">
-
-  <div class= "seller_info">
-    <div class = "legen"> Seller Info</div>
-    <div>
-      <h5>Contact Name: </h5> <%=@bike.contact_name%> 
-    </div>
-    <div>
-      <h5>Address: </h5> <%=@bike.address%> 
-    </div>
-    <div>
-        <h5>Location: </h5> <%=@bike.location%> 
-    </div>
-    <div>
-      <h5>Phone: </h5> <%=@bike.phone%> 
+    <div class = "result">
+      <div class = "legen">
+        Bike Details
+      </div>
+      <table class= "table">
+        <tr>
+          <th>Bike:<th> 
+          <td><%=@bike.model%></td>
+        </tr>
+        <tr>
+          <th>Make:<th> 
+          <td><%=@bike.make%></td>
+        </tr>
+        <tr>
+          <th>Type:<th> 
+          <td><%=@bike.type%></td>
+        </tr>
+        <tr>
+          <th>Price:<th> 
+          <td>RS. <%=@bike.price%></td>
+        </tr>
+        <tr>
+          <th>Variant:<th> 
+          <td><%=@bike.variant%></td>
+        </tr>
+        <tr>
+          <th>Year:<th> 
+          <td><%=@bike.year%></td>
+        </tr>
+        <tr>
+          <th>Colour:<th> 
+          <td><%=@bike.color%></td>
+        </tr>
+        <tr>
+          <th>Engine Capacity:<th> 
+          <td><%=@bike.engine_capacity%></td>
+        </tr>
+        <tr>
+          <th>Registration Plate No:<th> 
+          <td><%=@bike.rego_no%></td>
+        </tr>
+        <tr>
+          <th>Registration Expiry:<th> 
+          <td><%=@bike.reg_expiry%></td>
+        </tr>
+        <tr>
+          <th>Engine Vin Number:<th> 
+          <td><%=@bike.vin_no%></td>
+        </tr>
+        <tr>
+          <th>Comment:<th> 
+          <td><%=@bike.comment%></td>
+        </tr>
+        <tr>
+          <th>Description:<th> 
+          <td><%=@bike.description%></td>
+        </tr>
+      </table>
     </div>
   </div>
-
+  <div class = "span3">
+    <div class= "seller_info">
+      <div class = "legen"> Seller Info</div>
+      <div><h5>Contact Name: </h5> <%=@bike.contact_name%></div>
+      <div><h5>Address: </h5> <%=@bike.address%></div>
+      <div><h5>Location: </h5> <%=@bike.location%></div>
+      <div><h5>Phone: </h5> <%=@bike.phone%></div>
+    </div>
+  </div>
+  <div class = "span3">
+    <%= render "enquiry"%>
+  </div>
 </div>
-<div class = "span3">
 
-  <%= render "enquiry"%>
-
-</div>
-
-</div>
 <div class = "row">
   <div class=  "span3"></div>
   <div class="span6" id= "bike_spec_span_padding">
@@ -162,68 +147,46 @@
 
 <script type="text/javascript">
 //<![CDATA[
-$("document").ready(function() {
-  $('a#less').hide();
-  $('.alert.alert-success').hide();
-});
-
-
-
-$('a#more').click(function(){
-  $('a#more').hide();
-  $('a#less').show();
-  $('i.icon-chevron-down').hide();
-  
-});
-$('a#less').click(function(){
-
-});
-
-$('a#save_search').click(function(){
-
-  $.ajax({
-    url: "<%=save_search_bikes_path%>",
-    data: {id: "<%=@bike.id%>" },
-    success:console.log("test"),
-  })
-});
-
-$("form#send_to_friend").submit(function(event) {
-
-
-  console.log( $("form#send_to_friend").serialize() )
-  $.ajax({
-    url: "<%=send_to_friend_bikes_path%>",
-    data: $("form#send_to_friend").serialize(),
-    success: $('.alert.alert-success').show(),
+  $("document").ready(function() {
+    $('a#less').hide();
+    $('.alert.alert-success').hide();
   });
-
-  $("#send_to_friend").modal('hide');
-  return false
-
-});
-
-$('ul.image_list li').click(function() {
-
-
-  var id= "<%=@bike.id%>";
-  var pic_id = $(':first-child', this).attr("id");
-
-  $.ajax({
-    url: "<%=change_picture_bikes_path%>",
-
-
-    data: {id: id, pic_id: pic_id },
-    success:console.log("test"),
-
+  $('a#more').click(function(){
+    $('a#more').hide();
+    $('a#less').show();
+    $('i.icon-chevron-down').hide();
   });
-});
-    // insert teh codez
-    $('a#share').click(function(){
-
-      var sharer = "https://www.facebook.com/sharer/sharer.php?u=";
-      window.open(sharer + location.href, 'sharer', 'width=626,height=436');
+  $('a#less').click(function(){
+  });
+  $('a#save_search').click(function(){
+    $.ajax({
+      url: "<%=save_search_bikes_path%>",
+      data: {id: "<%=@bike.id%>" },
+      success:console.log("test"),
+    })
+  });
+  $("form#send_to_friend").submit(function(event) {
+    $.ajax({
+      url: "<%=send_to_friend_bikes_path%>",
+      data: $("form#send_to_friend").serialize(),
+      success: $('.alert.alert-success').show(),
     });
-//]]>
-
+    $("#send_to_friend").modal('hide');
+    return false
+  });
+  $('ul.image_list li').click(function() {
+    var id= "<%=@bike.id%>";
+    var pic_id = $(':first-child', this).attr("id");
+    $.ajax({
+      url: "<%=change_picture_bikes_path%>",
+      data: {id: id, pic_id: pic_id },
+      success:console.log("test"),
+    });
+  });
+  // insert teh codez
+  $('a#share').click(function(){
+    var sharer = "https://www.facebook.com/sharer/sharer.php?u=";
+    window.open(sharer + location.href, 'sharer', 'width=626,height=436');
+  });
+  //]]>
 </script>

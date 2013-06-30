@@ -1,51 +1,47 @@
+<!--Indentation Complete-->
 <div class = "results">
-    <div class = "header">
-        <%= pluralize(@bikes.count, 'Match')%>
-
-</div>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>AD</th>
-      
-      
-    </tr>
-  </thead>
-  <tbody>
-    <% @bikes.each do |bike| %>
-    
+  <div class = "header">
+    <%= pluralize(@bikes.count, 'Match')%>
+  </div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>AD</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @bikes.each do |bike| %>
       <tr>
         <td>
-        
-        
-      <div class= "result_div">
-<div class="row">
-  <div class="span9">
-    <div class = "ad_title">
-    <b><a id = "title" href = "<%= bike_path(bike) %>"> <%= bike.year %>  <%= bike.make %>  <%= bike.model %>  <%= bike.variant %></a></b>
-    </div>
-    <div class="row">
-      <div class="span12">
-    <img class="thumb" src="http://liveimages.bikesales.com.au/bikesales/general/content/gc5195082191127915358.jpg?Size=Thumb" alt="1984 DUCATI 900 Mike Hailwood Replica">      </div>
-      
-    </div>
-    <div class="row">
-      <div class="span12"><%= bike.comment %>        </div>
-      
-    </div>
-        <div class="row">
-      <div class="span6"> <%= bike.odometer %>  <%= bike.body %>   <%= bike.address %>        </div>
-      <div class="span3"></div>
-    </div>
-  </div>
-  <div class="span3"><h3><%= bike.price %></h3><%= bike.type %><br><%= link_to t('.view', :default => t("helpers.links.view")),
-                      bike_path(bike), :class => 'btn btn-primary' %> </div>
-</div>
-           
-    </div>  </td>
+          <div class= "result_div">
+            <div class="row">
+              <div class="span9">
+                <div class = "ad_title">
+                  <b><a id = "title" href = "<%= bike_path(bike) %>"> <%= bike.year %>  <%= bike.make %>  <%= bike.model %>  <%= bike.variant %></a></b>
+                </div>
+                <div class="row">
+                  <div class="span12">
+                    <img class="thumb" src="http://liveimages.bikesales.com.au/bikesales/general/content/gc5195082191127915358.jpg?Size=Thumb" alt="1984 DUCATI 900 Mike Hailwood Replica">      
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="span12"><%= bike.comment %>        
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="span6"> <%= bike.odometer %>  <%= bike.body %>   <%= bike.address %>       </div>
+                  <div class="span3">
+                  </div>
+                </div>
+              </div>  
+              <div class="span3"><h3><%= bike.price %></h3><%= bike.type %><br><%= link_to t('.view', :default => t("helpers.links.view")),
+                      bike_path(bike), :class => 'btn btn-primary' %> 
+              </div>
+            </div>
+          </div>  
+        </td>
      </tr>
- 
     <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
 </div><!--div results -->

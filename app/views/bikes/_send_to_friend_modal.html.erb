@@ -1,50 +1,42 @@
+<!--Indentation Complete-->
 <div id="send_to_friend" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <div class = "legen">Send Email</div>
-      </div>
-      <div class="modal-body"><div class= "modal_body">
-       <form id= "send_to_friend">
-<div class="control-group">
-    <label class="control-label"> From: </label>
-    <div class="controls">
-      <%= text_field_tag :sender, nil, :placeholder =>"Your Name" ,:class=>"input-large" %>
-      
-    </div>
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <div class = "legen">Send Email</div>
   </div>
-  <div class="control-group">
-    <label class="control-label"> TO: </label>
-    <div class="controls">
-      <%= text_field_tag :name, nil, :placeholder =>"To" ,:required => "true", :class=>"input-large" %>
-      
-    </div>
-      </div><div class="control-group">
-    <label class="control-label"> Email: </label>
-    <div class="controls">
-      <%= email_field_tag :to, nil, :placeholder =>"To email" ,:class=>"input-large" %>
-    </div>
-  </div>
-  </div><div class="control-group">
-    <label class="control-label">Comment: </label>
-    <div class="controls">
-    <%= text_area_tag :comment, nil,:class => 'textarea', rows: "4", maxlength:"200", required: "true" %>
-    </div>
-  </div>
-        
-    
-       
-      
-      
-      
-       
-       
-    <%= hidden_field_tag :bike, @bike.id %>
- 
-   
+  <div class="modal-body">
+    <div class= "modal_body">
+      <form id= "send_to_friend">
+        <div class="control-group">
+          <label class="control-label"> From: </label>
+          <div class="controls">
+            <%= text_field_tag :sender, nil, :placeholder =>"Your Name" ,:class=>"input-large" %>
+          </div>
         </div>
+        <div class="control-group">
+          <label class="control-label"> TO: </label>
+          <div class="controls">
+            <%= text_field_tag :name, nil, :placeholder =>"To" ,:required => "true", :class=>"input-large" %>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label"> Email: </label>
+          <div class="controls">
+            <%= email_field_tag :to, nil, :placeholder =>"To email" ,:class=>"input-large" %>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label">Comment: </label>
+          <div class="controls">
+            <%= text_area_tag :comment, nil,:class => 'textarea', rows: "4", maxlength:"200", required: "true" %>
+          </div>
+        </div>
+        <%= hidden_field_tag :bike, @bike.id %>
         <div class="modal-footer">
-        <input type="submit" class="btn btn-primary">
-        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+          <input type="submit" class="btn btn-primary">
+          <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>  
       </form>
-      </div>
-    </div>
+    </div>  
+  </div>
+</div>
