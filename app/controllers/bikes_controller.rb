@@ -59,6 +59,11 @@ class BikesController < ApplicationController
       
     end
     @bikees=@bikes.paginate(:page => params[:page], :per_page => 4)
+    set_meta_tags :title => 'Search for New and Used bikes, get prices and compare',
+              :description => "Bike for sale, to a the nepali public, "+
+              [@models, @makes, @location].reject(&:empty?).join(', '),
+              :keywords => "Bike, sale, nepal, "+[@models, @makes].reject(&:empty?).join(', '),
+              :canonical => bikes_url(make:params[:make], model: params[:model])
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @bikes }
@@ -130,6 +135,12 @@ class BikesController < ApplicationController
         break
       
     end
+
+    set_meta_tags :title => [@bike.year.to_s,@bike.make,@bike.model,@bike.variant].reject(&:empty?).join(' '),
+              :description => "Bike for sale, to a the nepali public, "+
+              [@bike.year.to_s,@bike.make,@bike.model,@bike.variant, @bike.location,@bike.type, @bike.body, @bike.price.to_s, @bike.comment].reject(&:empty?).join(', '),
+              :keywords => "Bike for sale nepal"+[@bike.year.to_s,@bike.make,@bike.model,@bike.variant, @bike.location,@bike.type, @bike.body].reject(&:empty?).join(', '),
+              :canonical => bike_url(@bike)
     end
       respond_to do |format|
         format.html # show.html.erb
@@ -142,7 +153,10 @@ class BikesController < ApplicationController
   # GET /bikes/new.json
   def new
     @bike = Bike.new
-
+    set_meta_tags :title => 'Post your Bike for sale!!',
+              :description => "Post your bike for sale to a the nepali public, Sell my bike. Kathmandu, Bhaktapur, Lalitpur, Bharatpur, Pokhara",
+              :keywords => 'Bike, sale, second hand, new bike, ad, seel my bike',
+              :canonical => "bikes.bechnu.com/bikes/new"
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @bike }
@@ -157,6 +171,7 @@ class BikesController < ApplicationController
   # POST /bikes
   # POST /bikes.json
   def create
+    
     @bike = Bike.new(params[:bike])
      bike_spec= BikeSpec.where(variant: params[:bike][:variant]).first
     @bike.bike_spec_id = bike_spec.id
@@ -192,7 +207,8 @@ class BikesController < ApplicationController
   # PUT /bikes/1
   # PUT /bikes/1.json
   def update
-    
+      set_meta_tags :title => 'Update your Bike AD!!',
+                    :description => 'Update for existing bike'
       @bike = Bike.find(params[:id])
       bike_spec= BikeSpec.where(variant: params[:bike][:variant]).first
       @bike.bike_spec_id = bike_spec.id
@@ -316,6 +332,15 @@ class BikesController < ApplicationController
   end
 
   def main_page
+
+    set_meta_tags :title => 'Search New and Used Bikes for sale in Nepal',
+              :description => "Search  new &amp; used bikes for sale or sell your used bike for free. Find new bike for sale &amp; 
+    new bike dealer specials at bikes.bechnu.com - Nepal's newest bike website.",
+              :keywords => 'Bike, sale, second hand, new bike, specs',
+              :canonical => "bikes.bechnu.com"
+
+
+
     @bikes = Bike.all
     @models= @bikes.distinct(:model)
     @makes= @bikes.distinct(:make)

@@ -95,6 +95,8 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    meta-tags (1.5.0)
+      actionpack
     mime-types (1.23)
     mini_portile (0.5.0)
     mongoid (3.0.23)
@@ -221,6 +223,7 @@ DEPENDENCIES
   fb_graph
   jquery-rails
   less-rails
+  meta-tags
   mongoid (~> 3.0.0)
   mongoid-paperclip
   mongoid_search

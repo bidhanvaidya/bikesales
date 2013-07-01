@@ -37,6 +37,7 @@ gem "will_paginate_mongoid"
 gem "mongoid-paperclip", :require => "mongoid_paperclip"
 gem 'aws-sdk', '~> 1.3.4'
 gem 'unicorn'
+gem 'meta-tags', :require => 'meta_tags'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

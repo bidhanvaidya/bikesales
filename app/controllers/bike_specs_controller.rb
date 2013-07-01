@@ -33,6 +33,11 @@ class BikeSpecsController < ApplicationController
   
   @makes= @bikes.distinct(:make)
   @bikees=@bikes.paginate(:page => params[:page], :per_page => 10)
+  set_meta_tags :title => 'Search for New Bikes, get prices, Specs,  and compare',
+              :description => "New Bike for sale, to the nepali public, bikes bechnu, specs, bikes.bechnu.com"+
+              [@models, @makes].reject(&:empty?).join(', '),
+              :keywords => "Bike, sale, Specs, Specifiction, nepal, bikes bechnu, bikes.bechnu.com,"+[@models, @makes].reject(&:empty?).join(', '),
+              :canonical => bikes_url(make:params[:make], model: params[:model])
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @bikes }
@@ -45,6 +50,11 @@ class BikeSpecsController < ApplicationController
   def show
     @bike_spec = BikeSpec.find(params[:id])
     @makers_bike = BikeSpec.where(make: @bike_spec.make).asc(:year).limit(3)
+    set_meta_tags :title => [@bike_spec.year.to_s,@bike_spec.make,@bike_spec.model,@bike_spec.variant].reject(&:empty?).join(' '),
+              :description => "New Bike for sale, to the nepali public, specs, "+
+              [@bike_spec.year.to_s,@bike_spec.make,@bike_spec.model,@bike_spec.variant, @bike_spec.body, @bike_spec.price.to_s].reject(&:empty?).join(' '),
+              :keywords => "Bike for sale nepal "+[@bike_spec.year.to_s,@bike_spec.make,@bike_spec.model,@bike_spec.variant,  @bike_spec.body].reject(&:empty?).join(', '),
+              :canonical => bike_url(@bike_spec)
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @bike_spec }
@@ -140,6 +150,11 @@ def showroom
   @models= @bikes.distinct(:model)
 
   @makes= @bikes.distinct(:make)
+  set_meta_tags :title => 'Search New Bikes for sale in Nepal, get their specs, price',
+              :description => "Search  new for sale, Find new bike for sale &amp; 
+    new bike dealer specials at bikes.bechnu.com - Nepal's newest bike website.",
+              :keywords => 'Bike, sale, new bike, specs',
+              :canonical => "bikes.bechnu.com/showroom"
   
 end
 

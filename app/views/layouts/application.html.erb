@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="msvalidate.01" content="510ACF7858C360DAA9E4A9B854ADD66E" />
     <meta name="google-site-verification" content="32_zx750zT1Sza8yRMpdrHe4P8pPJRlW-DWrO0R1rkA" />
-    <title><%= content_for?(:title) ? yield(:title) : "Bikesales" %></title>
+    <%= display_meta_tags :site => 'Bikes.Bechnu.com' %>
+    
     <%= csrf_meta_tags %>
     <%= javascript_include_tag "jquery.min" %>
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
@@ -75,7 +76,7 @@
             <ul class="nav">
               <li><%= link_to "Bikes For Sale", bikes_path%></li>
               <li><%= link_to "Sell your Bike", new_bike_path  %></li>
-              <li><%= link_to "New Bike Showroom", showroom_bike_specs_path  %></li>
+              <li><a href="/showroom">New Bike Showroom</a></li>
             </ul>
           </div>
             <!--/.nav-collapse -->

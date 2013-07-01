@@ -1,5 +1,9 @@
 class ContactsController < ApplicationController
 	def index
+		set_meta_tags :title => 'Contact Us, Bikes.bechnu.com',
+              :description => "For more info about  bikes.bechnu.com, other projects, and advertising details",
+              :keywords => 'Contact Us, Advertising, bikes.bechnu.com, bikes, secondhand, bechnu',
+              :canonical => "bikes.bechnu.com/contacts"
 	end
 	def post_email
 		name = params[:name]

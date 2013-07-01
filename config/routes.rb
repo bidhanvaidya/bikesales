@@ -42,7 +42,8 @@ devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_call
   end
 
 end
-
+match 'showroom', to: 'bike_specs#showroom', via: [:get]
+match 'sell-my-bike', to: 'bikes#new', via: [:get]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -18,7 +18,7 @@ def profile
 		@bikees= @user.bikes.desc(:created).paginate(:page => params[:page], :per_page => 4)
 	@favourites=current_user.favourites.limit(3)
 	end
-
+	set_meta_tags :title => '@user.name'
 end
 end
 
