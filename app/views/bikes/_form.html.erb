@@ -184,7 +184,12 @@
       </ul>
     <%end%>
   <% end %>
-
+  <div class="control-group">
+    <div class="controls">
+    <input type="checkbox" required="required" /> I have read and agree to all <%= link_to "Terms and Conditions ", terms_and_conditions_path%> of Bikes.bechnu.com
+  </div>
+  </div>
+  
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")), bikes_path, :class => 'btn' %>
