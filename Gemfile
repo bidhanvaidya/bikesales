@@ -38,6 +38,8 @@ gem "mongoid-paperclip", :require => "mongoid_paperclip"
 gem 'aws-sdk', '~> 1.3.4'
 gem 'unicorn'
 gem 'meta-tags', :require => 'meta_tags'
+gem 'sitemap_generator'
+gem 'fog'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
