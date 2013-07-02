@@ -5,5 +5,5 @@ development:
 production:
   app_id: AKIAJODLI2XMOUCX2XYQ
   secret_key: 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
-  bucket: sitemap
+  bucket: Sitemap
   
