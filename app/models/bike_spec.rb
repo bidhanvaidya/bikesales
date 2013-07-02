@@ -10,7 +10,7 @@ class BikeSpec
 :pictures_attributes
   embeds_many :pictures, :cascade_callbacks => true
   accepts_nested_attributes_for :pictures, :allow_destroy => true
-
+  scope :latest, where(:year.gt => (Time.now.year-2))
   has_many :bikes
   belongs_to :user
 

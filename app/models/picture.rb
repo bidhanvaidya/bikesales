@@ -13,5 +13,9 @@ class Picture
     :styles => {
       :thumb    => ['100x100',   :jpg],
       :original   => ['500x500',    :jpg]
-    }
+    },
+    :convert_options => { 
+          :original => "-quality 92 -interlace Plane",
+          :thumb => "-quality 92 -interlace Plane",
+        }
 end

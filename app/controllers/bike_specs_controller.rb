@@ -4,7 +4,7 @@ class BikeSpecsController < ApplicationController
   # GET /bike_specs.json
   def index
     last_year= Time.now.year-2
-    @bikes = BikeSpec.where(:year.gt => last_year)
+    @bikes = BikeSpec.latest
 
     @make_selection = params[:make]
     @model_selection = params[:model]
@@ -49,7 +49,7 @@ class BikeSpecsController < ApplicationController
   # GET /bike_specs/1.json
   def show
     @bike_spec = BikeSpec.find(params[:id])
-    @makers_bike = BikeSpec.where(make: @bike_spec.make).asc(:year).limit(3)
+    @makers_bike = BikeSpec.latest.where(make: @bike_spec.make).desc(:year, :updated).limit(3)
     set_meta_tags :title => [@bike_spec.year.to_s,@bike_spec.make,@bike_spec.model,@bike_spec.variant].reject(&:empty?).join(' '),
               :description => "New Bike for sale, to the nepali public, specs, "+
               [@bike_spec.year.to_s,@bike_spec.make,@bike_spec.model,@bike_spec.variant, @bike_spec.body, @bike_spec.price.to_s].reject(&:empty?).join(' '),
@@ -125,7 +125,6 @@ class BikeSpecsController < ApplicationController
    @picture= bike.pictures.find(params[:pic_id])
   
   respond_to do |format|
-    print view_context.image_path("test.png")
     format.js
   end
 end
@@ -144,9 +143,8 @@ def delete_picture
   end
 
 def showroom
-  last_year= Time.now.year-2
-  @bikes = BikeSpec.where(:year.gt => last_year).desc(:year)
-  @latest_bike = @bikes.desc(:year).limit(3)
+  @bikes = BikeSpec.latest.desc(:year)
+  @latest_bike = @bikes.desc(:year, :updated).limit(3)
   @models= @bikes.distinct(:model)
 
   @makes= @bikes.distinct(:make)
@@ -170,12 +168,10 @@ end
 
   end
   def change_model
-    last_year= Time.now.year-2
     
   
-    @bikes = BikeSpec.where(:year.gt => last_year, make: params[:make])
+    @bikes = BikeSpec.latest.where(make: params[:make])
     @models= @bikes.distinct(:model)
-    print "bidhan"
     respond_to do |format|
       format.js
     end

@@ -9,7 +9,7 @@ $(this).parent().find(">:first-child").show()
 $(this).parent().css("color", "#333")
 $(this).parent().css("font-weight", "normal")
 $("#selection").navscroll();
-$("#selection").navheight();
+
 
 });
 $('.icon-chevron-right').click(function(){
@@ -68,7 +68,9 @@ $.fn.navscroll = function(){
 	if ($(window).width() > 979){
 	var test=$(window).height()- $(".current_selection").height()-147
 	
-
+          $('#selection').css({ 
+          "height": "auto",
+      });
     if ($("#selection").height()+$(".current_selection").height()+147 > $(window).height()){
      console.log( "$(window).height()")
 
