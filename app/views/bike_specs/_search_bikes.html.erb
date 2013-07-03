@@ -2,7 +2,7 @@
 <div class="search_bike_table">
   <% @bikees.each do |bike| %>
     <div class= "search_result_div">
-      <a href="<%= bike_spec_path(bike, sort: params[:sort], :direction => params[:direction], body: params[:body], make: params[:make], model: params[:model], color: nil,type: params[:type] ) %>"alt ="Bike Showroom <%=bike.year.to_s+" "+bike.make+" "+bike.model%>">
+      <a href="<%= bike_spec_path(bike, sort: params[:sort], :direction => params[:direction], body: params[:body], make: params[:make], model: params[:model], color: nil,type: params[:type] ) %>"title ="Bike Showroom <%=bike.year.to_s+" "+bike.make+" "+bike.model%>">
         <div class="row">
           <div class= "span5"> 
             <% if bike.pictures.empty?%>
