@@ -218,7 +218,10 @@ body
 
 //*****************************SHOW PAGE***********************************************************
 //***************************************************************************************************
-
+.fb_iframe_widget 
+{
+	margin-bottom: 40px;
+}
 .result 
 {
 	border: 1px solid #888888;
@@ -840,6 +843,18 @@ div.input-prepend
 	height: 370px;
 
 }
+@media (max-width: 420px)
+{
+	.picture
+	{
+		height: 215px;
+		#bike_picture
+		{
+			max-height: 195px;
+		}
+	}	
+}
+
 #spec_show_page 
 {
 	padding: 30px;
@@ -1610,6 +1625,26 @@ ul#selection li.refine_search
 	}
 	img
 	{
-		max-height: 194px;
+		max-height: 180px;
+		max-width: 180px;
+	}
+}
+#selection 
+{
+	margin-bottom: 15px;
+}
+.bike_new_page
+{
+	input, textarea 
+	{
+		width: 180px;
+	}
+	select 
+	{
+		width: 190px;
+	}
+	#check
+	{
+		width: 15px;
 	}
 }

@@ -185,11 +185,15 @@ class BikesController < ApplicationController
 
             @user = FbGraph::User.me(current_user.facebook_token).fetch
             if @user.permissions.include?(:publish_actions)
-            
+              if @bike.pictures.empty?
+                picture= 'https://s3.amazonaws.com/bikesbechnu_public/logo.png'
+              else
+                picture = @bike.pictures.first.file.url
+              end
               link= 'http://bikes.bechnu.com/bikes/'+@bike.id+ '.html'
               @user.feed!(
               :message => @bike.comment,
-              :picture => @bike.pictures.first.file.url,
+              :picture => picture,
               :link => link,
               :name => 'BikeSales',
               :description =>  @bike.description )
@@ -223,11 +227,15 @@ class BikesController < ApplicationController
 
             @user = FbGraph::User.me(current_user.facebook_token).fetch
             if @user.permissions.include?(:publish_actions)
-            
+              if @bike.pictures.empty?
+                picture= 'https://s3.amazonaws.com/bikesbechnu_public/logo.png'
+              else
+                picture = @bike.pictures.first.file.url
+              end
               link= 'http://bikes.bechnu.com/bikes/'+@bike.id+ '.html'
               @user.feed!(
               :message => @bike.comment,
-              :picture => @bike.pictures.first.file.url,
+              :picture => picture,
               :link => link,
               :name => 'BikeSales',
               :description =>  @bike.description )

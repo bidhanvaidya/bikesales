@@ -45,6 +45,7 @@
             <td>Year:</td> 
             <td><%=@bike_spec.year%></td>
           </tr>
+          
           <tr>
             <td>Body Type:</td> 
             <td><%=@bike_spec.body%></td>
@@ -323,6 +324,7 @@
 
 <script type="text/javascript">
 //<![CDATA[
+  $('ul.image_list li').css("cursor", "pointer"),
   $('ul.image_list li').click(function() {
     var id= "<%=@bike_spec.id%>";
     var pic_id = $(':first-child', this).attr("id");
