@@ -58,7 +58,7 @@ class BikesController < ApplicationController
       
       
     end
-    @bikees=@bikes.paginate(:page => params[:page], :per_page => 4)
+    @bikees=@bikes.paginate(:page => params[:page], :per_page => 10)
     set_meta_tags :title => 'Search for New and Used bikes, get prices and compare',
               :description => "Bike for sale, to a the nepali public, "+
               [@models, @makes, @location].reject(&:empty?).join(', '),

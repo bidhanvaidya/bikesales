@@ -112,14 +112,18 @@
 
 <script type="text/javascript">
   var div =1
+  var sort= 'latest'
+  var direction= null
   $(window).scroll(function() { 
     if($(window).scrollTop() + $(window).height() == $(document).height()) {
       div=div+1
-      <%if(params.has_key?(:type) or params.has_key?(:body) or params.has_key?(:make) or params.has_key?(:model) or params.has_key?(:color) or params.has_key?(:sort) or params.has_key?(:direction))%>
-        var link= "<%= bikes_path(sort: params[:sort], :direction => params[:direction], type: params[:type],body: params[:body], make: params[:make], model: params[:model], color: params[:color] )%>"+'&amp;page='+ div.toString()+ ' div.scroll'
+      <%if(params.has_key?(:type) or params.has_key?(:body) or params.has_key?(:make) or params.has_key?(:model) or params.has_key?(:color) or params.has_key?(:sort) or params.has_key?(:direction) or params.has_key?(:price_to) or params.has_key?(:price_from))%>
+        var link= "<%= bikes_path(type: params[:type],body: params[:body], make: params[:make], model: params[:model], color: params[:color], price_from: params[:price_from], price_to: params[:price_to] )%>"+'&sort='+sort+'&direction='+direction+'&amp;page='+ div.toString()+ ' div.scroll'
       <%else%>
         var link='/bikes?page='+ div.toString()+ ' div.scroll' 
+        
       <%end%>
+      
       $("div." +div.toString()).load(link, function() {
       });
     }
@@ -130,25 +134,36 @@
       str = $(this).attr("value");
     });
     if (str =="1"){
-      $('div.bikes_sort').load('<%= bikes_path(sort: "latest", type: params[:type],body: params[:body], make: params[:make], model: params[:model], color: params[:color], location: params[:location] ) + " div.results"%>');
+      $('div.bikes_sort').load('<%= bikes_path(sort: "latest", type: params[:type],body: params[:body], make: params[:make], model: params[:model], color: params[:color], location: params[:location], price_from: params[:price_from], price_to: params[:price_to]) + " div.results"%>');
+      sort= 'latest'
+      direction= null
+
       div=1;//to undo the page load!!!
     };
     if (str =="2"){
-      $('div.bikes_sort').load('<%= bikes_path(sort: "price", :direction => "desc", type: params[:type],body: params[:body], make: params[:make], model: params[:model], color: params[:color], location: params[:location] ) + " div.results"%>');
+      $('div.bikes_sort').load('<%= bikes_path(sort: "price", :direction => "desc", type: params[:type],body: params[:body], make: params[:make], model: params[:model], color: params[:color], location: params[:location], price_from: params[:price_from], price_to: params[:price_to] ) + " div.results"%>');
         div=1;
+        sort= 'price'
+        direction= 'desc'
     //window.location.replace("<%= bikes_path(sort: "price", :direction => "desc", body: params[:body]) %>");
     };
     if (str =="3"){
-      $('div.bikes_sort').load('<%= bikes_path(sort: "price", :direction => "asc", type: params[:type],body: params[:body], make: params[:make], model: params[:model], color: params[:color], location: params[:location] ) + " div.results"%>');
+      $('div.bikes_sort').load('<%= bikes_path(sort: "price", :direction => "asc", type: params[:type],body: params[:body], make: params[:make], model: params[:model], color: params[:color], location: params[:location], price_from: params[:price_from], price_to: params[:price_to] ) + " div.results"%>');
+      sort= 'price'
+        direction= 'asc'
       div=1;
     };
     if (str =="4"){
-      $('div.bikes_sort').load('<%= bikes_path(sort: "year", :direction => "desc", type: params[:type],body: params[:body], make: params[:make], model: params[:model], color: params[:color], location: params[:location] ) + " div.results"%>');
+      $('div.bikes_sort').load('<%= bikes_path(sort: "year", :direction => "desc", type: params[:type],body: params[:body], make: params[:make], model: params[:model], color: params[:color], location: params[:location], price_from: params[:price_from], price_to: params[:price_to] ) + " div.results"%>');
+      sort= 'year'
+      direction= 'desc'
       div=1;
     };
     if (str =="5"){
-      $('div.bikes_sort').load('<%= bikes_path(sort: "year", :direction => "asc", type: params[:type],body: params[:body], make: params[:make], model: params[:model], color: params[:color], location: params[:location] ) + " div.results"%>');
+      $('div.bikes_sort').load('<%= bikes_path(sort: "year", :direction => "asc", type: params[:type],body: params[:body], make: params[:make], model: params[:model], color: params[:color], location: params[:location], price_from: params[:price_from], price_to: params[:price_to] ) + " div.results"%>');
       div=1;
+      sort= 'year'
+      direction= 'asc'
     };
   });
 </script>
