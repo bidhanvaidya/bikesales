@@ -32,7 +32,7 @@ class BikeSpecsController < ApplicationController
   @bodies= @bikes.distinct(:body)
   
   @makes= @bikes.distinct(:make)
-  @bikees=@bikes.paginate(:page => params[:page], :per_page => 10)
+  @bikees=@bikes.paginate(:page => params[:page], :per_page => 2)
   set_meta_tags :title => 'Search for New Bikes, get prices, Specs,  and compare',
               :description => "New Bike for sale, to the nepali public, bikes bechnu, specs, bikes.bechnu.com"+
               [@models, @makes].reject(&:empty?).join(', '),
