@@ -8,7 +8,11 @@ Bikesales::Application.routes.draw do
       post "delete_picture"
       get "showroom"
       get "search"
+
        # Changes the model after make input
+  end
+  member do
+    put "copy_new"
   end
 end
   resources :bikes do # Advertisement of bikes

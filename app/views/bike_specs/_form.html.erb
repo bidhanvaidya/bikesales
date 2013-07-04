@@ -220,6 +220,10 @@
   </div>
   <div class="actions">
     <%= f.submit %>
+    <%if !params[:id].nil?%>
+    <input class= "btn btn-warning" type="submit" value="New one" formaction= "<%=copy_new_bike_spec_path(@bike_spec)%>" 
+    onClick="return confirm('Are you sure you want to submit? This will create a new BikeSpec!!!')">
+    <%end%>
   </div>
 <% end %>
 

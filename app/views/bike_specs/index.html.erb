@@ -69,9 +69,11 @@
     var div =1
     var sort= 'latest'
   var direction= null
+ 
     $(window).scroll(function() 
     { 
-        if($(window).scrollTop() + $(window).height() == $(document).height()) 
+        
+        if($(window).scrollTop()+ $(window).height()> ($(document).height()*.85)) 
         {
             div=div+1
             <%if(params.has_key?(:body) or params.has_key?(:make) or params.has_key?(:model) or params.has_key?(:sort) or params.has_key?(:direction))%>

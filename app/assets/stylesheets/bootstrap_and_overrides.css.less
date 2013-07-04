@@ -853,6 +853,8 @@ div.input-prepend
 .picture 
 {
 	height: 370px;
+	display: table-cell;
+	vertical-align: middle;
 
 }
 #spec_show_page 
@@ -1492,6 +1494,16 @@ margin-left: 0px;
 	padding: 12px;
 	margin-top: 10px;
 	box-shadow: 10px 5px 10px #888888;
+	.btn.btn-primary 
+	{
+		margin-left: 15px;
+	}
+	div.input-prepend .input-drop-down 
+	{
+		margin-left: -5px;
+		margin-right: -10px;
+		width: 69%;
+	}
 }
 .spec_toggle 
 {
@@ -1687,3 +1699,24 @@ ul#selection li.refine_search
 		width: 15px;
 	}
 }
+//*************************************for fixed nav top only*****************************************
+//testing only remove if not needed
+@media(max-width:600px)
+{
+	#main_page_header 
+	{
+
+		margin-top: 39px;
+
+	}
+	.navbar-fixed-top
+	{
+		position: fixed;
+	}
+	.navbar-fixed-top, .navbar-fixed-bottom 
+	{
+		margin-left: 0;
+		margin-right: 0;
+	}
+}
+//****************************************************************************************************

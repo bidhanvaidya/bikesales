@@ -176,6 +176,19 @@ end
       format.js
     end
   end
+  def copy_new
+    @bike_spec = BikeSpec.new(params[:bike_spec])
+    @bike_spec.updated = Time.now
+    respond_to do |format|
+      if @bike_spec.save
+        format.html { redirect_to @bike_spec, notice: 'Bike spec was successfully created.' }
+        format.json { render json: @bike_spec, status: :created, location: @bike_spec }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @bike_spec.errors, status: :unprocessable_entity }
+      end
+    end
+  end
   private
   def owner
     if current_user == User.first || current_user.email == "bidhanvaidya@gmail.com"
@@ -184,5 +197,6 @@ end
       redirect_to bike_specs_path
     end
   end
-  
+
+
 end
