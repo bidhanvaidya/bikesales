@@ -328,7 +328,7 @@
   $('ul.image_list li').click(function() {
     var id= "<%=@bike_spec.id%>";
     var pic_id = $(':first-child', this).attr("id");
-    $("#bike_picture").attr("src", "<%= image_path 'load.gif' %>");
+    $("#bike_picture").attr("src", "<%= image_path 'loader.gif' %>");
     $.ajax({
       url: "<%=change_picture_bike_specs_path%>",
       data: {id: id, pic_id: pic_id },

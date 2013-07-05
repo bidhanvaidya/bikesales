@@ -124,7 +124,7 @@
       <%if(params.has_key?(:type) or params.has_key?(:body) or params.has_key?(:make) or params.has_key?(:model) or params.has_key?(:color) or params.has_key?(:sort) or params.has_key?(:direction) or params.has_key?(:price_to) or params.has_key?(:price_from))%>
         var link= "<%= bikes_path(type: params[:type],body: params[:body], make: params[:make], model: params[:model], color: params[:color], price_from: params[:price_from], price_to: params[:price_to] )%>"+'&sort='+sort+'&direction='+direction+'&amp;page='+ div.toString()+ ' div.scroll'
       <%else%>
-        var link='/bikes?page='+ div.toString()+ ' div.scroll' 
+       var link='/bikes?'+'&sort='+sort+'&direction='+direction+'&amp;page='+ div.toString()+ ' div.scroll' 
         
       <%end%>
       

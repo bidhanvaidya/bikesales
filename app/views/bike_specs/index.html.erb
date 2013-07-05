@@ -78,11 +78,13 @@
         {
             check = true;
             div=div+1
-            <%if(params.has_key?(:body) or params.has_key?(:make) or params.has_key?(:model) or params.has_key?(:sort) or params.has_key?(:direction))%>
+            <%if(params.has_key?(:body) || params.has_key?(:make) || params.has_key?(:model) || params.has_key?(:sort) || params.has_key?(:direction))%>
                 var link= "<%= bike_specs_path(body: params[:body], make: params[:make], model: params[:model] )%>"+'&sort='+sort+'&direction='+direction+'&amp;page='+ div.toString()+ ' div.scroll'
+                
             <%else%>
-                var link='/bike_specs?page='+ div.toString()+ ' div.scroll' 
+                var link='/bike_specs?'+'&sort='+sort+'&direction='+direction+'&amp;page='+ div.toString()+ ' div.scroll' 
             <%end%>
+            console.log(link)
             $("div." +div.toString()).load(link, function() {
                 setTimeout(function()
                 { 
