@@ -1,5 +1,5 @@
 class BikeSpecsController < ApplicationController
-   before_filter :authenticate_user!, :only => [:owner]
+   before_filter :authenticate_user!, :only => [:new, :edit]
   before_filter :owner, :only => [:new, :create,:edit, :update, :destroy, :delete_picture]
   # GET /bike_specs
   # GET /bike_specs.json
