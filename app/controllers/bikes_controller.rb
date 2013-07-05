@@ -347,9 +347,10 @@ class BikesController < ApplicationController
   def main_page
 
     set_meta_tags :title => 'Search New and Used Bikes for sale in Nepal',
-              :description => "Search  new &amp; used bikes for sale or sell your used bike for free. Find new bike for sale &amp; 
-    new bike dealer specials at bikes.bechnu.com - Nepal's newest bike website.",
-              :keywords => 'Bike, sale, second hand, new bike, specs',
+              :description => "Search new and used bikes for sale in Nepal or sell, bechnu, bechnus your used bike for free. 
+              Find new bike for sale and new bike, dealer specials at bikes.bechnu.com - Nepal's newest motorbike, motorcycle website.",
+              :keywords => 'Nepal, Nepali, bike, bikes, motorcycle, motorcycles, motorbike, motorbikes, sale, sales, second hand, new bike, 
+              new bikes, used bikes, specs',
               :canonical => "http://bikes.bechnu.com"
 
 
