@@ -695,7 +695,26 @@ div.input-prepend
 	{
 		display: inline-table;
 		width: 24%;
+		.image_border
+		{
+			width: 100px;
+		}
 	}
+}
+@media (max-width: 768px)
+{
+	.latest_bikes .browse_maker
+	{
+		display: inline;
+		a 
+		{
+			display: block;
+			.image_border
+			{
+				display: inline;
+			}
+		}
+	}		
 }
 .latest_bikes .browse_maker
 {
