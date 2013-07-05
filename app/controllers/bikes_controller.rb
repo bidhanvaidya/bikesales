@@ -350,7 +350,7 @@ class BikesController < ApplicationController
               :description => "Search  new &amp; used bikes for sale or sell your used bike for free. Find new bike for sale &amp; 
     new bike dealer specials at bikes.bechnu.com - Nepal's newest bike website.",
               :keywords => 'Bike, sale, second hand, new bike, specs',
-              :canonical => "bikes.bechnu.com"
+              :canonical => "http://bikes.bechnu.com"
 
 
 
