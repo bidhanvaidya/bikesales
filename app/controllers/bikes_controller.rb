@@ -3,7 +3,8 @@ class BikesController < ApplicationController
   # GET /bikes
   # GET /bikes.json
   before_filter :authenticate_user!, :only => [:new, :edit,:create, :owner,:save_search]
-  before_filter :owner, :only => [:edit, :update, :destroy, :delete_picture]
+  before_filter :owner, :only => [:destroy]
+  before_filter :marketing_ad, :only => [:edit, :update,:delete_picture]
 
   def index
 
@@ -165,7 +166,7 @@ class BikesController < ApplicationController
 
   # GET /bikes/1/edit
   def edit
-    @bike = Bike.find(params[:id])
+    @bike = Bike.unvalidated.find(params[:id])
   end
 
   # POST /bikes
@@ -177,6 +178,7 @@ class BikesController < ApplicationController
     @bike.bike_spec_id = bike_spec.id
     @bike.body = bike_spec.body
     @bike.user_id = current_user.id
+    @bike.validated = false if current_user.email == "marketing@bikes.bechnu.com"
     @bike.updated = Time.now
 
     respond_to do |format|
@@ -213,12 +215,15 @@ class BikesController < ApplicationController
   def update
       set_meta_tags :title => 'Update your Bike AD!!',
                     :description => 'Update for existing bike'
-      @bike = Bike.find(params[:id])
+      @bike = Bike.unvalidated.find(params[:id])
       bike_spec= BikeSpec.where(variant: params[:bike][:variant]).first
       @bike.bike_spec_id = bike_spec.id
       @bike.body = bike_spec.body
       @bike.updated = Time.now
 
+      if current_user.email != "marketing@bikes.bechnu.com" 
+        @bike.validated = true
+      end
       @bike.user_id = current_user.id
 
       respond_to do |format|
@@ -429,6 +434,7 @@ class BikesController < ApplicationController
     end
      
   end
+  
   private
   def owner
     @bike = Bike.find(params[:id])
@@ -436,6 +442,12 @@ class BikesController < ApplicationController
       return true
     else
       redirect_to @bike
+    end
+  end
+  def marketing_ad
+    @bike = Bike.unvalidated.find(params[:id])
+     if current_user==@bike.user || current_user == User.first|| @bike.validated?
+      return true
     end
   end
   

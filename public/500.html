@@ -18,8 +18,19 @@
 
 <body>
   <!-- This file lives in public/500.html -->
+  <a href="/" id="logo_link" title ="Bike Sales Nepal"><div class= "logo">
+      <%= image_tag "logo.png", id:"image_logo"%>
+      BIKES.BECHNU.com
+          </div>
   <div class="dialog">
     <h1>We're sorry, but something went wrong.</h1>
   </div>
+  <script  data-cfasync="false" type="text/javascript">
+
+      var width= $(window).width()
+      $("div.logo").animate({
+        textIndent: width,
+      }, 3600 );
+    </script>
 </body>
 </html>

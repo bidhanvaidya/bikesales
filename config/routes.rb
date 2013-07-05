@@ -29,6 +29,7 @@ end
       get "enquiry"
       post "delete_picture"
   end
+
 end
 resources :contacts do
   collection do

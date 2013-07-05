@@ -1,7 +1,50 @@
-Dear<%= @bike.user.name%>
-<%= @comment%><br>
-Regards, </br>
-<%= @name%> </br>
-<%= @email%></br>
-<%= @tel%>
 
+<!DOCTYPE html>
+
+	<head>
+		<title>Enquiry</title>
+	</head>
+	<body>
+		
+		<table align="center" border="0" cellpadding="0" cellspacing="0" style="width: 500px;">
+			<tbody>
+				<tr>
+					<td>
+						<h2>
+							<%= image_tag attachments['logo.jpg'].url -%>
+							</h2>
+					</td>
+					<td>
+						<h2>
+							BIKES.BECHNU.COM</h2>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<hr />
+		<p>
+			Dear<%= @bike.user.name%><br>
+			&nbsp;<span style="color: rgb(68, 68, 68); font-family: Arial; font-size: 12px; line-height: 17px; background-color: rgb(255, 255, 255);"><%=@name%>&nbsp; has sent you the following message regarding your post.</span></p>
+		<br />
+
+			<b style="line-height: 17px; color: rgb(68, 68, 68); font-family: Arial; font-size: 12px; background-color: rgb(255, 255, 255);">COMMENTS:</b><span style="color: rgb(68, 68, 68); font-family: Arial; font-size: 12px; line-height: 17px; background-color: rgb(255, 255, 255);">&nbsp;<%=@comment%>&nbsp;</span></p>
+		<br style="line-height: 17px; color: rgb(68, 68, 68); font-family: Arial; font-size: 12px; background-color: rgb(255, 255, 255);" />
+		<b style="line-height: 17px; color: rgb(68, 68, 68); font-family: Arial; font-size: 12px; background-color: rgb(255, 255, 255);">
+			VEHICLE DETAILS:</b>
+			<span style="color: rgb(68, 68, 68); font-family: Arial; font-size: 12px; line-height: 17px; background-color: rgb(255, 255, 255);">&nbsp;</span><br style="line-height: 17px; color: rgb(68, 68, 68); font-family: Arial; font-size: 12px; background-color: rgb(255, 255, 255);" />
+		<span style="color: rgb(68, 68, 68); font-family: Arial; font-size: 12px; line-height: 17px; background-color: rgb(255, 255, 255);"><%=@bike.year%> <%=@bike.make%> <%=@bike.model%> <%@bike.variant if !@bike.variant.nil?%>&nbsp;</span>
+		Sender DETAILS:</b>
+			<span style="color: rgb(68, 68, 68); font-family: Arial; font-size: 12px; line-height: 17px; background-color: rgb(255, 255, 255);">&nbsp;</span><br style="line-height: 17px; color: rgb(68, 68, 68); font-family: Arial; font-size: 12px; background-color: rgb(255, 255, 255);" />
+		<span style="color: rgb(68, 68, 68); font-family: Arial; font-size: 12px; line-height: 17px; background-color: rgb(255, 255, 255);"><%= @name%><%= @email%><%= @tel%><br style="line-height: 17px; color: rgb(68, 68, 68); font-family: Arial; font-size: 12px; background-color: rgb(255, 255, 255);" />
+		<a class="button" href="<%=bike_url(@bike) %>" style="line-height: 17px; color: rgb(0, 104, 207); cursor: pointer; font-family: Arial; font-size: 12px; background-color: rgb(255, 255, 255);" target="_blank">More Information</a><span style="color: rgb(68, 68, 68); font-family: Arial; font-size: 12px; line-height: 17px; background-color: rgb(255, 255, 255);">&nbsp;</span><br style="line-height: 17px; color: rgb(68, 68, 68); font-family: Arial; font-size: 12px; background-color: rgb(255, 255, 255);" />
+		<b style="line-height: 17px; color: rgb(68, 68, 68); font-family: Arial; font-size: 12px; background-color: rgb(255, 255, 255);">For more information on this vehicle please visit:</b><span style="color: rgb(68, 68, 68); font-family: Arial; font-size: 12px; line-height: 17px; background-color: rgb(255, 255, 255);">&nbsp;</span><br style="line-height: 17px; color: rgb(68, 68, 68); font-family: Arial; font-size: 12px; background-color: rgb(255, 255, 255);" />
+		<a href="<%=bike_url(@bike) %>" id="link" style="line-height: 17px; color: rgb(0, 104, 207); cursor: pointer; font-family: Arial; font-size: 12px; background-color: rgb(255, 255, 255);" target="_blank"><%=@bike.year%> <%=@bike.make%> <%=@bike.model%> <%=@bike.variant if !@bike.variant.nil?%></a>
+		<hr style="line-height: 17px; color: rgb(68, 68, 68); font-family: Arial; font-size: 12px; background-color: rgb(255, 255, 255);" />
+		<div id="footer" style="line-height: 17px; font-family: Arial; font-size: 12px; color: rgb(68, 68, 68); background-color: rgb(255, 255, 255);">
+			<b>Want to SELL YOUR BIKE fast?</b>&nbsp;<br />
+			Advertise on bikes.bechnu.com - Includes Unlimites Photos.&nbsp;<br />
+			Click the link below for more information&nbsp;<a href="http://bikes.bechnu.com/bikes/new/" style="color: rgb(0, 104, 207); cursor: pointer;" target="_blank">http://bikes.bechnu.com/sell-my-bike/</a>
+			<hr />
+			<b>Brought to you by&nbsp;<a href="http://bikes.bechnu.com/" style="font-weight: inherit; color: rgb(0, 104, 207); cursor: pointer;" target="_blank">bikes.bechnu.com</a></b></div>
+	</body>
+</html>

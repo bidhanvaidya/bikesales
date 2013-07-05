@@ -147,7 +147,17 @@
       </div>
       
       <div class="form-actions">
+        <%if !params[:id].nil? and @bike.user == current_user %>
+    
         <%= f.submit nil, :class => 'btn btn-primary' %>
+
+        <%end%>
+        <%if !@bike.validated? %>
+    
+          <%= f.submit "Submit and Validate", :class => 'btn btn-primary' %>
+
+        <%end%>
+        
         <%= link_to t('.cancel', :default => t("helpers.links.cancel")), bikes_path, :class => 'btn' %>
       </div>
     </div>

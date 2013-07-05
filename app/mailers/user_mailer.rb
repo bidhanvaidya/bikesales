@@ -19,6 +19,7 @@ class UserMailer < ActionMailer::Base
     @email = email
   	@bike= bike
   	enquiry= "Enquiry"
+    attachments.inline['logo.jpg'] = File.read("app/assets/images/logo.jpg")
   	mail(:to => @bike.user.email, :subject => enquiry) 
   	
   end
