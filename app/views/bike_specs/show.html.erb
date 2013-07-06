@@ -93,12 +93,23 @@
                 <td>Fuel Consumption Highway</td>
                 <td><%= @bike_spec.fuel_consumption_highway   %> kmpl</td>
               </tr>
+              
+            </table>
+          </div>
+        </div>
+        <div class = "spec_toggle">
+          <a id= "dimension">Engine and Trasmission
+            <div class="icon-chevron-right"> </div>
+            <div class="icon-chevron-up"> </div>
+          </a>
+          <div class= "dimension">
+            <table class= "table table-striped">
               <tr>
                 <td>Displacement</td>
-                <td><%= @bike_spec.displacement   %> cc</td>
+                <td><%= @bike_spec.displacement   %> </td>
               </tr>
               <tr>
-                <td>Engine  </td>
+                <td>Engine  Type</td>
               <td><%= @bike_spec.engine   %></td>
               </tr>
               <tr>
@@ -109,87 +120,194 @@
                 <td>Max Torque  </td>
                 <td><%= @bike_spec.max_torque  %></td>
               </tr>
+              
               <tr>
-                <td>Transmission  </td>
+                <td>Compression  </td>
+                <td><%= @bike_spec.bore   %></td>
+              </tr>
+              <tr>
+                <td>Bore x Stroke  </td>
+                <td><%= @bike_spec.stroke   %></td>
+              </tr>
+              <tr>
+                <td>Valves per Cylinder  </td>
+                <td><%= @bike_spec.valve_per_cylinder  %></td>
+              </tr>
+              <tr>
+                <td>Fuel System  </td>
+                <td><%= @bike_spec.no_of_cylinders  %></td>
+              </tr>
+              <tr>
+                <td> Fuel Control</td>
+                <td><%= @bike_spec.fuel_control  %></td>
+              </tr>
+              <tr>
+                <td>Ignition </td>
+                <td><%= @bike_spec.ignition  %></td>
+              </tr>
+              
+              <tr>
+                <td>Lubrication </td>
+                <td><%= @bike_spec.lubrication  %></td>
+              </tr>
+              <tr>
+                <td>Cooling System </td>
+                <td><%= @bike_spec.cooling_type   %> </td>
+              </tr>
+              <tr>
+                <td>Gear Box </td>
                 <td><%= @bike_spec.transmission   %></td>
+              </tr>
+              
+              <tr>
+                <td>Trasmission Type, Final Drive </td>
+                <td><%= @bike_spec.transmission_type  %></td>
               </tr>
               <tr>
                 <td>Clutch  </td>
                 <td><%= @bike_spec.clutch  %></td>
               </tr>
               <tr>
-                <td>Bore  </td>
-                <td><%= @bike_spec.bore   %></td>
+                <td>Exhaust System </td>
+                <td><%= @bike_spec.exhaust  %></td>
               </tr>
-              <tr>
-                <td>Stroke  </td>
-                <td><%= @bike_spec.stroke   %></td>
-              </tr>
-              <tr>
-                <td>No of Cylinders  </td>
-                <td><%= @bike_spec.no_of_cylinders  %></td>
-              </tr>
-              <tr>
-                <td>Valve per Cylinder  </td>
-                <td><%= @bike_spec.valve_per_cylinder  %></td>
-              </tr>
-              <tr>
-                <td>Chassis Type  </td>
-                <td><%= @bike_spec.chassis_type   %></td>
-              </tr>
-              <tr>
-                <td>Cooling Type </td>
-                <td><%= @bike_spec.cooling_type   %> </td>
-              </tr>
+
+
             </table>
           </div>
         </div>
         <div class = "spec_toggle">
-          <a id= "dimension">Dimension
-            <div class="icon-chevron-right"> </div>
-            <div class="icon-chevron-up"> </div>
-          </a>
-          <div class= "dimension">
-            <table class= "table table-striped">
-              <tr>
-                <td>Length  </td>
-                <td><%= @bike_spec.length  %> mm</td>
-              </tr>
-              <tr>
-                <td>Width  </td>
-                <td><%= @bike_spec.width  %> mm</td>
-              </tr>
-              <tr>
-                <td>Height </td>
-                <td><%= @bike_spec.height  %> mm</td>
-              </tr>
-            </table>
-          </div>
-        </div>
-        <div class = "spec_toggle">
-          <a id= "other_spec">Other Specification
+          <a id= "other_spec">Suspension, Brakes and Wheels
             <div class="icon-chevron-right"> </div>
             <div class="icon-chevron-up"> </div>
           </a>
           <div class= "other_spec">
             <table class= "table table-striped">
               <tr>
+                <td>Chassis Type  </td>
+                <td><%= @bike_spec.chassis_type   %></td>
+              </tr>
+              
+              <tr>
+                <td>Rake (Fork Angle)</td>
+                <td><%= @bike_spec.rake  %></td>
+              </tr>
+              <tr>
+                <td> Trail</td>
+                <td><%= @bike_spec.trail  %></td>
+              </tr>
+              <tr>  
+                <td>Suspension Front</td>
+                <td><%= @bike_spec.suspension_front  %></td>
+              </tr>
+              
+              <tr>
+                <td> Front Suspension Travel</td>
+                <td><%= @bike_spec.fs_travel  %></td>
+              </tr>
+              <tr>
+                <td>Suspension Rear</td>
+                <td><%= @bike_spec.suspension_rear  %></td>
+              </tr>
+              
+              <tr>
+                <td> Rear Suspension Travel</td>
+                <td><%= @bike_spec.rs_travel  %></td>
+              </tr>
+              
+              <tr>
+                <td>Front Tyre Dimension </td>
+                <td><%= @bike_spec.wheel_type  %></td>
+              </tr>
+              <tr>
+                <td>Rear Tyre Dimension </td>
+                <td><%= @bike_spec.wheel_size  %></td>
+              </tr>
+              <tr>
+                <td>Brakes Front</td>
+                <td><%= @bike_spec.brakes_front  %></td>
+              </tr>
+              
+              <tr>
+                <td> Front Brake Diameter</td>
+                <td><%= @bike_spec.fb_diameter  %></td>
+              </tr>
+              <tr>
+                <td>Brakes Rear </td>
+                <td><%= @bike_spec.brakes_rear  %></td>
+              </tr>
+              
+              <tr>
+                <td>Rear Brake Diameter </td>
+                <td><%= @bike_spec.rb_diameter  %></td>
+              </tr>
+
+              
+              
+            </table>
+          </div>
+        </div>
+        <div class = "spec_toggle">
+          <a id= "safety">Physical Measures and Capacities
+            <div class="icon-chevron-right"> </div>
+            <div class="icon-chevron-up"> </div>
+          </a>
+          <div class= "safety">
+            <table class= "table table-striped">
+              <tr>
                 <td>Weight  </td>
-                <td><%= @bike_spec.weight  %> kg</td>
+                <td><%= @bike_spec.weight  %></td>
+              </tr>
+
+              <tr>
+                <td> Weight Including Oil, Gas, etc </td>
+                <td><%= @bike_spec.g_weight  %></td>
+              </tr>
+              <tr>
+                <td> Power/Weight Ratio</td>
+                <td><%= @bike_spec.pw_ratio  %></td>
+              </tr>
+              <tr>
+                <td>Seat Height </td>
+                <td><%= @bike_spec.seat_height  %></td>
+              </tr>
+              <tr>
+                <td>Height </td>
+                <td><%= @bike_spec.height  %> </td>
+              </tr>
+              <tr>
+                <td>Length  </td>
+                <td><%= @bike_spec.length  %> </td>
+              </tr>
+              <tr>
+                <td>Width  </td>
+                <td><%= @bike_spec.width  %> </td>
               </tr>
               <tr>
                 <td>Ground_clearance  </td>
-                <td><%= @bike_spec.ground_clearance  %> mm</td>
-              </tr>
-              <tr>
-                <td>Fuel Tank </td>
-                <td><%= @bike_spec.fuel_tank  %> ltrs</td>
+                <td><%= @bike_spec.ground_clearance  %> </td>
               </tr>
               <tr>
                 <td>Wheelbase </td>
-                <td><%= @bike_spec.wheelbase  %> mm</td>
+                <td><%= @bike_spec.wheelbase  %> </td>
               </tr>
               <tr>
+                <td>Fuel Tank </td>
+                <td><%= @bike_spec.fuel_tank  %></td>
+              </tr>
+             
+            </table>
+          </div>
+        </div>
+        <div class = "spec_toggle">
+          <a id= "comfort">Other Specifications
+            <div class="icon-chevron-right"> </div>
+            <div class="icon-chevron-up"> </div>
+          </a>
+          <div class= "comfort">
+            <table class= "table table-striped">
+              
+               <tr>
                 <td>Headlamp </td>
                 <td><%= @bike_spec.headlamp  %></td>
               </tr>
@@ -206,65 +324,17 @@
                 <td><%= @bike_spec.battery_capacity  %> Ah</td>
               </tr>
               <tr>
-                <td>Wheel Type </td>
-                <td><%= @bike_spec.wheel_type  %></td>
-              </tr>
-              <tr>
-                <td>Wheel Size </td>
-                <td><%= @bike_spec.wheel_size  %></td>
-              </tr>
-              <tr>
                 <td>Tyre Type  </td>
                 <td><%= @bike_spec.tyre_type  %></td>
-              </tr>
-            </table>
-          </div>
-        </div>
-        <div class = "spec_toggle">
-          <a id= "safety">Active and Passive Safety
-            <div class="icon-chevron-right"> </div>
-            <div class="icon-chevron-up"> </div>
-          </a>
-          <div class= "safety">
-            <table class= "table table-striped">
-              <tr>  
-                <td>Suspension Front</td>
-                <td><%= @bike_spec.suspension_front  %></td>
-              </tr>
-              <tr>
-                <td>Suspension Rear</td>
-                <td><%= @bike_spec.suspension_rear  %></td>
-              </tr>
-              <tr>
-                <td>Brakes Front</td>
-                <td><%= @bike_spec.brakes_front  %></td>
-              </tr>
-              <tr>
-                <td>Brakes Rear </td>
-                <td><%= @bike_spec.brakes_rear  %></td>
               </tr>
               <tr>
                 <td>Stand Alarm </td>
                 <td><%= @bike_spec.stand_alarm  %></td>
-              </tr>
-            </table>
-          </div>
-        </div>
-        <div class = "spec_toggle">
-          <a id= "comfort">Comfort and Convienience
-            <div class="icon-chevron-right"> </div>
-            <div class="icon-chevron-up"> </div>
-          </a>
-          <div class= "comfort">
-            <table class= "table table-striped">
-              <tr>
+              </tr><tr>
                 <td>Fuel Gauge </td>
                 <td><%= @bike_spec.fuel_gauge  %></td>
               </tr>
-              <tr>
-                <td>Ignition </td>
-                <td><%= @bike_spec.ignition  %></td>
-              </tr>
+              
               <tr>
                 <td>Tacho_meter </td>
                 <td><%= @bike_spec.tacho_meter  %></td>

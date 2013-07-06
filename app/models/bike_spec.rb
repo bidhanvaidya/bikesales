@@ -7,7 +7,8 @@ class BikeSpec
 :length, :width, :height, :weight, :ground_clearance, :fuel_tank, :wheelbase, :headlamp, :battery_type, :battery_voltage,
 :battery_capacity, :wheel_type, :wheel_size, :tyre_type, :suspension_front, :suspension_rear, 
 :brakes_front, :brakes_rear, :stand_alarm, :fuel_gauge, :ignition, :tacho_meter, :trip_meter, :speedometer,
-:pictures_attributes
+:pictures_attributes, :fuel_control, :lubrication, :transmission_type, :exhaust, :rake, :trail, :fs_travel, 
+:rs_travel, :fb_diameter, :rb_diameter, :g_weight, :pw_ratio, :seat_height
   embeds_many :pictures, :cascade_callbacks => true
   accepts_nested_attributes_for :pictures, :allow_destroy => true
   scope :latest, where(:year.gt => (Time.now.year-2))
@@ -30,15 +31,15 @@ class BikeSpec
 
 
   ##ENGINE SPECIFICATIONS
-  field :displacement, type: Float
+  field :displacement
   field :engine
   field :max_power
   field :max_torque
   field :transmission
   field :clutch
-  field :bore, type: Float
-  field :stroke, type: Float
-  field :no_of_cylinders, type: Integer
+  field :bore, type: String #Compression
+  field :stroke, type: String #bore x Stroke
+  field :no_of_cylinders, type: String # Fuel System
   field :valve_per_cylinder, type: Integer
   field :chassis_type
   field :cooling_type
@@ -57,9 +58,9 @@ class BikeSpec
   #   Cooling Type: Liquid Cooling
 
   ## DIMENSIONS
-  field :length, type: Float
-  field :width, type: Float
-  field :height, type: Float
+  field :length
+  field :width
+  field :height
 
   #    Length: 2000.00 mm
   #    Width:  825.00 mm
@@ -67,10 +68,10 @@ class BikeSpec
 
 
   ##OTHER SPECIFICATIONS
-  field :weight, type: Float
-  field :ground_clearance, type: Float
-  field :fuel_tank, type: Float
-  field :wheelbase, type: Float
+  field :weight
+  field :ground_clearance
+  field :fuel_tank
+  field :wheelbase
   field :headlamp
   field :battery_type
   field :battery_voltage, type: Float
@@ -119,6 +120,20 @@ class BikeSpec
   #Tacho Meter:  Analogue
   #Trip Meter: Digital-2
   #Speedometer:  Digital
+##new ones
+field :fuel_control
+field :lubrication
+field :transmission_type
+field :exhaust
+field :rake
+field :trail
+field :fs_travel
+field :rs_travel
+field :fb_diameter
+field :rb_diameter
+field :g_weight
+field :pw_ratio
+field :seat_height
 
 
 end
