@@ -301,7 +301,7 @@
       <div class= "info">
         <div class = "legen">Other Bikes from <%= @bike_spec.make%></div>
         <%@makers_bike.each do |bike|%>
-          <a href= "<%=bike_spec_path(bike)%>/">
+          <a href= "<%=bike_spec_path(bike)%>">
             <div class = "other_bikes">
               <div>
                 <div><% if !bike.pictures.last.nil?%>
