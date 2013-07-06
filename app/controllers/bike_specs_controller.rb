@@ -38,7 +38,7 @@ class BikeSpecsController < ApplicationController
               :description => "New Bike for sale, to the nepali public, bikes bechnu, specs, bikes.bechnu.com"+
               [@models, @makes].reject(&:empty?).join(', '),
               :keywords => "Bike, sale, Specs, Specifiction, nepal, bikes bechnu, bikes.bechnu.com,"+[@models, @makes].reject(&:empty?).join(', '),
-              :canonical => bikes_url(make:params[:make], model: params[:model])
+              :canonical => bike_specs_url(make:params[:make], model: params[:model])
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @bikes }
@@ -55,7 +55,7 @@ class BikeSpecsController < ApplicationController
               :description => "New Bike for sale, to the nepali public, specs, "+
               [@bike_spec.year.to_s,@bike_spec.make,@bike_spec.model,@bike_spec.variant, @bike_spec.body, @bike_spec.price.to_s].reject(&:empty?).join(' '),
               :keywords => "Bike for sale nepal "+[@bike_spec.year.to_s,@bike_spec.make,@bike_spec.model,@bike_spec.variant,  @bike_spec.body].reject(&:empty?).join(', '),
-              :canonical => bike_url(@bike_spec)
+              :canonical => bike_spec_url(@bike_spec)
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @bike_spec }
@@ -153,7 +153,7 @@ def showroom
               :description => "Search  new for sale, Find new bike for sale &amp; 
     new bike dealer specials at bikes.bechnu.com - Nepal's newest bike website.",
               :keywords => 'Bike, sale, new bike, specs',
-              :canonical => "bikes.bechnu.com/showroom"
+              :canonical => "http://bikes.bechnu.com/showroom/"
   
 end
 

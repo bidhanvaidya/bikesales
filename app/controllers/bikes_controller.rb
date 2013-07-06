@@ -157,7 +157,7 @@ class BikesController < ApplicationController
     set_meta_tags :title => 'Post your Bike for sale!!',
               :description => "Post your bike for sale to a the nepali public, Sell my bike. Kathmandu, Bhaktapur, Lalitpur, Bharatpur, Pokhara",
               :keywords => 'Bike, sale, second hand, new bike, ad, seel my bike',
-              :canonical => "bikes.bechnu.com/bikes/new"
+              :canonical => "bikes.bechnu.com/bikes/new/"
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @bike }
@@ -351,7 +351,7 @@ class BikesController < ApplicationController
               Find new bike for sale and new bike, dealer specials at bikes.bechnu.com - Nepal's newest motorbike, motorcycle website.",
               :keywords => 'Nepal, Nepali, bike, bikes, motorcycle, motorcycles, motorbike, motorbikes, sale, sales, second hand, new bike, 
               new bikes, used bikes, specs',
-              :canonical => "http://bikes.bechnu.com"
+              :canonical => "http://bikes.bechnu.com/"
 
 
 

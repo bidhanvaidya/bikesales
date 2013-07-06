@@ -4,6 +4,6 @@ class AboutUsController < ApplicationController
               :description => " Find new bike for sale &amp; 
      made by  Bidhan Vaidya, Romal Shrestha",
               :keywords => 'About Us, Bidhan Vaidya, Romal Shrestha',
-              :canonical => "bikes.bechnu.com/about_us"
+              :canonical => about_us_url
 	end
 end
