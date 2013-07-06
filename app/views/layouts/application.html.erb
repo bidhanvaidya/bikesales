@@ -49,8 +49,8 @@
                   </button>
                   <ul class="dropdown-menu">
                     <!-- dropdown menu links -->
-                    <li><a href="<%=profile_user_path(current_user)%>/"><div class= "icon-asterisk"></div> Profile </a></li>
-                    <li><a href="<%= edit_user_registration_path(@user)%>/"><div class= "icon-edit"></div> Edit</a></li>
+                    <li><a href="<%=profile_user_path(current_user)%>"><div class= "icon-asterisk"></div> Profile </a></li>
+                    <li><a href="<%= edit_user_registration_path(@user)%>"><div class= "icon-edit"></div> Edit</a></li>
                     <li class="divider"></li>
                     <li><%= link_to "Sign Out", destroy_user_session_path, method: "delete"  %></li>
                   </ul>
@@ -75,7 +75,7 @@
           <div class="container-fluid nav-collapse">
             <ul class="nav">
               <li><%= link_to "Bikes For Sale", bikes_path%></li>
-              <li><%= link_to "Sell your Bike", new_bike_path  %></li>
+              <li><%= link_to "Sell your Bike", new_bike_path%></li>
               <li><a href="/showroom/">New Bike Showroom</a></li>
             </ul>
           </div>
@@ -151,10 +151,10 @@
       <div class="navbar-inner">
         <div class="container-fluid">
           <ul class="nav" id = "footer">
-            <li> <a href="<%=terms_and_conditions_path%>/"> Terms and Conditions </a></li>
-            <li> <a href="<%=about_us_path%>/"> Our Team </a></li>
-            <li> <a href="<%=contacts_path%>/"> Contact Us </a></li>
-            <li><a href="<%=how_it_works_path%>/">How it works</a></li>
+            <li> <a href="<%=terms_and_conditions_path%>"> Terms and Conditions </a></li>
+            <li> <a href="<%=about_us_path%>"> Our Team </a></li>
+            <li> <a href="<%=contacts_path%>"> Contact Us </a></li>
+            <li><a href="<%=how_it_works_path%>">How it works</a></li>
           </ul>
           <ul class = "nav pull-right" id = "footer_copyright">  
             <li><p>&copy; Bechnu.com 2013 "Because we can!"</p></li>

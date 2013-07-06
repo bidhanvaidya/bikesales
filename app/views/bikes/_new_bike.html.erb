@@ -27,9 +27,9 @@
       <a href="/bikes/new/" class="create-ad">Create Ad</a>
     </div>
     <% if user_signed_in?%>
-      <a href="<%=profile_user_path(current_user)%>/" class="manage-ad">Manage your Ad</a>
+      <a href="<%=profile_user_path(current_user)%>" class="manage-ad">Manage your Ad</a>
     <%else%>
-      <a href="<%=new_user_session_path%>/" class="manage-ad">Manage your Ad</a>
+      <a href="<%=new_user_session_path%>" class="manage-ad">Manage your Ad</a>
     <%end%>
   </div>
 </div>

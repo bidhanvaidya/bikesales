@@ -1,3 +1,14 @@
 // Place all the styles related to the bike_specs controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.span4.showroom_browse .browse_maker
+{
+	a
+	{
+		display: inline-table;
+		.image_border
+		{
+			width: 65px;
+		}
+	}
+}
