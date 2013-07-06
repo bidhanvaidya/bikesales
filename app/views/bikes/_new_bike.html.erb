@@ -24,12 +24,12 @@
   <div class = "sell_your_bike">
     <h2>Sell your Bike</h2>
     <div class="sell-call-to-action">
-      <a href="/bikes/new" class="create-ad">Create Ad</a>
+      <a href="/bikes/new/" class="create-ad">Create Ad</a>
     </div>
     <% if user_signed_in?%>
-      <a href="<%=profile_user_path(current_user)%>" class="manage-ad">Manage your Ad</a>
+      <a href="<%=profile_user_path(current_user)%>/" class="manage-ad">Manage your Ad</a>
     <%else%>
-      <a href="<%=new_user_session_path%>" class="manage-ad">Manage your Ad</a>
+      <a href="<%=new_user_session_path%>/" class="manage-ad">Manage your Ad</a>
     <%end%>
   </div>
 </div>

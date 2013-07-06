@@ -80,18 +80,18 @@
           
             <%@latest_bike.each do |bike|%>
                     <% if !bike.pictures.last.nil?%>
-                    <a href = '<%=bike_spec_path(bike)%>'><div class= "image_border"><%=image_tag bike.pictures.last.file.url(:thumb), size: "100x100", alt: bike.year.to_s+" "+bike.make+" "+bike.model+" "+bike.variant, title: bike.year.to_s+" "+bike.make+" "+bike.model+" "+bike.variant%></div></a>
+                    <a href = '<%=bike_spec_path(bike)%>/'><div class= "image_border"><%=image_tag bike.pictures.last.file.url(:thumb), size: "100x100", alt: bike.year.to_s+" "+bike.make+" "+bike.model+" "+bike.variant, title: bike.year.to_s+" "+bike.make+" "+bike.model+" "+bike.variant%></div></a>
                     <%else%>
-                    <a href = '<%=bike_spec_path(bike)%>'><div class= "image_border"><%=image_tag "default_image.jpg", size: "100x100"%></div></a>
+                    <a href = '<%=bike_spec_path(bike)%>/'><div class= "image_border"><%=image_tag "default_image.jpg", size: "100x100"%></div></a>
                     <%end%>
-                    <a href = '<%=bike_spec_path(bike)%>'><%= bike.year %>  <%= bike.make %>  <%= bike.model %>  <%= bike.variant if !bike.variant.nil? %></a>
+                    <a href = '<%=bike_spec_path(bike)%>/'><%= bike.year %>  <%= bike.make %>  <%= bike.model %>  <%= bike.variant if !bike.variant.nil? %></a>
             <%end%>      
            
         </div>  
       
     </div>
     <div class= "showroom_facebook">
-      <div class="fb-like-box" data-href="https://www.facebook.com/pages/BikesBechnu/478017662293136?fref=ts" data-width="310" data-show-faces="true" data-stream="false" data-show-border="true" data-header="true">
+      <div class="fb-like-box" data-href="https://www.facebook.com/pages/BikesBechnu/478017662293136?fref=ts/" data-width="310" data-show-faces="true" data-stream="false" data-show-border="true" data-header="true">
       </div>
     </div>
   </div>
