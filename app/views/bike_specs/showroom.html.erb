@@ -80,7 +80,7 @@
           
             <%@latest_bike.each do |bike|%>
                     <% if !bike.pictures.last.nil?%>
-                    <a href = '<%=bike_spec_path(bike)%>'><div class= "image_border"><%=image_tag bike.pictures.last.file.url(:thumb), size: "100x100", alt: bike.year.to_s+" "+bike.make+" "+bike.model+" "+bike.variant%></div></a>
+                    <a href = '<%=bike_spec_path(bike)%>'><div class= "image_border"><%=image_tag bike.pictures.last.file.url(:thumb), size: "100x100", alt: bike.year.to_s+" "+bike.make+" "+bike.model+" "+bike.variant, title: bike.year.to_s+" "+bike.make+" "+bike.model+" "+bike.variant%></div></a>
                     <%else%>
                     <a href = '<%=bike_spec_path(bike)%>'><div class= "image_border"><%=image_tag "default_image.jpg", size: "100x100"%></div></a>
                     <%end%>

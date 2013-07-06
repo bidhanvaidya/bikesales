@@ -9,12 +9,12 @@
   <div class= "row">
     <div class = "span6" >
       <div class = "picture">
-        <%= image_tag @bike_spec.pictures.last.file.url(:original), alt: @bike_spec.year.to_s+" "+@bike_spec.make+" "+ @bike_spec.model+" "+@bike_spec.variant, id: "bike_picture" if !@bike_spec.pictures.empty?%>
+        <%= image_tag @bike_spec.pictures.last.file.url(:original), alt: @bike_spec.year.to_s+" "+@bike_spec.make+" "+ @bike_spec.model+" "+@bike_spec.variant, title:  @bike_spec.year.to_s+" "+@bike_spec.make+" "+ @bike_spec.model+" "+@bike_spec.variant, id: "bike_picture" if !@bike_spec.pictures.empty?%>
       </div>
       <% if !@bike_spec.pictures.empty?%>
         <ul class = "image_list">
           <%@bike_spec.pictures.each do |image| %>
-            <li><%= image_tag image.file.url(:thumb), alt: @bike_spec.year.to_s+" "+@bike_spec.make+" "+ @bike_spec.model+" "+@bike_spec.variant, id: image.id %></li>
+            <li><%= image_tag image.file.url(:thumb), alt: @bike_spec.year.to_s+" "+@bike_spec.make+" "+ @bike_spec.model+" "+@bike_spec.variant, title:  @bike_spec.year.to_s+" "+@bike_spec.make+" "+ @bike_spec.model+" "+@bike_spec.variant, id: image.id %></li>
           <% end %>
         </ul>
       <%end%>

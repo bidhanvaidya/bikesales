@@ -8,7 +8,7 @@
             <% if bike.pictures.empty?%>
             <%=image_tag "default_image.jpg"%>
             <%else%>
-            <%= image_tag bike.pictures.last.file.url(:original), alt: bike.year.to_s+" "+bike.make+" "+bike.model+" "+bike.variant, id: "bike_picture" %>
+            <%= image_tag bike.pictures.last.file.url(:original), alt: bike.year.to_s+" "+bike.make+" "+bike.model+" "+bike.variant, title: bike.year.to_s+" "+bike.make+" "+bike.model+" "+bike.variant, id: "bike_picture" %>
             <%end%>
           </div> <!-- span5 Image of the searched bike --> 
           <div class= "span7">
