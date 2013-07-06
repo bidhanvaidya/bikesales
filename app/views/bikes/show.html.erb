@@ -51,13 +51,13 @@
     </div>
     <%if !@bike.pictures.empty? %>
     <div class = "picture">
-      <%= image_tag @bike.pictures.last.file.url(:original), id: "bike_picture" %>
+      <%= image_tag @bike.pictures.last.file.url(:original), alt: @bike_spec.year.to_s+" "+@bike_spec.make+" "+ @bike_spec.model+" "+@bike_spec.variant, id: "bike_picture" %>
     </div>
     <%end%>
     <% if !@bike.pictures.empty?%>
       <ul class = "image_list">
         <%@bike.pictures.each do |image| %>
-          <li><%= image_tag image.file.url(:thumb), id: image.id %></li>
+          <li><%= image_tag image.file.url(:thumb), alt: @bike_spec.year.to_s+" "+@bike_spec.make+" "+ @bike_spec.model+" "+@bike_spec.variant, id: image.id %></li>
         <% end %>
       </ul>
     <%end%>
