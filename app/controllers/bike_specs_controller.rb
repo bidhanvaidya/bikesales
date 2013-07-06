@@ -5,7 +5,7 @@ class BikeSpecsController < ApplicationController
   # GET /bike_specs.json
   def index
     last_year= Time.now.year-2
-    @bikes = BikeSpec.latest
+    @bikes = BikeSpec.all
 
     @make_selection = params[:make]
     @model_selection = params[:model]
