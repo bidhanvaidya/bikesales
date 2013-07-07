@@ -38,7 +38,7 @@ class Bike
   search_in :make, :model
 
 default_scope where(expired: false, validated: true)
-scope :unvalidated, where(validated: false)
+scope :unvalidated, where(expired: false)
 validates_presence_of :year, :make, :model, :price, :type, :phone, :location
    def self.make(make)
     where(make: make)

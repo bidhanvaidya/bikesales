@@ -166,7 +166,7 @@ class BikesController < ApplicationController
 
   # GET /bikes/1/edit
   def edit
-    @bike = Bike.unvalidated.find(params[:id])
+    @bike = Bike.unscoped.unvalidated.find(params[:id])
   end
 
   # POST /bikes
@@ -215,7 +215,7 @@ class BikesController < ApplicationController
   def update
       set_meta_tags :title => 'Update your Bike AD!!',
                     :description => 'Update for existing bike'
-      @bike = Bike.unvalidated.find(params[:id])
+      @bike = Bike.unscoped.unvalidated.find(params[:id])
       bike_spec= BikeSpec.where(variant: params[:bike][:variant]).first
       @bike.bike_spec_id = bike_spec.id
       @bike.body = bike_spec.body
@@ -224,7 +224,7 @@ class BikesController < ApplicationController
       if current_user.email != "marketing@bikes.bechnu.com" 
         @bike.validated = true
       end
-      @bike.user_id = current_user.id
+      @bike.user = current_user
 
       respond_to do |format|
         if @bike.update_attributes(params[:bike])
@@ -271,21 +271,21 @@ class BikesController < ApplicationController
     end
   end
   def change_make
-    @bikes=BikeSpec.where(year: params[:year]).distinct(:make)
+    @bikes=BikeSpec.where(year: params[:year]).distinct(:make).sort!
     respond_to do |format|
       format.js
     end
   end
 
   def change_model
-    @bikes=BikeSpec.where(make: params[:make]).distinct(:model)
+    @bikes=BikeSpec.where(make: params[:make], year: params[:year]).distinct(:model).sort
     respond_to do |format|
       format.js
     end
   end
   
   def change_variant
-    @bikes=BikeSpec.where(model: params[:model]).distinct(:variant)
+    @bikes=BikeSpec.where(model: params[:model], year: params[:year]).distinct(:variant).sort
     respond_to do |format|
       format.js
     end
@@ -446,8 +446,8 @@ class BikesController < ApplicationController
     end
   end
   def marketing_ad
-    @bike = Bike.unvalidated.find(params[:id])
-     if current_user==@bike.user || current_user == User.first|| @bike.validated?
+    @bike = Bike.unscoped.unvalidated.find(params[:id])
+     if current_user==@bike.user || current_user == User.first || @bike.validated?
       return true
     end
   end

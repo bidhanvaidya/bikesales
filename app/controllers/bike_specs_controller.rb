@@ -457,7 +457,7 @@ end
   def change_model
     
   
-    @bikes = BikeSpec.latest.where(make: params[:make], year: params[:year])
+    @bikes = BikeSpec.latest.where(make: params[:make])
     @models= @bikes.distinct(:model)
     respond_to do |format|
       format.js

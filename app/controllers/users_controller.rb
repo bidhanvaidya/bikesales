@@ -13,9 +13,9 @@ def profile
 		end
 	end
 	@bikees = saved_bikes
-	@listings = @user.bikes.unvalidated.desc(:created).limit(3)
+	@listings = @user.bikes.unscoped.unvalidated.desc(:created).limit(3)
 	else
-		@bikees= @user.bikes.unvalidated.desc(:created).paginate(:page => params[:page], :per_page => 4)
+		@bikees= @user.bikes.unscoped.unvalidated.desc(:created).paginate(:page => params[:page], :per_page => 4)
 	@favourites=current_user.favourites.limit(3)
 	end
 	set_meta_tags :title => '@user.name'
