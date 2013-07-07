@@ -1,4 +1,6 @@
 class BikeSpecsController < ApplicationController
+  require 'nokogiri'
+require 'open-uri'
    before_filter :authenticate_user!, :only => [:new, :edit]
   before_filter :owner, :only => [:new, :create,:edit, :update, :destroy, :delete_picture]
   # GET /bike_specs
@@ -82,6 +84,144 @@ class BikeSpecsController < ApplicationController
   # POST /bike_specs.json
   def create
     @bike_spec = BikeSpec.new(params[:bike_spec])
+   
+    if !params[:bike_spec][:link].nil?
+      doc = Nokogiri::HTML(open(params[:bike_spec][:link]))
+      start = false
+      doc.css('table tr td table tr td table tr').each do |link|
+        fiel= link.content.to_s
+        if fiel.include? "Displacement"
+          start=true
+        end
+        if start
+
+          if fiel.include? "Sell or buy used bikes"
+            break
+          end
+          if fiel.include? ":"
+            result= fiel.split(":")
+
+            if result[0]== "Displacement"
+            @bike_spec.displacement= result[1]
+            end
+            if result[0]== "Engine type"
+            @bike_spec.engine= result[1]
+            end
+            if result[0]== "Power"
+            @bike_spec.max_power= result[1]
+            end            
+            if result[0]== "Torque"
+            @bike_spec.max_torque= result[1]
+            end            
+            if result[0]== "Compression"
+            @bike_spec.bore= result[1]
+            end
+            if result[0]== "Bore x stroke"
+            @bike_spec.stroke= result[1]
+            end
+            if result[0]== "Valves per cylinders"
+            @bike_spec.valve_per_cylinder= result[1]
+            end
+            if result[0]== "Fuel system"
+            @bike_spec.no_of_cylinders= result[1]
+            end
+            if result[0]== "Fuel control"
+            @bike_spec.fuel_control= result[1]
+            end
+            if result[0]== "Ignition"
+            @bike_spec.ignition= result[1]
+            end
+            if result[0]== "Lubrication system"
+            @bike_spec.lubrication= result[1]
+            end
+            if result[0]== "Cooling system"
+            @bike_spec.cooling_type= result[1]
+            end
+            if result[0]== "Gearbox"
+            @bike_spec.transmission= result[1]
+            end
+            if result[0]== "Transmission type, final drive"
+            @bike_spec.transmission_type= result[1]
+            end
+            if result[0]== "Driveline"
+            @bike_spec.clutch= result[1]
+            end
+            if result[0]== "Exhaust system"
+            @bike_spec.exhaust= result[1]
+            end
+            if result[0]== "Frame type"
+            @bike_spec.chassis_type= result[1]
+            end
+            if result[0]== "Rake (fork angle)"
+            @bike_spec.rake= result[1]
+            end
+            if result[0]== "Trail"
+            @bike_spec.trail= result[1]
+            end
+            if result[0]== "Front suspension"
+            @bike_spec.suspension_front= result[1]
+            end
+            if result[0]== "Front suspension travel"
+            @bike_spec.fs_travel= result[1]
+            end
+            if result[0]== "Rear suspension"
+            @bike_spec.suspension_rear= result[1]
+            end
+            if result[0]== "Rear suspension travel"
+            @bike_spec.rs_travel= result[1]
+            end
+            if result[0]== "Front tyre dimensions"
+            @bike_spec.wheel_type= result[1]
+            end
+            if result[0]== "Rear tyre dimensions"
+            @bike_spec.wheel_size= result[1]
+            end
+            if result[0]== "Front brakes"
+            @bike_spec.brakes_front= result[1]
+            end
+            if result[0]== "Front brakes diameter"
+            @bike_spec.fb_diameter= result[1]
+            end
+            if result[0]== "Rear brakes"
+            @bike_spec.brakes_rear= result[1]
+            end
+            if result[0]== "Rear brakes diameter"
+            @bike_spec.rb_diameter= result[1]
+            end
+            if result[0]== "Dry weight"
+            @bike_spec.weight= result[1]
+            end
+            if result[0]== "Weight incl. oil, gas, etc"
+            @bike_spec.g_weight= result[1]
+            end
+            if result[0]== "Power/weight ratio"
+            @bike_spec.pw_ratio= result[1]
+            end
+            if result[0]== "Seat height"
+            @bike_spec.seat_height= result[1]
+            end
+            if result[0]== "Overall height"
+            @bike_spec.height= result[1]
+            end
+            if result[0]== "Overall length"
+            @bike_spec.length= result[1]
+            end
+            if result[0]== "Overall width"
+            @bike_spec.width= result[1]
+            end
+            if result[0]== "Ground clearance"
+            @bike_spec.ground_clearance= result[1]
+            end
+            if result[0]== "Wheelbase"
+            @bike_spec.wheelbase= result[1]
+            end
+            if result[0]== "Fuel capacity"
+            @bike_spec.fuel_tank= result[1]
+            end
+          end                                                  
+        end
+      end
+    end
     @bike_spec.updated = Time.now
     respond_to do |format|
       if @bike_spec.save
@@ -98,14 +238,160 @@ class BikeSpecsController < ApplicationController
   # PUT /bike_specs/1.json
   def update
     @bike_spec = BikeSpec.find(params[:id])
+
+    if !params[:bike_spec][:link].empty?
+      
+      doc = Nokogiri::HTML(open(params[:bike_spec][:link]))
+      start = false
+      doc.css('table tr td table tr td table tr').each do |link|
+        fiel= link.content.to_s
+        if fiel.include? "Displacement"
+          start=true
+        end
+        if start
+
+          if fiel.include? "Sell or buy used bikes"
+            break
+          end
+          if fiel.include? ":"
+            result= fiel.split(":")
+
+            if result[0]== "Displacement"
+            @bike_spec.displacement= result[1]
+            end
+            if result[0]== "Engine type"
+            @bike_spec.engine= result[1]
+            end
+            if result[0]== "Power"
+            @bike_spec.max_power= result[1]
+            end            
+            if result[0]== "Torque"
+            @bike_spec.max_torque= result[1]
+            end            
+            if result[0]== "Compression"
+              compression= result[1]+":"+ result[2]
+            @bike_spec.bore= compression
+            end
+            if result[0]== "Bore x stroke"
+            @bike_spec.stroke= result[1]
+            end
+            if result[0]== "Valves per cylinders"
+            @bike_spec.valve_per_cylinder= result[1]
+            end
+            if result[0]== "Fuel system"
+            @bike_spec.no_of_cylinders= result[1]
+            end
+            if result[0]== "Fuel control"
+            @bike_spec.fuel_control= result[1]
+            end
+            if result[0]== "Ignition"
+            @bike_spec.ignition= result[1]
+            end
+            if result[0]== "Lubrication system"
+            @bike_spec.lubrication= result[1]
+            end
+            if result[0]== "Cooling system"
+            @bike_spec.cooling_type= result[1]
+            end
+            if result[0]== "Gearbox"
+            @bike_spec.transmission= result[1]
+            end
+            if result[0]== "Transmission type, final drive"
+            @bike_spec.transmission_type= result[1]
+            end
+            if result[0]== "Driveline"
+            @bike_spec.clutch= result[1]
+            end
+            if result[0]== "Exhaust system"
+            @bike_spec.exhaust= result[1]
+            end
+            if result[0]== "Frame type"
+            @bike_spec.chassis_type= result[1]
+            end
+            if result[0]== "Rake (fork angle)"
+            @bike_spec.rake= result[1]
+            end
+            if result[0]== "Trail"
+            @bike_spec.trail= result[1]
+            end
+            if result[0]== "Front suspension"
+            @bike_spec.suspension_front= result[1]
+            end
+            if result[0]== "Front suspension travel"
+            @bike_spec.fs_travel= result[1]
+            end
+            if result[0]== "Rear suspension"
+            @bike_spec.suspension_rear= result[1]
+            end
+            if result[0]== "Rear suspension travel"
+            @bike_spec.rs_travel= result[1]
+            end
+            if result[0]== "Front tyre dimensions"
+            @bike_spec.wheel_type= result[1]
+            end
+            if result[0]== "Rear tyre dimensions"
+            @bike_spec.wheel_size= result[1]
+            end
+            if result[0]== "Front brakes"
+            @bike_spec.brakes_front= result[1]
+            end
+            if result[0]== "Front brakes diameter"
+            @bike_spec.fb_diameter= result[1]
+            end
+            if result[0]== "Rear brakes"
+            @bike_spec.brakes_rear= result[1]
+            end
+            if result[0]== "Rear brakes diameter"
+            @bike_spec.rb_diameter= result[1]
+            end
+            if result[0]== "Dry weight"
+            @bike_spec.weight= result[1]
+            end
+            if result[0]== "Weight incl. oil, gas, etc"
+            @bike_spec.g_weight= result[1]
+            end
+            if result[0]== "Power/weight ratio"
+            @bike_spec.pw_ratio= result[1]
+            end
+            if result[0]== "Seat height"
+            @bike_spec.seat_height= result[1]
+            end
+            if result[0]== "Overall height"
+            @bike_spec.height= result[1]
+            end
+            if result[0]== "Overall length"
+            @bike_spec.length= result[1]
+            end
+            if result[0]== "Overall width"
+            @bike_spec.width= result[1]
+            end
+            if result[0]== "Ground clearance"
+            @bike_spec.ground_clearance= result[1]
+            end
+            if result[0]== "Wheelbase"
+            @bike_spec.wheelbase= result[1]
+            end
+            if result[0]== "Fuel capacity"
+            @bike_spec.fuel_tank= result[1]
+            end
+          end                                                  
+        end
+      end
+    end
+
     @bike_spec.updated = Time.now
     respond_to do |format|
-      if @bike_spec.update_attributes(params[:bike_spec])
+      if !params[:bike_spec][:link].empty?
+        @bike_spec.save
         format.html { redirect_to @bike_spec, notice: 'Bike spec was successfully updated.' }
-        format.json { head :no_content }
       else
-        format.html { render action: "edit" }
-        format.json { render json: @bike_spec.errors, status: :unprocessable_entity }
+        if @bike_spec.update_attributes(params[:bike_spec])
+          format.html { redirect_to @bike_spec, notice: 'Bike spec was successfully updated.' }
+          format.json { head :no_content }
+        else
+          format.html { render action: "edit" }
+          format.json { render json: @bike_spec.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -171,7 +457,7 @@ end
   def change_model
     
   
-    @bikes = BikeSpec.latest.where(make: params[:make])
+    @bikes = BikeSpec.latest.where(make: params[:make], year: params[:year])
     @models= @bikes.distinct(:model)
     respond_to do |format|
       format.js

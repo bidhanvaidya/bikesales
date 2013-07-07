@@ -54,10 +54,10 @@
     <%end%>
   <% end %>
   <h2> Basic Info </h2>
- 
+  <div class="field">
     <%= f.label :top_speed %>
     <%= f.text_field :top_speed %> kmph
-
+  </div>
   <div class="field">
     <%= f.label :fuel_consumption_city  %>
     <%= f.text_field :fuel_consumption_city  %> kmpl 
@@ -66,6 +66,9 @@
     <%= f.label :fuel_consumption_highway%>
     <%= f.text_field :fuel_consumption_highway   %> kmpl
   </div>
+  <h2> Link</h2>
+   <%= f.text_field :link   %> 
+
   <h2> Engine and Transmission</h2>
   <div class="field">
     <%= f.label :displacement%>

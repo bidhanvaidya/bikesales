@@ -234,6 +234,10 @@
     {
       str = $(this).text();
     });
+    $("select#bike_year option:selected").each(function () 
+    {
+      year = $(this).text();
+    });
     $("select#bike_variant").empty();
     var option_model = $('<option></option>').attr("value", "").text("Select Model");
     $("select#bike_model").append(option_model);
@@ -242,7 +246,7 @@
     $.ajax(
     {
       url: "<%=change_model_bikes_path%>",
-      data: {make:str },
+      data: {make:str,year:year },
       success:"True",
     });
   });
@@ -254,6 +258,7 @@
     {
       str = $(this).text();
     });
+
     var option_variant = $('<option></option>').attr("value", "").text("Select Variant");
     $("select#bike_variant").append(option_variant);
     $.ajax(

@@ -41,6 +41,7 @@ gem 'meta-tags', :require => 'meta_tags'
 gem 'sitemap_generator'
 gem 'fog'
 gem 'carrierwave'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

@@ -8,7 +8,7 @@ class BikeSpec
 :battery_capacity, :wheel_type, :wheel_size, :tyre_type, :suspension_front, :suspension_rear, 
 :brakes_front, :brakes_rear, :stand_alarm, :fuel_gauge, :ignition, :tacho_meter, :trip_meter, :speedometer,
 :pictures_attributes, :fuel_control, :lubrication, :transmission_type, :exhaust, :rake, :trail, :fs_travel, 
-:rs_travel, :fb_diameter, :rb_diameter, :g_weight, :pw_ratio, :seat_height
+:rs_travel, :fb_diameter, :rb_diameter, :g_weight, :pw_ratio, :seat_height,:link
   embeds_many :pictures, :cascade_callbacks => true
   accepts_nested_attributes_for :pictures, :allow_destroy => true
   scope :latest, where(:year.gt => (Time.now.year-2))
@@ -134,6 +134,8 @@ field :rb_diameter
 field :g_weight
 field :pw_ratio
 field :seat_height
-
+def link
+     link=nil
+   end
 
 end
