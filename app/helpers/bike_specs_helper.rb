@@ -5,7 +5,7 @@ module BikeSpecsHelper
 		dir=s3.directories.new(:key=>'bikesbechnu_public')
 
 
-		f=File.new('error_log', 'w')
+			f=File.new('error_log', 'w')
 			total= 0
 			errors=0
 			
@@ -210,49 +210,49 @@ module BikeSpecsHelper
 									            bike_spec.fuel_tank= result[1]
 									            end
 									            if result[0]== "Wheels"
-									            @bike_spec.wheel= result[1]
+									            bike_spec.wheel= result[1]
 									            end
 									            if result[0]== "Engine details"
-									            @bike_spec.engine_detail = result[1]
+									            bike_spec.engine_detail = result[1]
 									            end
 									            if result[0]== "Greenhouse gases"
-									            @bike_spec.greenhouse  = result[1]
+									            bike_spec.greenhouse  = result[1]
 									            end
 									            if result[0]== "Driveline"
-									            @bike_spec.driveline  = result[1]
+									            bike_spec.driveline  = result[1]
 									            end
 									            if result[0]== "Fuel consumption"
-									            @bike_spec.fuel_consumption  = result[1]
+									            bike_spec.fuel_consumption  = result[1]
 									            end
 									            if result[0]== "Emission details"
-									            @bike_spec.emmission  = result[1]
+									            bike_spec.emmission  = result[1]
 									            end
 									            if result[0]== "Electrical"
-									            @bike_spec.electrical  = result[1]
+									            bike_spec.electrical  = result[1]
 									            end
 									            if result[0]== "Starter"
-									            @bike_spec.starter  = result[1]
+									            bike_spec.starter  = result[1]
 									            end
 									            if result[0]== "Instruments"
-									            @bike_spec.instrument  = result[1]
+									            bike_spec.instrument  = result[1]
 									            end
 									            if result[0]== "Seat"
-									            @bike_spec.seat  = result[1]
+									            bike_spec.seat  = result[1]
 									            end
 									            if result[0]== "Carrying capacity"
-									            @bike_spec.carrying_capacity  = result[1]
+									            bike_spec.carrying_capacity  = result[1]
 									            end
 									            if result[0]== "Oil capacity"
-									            @bike_spec.oil_capacity  = result[1]
+									            bike_spec.oil_capacity  = result[1]
 									            end
 									            if result[0]== "Reserve fuel capacity"
-									            @bike_spec.reserve  = result[1]
+									            bike_spec.reserve  = result[1]
 									            end
 									            if result[0]== "Light"
-									            @bike_spec.headlamp  = result[1]
+									            bike_spec.headlamp  = result[1]
 									            end 
 									            if result[0]== "Top speed"
-									            @bike_spec.top_speed  = result[1]
+									            bike_spec.top_speed  = result[1]
 									            end         
 
 												#puts result[0]
@@ -456,49 +456,49 @@ module BikeSpecsHelper
 										            bike_spec.fuel_tank= result[1]
 										            end
 										            if result[0]== "Wheels"
-										            @bike_spec.wheel= result[1]
+										            bike_spec.wheel= result[1]
 										            end
 										            if result[0]== "Engine details"
-										            @bike_spec.engine_detail = result[1]
+										            bike_spec.engine_detail = result[1]
 										            end
 										            if result[0]== "Greenhouse gases"
-										            @bike_spec.greenhouse  = result[1]
+										            bike_spec.greenhouse  = result[1]
 										            end
 										            if result[0]== "Driveline"
-										            @bike_spec.driveline  = result[1]
+										            bike_spec.driveline  = result[1]
 										            end
 										            if result[0]== "Fuel consumption"
-										            @bike_spec.fuel_consumption  = result[1]
+										            bike_spec.fuel_consumption  = result[1]
 										            end
 										            if result[0]== "Emission details"
-										            @bike_spec.emmission  = result[1]
+										            bike_spec.emmission  = result[1]
 										            end
 										            if result[0]== "Electrical"
-										            @bike_spec.electrical  = result[1]
+										            bike_spec.electrical  = result[1]
 										            end
 										            if result[0]== "Starter"
-										            @bike_spec.starter  = result[1]
+										            bike_spec.starter  = result[1]
 										            end
 										            if result[0]== "Instruments"
-										            @bike_spec.instrument  = result[1]
+										            bike_spec.instrument  = result[1]
 										            end
 										            if result[0]== "Seat"
-										            @bike_spec.seat  = result[1]
+										            bike_spec.seat  = result[1]
 										            end
 										            if result[0]== "Carrying capacity"
-										            @bike_spec.carrying_capacity  = result[1]
+										            bike_spec.carrying_capacity  = result[1]
 										            end
 										            if result[0]== "Oil capacity"
-										            @bike_spec.oil_capacity  = result[1]
+										            bike_spec.oil_capacity  = result[1]
 										            end
 										            if result[0]== "Reserve fuel capacity"
-										            @bike_spec.reserve  = result[1]
+										            bike_spec.reserve  = result[1]
 										            end
 										            if result[0]== "Light"
-										            @bike_spec.headlamp  = result[1]
+										            bike_spec.headlamp  = result[1]
 										            end 
 										            if result[0]== "Top speed"
-										            @bike_spec.top_speed  = result[1]
+										            bike_spec.top_speed  = result[1]
 										            end    										            
 													#puts result[0]
 													#puts result[1]
@@ -511,7 +511,7 @@ module BikeSpecsHelper
 									rescue
 										puts "error in"
 										puts bike_link
-										f.write(" error in #{i} #{bike_link} after #{previous} ")
+										f.write(" error in #{year} #{bike_link} after #{previous} ")
 										errors=errors+1
 										f.write(" error count #{errors}\n")
 									else
@@ -531,15 +531,15 @@ module BikeSpecsHelper
 				else
 						first= false
 				end
-				f.write(Time.now)
-				f.close()
-				dir.files.create(:key=>'error_log',
-							     :body   => File.open("error_log",'r'))
+				
 				
 
 				#f.write(" toal error count #{errors}")
 				#f.write(" total success #{total}")
 
 			end
+				f.close()
+				dir.files.create(:key=>'error_log',
+							     :body   => File.open("error_log",'r'))
 	end
 end
