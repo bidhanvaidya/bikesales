@@ -52,7 +52,7 @@
           </tr>
           <tr>
             <td>Top Speed:</td> 
-            <td><%=@bike_spec.top_speed%> kmph</td>
+            <td><%=@bike_spec.top_speed%> </td>
           </tr>
           <tr>
             <td>Mileage(City):</td> 
@@ -64,7 +64,7 @@
           </tr>
           <tr>
             <td>Engine Displacement:</td> 
-            <td><%=@bike_spec.displacement%> cc</td>
+            <td><%=@bike_spec.displacement%></td>
           </tr>
         </table>
       </div>
@@ -83,7 +83,7 @@
             <table class= "table table-striped">
               <tr>
                 <td>Top Speed </td>
-                <td><%= @bike_spec.top_speed %> kmph</td>
+                <td><%= @bike_spec.top_speed %></td>
               </tr>
               <tr>
                 <td>Fuel Consumption City  </td>
@@ -93,6 +93,10 @@
                 <td>Fuel Consumption Highway</td>
                 <td><%= @bike_spec.fuel_consumption_highway   %> kmpl</td>
               </tr>
+              <tr>
+                <td>Fuel consumption</td>
+              <td><%= @bike_spec.fuel_consumption  %></td>
+              </tr>              
               
             </table>
           </div>
@@ -113,6 +117,10 @@
               <td><%= @bike_spec.engine   %></td>
               </tr>
               <tr>
+                <td>Engine details</td>
+              <td><%= @bike_spec.engine_detail %></td>
+              </tr>
+              <tr>
                 <td>Max Power  </td>
                 <td><%= @bike_spec.max_power  %></td>
               </tr>
@@ -120,7 +128,6 @@
                 <td>Max Torque  </td>
                 <td><%= @bike_spec.max_torque  %></td>
               </tr>
-              
               <tr>
                 <td>Compression  </td>
                 <td><%= @bike_spec.bore   %></td>
@@ -167,6 +174,18 @@
                 <td>Clutch  </td>
                 <td><%= @bike_spec.clutch  %></td>
               </tr>
+              <tr>
+                <td>Driveline</td>
+              <td><%= @bike_spec.driveline  %></td>
+              </tr>
+              <tr>
+                <td>Greenhouse gases</td>
+              <td><%= @bike_spec.greenhouse  %></td>
+              </tr>
+              <tr>
+                <td>Emission details</td>
+              <td><%= @bike_spec.emmission  %></td>
+              </tr>                      
               <tr>
                 <td>Exhaust System </td>
                 <td><%= @bike_spec.exhaust  %></td>
@@ -241,7 +260,10 @@
                 <td>Rear Brake Diameter </td>
                 <td><%= @bike_spec.rb_diameter  %></td>
               </tr>
-
+              <tr>
+                <td>Wheels</td>
+              <td><%= @bike_spec.wheel  %></td>
+              </tr>
               
               
             </table>
@@ -295,6 +317,14 @@
                 <td>Fuel Tank </td>
                 <td><%= @bike_spec.fuel_tank  %></td>
               </tr>
+              <tr>
+                <td>Reserve fuel capacity</td>
+              <td><%= @bike_spec.reserve  %></td>
+              </tr>
+              <tr>
+                <td>Oil capacity</td>
+              <td><%= @bike_spec.oil_capacity  %></td>
+              </tr>              
              
             </table>
           </div>
@@ -347,6 +377,26 @@
                 <td>Speedometer</td>
                 <td><%= @bike_spec.speedometer  %></td>
               </tr>
+              <tr>
+                <td>Electrical</td>
+              <td><%= @bike_spec.electrical  %></td>
+              </tr>
+              <tr>
+                <td>Starter</td>
+              <td><%= @bike_spec.starter  %></td>
+              </tr>
+              <tr>
+                <td>Instruments</td>
+              <td><%= @bike_spec.instrument  %></td>
+              </tr>
+              <tr>
+                <td>Seat</td>
+              <td><%= @bike_spec.seat  %></td>
+              </tr>
+              <tr>
+                <td>Carrying capacity</td>
+              <td><%= @bike_spec.carrying_capacity  %></td>
+              </tr>              
             </table>
           </div>
         </div>

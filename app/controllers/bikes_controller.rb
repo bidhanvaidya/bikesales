@@ -62,8 +62,8 @@ class BikesController < ApplicationController
     @bikees=@bikes.paginate(:page => params[:page], :per_page => 10)
     set_meta_tags :title => 'Search for New and Used bikes, get prices and compare',
               :description => "Bike for sale, to a the nepali public, "+
-              [@models, @makes, @location].reject(&:empty?).join(', '),
-              :keywords => "Bike, sale, nepal, "+[@models, @makes].reject(&:empty?).join(', '),
+              [@models, @makes, @location].reject(&:nil?).reject(&:empty?).join(', '),
+              :keywords => "Bike, sale, nepal, "+[@models, @makes].reject(&:nil?).reject(&:empty?).join(', '),
               :canonical => bikes_url(make:params[:make], model: params[:model])
     respond_to do |format|
       format.html # index.html.erb
@@ -137,10 +137,10 @@ class BikesController < ApplicationController
       
     end
 
-    set_meta_tags :title => [@bike.year.to_s,@bike.make,@bike.model,@bike.variant].reject(&:empty?).join(' '),
+    set_meta_tags :title => [@bike.year.to_s,@bike.make,@bike.model,@bike.variant].reject(&:nil?).reject(&:empty?).join(' '),
               :description => "Bike for sale, to a the nepali public, "+
-              [@bike.year.to_s,@bike.make,@bike.model,@bike.variant, @bike.location,@bike.type, @bike.body, @bike.price.to_s, @bike.comment].reject(&:empty?).join(', '),
-              :keywords => "Bike for sale nepal"+[@bike.year.to_s,@bike.make,@bike.model,@bike.variant, @bike.location,@bike.type, @bike.body].reject(&:empty?).join(', '),
+              [@bike.year.to_s,@bike.make,@bike.model,@bike.variant, @bike.location,@bike.type, @bike.body, @bike.price.to_s, @bike.comment].reject(&:nil?).reject(&:empty?).join(', '),
+              :keywords => "Bike for sale nepal"+[@bike.year.to_s,@bike.make,@bike.model,@bike.variant, @bike.location,@bike.type, @bike.body].reject(&:nil?).reject(&:empty?).join(', '),
               :canonical => bike_url(@bike)
     end
       respond_to do |format|
@@ -178,7 +178,10 @@ class BikesController < ApplicationController
     @bike.bike_spec_id = bike_spec.id
     @bike.body = bike_spec.body
     @bike.user_id = current_user.id
-    @bike.validated = false if current_user.email == "marketing@bikes.bechnu.com"
+    
+    if current_user.email == "marketing@bikes.bechnu.com"
+      @bike.validated = false 
+    end
     @bike.updated = Time.now
 
     respond_to do |format|

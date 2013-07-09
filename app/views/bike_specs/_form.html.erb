@@ -10,282 +10,342 @@
       </ul>
     </div>
   <% end %>
-  <h1> General Info</h1>
-  <div class="field">
-    <%= f.label :year %>
-    <%= f.text_field :year %>
-  </div>
-  <div class="field">
-    <%= f.label :make %>
-    <%= f.text_field :make %>
-  </div>
-  <div class="field">
-    <%= f.label :model %>
-    <%= f.text_field :model %>
-  </div>
-  <div class="field">
-    <%= f.label :body %>
-    <%= f.select :body, options_for_select(["Sports","Cruiser", "Trail", "Standard", "Scooter", "Super Sport"], f.object.body) %>
-  </div>
-  <div class="field">
-    <%= f.label :variant %>
-    <%= f.text_field :variant %>
-  </div>
-   <div class="field">
-    <%= f.label :MRP %>
-    <%= f.text_field :price %>
-  </div>
-  <div class="field">
-    <%= f.label :attach_images %>
+
+  <h1> Link</h1>
+    <%= f.text_field :link   %> 
+
+<div class= "span12">
+  <div class= "span6">
   
-     <%= file_field_tag('bike_spec_pictures_attributes_file', :html => {:multipart => true},multiple: true, name: "bike_spec[pictures_attributes][][file]") %><br>
-     #Hold Ctrl button to select mutple images
-  </div>
-  <%if !params[:id].nil?%>
-    <div class="control-group">
-      <label class ="control-label">Your existing pictures:</label>
+    <h2>VEHICLE SUMMARY</h2>
+  
+    <div class="field">
+      <%= f.label :year %>
+      <%= f.text_field :year %>
     </div>
-    <% if !@bike_spec.pictures.empty?%>
-      <ul class = "image_list">
-        <%@bike_spec.pictures.each do |image| %>
-          <li><a id= 'delete_picture' data-toggle="tooltip" data-placement="top" title="Click to Delete"><%= image_tag image.file.url(:thumb), id: image.id %></a></li>
-        <% end %>
-      </ul>
-    <%end%>
-  <% end %>
-  <h2> Basic Info </h2>
-  <div class="field">
-    <%= f.label :top_speed %>
-    <%= f.text_field :top_speed %> kmph
-  </div>
-  <div class="field">
-    <%= f.label :fuel_consumption_city  %>
-    <%= f.text_field :fuel_consumption_city  %> kmpl 
-  </div>
-  <div class="field">
-    <%= f.label :fuel_consumption_highway%>
-    <%= f.text_field :fuel_consumption_highway   %> kmpl
-  </div>
-  <h2> Link</h2>
-   <%= f.text_field :link   %> 
-
-  <h2> Engine and Transmission</h2>
-  <div class="field">
-    <%= f.label :displacement%>
-    <%= f.text_field :displacement   %>
-  </div>
-  <div class="field">
-    <%= f.label :engine_type %>
-    <%= f.text_field :engine   %>
-  </div>
-  <div class="field">
-    <%= f.label :power  %>
-    <%= f.text_field :max_power  %>
-  </div>
-  <div class="field">
-    <%= f.label :torque  %>
-    <%= f.text_field :max_torque  %>
-  </div>
     <div class="field">
-    <%= f.label :compression  %>
-    <%= f.text_field :bore   %>
-  </div>
+      <%= f.label :make %>
+      <%= f.text_field :make %>
+    </div>
     <div class="field">
-    <%= f.label :bore_and_stroke  %>
-    <%= f.text_field :stroke   %>
-  </div>
- 
-  <div class="field">
-    <%= f.label :valve_per_cylinder  %>
-    <%= f.number_field :valve_per_cylinder  %>
-  </div>
-   <div class="field">
-    <%= f.label :fuel_system  %>
-    <%= f.text_field :no_of_cylinders  %>
-  </div>
-      <div class="field">
-    <%= f.label :fuel_control  %>
-    <%= f.text_field :fuel_control  %>
-  </div>
+      <%= f.label :model %>
+      <%= f.text_field :model %>
+    </div>
     <div class="field">
-    <%= f.label :ignition %>
-    <%= f.text_field :ignition  %>
-  </div>
-
+      <%= f.label :variant %>
+      <%= f.text_field :variant %>
+    </div>
     <div class="field">
-    <%= f.label :lubrication_system  %>
-    <%= f.text_field :lubrication  %>
-  </div>
-<div class="field">
-    <%= f.label :cooling_system %>
-    <%= f.text_field :cooling_type   %> 
-  </div>
-  <div class="field">
-    <%= f.label :gearbox  %>
-    <%= f.text_field :transmission   %>
-  </div>
+      <%= f.label :body %>
+      <%= f.select :body, options_for_select(["Sports","Cruiser", "Trail", "Standard", "Scooter", "Super Sport"], f.object.body) %>
+    </div>
     <div class="field">
-    <%= f.label :transmission_type_final_drive  %>
-    <%= f.text_field :transmission_type  %>
-  </div>
+      <%= f.label :top_speed %>
+      <%= f.text_field :top_speed %> kmph
+    </div>
     <div class="field">
-    <%= f.label :driveline  %>
-    <%= f.text_field :clutch  %>
-  </div>
-      <div class="field">
-    <%= f.label :exhaust_system  %>
-    <%= f.text_field :exhaust  %>
-  </div>
-  <h2>Chasis, Suspension, Brakes and wheels</h2>
-  
-
-  
-  
-  <div class="field">
-    <%= f.label :frame_type  %>
-    <%= f.text_field :chassis_type   %>
-  </div>
-        <div class="field">
-    <%= f.label :rake_fork_angle  %>
-    <%= f.text_field :rake  %>
-  </div>
-        <div class="field">
-    <%= f.label :trail  %>
-    <%= f.text_field :trail  %>
-  </div>
-  <div class="field">
-    <%= f.label :suspension_front%>
-    <%= f.text_field :suspension_front  %>
-  </div>
-          <div class="field">
-    <%= f.label :front_suspension_travel  %>
-    <%= f.text_field :fs_travel  %>
-  </div>
-  <div class="field">
-    <%= f.label :suspension_rear%>
-    <%= f.text_field :suspension_rear  %>
-  </div>
-          <div class="field">
-    <%= f.label :rear_suspension_travel  %>
-    <%= f.text_field :rs_travel  %>
-  </div>
-   <div class="field">
-    <%= f.label :front_tyre_dimension %>
-    <%= f.text_field :wheel_type  %>
-  </div>
-  <div class="field">
-    <%= f.label :rear_tyre_dimension %>
-    <%= f.text_field :wheel_size  %>
-  </div>
-
- <div class="field">
-    <%= f.label :brakes_front%>
-    <%= f.text_field :brakes_front  %>
-  </div>
-          <div class="field">
-    <%= f.label :front_brake_diameter  %>
-    <%= f.text_field :fb_diameter  %>
-  </div>
-  <div class="field">
-    <%= f.label :brakes_rear %>
-    <%= f.text_field :brakes_rear  %>
-  </div>
-          <div class="field">
-    <%= f.label :rear_brake_diameter  %>
-    <%= f.text_field :rb_diameter  %>
-  </div>
-  <h2>Physical Measures and Capacities</h2>
-  <div class="field">
-    <%= f.label :dry_weight  %>
-    <%= f.text_field :weight  %> kg
-  </div>
-
-        <div class="field">
-    <%= f.label :weight_incl_oil_gas_etc  %>
-    <%= f.text_field :g_weight %>
-  </div>
-          <div class="field">
-    <%= f.label :power_weight_ratio  %>
-    <%= f.text_field :pw_ratio  %>
-  </div>
-        <div class="field">
-    <%= f.label :seat_height  %>
-    <%= f.text_field :seat_height  %>
-  </div>
+      <%= f.label :fuel_consumption_city  %>
+      <%= f.text_field :fuel_consumption_city  %> kmpl 
+    </div>
+    <div class="field">
+      <%= f.label :fuel_consumption_highway%>
+      <%= f.text_field :fuel_consumption_highway   %> kmpl
+    </div>
+    <div class="field">
+      <%= f.label :MRP %>
+      <%= f.text_field :price %>
+    </div>
+    <div class="field">
+      <%= f.label :attach_images %>
     
-    <div class="field">
-    <%= f.label :height %>
-    <%= f.text_field :height  %> 
-  </div>
-    <div class="field">
-    <%= f.label :length  %>
-    <%= f.text_field :length  %> 
-  </div>
-    <div class="field">
-    <%= f.label :width  %>
-    <%= f.text_field :width  %> 
-  </div>
+       <%= file_field_tag('bike_spec_pictures_attributes_file', :html => {:multipart => true},multiple: true, name: "bike_spec[pictures_attributes][][file]") %><br>
+       #Hold Ctrl button to select mutple images
+    </div>
+    <%if !params[:id].nil?%>
+      <div class="control-group">
+        <label class ="control-label">Your existing pictures:</label>
+      </div>
+      <% if !@bike_spec.pictures.empty?%>
+        <ul class = "image_list">
+          <%@bike_spec.pictures.each do |image| %>
+            <li><a id= 'delete_picture' data-toggle="tooltip" data-placement="top" title="Click to Delete"><%= image_tag image.file.url(:thumb), id: image.id %></a></li>
+          <% end %>
+        </ul>
+      <%end%>
+    <% end %>
 
-  <div class="field">
-    <%= f.label :ground_clearance  %>
-    <%= f.text_field :ground_clearance  %> 
-  </div>
+    <h2> Engine and Transmission</h2>
+
     <div class="field">
-    <%= f.label :wheelbase %>
-    <%= f.text_field :wheelbase  %> 
+      <%= f.label :displacement%>
+      <%= f.text_field :displacement   %>
+    </div>
+    <div class="field">
+      <%= f.label :engine %>
+      <%= f.text_field :engine   %>
+    </div>
+    <div class="field">
+      <%= f.label :maximum_power  %>
+      <%= f.text_field :max_power  %>
+    </div>
+    <div class="field">
+      <%= f.label :maximum_torque  %>
+      <%= f.text_field :max_torque  %>
+    </div>
+    <div class="field">
+      <%= f.label :gearbox  %>
+      <%= f.text_field :transmission   %>
+    </div>
+    <div class="field">
+      <%= f.label :bore_and_stroke  %>
+      <%= f.text_field :stroke   %>
+    </div>
+    <div class="field">
+      <%= f.label :clutch  %>
+      <%= f.text_field :clutch  %>
+    </div> 
+    <div class="field">
+      <%= f.label :valve_per_cylinder  %>
+      <%= f.number_field :valve_per_cylinder %>
+    </div>
+    <div class="field">
+      <%= f.label :chassis_type  %>
+      <%= f.text_field :chassis_type   %>
+    </div>
+    <div class="field">
+      <%= f.label :cooling_type %>
+      <%= f.text_field :cooling_type   %> 
+    </div>
+    
+    <h2>DIMENSIONS</h2>
+
+    <div class="field">
+      <%= f.label :length  %>
+      <%= f.text_field :length  %> 
+    </div>
+    <div class="field">
+      <%= f.label :width  %>
+      <%= f.text_field :width  %> 
+    </div>
+    <div class="field">
+      <%= f.label :height %>
+      <%= f.text_field :height  %> 
+    </div>
+
+    <h2> OTHER SPECIFICATIONS</h2>
+
+    <div class="field">
+      <%= f.label :weight  %>
+      <%= f.text_field :weight  %> kg
+    </div>
+    <div class="field">
+      <%= f.label :ground_clearance  %>
+      <%= f.text_field :ground_clearance  %> 
+    </div>
+    <div class="field">
+      <%= f.label :fuel_tank %>
+      <%= f.text_field :fuel_tank  %> 
+    </div>  
+    <div class="field">
+      <%= f.label :wheelbase %>
+      <%= f.text_field :wheelbase  %> 
+    </div>
+    <div class="field">
+      <%= f.label :headlamp %>
+      <%= f.text_field :headlamp  %>
+    </div>
+    <div class="field">
+      <%= f.label :battery_type%>
+      <%= f.text_field :battery_type  %>
+    </div>
+    <div class="field">
+      <%= f.label :battery_voltage%>
+      <%= f.text_field :battery_voltage  %> V
+    </div>
+    <div class="field">
+      <%= f.label :battery_capacity %>
+      <%= f.text_field :battery_capacity  %> Ah
+    </div>
+    <div class="field">
+      <%= f.label :front_tyre_size %>
+      <%= f.text_field :wheel_type  %>
+    </div>
+    <div class="field">
+      <%= f.label :rear_tyre_size %>
+      <%= f.text_field :wheel_size  %>
+    </div>
+    <div class="field">
+      <%= f.label :tyre_type  %>
+      <%= f.text_field :tyre_type  %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :fuel_capacity %>
-    <%= f.text_field :fuel_tank  %> 
-  </div>
-<h2> OTHER SPECIFICATIONS</h2>
-   
   
+  <div class= "span6">
+  
+    <h2>ACTIVE AND PASSIVE SAFETY</h2>
 
+    <div class="field">
+      <%= f.label :suspension_front%>
+      <%= f.text_field :suspension_front  %>
+    </div>
+    <div class="field">
+      <%= f.label :front_suspension_travel  %>
+      <%= f.text_field :fs_travel  %>
+    </div>
+    <div class="field">
+      <%= f.label :suspension_rear%>
+      <%= f.text_field :suspension_rear  %>
+    </div>
+    <div class="field">
+      <%= f.label :rear_suspension_travel  %>
+      <%= f.text_field :rs_travel  %>
+    </div>
+    <div class="field">
+      <%= f.label :brakes_front%>
+      <%= f.text_field :brakes_front  %>
+    </div>
+    <div class="field">
+      <%= f.label :front_brake_diameter  %>
+      <%= f.text_field :fb_diameter  %>
+    </div>
+    <div class="field">
+      <%= f.label :brakes_rear %>
+      <%= f.text_field :brakes_rear  %>
+    </div>
+    <div class="field">
+      <%= f.label :rear_brake_diameter  %>
+      <%= f.text_field :rb_diameter  %>
+    </div>
+    <div class="field">
+      <%= f.label :stand_alarm %>
+      <%= f.text_field :stand_alarm  %>
+    </div>
 
+    <h2>COMFORT AND CONVENIENCE</h2>
 
-  <div class="field">
-    <%= f.label :headlamp %>
-    <%= f.text_field :headlamp  %>
-  </div>
-  <div class="field">
-    <%= f.label :battery_type%>
-    <%= f.text_field :battery_type  %>
-  </div>
-  <div class="field">
-    <%= f.label :battery_voltage%>
-    <%= f.text_field :battery_voltage  %> V
-  </div>
-  <div class="field">
-    <%= f.label :battery_capacity %>
-    <%= f.text_field :battery_capacity  %> Ah
-  </div>
-   <div class="field">
-    <%= f.label :tyre_type  %>
-    <%= f.text_field :tyre_type  %>
-  </div>
-<div class="field">
-    <%= f.label :stand_alarm %>
-    <%= f.text_field :stand_alarm  %>
-  </div>
+    <div class="field">
+      <%= f.label :fuel_gauge %>
+      <%= f.text_field :fuel_gauge  %>
+    </div>
+    <div class="field">
+      <%= f.label :ignition %>
+      <%= f.text_field :ignition  %>
+    </div>
+    <div class="field">
+      <%= f.label :tacho_meter %>
+      <%= f.text_field :tacho_meter  %>
+    </div>
+    <div class="field">
+      <%= f.label :trip_meter %>
+      <%= f.text_field :trip_meter  %>
+    </div>
+    <div class="field">
+      <%= f.label :speedometer%>
+      <%= f.text_field :speedometer  %>
+    </div>
 
-  <div class="field">
-    <%= f.label :fuel_gauge %>
-    <%= f.text_field :fuel_gauge  %>
+    <h2>From link website specs</h2>
+  
+    <div class="field">
+      <%= f.label :weight_incl_oil_gas_etc  %>
+      <%= f.text_field :g_weight %>
+    </div>
+    <div class="field">
+      <%= f.label :power_weight_ratio  %>
+      <%= f.text_field :pw_ratio  %>
+    </div>
+    <div class="field">
+      <%= f.label :seat_height  %>
+      <%= f.text_field :seat_height  %>
+    </div>
+    <div class="field">
+      <%= f.label :transmission_type_final_drive  %>
+      <%= f.text_field :transmission_type  %>
+    </div>
+    <div class="field">
+      <%= f.label :exhaust_system  %>
+      <%= f.text_field :exhaust  %>
+    </div>
+    <div class="field">
+      <%= f.label :rake_fork_angle  %>
+      <%= f.text_field :rake  %>
+    </div>
+          <div class="field">
+      <%= f.label :trail  %>
+      <%= f.text_field :trail  %>
+    </div>
+    <div class="field">
+      <%= f.label :fuel_system  %>
+      <%= f.text_field :no_of_cylinders  %>
+    </div>
+    <div class="field">
+      <%= f.label :fuel_control  %>
+      <%= f.text_field :fuel_control  %>
+    </div>
+    <div class="field">
+      <%= f.label :lubrication_system  %>
+      <%= f.text_field :lubrication  %>
+    
+    </div>  
+      <div class="field">
+      <%= f.label :compression  %>
+      <%= f.text_field :bore   %>
+    </div>
+    <div class="field">
+      <%= f.label :wheels  %>
+      <%= f.text_field :wheel  %>
+    </div>  
+    <div class="field">
+      <%= f.label :engine_details  %>
+      <%= f.text_field :engine_detail %>
+    </div>  
+    <div class="field">
+      <%= f.label :greenhouse_gases  %>
+      <%= f.text_field :greenhouse  %>
+    </div>  
+    <div class="field">
+      <%= f.label :driveline  %>
+      <%= f.text_field :driveline  %>
+    </div>  
+    <div class="field">
+      <%= f.label :fuel_consumption  %>
+      <%= f.text_field :fuel_consumption  %>
+    </div>  
+    <div class="field">
+      <%= f.label :emmission_details  %>
+      <%= f.text_field :emmission  %>
+    </div>  
+    <div class="field">
+      <%= f.label :electrical  %>
+      <%= f.text_field :electrical  %>
+    </div>  
+    <div class="field">
+      <%= f.label :starter  %>
+      <%= f.text_field :starter  %>
+    </div>  
+    <div class="field">
+      <%= f.label :instruments  %>
+      <%= f.text_field :instrument  %>
+    </div>  
+    <div class="field">
+      <%= f.label :seat  %>
+      <%= f.text_field :seat  %>
+    </div>  
+    <div class="field">
+      <%= f.label :carrying_capacity  %>
+      <%= f.text_field :carrying_capacity  %>
+    </div>  
+    <div class="field">
+      <%= f.label :oil_capacity  %>
+      <%= f.text_field :oil_capacity  %>
+    </div>  
+    <div class="field">
+      <%= f.label :reserve_fuel_capacity  %>
+      <%= f.text_field :reserve  %>
+    </div>  
   </div>
+</div>
 
-  <div class="field">
-    <%= f.label :tacho_meter %>
-    <%= f.text_field :tacho_meter  %>
-  </div>
-  <div class="field">
-    <%= f.label :trip_meter %>
-    <%= f.text_field :trip_meter  %>
-  </div>
-  <div class="field">
-    <%= f.label :speedometer%>
-    <%= f.text_field :speedometer  %>
-  </div>
   <div class="actions">
     <%= f.submit %>
     <%if !params[:id].nil?%>

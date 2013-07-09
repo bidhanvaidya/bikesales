@@ -34,7 +34,7 @@
       <div class="control-group">
         <%= f.label :variant, :class => 'control-label' %>
         <div class="controls">
-         <%= f.select :variant, BikeSpec.all.distinct(:variant).sort, as: :select,:prompt => 'Select variant'%>
+         <%= f.select :variant,:prompt => 'Select variant'%>
         </div>
       </div>
       <div class="control-group">
@@ -162,7 +162,7 @@
         <%= f.submit nil, :class => 'btn btn-primary' %>
 
         <%end%>
-        <%if !params[:id].nil? and !@bike.validated? %>
+        <%if !params[:id].nil? and @bike.validated==false %>
     
           <%= f.submit "Submit and Validate", :class => 'btn btn-primary' %>
 

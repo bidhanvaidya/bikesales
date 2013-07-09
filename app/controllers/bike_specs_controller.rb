@@ -3,6 +3,7 @@ class BikeSpecsController < ApplicationController
 require 'open-uri'
    before_filter :authenticate_user!, :only => [:new, :edit]
   before_filter :owner, :only => [:new, :create,:edit, :update, :destroy, :delete_picture]
+ include BikeSpecsHelper
   # GET /bike_specs
   # GET /bike_specs.json
   def index
@@ -38,8 +39,8 @@ require 'open-uri'
   @bikees=@bikes.paginate(:page => params[:page], :per_page => 10)
   set_meta_tags :title => 'Search for New Bikes, get prices, Specs,  and compare',
               :description => "New Bike for sale, to the nepali public, bikes bechnu, specs, bikes.bechnu.com"+
-              [@models, @makes].reject(&:empty?).join(', '),
-              :keywords => "Bike, sale, Specs, Specifiction, nepal, bikes bechnu, bikes.bechnu.com,"+[@models, @makes].reject(&:empty?).join(', '),
+              [@models, @makes].reject(&:nil?).reject(&:empty?).join(', '),
+              :keywords => "Bike, sale, Specs, Specifiction, nepal, bikes bechnu, bikes.bechnu.com,"+[@models, @makes].reject(&:nil?).reject(&:empty?).join(', '),
               :canonical => bike_specs_url(make:params[:make], model: params[:model])
     respond_to do |format|
       format.html # index.html.erb
@@ -53,10 +54,10 @@ require 'open-uri'
   def show
     @bike_spec = BikeSpec.find(params[:id])
     @makers_bike = BikeSpec.latest.where(make: @bike_spec.make).desc(:year, :updated).limit(3)
-    set_meta_tags :title => [@bike_spec.year.to_s,@bike_spec.make,@bike_spec.model,@bike_spec.variant].reject(&:empty?).join(' '),
+    set_meta_tags :title => [@bike_spec.year.to_s,@bike_spec.make,@bike_spec.model,@bike_spec.variant].reject(&:nil?).reject(&:empty?).join(' '),
               :description => "New Bike for sale, to the nepali public, specs, "+
-              [@bike_spec.year.to_s,@bike_spec.make,@bike_spec.model,@bike_spec.variant, @bike_spec.body, @bike_spec.price.to_s].reject(&:empty?).join(' '),
-              :keywords => "Bike for sale nepal "+[@bike_spec.year.to_s,@bike_spec.make,@bike_spec.model,@bike_spec.variant,  @bike_spec.body].reject(&:empty?).join(', '),
+              [@bike_spec.year.to_s,@bike_spec.make,@bike_spec.model,@bike_spec.variant, @bike_spec.body, @bike_spec.price.to_s].reject(&:nil?).reject(&:empty?).join(' '),
+              :keywords => "Bike for sale nepal "+[@bike_spec.year.to_s,@bike_spec.make,@bike_spec.model,@bike_spec.variant,  @bike_spec.body].reject(&:nil?).reject(&:empty?).join(', '),
               :canonical => bike_spec_url(@bike_spec)
     respond_to do |format|
       format.html # show.html.erb
@@ -85,7 +86,7 @@ require 'open-uri'
   def create
     @bike_spec = BikeSpec.new(params[:bike_spec])
    
-    if !params[:bike_spec][:link].nil?
+    if !params[:bike_spec][:link].empty?
       doc = Nokogiri::HTML(open(params[:bike_spec][:link]))
       start = false
       doc.css('table tr td table tr td table tr').each do |link|
@@ -140,10 +141,10 @@ require 'open-uri'
             if result[0]== "Gearbox"
             @bike_spec.transmission= result[1]
             end
-            if result[0]== "Transmission type, final drive"
+            if result[0]== "Transmission type,final drive"
             @bike_spec.transmission_type= result[1]
             end
-            if result[0]== "Driveline"
+            if result[0]== "Clutch"
             @bike_spec.clutch= result[1]
             end
             if result[0]== "Exhaust system"
@@ -217,6 +218,51 @@ require 'open-uri'
             end
             if result[0]== "Fuel capacity"
             @bike_spec.fuel_tank= result[1]
+            end
+            if result[0]== "Wheels"
+            @bike_spec.wheel= result[1]
+            end
+            if result[0]== "Engine details"
+            @bike_spec.engine_detail = result[1]
+            end
+            if result[0]== "Greenhouse gases"
+            @bike_spec.greenhouse  = result[1]
+            end
+            if result[0]== "Driveline"
+            @bike_spec.driveline  = result[1]
+            end
+            if result[0]== "Fuel consumption"
+            @bike_spec.fuel_consumption  = result[1]
+            end
+            if result[0]== "Emission details"
+            @bike_spec.emmission  = result[1]
+            end
+            if result[0]== "Electrical"
+            @bike_spec.electrical  = result[1]
+            end
+            if result[0]== "Starter"
+            @bike_spec.starter  = result[1]
+            end
+            if result[0]== "Instruments"
+            @bike_spec.instrument  = result[1]
+            end
+            if result[0]== "Seat"
+            @bike_spec.seat  = result[1]
+            end
+            if result[0]== "Carrying capacity"
+            @bike_spec.carrying_capacity  = result[1]
+            end
+            if result[0]== "Oil capacity"
+            @bike_spec.oil_capacity  = result[1]
+            end
+            if result[0]== "Reserve fuel capacity"
+            @bike_spec.reserve  = result[1]
+            end  
+            if result[0]== "Light"
+            @bike_spec.headlamp  = result[1]
+            end  
+            if result[0]== "Top speed"
+            @bike_spec.top_speed  = result[1]
             end
           end                                                  
         end
@@ -296,10 +342,10 @@ require 'open-uri'
             if result[0]== "Gearbox"
             @bike_spec.transmission= result[1]
             end
-            if result[0]== "Transmission type, final drive"
+            if result[0]== "Transmission type,final drive"
             @bike_spec.transmission_type= result[1]
             end
-            if result[0]== "Driveline"
+            if result[0]== "Clutch"
             @bike_spec.clutch= result[1]
             end
             if result[0]== "Exhaust system"
@@ -374,6 +420,51 @@ require 'open-uri'
             if result[0]== "Fuel capacity"
             @bike_spec.fuel_tank= result[1]
             end
+            if result[0]== "Wheels"
+            @bike_spec.wheel= result[1]
+            end
+            if result[0]== "Engine details"
+            @bike_spec.engine_detail = result[1]
+            end
+            if result[0]== "Greenhouse gases"
+            @bike_spec.greenhouse  = result[1]
+            end
+            if result[0]== "Driveline"
+            @bike_spec.driveline  = result[1]
+            end
+            if result[0]== "Fuel consumption"
+            @bike_spec.fuel_consumption  = result[1]
+            end
+            if result[0]== "Emission details"
+            @bike_spec.emmission  = result[1]
+            end
+            if result[0]== "Electrical"
+            @bike_spec.electrical  = result[1]
+            end
+            if result[0]== "Starter"
+            @bike_spec.starter  = result[1]
+            end
+            if result[0]== "Instruments"
+            @bike_spec.instrument  = result[1]
+            end
+            if result[0]== "Seat"
+            @bike_spec.seat  = result[1]
+            end
+            if result[0]== "Carrying capacity"
+            @bike_spec.carrying_capacity  = result[1]
+            end
+            if result[0]== "Oil capacity"
+            @bike_spec.oil_capacity  = result[1]
+            end
+            if result[0]== "Reserve fuel capacity"
+            @bike_spec.reserve  = result[1]
+            end 
+            if result[0]== "Light"
+            @bike_spec.headlamp  = result[1]
+            end 
+            if result[0]== "Top speed"
+            @bike_spec.top_speed  = result[1]
+            end           
           end                                                  
         end
       end
@@ -433,7 +524,6 @@ def showroom
   @bikes = BikeSpec.latest.desc(:year)
   @latest_bike = @bikes.desc(:year, :updated).limit(3)
   @models= @bikes.distinct(:model)
-
   @makes= @bikes.distinct(:make)
   set_meta_tags :title => 'Search New Bikes for sale in Nepal, get their specs, price',
               :description => "Search  new for sale, Find new bike for sale &amp; 

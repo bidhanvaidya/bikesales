@@ -8,7 +8,9 @@ class BikeSpec
 :battery_capacity, :wheel_type, :wheel_size, :tyre_type, :suspension_front, :suspension_rear, 
 :brakes_front, :brakes_rear, :stand_alarm, :fuel_gauge, :ignition, :tacho_meter, :trip_meter, :speedometer,
 :pictures_attributes, :fuel_control, :lubrication, :transmission_type, :exhaust, :rake, :trail, :fs_travel, 
-:rs_travel, :fb_diameter, :rb_diameter, :g_weight, :pw_ratio, :seat_height,:link
+:rs_travel, :fb_diameter, :rb_diameter, :g_weight, :pw_ratio, :seat_height,:link, :wheel, :engine_detail,
+:greenhouse, :driveline, :fuel_consumption, :emmission, :electrical, :starter, :instrument, :seat, 
+:carrying_capacity, :oil_capacity, :reserve
   embeds_many :pictures, :cascade_callbacks => true
   accepts_nested_attributes_for :pictures, :allow_destroy => true
   scope :latest, where(:year.gt => (Time.now.year-2))
@@ -26,7 +28,7 @@ class BikeSpec
   field :price, type: Integer
   field :updated, type: Time, default: ->{ Time.now }
   field :created, type: Time, default: ->{ Time.now }
-  field :top_speed,type: Float
+  field :top_speed
   field :fuel_consumption_city, type: Float
   field :fuel_consumption_highway, type: Float
 
@@ -135,6 +137,20 @@ field :rb_diameter
 field :g_weight
 field :pw_ratio
 field :seat_height
+field :wheel
+field :engine_detail
+field :greenhouse
+field :driveline
+field :fuel_consumption
+field :emmission
+field :electrical
+field :starter
+field :instrument
+field :seat
+field :carrying_capacity
+field :oil_capacity
+field :reserve
+
 def link
      link=nil
    end
