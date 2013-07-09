@@ -1,6 +1,6 @@
 module BikeSpecsHelper
 
-	def crawl(year)
+	def crawl(year_from, year_end)
 		s3=Fog::Storage.new( :provider=> 'AWS',:aws_access_key_id=> 'AKIAJODLI2XMOUCX2XYQ', :aws_secret_access_key=>'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')
 		dir=s3.directories.new(:key=>'bikesbechnu_public')
 
@@ -8,8 +8,7 @@ module BikeSpecsHelper
 			f=File.new('error_log', 'w')
 			total= 0
 			errors=0
-			
-			i=year
+			for i in year_from..year_end
 			all_link= "http://www.bikez.com/year/index.php?year="+i.to_s
 						
 			doc = Nokogiri::HTML(open(all_link))
@@ -72,7 +71,7 @@ module BikeSpecsHelper
 									doc_page = Nokogiri::HTML(open(bike_link))
 												
 									start = false
-									bike_spec= BikeSpec.where(year: year.to_i, make: make, model: model, variant: variant).find_or_initialize_by
+									bike_spec= BikeSpec.where(year: i.to_i, make: make, model: model, variant: variant).find_or_initialize_by
 
 									
 									
@@ -277,6 +276,7 @@ module BikeSpecsHelper
 									previous= bike_link
 									total=total+1
 									print total
+									puts i
 									puts [make,model,variant].join(" ")
 
 								end
@@ -317,10 +317,10 @@ module BikeSpecsHelper
 									#puts bike_link
 									#f.write(bike_link)
 									#f.write ("\n")
-									puts [make,model,variant].join(" ")
+									#puts [make,model,variant].join(" ")
 									begin
 										doc_page = Nokogiri::HTML(open(bike_link))
-										bike_spec= BikeSpec.where(year: year.to_i, make: make, model: model, variant:variant).find_or_initialize_by
+										bike_spec= BikeSpec.where(year: i.to_i, make: make, model: model, variant:variant).find_or_initialize_by
 										start = false
 										doc_page.css('table tr td table tr td table tr').each do |link|
 											fiel= link.content.to_s
@@ -511,7 +511,7 @@ module BikeSpecsHelper
 									rescue
 										puts "error in"
 										puts bike_link
-										f.write(" error in #{year} #{bike_link} after #{previous} ")
+										f.write(" error in #{i} #{bike_link} after #{previous} ")
 										errors=errors+1
 										f.write(" error count #{errors}\n")
 									else
@@ -521,6 +521,7 @@ module BikeSpecsHelper
 										previous= bike_link
 										total=total+1
 										puts total
+										puts i
 										puts [make,model,variant].join(" ")
 										
 									end
@@ -536,7 +537,7 @@ module BikeSpecsHelper
 
 				#f.write(" toal error count #{errors}")
 				#f.write(" total success #{total}")
-
+			end	
 			end
 				f.close()
 				dir.files.create(:key=>'error_log',
