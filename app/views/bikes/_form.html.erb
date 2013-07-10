@@ -22,19 +22,19 @@
       <div class="control-group">
         <label class="control-label" for="bike_make">Make *</label>
         <div class="controls">
-           <%= f.select :make, BikeSpec.all.distinct(:make).sort, as: :select,:prompt => 'Select Make',:required => true%>
+           <%= f.select :make, BikeSpec.where(year:@bike.year).distinct(:make), as: :select,:prompt => 'Select Make',:required => true%>
         </div>
       </div>
       <div class="control-group">
         <label class="control-label" for="bike_model">Model *</label>
         <div class="controls">
-          <%= f.select :model, BikeSpec.all.distinct(:model).sort, as: :select,:prompt => 'Select model' %>
+          <%= f.select :model, BikeSpec.where(make: @bike.make, year:@bike.year).distinct(:model), as: :select,:prompt => 'Select model' %>
         </div>
       </div>
       <div class="control-group">
         <%= f.label :variant, :class => 'control-label' %>
         <div class="controls">
-         <%= f.select :variant,:prompt => 'Select variant'%>
+         <%= f.select :variant,BikeSpec.where(make: @bike.make, year:@bike.year, model: @bike.model).distinct(:variant), as: :select,:prompt => 'Select variant'%>
         </div>
       </div>
       <div class="control-group">
@@ -52,7 +52,7 @@
       <div class="control-group">
         <label class="control-label" for="bike_city">City *</label>
         <div class="controls">
-         <%= f.select :location, options_for_select(["Bhaktapur", "Kathmandu", "Latitpur"]),:prompt => 'Select City',:class => "required" %>
+         <%= f.select :location, options_for_select(["Bhaktapur", "Kathmandu", "Latitpur"], f.object.location),:prompt => 'Select City',:class => "required"%>
         </div>
       </div>
       <div class="control-group">
@@ -74,13 +74,13 @@
       <div class="control-group">
         <label class="control-label" for="bike_type">Type *</label>
           <div class="controls">
-          <%= f.select :type, options_for_select(["Dealer New", "Dealer Used", "Private Seller"]),:required => true, :prompt => 'Select Type' %>
+          <%= f.select :type, options_for_select(["Dealer New", "Dealer Used", "Private Seller"],f.object.type),:required => true, :prompt => 'Select Type' %>
         </div>
       </div>
       <div class="control-group">
         <%= f.label :color, :class => 'control-label' %>
         <div class="controls">
-          <%= f.select :color, options_for_select(["Beige", "Black", "Blue", "Bronze", "Brown","Gold", "Green","Grey","Maroon", "Orange","Pink", "Purple", "Racing Colour","Red", "Silver", "Unknown", "White", "Yellow"]),:prompt => 'Select Colour',:required => true %>
+          <%= f.select :color, options_for_select(["Beige", "Black", "Blue", "Bronze", "Brown","Gold", "Green","Grey","Maroon", "Orange","Pink", "Purple", "Racing Colour","Red", "Silver", "Unknown", "White", "Yellow"], f.object.color),:prompt => 'Select Colour',:required => true%>
         </div>
       </div>
       <div class="control-group">
@@ -92,7 +92,7 @@
       <div class="control-group">
         <%= f.label :engine_capacity, :class => 'control-label' %>
         <div class="controls">
-          <%= f.text_field :engine_capacity, :class => 'text_field' %>
+          <%= f.number_field :engine_capacity, :class => 'text_field' %>
         </div>
       </div>
       <div class="control-group">
@@ -104,7 +104,7 @@
       <div class="control-group">
         <%= f.label :reg_expiry, :class => 'control-label' %>
         <div class="controls">
-          <%= f.text_field :reg_expiry, :class => 'text_field' %>
+          <%= f.text_field :reg_expiry, :type=> 'date',:class => 'date_field' %>
         </div>
       </div>
       <div class="control-group">
@@ -178,38 +178,17 @@
 
   $(document).ready(function () 
   {
+    
+    <%if params[:id].nil?%>
     $("select#bike_make").empty();
     $("select#bike_model").empty();
     $("select#bike_variant").empty();
-    <%if params[:id].nil?%>
       var option_make = $('<option></option>').attr("value", "").text("Select Make");
       $("select#bike_make").append(option_make);
       var option_model = $('<option></option>').attr("value", "").text("Select Model");
       $("select#bike_model").append(option_model);
       var option_variant = $('<option></option>').attr("value", "").text("Select Variant");
       $("select#bike_variant").append(option_variant);
-    <%else%>
-      make ="<%=@bike.make%>"
-      model="<%=@bike.model%>"
-      year= "<%=@bike.year%>"
-      $.ajax(
-      {
-        url: "<%=change_make_bikes_path%>",
-        data: {year:year },
-        success:"True",
-      });
-      $.ajax(
-      {
-        url: "<%=change_model_bikes_path%>",
-        data: {make:make },
-        success:"True",
-      });
-      $.ajax(
-      {
-        url: "<%=change_variant_bikes_path%>",
-        data: {model:model },
-        success:"True",
-      });
     <%end%>
   });
   

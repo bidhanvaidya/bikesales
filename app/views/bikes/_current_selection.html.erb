@@ -3,7 +3,7 @@
     <ul class="nav nav-list"> 
         <li><div class = "legen">Current Selection</div>  </li>
         <% if @type_selection.nil? and @body_selection.nil? and @make_selection.nil? and @model_selection.nil? and @color_selection.nil? and @location_selection.nil? and @price_from_selection.nil? and @price_to_selection.nil? %>
-            <li>No options selected. Please choose one or more options below.
+            <li>No options selected. Please choose one or more options.
             <%= link_to "New search", bikes_path%>
             </li>
         <%end%>    

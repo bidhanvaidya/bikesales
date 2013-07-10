@@ -2,6 +2,11 @@
 <div class="current_selection">
     <ul class="nav nav-list">    
         <li><div class = "legen">Current Selection</div></li>
+        <% if  @body_selection.nil? and @make_selection.nil? and @model_selection.nil? %>
+            <li>No options selected. Please choose one or more options.
+            <%= link_to "New search", bikes_path%>
+            </li>
+        <%end%>    
         <% if !@body_selection.nil?%>
            <li>
                 <a href = "<%=bike_specs_path(sort: params[:sort], :direction => params[:direction], body: nil, make: params[:make], model: params[:model], color: params[:color],type: params[:type] )%>"><%= @body_selection %>   <div class = "icon-remove"></div>

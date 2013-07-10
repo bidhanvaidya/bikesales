@@ -67,61 +67,82 @@
       </div>
       <table class= "table">
         <tr>
-          <th>Bike:<th> 
-          <td><%=@bike.model%></td>
+          <th>Body Type:<th> 
+          <td><%=@bike.body%></td>
         </tr>
         <tr>
           <th>Make:<th> 
           <td><%=@bike.make%></td>
         </tr>
         <tr>
-          <th>Type:<th> 
-          <td><%=@bike.type%></td>
-        </tr>
-        <tr>
-          <th>Price:<th> 
-          <td><%= number_to_currency(@bike.price,:unit => "Rs ",:precision => 0) %></td>
+          <th>Model:<th> 
+          <td><%=@bike.model%></td>
         </tr>
         <tr>
           <th>Variant:<th> 
           <td><%=@bike.variant%></td>
         </tr>
         <tr>
+          <th>Ad Type:<th> 
+          <td><%=@bike.type%></td>
+        </tr>
+        <tr>
+          <th>Price:<th> 
+          <td><%= number_to_currency(@bike.price,:unit => "Rs ",:precision => 0) %></td>
+        </tr>
+        
+        <tr>
           <th>Year:<th> 
           <td><%=@bike.year%></td>
         </tr>
+        <%if !@bike.color.blank?%>
         <tr>
           <th>Colour:<th> 
           <td><%=@bike.color%></td>
         </tr>
+        <%end%>
+        <%if !@bike.odometer.blank?%>
         <tr>
             <th>Odometer:<th> 
             <td><%=@bike.odometer%> Km</td>
-          </tr>
+        </tr>
+        <%end%>
+        <%if !@bike.engine_capacity.blank?%>
         <tr>
           <th>Engine Capacity:<th> 
           <td><%=@bike.engine_capacity%> cc</td>
         </tr>
+        <%end%>
+        <%if !@bike.rego_no.blank?%>
         <tr>
           <th>Registration Plate No:<th> 
           <td><%=@bike.rego_no%></td>
         </tr>
+        <%end%>
+        <%if !@bike.reg_expiry.blank?%>
         <tr>
           <th>Registration Expiry:<th> 
           <td><%=@bike.reg_expiry%></td>
         </tr>
+        <%end%>
+        <%if !@bike.vin_no.blank?%>
         <tr>
           <th>Engine Vin Number:<th> 
           <td><%=@bike.vin_no%></td>
         </tr>
+        <%end%>
+        <%if !@bike.comment.blank?%>
         <tr>
           <th>Comment:<th> 
           <td><%=@bike.comment%></td>
         </tr>
+        <%end%>
+        <%if !@bike.description.blank?%>
         <tr>
           <th>Description:<th> 
           <td><%=@bike.description%></td>
         </tr>
+        <%end%>
       </table>
     </div>
   </div>

@@ -540,9 +540,28 @@ module BikeSpecsHelper
 				f.close()
 
 	end
-	def check
-		BikeSpec.only(:model).each do |a|
-			puts a.year
+	def hero
+		BikeSpec.where(make: "Hero", :year.lt=> 2012).each do |a|
+			honda=["Honda"]
+			make= [a.make, honda].join(" ")
+			model=a.model
+			variant= a.variant
+			new_model= variant.split(" ")
+			final_model= new_model[0]
+			#puts a.variant
+			count=new_model.count-1
+			final_variant= new_model[1..count].join(" ")
+			if final_model=="Super"
+				final_model= "Splendor"
+				final_variant = ["Super", final_variant[8..-1].split(" ")].join(" ")
+			end
+
+			puts [make,final_model,final_variant].join(" ")
+			a.make= make
+			a.model= final_model
+			a.variant= final_variant
+			a.save
 		end
+		BikeSpec.where(make: "Hero Honda",variant:"Super Splendor").update_all(variant:"Super 125", model: "Splendor")
 	end
 end
