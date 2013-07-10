@@ -36,13 +36,13 @@ class BikesController < ApplicationController
     @bikes=@bikes.where(body: @body_selection) if !@body_selection.nil?
   
   
-    @types= @bikes.distinct(:type)
-    @models= @bikes.distinct(:model)
-    @bodies= @bikes.distinct(:body)
+    @types= @bikes.distinct(:type).sort
+    @models= @bikes.distinct(:model).sort
+    @bodies= @bikes.distinct(:body).sort
     
-    @makes= @bikes.distinct(:make)
-    @colors= @bikes.distinct(:color)
-    @location= @bikes.distinct(:location)
+    @makes= @bikes.distinct(:make).sort
+    @colors= @bikes.distinct(:color).sort
+    @location= @bikes.distinct(:location).sort
     if params[:sort] == "price" and params[:direction] == "asc" 
       @bikes = @bikes.asc(:price)
     elsif params[:sort] == "price" and params[:direction] == "desc"

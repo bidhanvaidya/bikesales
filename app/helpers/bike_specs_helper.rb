@@ -1,8 +1,6 @@
 module BikeSpecsHelper
 
 	def crawl(year_from, year_end)
-		s3=Fog::Storage.new( :provider=> 'AWS',:aws_access_key_id=> 'AKIAJODLI2XMOUCX2XYQ', :aws_secret_access_key=>'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')
-		dir=s3.directories.new(:key=>'bikesbechnu_public')
 
 
 			f=File.new('error_log', 'w')
@@ -540,7 +538,11 @@ module BikeSpecsHelper
 			end	
 			end
 				f.close()
-				dir.files.create(:key=>'error_log',
-							     :body   => File.open("error_log",'r'))
+
+	end
+	def check
+		BikeSpec.only(:model).each do |a|
+			puts a.year
+		end
 	end
 end

@@ -8,13 +8,13 @@
         	  <div class= "span6">
               <div  class="input-prepend">
                 <span class="add-on">Make: </span>
-                <%= select_tag "make", options_for_select(@makes), :prompt => "Any Make", :class=>"input-drop-down" %>
+                <%= select_tag "make", options_for_select(@makes.sort), :prompt => "Any Make", :class=>"input-drop-down" %>
               </div>
             </div>
             <div class= "span6">
               <div  class="input-prepend">
                 <span class="add-on">Model: </span>     
-                <%= select_tag "model", options_for_select(@models), :prompt => "Any Model", :class=>"input-drop-down" %>
+                <%= select_tag "model", options_for_select(@models.sort), :prompt => "Any Model", :class=>"input-drop-down" %>
               </div>
             </div>
           </div>

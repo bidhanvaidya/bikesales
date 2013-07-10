@@ -23,26 +23,39 @@
               <div class = "result_specs">
                 <ul>
                   <li>
-                    Body: <%=bike.body%>  
-                  </li>
-                  <li>
-                    Top Speed: <%=bike.top_speed%> 
-                  </li>
-                  <li>
-                    Engine Displacement: <%=bike.displacement%> 
-                  </li>
-                  <li>
-                    Max Power: <%=bike.max_power%> 
-                  </li>
-                  <li>
-                    Max Torque: <%=bike.max_torque%>
-                  </li>   
-                  <li>
-                    Mileage (City): <%=bike.fuel_consumption_city%> km/L
-                  </li>
-                  <li>
-                    Mileage (Highway): <%=bike.fuel_consumption_highway%> km/L
-                  </li>                                
+                     Body: <%=bike.body%> 
+                    </li>
+                  <%if !bike.top_speed.blank?%>                  
+                    <li>
+                      Top Speed: <%=bike.top_speed%> 
+                    </li>
+                  <%end%>
+                   <%if !bike.displacement.blank?%>
+                    <li>
+                      Engine Displacement: <%=bike.displacement%> 
+                    </li>
+                  <%end%>
+                  <%if !bike.max_power.blank?%>
+                    <li>
+                      Max Power: <%=bike.max_power%> 
+                    </li>
+                  <%end%>
+                  <%if !bike.max_torque.blank?%>
+                    <li>
+                      Max Torque: <%=bike.max_torque%>
+                    </li>  
+                  <%end%>
+                  <%if !bike.fuel_consumption_city.blank?%>
+                    <li>
+                      Mileage (City): <%=bike.fuel_consumption_city%> km/L
+                    </li>
+
+                  <%end%>
+                  <%if !bike.fuel_consumption_highway.blank?%>
+                    <li>
+                      Mileage (Highway): <%=bike.fuel_consumption_highway%> km/L
+                    </li>                                
+                  <%end%>                                
                 </ul> 
                 <div class = "view_bike_link">
                   <div  class = 'btn btn-inverse'> View bike 

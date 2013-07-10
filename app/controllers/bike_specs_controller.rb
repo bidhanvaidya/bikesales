@@ -7,9 +7,16 @@ require 'open-uri'
   # GET /bike_specs
   # GET /bike_specs.json
   def index
-    last_year= Time.now.year-2
-    @bikes = BikeSpec.latest.all
 
+    last_year= Time.now.year-2
+    if current_user
+        if current_user.email=="admin@bikes.bechnu.com"
+            @bikes=BikeSpec.all
+        end
+    else    
+        @bikes = BikeSpec.latest.with_price.only(:model, :price, :make, :year, :variant, :displacement, 
+            :body, :max_power, :max_torque, :fuel_consumption_city, :fuel_consumption_highway, :top_speed).all
+    end
     @make_selection = params[:make]
     @model_selection = params[:model]
     @body_selection =  params[:body]
@@ -32,10 +39,10 @@ require 'open-uri'
   else
     @bikes = @bikes.desc(:year, :updated)
   end
-  @models= @bikes.distinct(:model)
-  @bodies= @bikes.distinct(:body)
+  @models= @bikes.distinct(:model).sort
+  @bodies= @bikes.distinct(:body).sort
   
-  @makes= @bikes.distinct(:make)
+  @makes= @bikes.distinct(:make).sort
   @bikees=@bikes.paginate(:page => params[:page], :per_page => 10)
   set_meta_tags :title => 'Search for New Bikes, get prices, Specs,  and compare',
               :description => "New Bike for sale, to the nepali public, bikes bechnu, specs, bikes.bechnu.com"+
@@ -521,7 +528,7 @@ def delete_picture
   end
 
 def showroom
-  @bikes = BikeSpec.latest.desc(:year)
+  @bikes = BikeSpec.latest.with_price.desc(:year)
   @latest_bike = @bikes.desc(:year, :updated).limit(3)
   @models= @bikes.distinct(:model)
   @makes= @bikes.distinct(:make)
