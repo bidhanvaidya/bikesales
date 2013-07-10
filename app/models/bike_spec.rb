@@ -13,7 +13,7 @@ class BikeSpec
 :carrying_capacity, :oil_capacity, :reserve
   embeds_many :pictures, :cascade_callbacks => true
   accepts_nested_attributes_for :pictures, :allow_destroy => true
-  scope :latest, where(:year.gt => (Time.now.year-2))
+  scope :latest, where(:year.gt => (Time.now.year-1))
   scope :sort, desc(:year)
   has_many :bikes
   belongs_to :user
