@@ -58,6 +58,10 @@
                         <% (2..@bikees.total_pages).each do |i|%> <!-- Creating empty div with respect to page number-->
                             <div class = "<%= i%>"></div>
                         <%end%>
+                        
+                        <div class = "loading">
+                            <%= image_tag 'loader.gif'%> Loading...
+                        </div>
                     </div><!--div bike sort-->
                 </div><!--div results -->
             </div>
@@ -85,12 +89,16 @@
                 var link='/bike_specs?'+'&sort='+sort+'&direction='+direction+'&amp;page='+ div.toString()+ ' div.scroll' 
             <%end%>
             console.log(link)
+
             $("div." +div.toString()).load(link, function() {
                 setTimeout(function()
                 { 
                     check = false; 
                 }, 2000);
             });
+             if (div=="<%=@bikees.total_pages%>"){
+                $('.loading').hide();
+             }
         }
     });
    

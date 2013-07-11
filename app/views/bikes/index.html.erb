@@ -103,6 +103,9 @@
             <% (2..@bikees.total_pages).each do |i|%> <!-- Creating empty div with respect to page number-->
               <div class = "<%= i%>"></div>
             <%end%>
+            <div class = "loading">
+                <%= image_tag 'loader.gif'%> Loading...
+            </div>
           </div><!--div bike sort-->
         </div><!--div results -->
       </div>
@@ -134,6 +137,9 @@
                     check = false; 
                 }, 3000);
       });
+      if (div=="<%=@bikees.total_pages%>"){
+        $('.loading').hide();
+      }
     }
   });
   
