@@ -14,7 +14,7 @@ require 'open-uri'
             @bikes=BikeSpec.all
         end
     else    
-        @bikes = BikeSpec.latest.with_price.only(:model, :price, :make, :year, :variant, :displacement, 
+        @bikes = BikeSpec.only(:model, :price, :make, :year, :variant, :displacement, 
             :body, :max_power, :max_torque, :fuel_consumption_city,:pictures, :fuel_consumption_highway, :top_speed).all
     end
     @make_selection = params[:make]

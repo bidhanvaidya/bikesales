@@ -1,6 +1,5 @@
 class Bike
   include Mongoid::Document
-  include Mongoid::Search
 
       attr_accessible :year, :make, :model, :variant, :price, :odometer, :body, :type, :color, :engine_capacity, 
       :rego_no, :reg_expiry, :vin_no, :address, :contact_name, :location, :updated, :expired,:clicked,:phone,
@@ -35,7 +34,6 @@ class Bike
   field :validated, type: Boolean, default: true
   belongs_to :bike_spec
   belongs_to :user
-  search_in :make, :model
 
 default_scope where(expired: false, validated: true)
 scope :unvalidated, where(expired: false)

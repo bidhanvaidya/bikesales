@@ -564,4 +564,11 @@ module BikeSpecsHelper
 		end
 		BikeSpec.where(make: "Hero Honda",variant:"Super Splendor").update_all(variant:"Super 125", model: "Splendor")
 	end
+	def count
+		@models= BikeSpec.all.distinct(:model)
+		@models.each do |model|
+		puts BikeSpec.where(model: model).count
+        end 
+
+	end
 end

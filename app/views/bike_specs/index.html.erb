@@ -11,7 +11,7 @@
                         <ul>
                             <% @bodies.each do |body| %>
                             <li>
-                                <%= link_to body, bike_specs_path(sort: params[:sort], :direction => params[:direction], body: body, make: params[:make],model: params[:model] )%> (<%=@bikes.where(body: body).count%>)
+                                <%= link_to body, bike_specs_path(sort: params[:sort], :direction => params[:direction], body: body, make: params[:make],model: params[:model] )%> 
                             </li>  
                             <% end %>
                         </ul>
@@ -20,7 +20,7 @@
                         <ul>
                             <% @makes.each do |make| %>
                                 <li>
-                                    <%= link_to make, bike_specs_path(sort: params[:sort], :direction => params[:direction], body: params[:body], model: params[:model] ,make: make)%> (<%=@bikes.where(make: make).count%>)
+                                    <%= link_to make, bike_specs_path(sort: params[:sort], :direction => params[:direction], body: params[:body], model: params[:model] ,make: make)%> 
                                 </li>
                             <% end %>
                         </ul>
@@ -29,7 +29,7 @@
                         <ul>
                             <% @models.each do |model| %>
                                 <li>
-                                    <%= link_to model, bike_specs_path(sort: params[:sort], :direction => params[:direction], body: params[:body], make: params[:make],model: model)%> (<%=@bikes.where(model: model).count%>)
+                                    <%= link_to model, bike_specs_path(sort: params[:sort], :direction => params[:direction], body: params[:body], make: params[:make],model: model)%> 
                                 </li>  
                             <% end %>
                         </ul>
@@ -89,7 +89,7 @@
                 setTimeout(function()
                 { 
                     check = false; 
-                }, 3000);
+                }, 2000);
             });
         }
     });
