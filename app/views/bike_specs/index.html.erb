@@ -76,12 +76,12 @@
     var check= false;
     $(window).scroll(function() 
     { 
-        
         if(($(window).scrollTop()+ $(window).height()> ($(document).height()*.85) && check==false)||
             ($(window).scrollTop()+ $(window).height()== $(document).height()))
         {
             check = true;
             div=div+1
+
             <%if(params.has_key?(:body) || params.has_key?(:make) || params.has_key?(:model) || params.has_key?(:sort) || params.has_key?(:direction))%>
                 var link= "<%= bike_specs_path(body: params[:body], make: params[:make], model: params[:model] )%>"+'&sort='+sort+'&direction='+direction+'&amp;page='+ div.toString()+ ' div.scroll'
                 

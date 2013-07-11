@@ -571,4 +571,83 @@ module BikeSpecsHelper
         end 
 
 	end
+	def change_body
+		bikes= BikeSpec.where(:displacement.exists => true)
+		allround= bikes.where(body: "Allround")
+		allround.each do |all|
+			displacement= all.displacement.split(" ")
+			displacement= displacement[0].to_i
+			if displacement<=150
+				puts [all.make, all.model, all.variant, "Standard"].join(" ")
+				all.body= "Standard"
+			elsif displacement>150 and displacement<=400
+				puts [all.make, all.model, all.variant, "Sports"].join(" ")
+				all.body= "Sports"
+			else
+				puts [all.make, all.model, all.variant, "Super Sport"].join(" ")
+				all.body= "Super Sport"
+			end
+			all.save
+
+		end
+		naked= bikes.where(body: "Naked bike")
+		naked.each do |all|
+			displacement= all.displacement.split(" ")
+			displacement= displacement[0].to_i
+			if displacement<=150
+				puts [all.make, all.model, all.variant, "Standard"].join(" ")
+				all.body= "Standard"
+			elsif displacement>150 and displacement<=400
+				puts ["Naked bike",all.make, all.model, all.variant, "Sports"].join(" ")
+				all.body= "Sports"
+			else
+				puts ["Naked bike",all.make, all.model, all.variant, "Super Sport"].join(" ")
+				all.body= "Super Sport"
+			end
+			all.save
+
+		end
+		sport= bikes.where(body: "Sport")
+		sport.each do |all|
+			displacement= all.displacement.split(" ")
+			displacement= displacement[0].to_i
+			if displacement<=400
+				puts ["Sport",all.make, all.body, all.variant, "Sports"].join(" ")
+				all.body= "Sports"
+			else
+				puts ["Sport",all.make, all.body, all.variant, "Super Sport"].join(" ")
+				all.body= "Super Sport"
+			end
+			all.save
+
+		end
+		sport_touring= bikes.where(body: "Sport touring")
+		sport_touring.each do |all|
+			displacement= all.displacement.split(" ")
+			displacement= displacement[0].to_i
+			if displacement<=400
+				puts ["Sport touring",all.make, all.model, all.variant, "Sports"].join(" ")
+				all.body= "Sports"
+			else
+				puts ["Sport touring",all.make, all.model, all.variant, "Super Sport"].join(" ")
+				all.body= "Super Sport"
+			end
+			all.save
+
+		end
+
+
+		BikeSpec.where(body: "Cross / motocross").update_all(body: "Trail")
+		BikeSpec.where(body: "Enduro / offroad").update_all(body: "Trail")
+		BikeSpec.where(body: "Super motard").update_all(body: "Trail")
+		BikeSpec.where(body: "ATV").update_all(body: "Trail")
+		BikeSpec.where(body: "Trial").update_all(body: "Trail")
+		BikeSpec.where(body: "Classic").update_all(body: "Standard")
+		BikeSpec.where(body: "Custom / cruiser").update_all(body: "Cruiser")
+		BikeSpec.where(body: "Touring").update_all(body: "Cruiser")
+		BikeSpec.where(:displacement.exists => false, body: "Sport").update_all(body: "Sports")
+		BikeSpec.where(:displacement.exists => false, body: "Allround").update_all(body: "Standard")
+		BikeSpec.where(:displacement.exists => false, body: "Sport touring").update_all(body: "Super Sport")
+
+	end
 end
