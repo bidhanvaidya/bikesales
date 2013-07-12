@@ -14,7 +14,7 @@ SitemapGenerator::Sitemap.create do
     add bike_path(doc), :lastmod => doc.updated
   end
    add bikes_path, :changefreq => 'weekly', :priority => 0.9
-    BikeSpec.latest.each do |doc|
+    BikeSpec.latest.with_price.each do |doc|
     add bike_spec_path(doc), :lastmod => doc.updated
   end
   add contacts_path, :priority => 0.5

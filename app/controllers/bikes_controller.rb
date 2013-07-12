@@ -450,8 +450,10 @@ class BikesController < ApplicationController
   end
   def marketing_ad
     @bike = Bike.unscoped.unvalidated.find(params[:id])
-     if current_user==@bike.user || current_user == User.first || @bike.validated?
+     if current_user==@bike.user || current_user == User.first || @bike.validated==false
       return true
+    else
+      redirect_to @bike
     end
   end
   
