@@ -650,4 +650,46 @@ module BikeSpecsHelper
 		BikeSpec.where(:displacement.exists => false, body: "Sport touring").update_all(body: "Super Sport")
 
 	end
+	def copy(year, make, model, variant, from, to)
+		bike= BikeSpec.where(year: year, make: make, model: model, variant: variant).first
+		for y in from..to
+			if BikeSpec.where(year: y, make: make, model: model, variant: variant).empty?
+				
+				puts "new entry"
+				new_bike = BikeSpec.new(bike.attributes)
+
+				new_bike.year= y
+				new_bike.save
+				puts new_bike
+				puts [y, make, model, variant].join(" ")
+			else
+			puts "exists"
+			puts [y, make, model, variant].join(" ")
+			end
+		end
+
+	
+	end
+		def copy_no_v(year, make, model, from, to)
+		bike= BikeSpec.where(year: year, make: make, model: model).first
+		for y in from..to
+			if BikeSpec.where(year: y, make: make, model: model).empty?
+				
+				puts "new entry"
+				new_bike = BikeSpec.new(bike.attributes)
+
+				new_bike.year= y
+				new_bike.save
+				puts new_bike
+				puts [y, make, model].join(" ")
+			else
+			puts "exists"
+			puts [y, make, model].join(" ")
+			end
+		end
+
+	
+	end
+
+
 end
