@@ -18,5 +18,4 @@
 
 	    
 
-	//Google Analytics 
 	  

@@ -37,7 +37,7 @@
                 <div  class = 'btn btn-inverse'> View bike 
                 </div>
               </div>
-              <%if bike.comment.nil?%>
+              <%if !bike.comment.blank?%>
                 <div class = "comment">
                   &ldquo; <%= bike.comment%> &rdquo;
                 </div>

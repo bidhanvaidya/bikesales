@@ -68,8 +68,11 @@
         </div>
     </div>
 </div>
-
+<%= javascript_include_tag "jquery.min" %>
 <script type="text/javascript">
+    <%if @bikes.count <=10%>
+      $('.loading').hide();
+      <%end%>
     var div =1
     var sort= 'latest'
     var direction= null

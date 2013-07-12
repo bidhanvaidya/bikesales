@@ -8,13 +8,16 @@ require 'open-uri'
   # GET /bike_specs.json
   def index
 
-    last_year= Time.now.year-2
+    last_year= Time.now.year
     if current_user
         if current_user.email=="admin@bikes.bechnu.com"
             @bikes=BikeSpec.all
+        else
+             @bikes = BikeSpec.only(:model,:updated, :price, :make, :year, :variant, :displacement, 
+            :body, :max_power, :max_torque, :fuel_consumption_city,:pictures, :fuel_consumption_highway, :top_speed).all
         end
     else    
-        @bikes = BikeSpec.only(:model, :price, :make, :year, :variant, :displacement, 
+        @bikes = BikeSpec.only(:model,:updated, :price, :make, :year, :variant, :displacement, 
             :body, :max_power, :max_torque, :fuel_consumption_city,:pictures, :fuel_consumption_highway, :top_speed).all
     end
     @make_selection = params[:make]
