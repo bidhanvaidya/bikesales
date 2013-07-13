@@ -22,7 +22,7 @@
       <div class="control-group">
         <label class="control-label" for="bike_make">Make *</label>
         <div class="controls">
-           <%= f.select :make, BikeSpec.where(year:@bike.year).distinct(:make), as: :select,:prompt => 'Select Make',:required => true%>
+           <%= f.select :make, BikeSpec.all.distinct(:make).sort, as: :select,:prompt => 'Select Make',:required => true%>
         </div>
       </div>
       <div class="control-group">
@@ -180,11 +180,10 @@
   {
     
     <%if params[:id].nil?%>
-    $("select#bike_make").empty();
+    
     $("select#bike_model").empty();
     $("select#bike_variant").empty();
-      var option_make = $('<option></option>').attr("value", "").text("Select Make");
-      $("select#bike_make").append(option_make);
+      
       var option_model = $('<option></option>').attr("value", "").text("Select Model");
       $("select#bike_model").append(option_model);
       var option_variant = $('<option></option>').attr("value", "").text("Select Variant");
@@ -192,29 +191,7 @@
     <%end%>
   });
   
-  $('select#bike_year').change(function() 
-  {
-    $("select#bike_make").empty();
-    $("select#bike_year option:selected").each(function () 
-    {
-      str = $(this).text();
-    });
-    $("select#bike_variant").empty();
-    $("select#bike_model").empty();
-    $("select#bike_make").empty();
-    var option_make = $('<option></option>').attr("value", "").text("Select Make");
-    $("select#bike_make").append(option_make);
-    var option_model = $('<option></option>').attr("value", "").text("Select Model");
-    $("select#bike_model").append(option_model);
-    var option_variant = $('<option></option>').attr("value", "").text("Select Variant");
-    $("select#bike_variant").append(option_variant);
-    $.ajax(
-    {
-      url: "<%=change_make_bikes_path%>",
-      data: {year:str },
-      success:"True",
-    });
-  });
+ 
   
   $('select#bike_make').change(function() 
   {
@@ -235,7 +212,7 @@
     $.ajax(
     {
       url: "<%=change_model_bikes_path%>",
-      data: {make:str,year:year },
+      data: {make:str },
       success:"True",
     });
   });
@@ -247,16 +224,12 @@
     {
       str = $(this).text();
     });
-    $("select#bike_year option:selected").each(function () 
-    {
-      year = $(this).text();
-    });
     var option_variant = $('<option></option>').attr("value", "").text("Select Variant");
     $("select#bike_variant").append(option_variant);
     $.ajax(
     {
       url: "<%=change_variant_bikes_path%>",
-      data: {model:str,year:year },
+      data: {model:str },
       success:"True",
     });
   });

@@ -33,4 +33,8 @@ class UserMailer < ActionMailer::Base
     mail(:to => "contactus@bikes.bechnu.com", :subject => enquiry) 
     
   end
+  def send_to_spec(bike)
+  @bike= bike
+  mail(:to => "admin@bikes.bechnu.com", :subject => "Add Bike Spec") 
+  end
 end
