@@ -174,15 +174,6 @@ class BikesController < ApplicationController
   def create
     
     @bike = Bike.new(params[:bike])
-    if !BikeSpec.where(year: params[:bike][:year], make: params[:bike][:make], model: params[:bike][:model],variant: params[:bike][:variant]).empty?
-      bike_spec= BikeSpec.where(year: params[:bike][:year], make: params[:bike][:make], model: params[:bike][:model],variant: params[:bike][:variant]).first
-    else
-     bike_spec= BikeSpec.where(make: params[:bike][:make], model: params[:bike][:model],variant: params[:bike][:variant]).first
-     
-    end
-    @bike.bike_spec_id = bike_spec.id
-    @bike.body = bike_spec.body
-    @bike.user_id = current_user.id
     
     if current_user.email == "marketing@bikes.bechnu.com"
       @bike.validated = false 
@@ -190,7 +181,19 @@ class BikesController < ApplicationController
     @bike.updated = Time.now
 
     respond_to do |format|
+
       if @bike.save
+        @bike = Bike.find(@bike)
+        if BikeSpec.where(year: params[:bike][:year], make: params[:bike][:make], model: params[:bike][:model],variant: params[:bike][:variant]).empty?
+       bike_spec= BikeSpec.where(make: params[:bike][:make], model: params[:bike][:model],variant: params[:bike][:variant]).first
+    else
+     bike_spec= BikeSpec.where(year: params[:bike][:year], make: params[:bike][:make], model: params[:bike][:model],variant: params[:bike][:variant]).first
+    end
+        
+        @bike.bike_spec_id = bike_spec.id
+        @bike.body = bike_spec.body
+        @bike.user_id = current_user.id
+        @bike.save
         UserMailer.send_to_spec(@bike).deliver  
           if current_user.provider == 'facebook'
 

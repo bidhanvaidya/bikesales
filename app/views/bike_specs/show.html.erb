@@ -2,7 +2,7 @@
 <div class = "row" id= "spec_show_page">
   <div class= "row" id= "spec_show_page_header">
     <div class = "span12" >
-      <div class = "legen"><%= @bike_spec.year %>  <%= @bike_spec.make %>  <%= @bike_spec.model %>  <%= @bike_spec.variant %>
+      <div class = "legen"><%= @bike_spec.year %>  <%= @bike_spec.make %>  <%= @bike_spec.model %>  <%= @bike_spec.variant if @bike_spec.variant !="N/A"%>
       </div>
     </div>
   </div>

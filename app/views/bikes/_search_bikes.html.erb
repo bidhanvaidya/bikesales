@@ -15,7 +15,7 @@
             <div class= "result_table">
               <div class = "result_header">
                 <div class= "listing_title">
-                  <%= bike.year %>  <%= bike.make %>  <%= bike.model %>  <%= bike.variant if !bike.variant.nil? %>
+                  <%= bike.year %>  <%= bike.make %>  <%= bike.model %>  <%= bike.variant if bike.variant!= "N/A" %>
                 </div>
                 <div class= "legen"><%= number_to_currency(bike.price,:unit => "Rs ",:precision => 0) %>
                 </div>

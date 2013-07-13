@@ -45,7 +45,7 @@
     <div class="show-page-header">
       <%= link_to "Previous", bike_path(@previous_bike, sort: params[:sort], :direction => params[:direction], body: params[:body], make: params[:make], model: params[:model], color: params[:color],type: params[:type]),  id: "previous",class:"btn btn-primary" if @previous_bike!= @bike%>
       <%= link_to "Next", bike_path(@next_bike, sort: params[:sort], :direction => params[:direction], body: params[:body], make: params[:make], model: params[:model], color:params[:color],type: params[:type]),class:"btn btn-primary" if !@next_bike.nil?%>
-      <%= @bike.year %>  <%= @bike.make %>  <%= @bike.model %>  <%= @bike.variant if !@bike.variant.nil? %>
+      <%= @bike.year %>  <%= @bike.make %>  <%= @bike.model %>  <%= @bike.variant if @bike.variant !="N/A" %>
     </div>
     <div class="fb-like" data-send="true" data-layout="button_count" data-width="45" data-show-faces="false">
     </div>

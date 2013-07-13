@@ -16,25 +16,25 @@
       <div class="control-group">
         <label class="control-label" for="bike_year">Year *</label>
         <div class="controls">
-          <%= f.select :year, BikeSpec.all.distinct(:year).sort.reverse, as: :select,:prompt => 'Select Year',:required => true  %>
+          <%= f.select :year, BikeSpec.all.distinct(:year).sort.reverse, {:include_blank => 'Select Year'},as: :select,:required => true  %>
         </div>
       </div>
       <div class="control-group">
         <label class="control-label" for="bike_make">Make *</label>
         <div class="controls">
-           <%= f.select :make, BikeSpec.all.distinct(:make).sort, as: :select,:prompt => 'Select Make',:required => true%>
+           <%= f.select :make, BikeSpec.all.distinct(:make).sort,{:include_blank => 'Select Make'}, as: :select,:required => true%>
         </div>
       </div>
       <div class="control-group">
         <label class="control-label" for="bike_model">Model *</label>
         <div class="controls">
-          <%= f.select :model, BikeSpec.where(make: @bike.make, year:@bike.year).distinct(:model), as: :select,:prompt => 'Select model' %>
+          <%= f.select :model, BikeSpec.where(make: @bike.make).distinct(:model),{:include_blank => 'Select Model'}, as: :select,:required => true %>
         </div>
       </div>
       <div class="control-group">
-        <%= f.label :variant, :class => 'control-label' %>
+        <label class="control-label" for="bike_variant">Variant *</label>
         <div class="controls">
-         <%= f.select :variant,BikeSpec.where(make: @bike.make, year:@bike.year, model: @bike.model).distinct(:variant), as: :select,:prompt => 'Select variant'%>
+         <%= f.select :variant,BikeSpec.where(make: @bike.make, model: @bike.model, variant:@bike.variant).distinct(:variant),{:include_blank => 'Select variant'}, as: :select,:required => true %>
         </div>
       </div>
       <div class="control-group">
@@ -52,7 +52,7 @@
       <div class="control-group">
         <label class="control-label" for="bike_city">City *</label>
         <div class="controls">
-         <%= f.select :location, options_for_select(["Bhaktapur", "Kathmandu", "Latitpur"], f.object.location),:prompt => 'Select City',:class => "required"%>
+         <%= f.select :location, options_for_select(["Bhaktapur", "Kathmandu", "Latitpur"], f.object.location),{:include_blank => 'Select City'},:required => true%>
         </div>
       </div>
       <div class="control-group">
@@ -80,7 +80,7 @@
       <div class="control-group">
         <%= f.label :color, :class => 'control-label' %>
         <div class="controls">
-          <%= f.select :color, options_for_select(["Beige", "Black", "Blue", "Bronze", "Brown","Gold", "Green","Grey","Maroon", "Orange","Pink", "Purple", "Racing Colour","Red", "Silver", "Unknown", "White", "Yellow"], f.object.color),:prompt => 'Select Colour',:required => true%>
+          <%= f.select :color, options_for_select(["Beige", "Black", "Blue", "Bronze", "Brown","Gold", "Green","Grey","Maroon", "Orange","Pink", "Purple", "Racing Colour","Red", "Silver", "Unknown", "White", "Yellow"], f.object.color),{:prompt => 'Select Colour'}%>
         </div>
       </div>
       <div class="control-group">
@@ -175,24 +175,6 @@
 <% end %>
 <%= javascript_include_tag "jquery.min" %>
 <script type="text/javascript">
-
-  $(document).ready(function () 
-  {
-    
-    <%if params[:id].nil?%>
-    
-    $("select#bike_model").empty();
-    $("select#bike_variant").empty();
-      
-      var option_model = $('<option></option>').attr("value", "").text("Select Model");
-      $("select#bike_model").append(option_model);
-      var option_variant = $('<option></option>').attr("value", "").text("Select Variant");
-      $("select#bike_variant").append(option_variant);
-    <%end%>
-  });
-  
- 
-  
   $('select#bike_make').change(function() 
   {
     $("select#bike_model").empty();
@@ -200,10 +182,7 @@
     {
       str = $(this).text();
     });
-    $("select#bike_year option:selected").each(function () 
-    {
-      year = $(this).text();
-    });
+    
     $("select#bike_variant").empty();
     var option_model = $('<option></option>').attr("value", "").text("Select Model");
     $("select#bike_model").append(option_model);

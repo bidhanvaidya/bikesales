@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "admin@bikes.bechnu.com"
+  default from: "no-reply@bikes.bechnu.com"
   def test(user)  
     mail(:to => user.email, :subject => "Registered")  
   end
