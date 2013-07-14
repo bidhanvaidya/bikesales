@@ -290,31 +290,41 @@ div.input-prepend
 //#################################color###########################################################
 .browse_price ul
 {
-	width: 40%;
+	width: 43%;
 	display: inline-table;
 	li
 	{
 		min-height: 36px;
-		max-width: 161px;
 	}
 }
-
 .browse_colour a
 {
-	width: 11%;
+	width: 20%;
 	display: inline-block;
 	vertical-align: middle;
 	margin-bottom: 5px;	
 }
-@media (max-width: 400px)
+@media (max-width: 767px)
 {
-	.browse_price ul li
+	.browse_colour a
 	{
-		font-size: 11px;
+		width: 11%;
 	}
-	.browse_colour
+}	
+@media (max-width: 480px)
+{
+	.browse_price ul 
 	{
-		font-size: 10px;
+		width: 39%;
+		li
+		{
+			font-size: 11px;
+		}
+	}
+	.browse_colour a
+	{
+		width: 20%;
+		font-size: 11px;
 	}
 }
 
@@ -333,6 +343,10 @@ div.input-prepend
 	margin-right: 5px;
 	border: solid 1px silver;
 }
+.color_box_beige:hover
+{
+	border-color: #888888
+}
 .color_box_black 
 {
 	background: black;
@@ -347,6 +361,10 @@ div.input-prepend
 	border-radius: 5px;
 	margin-right: 5px;
 	border: solid 1px silver;
+}
+.color_box_black:hover
+{
+	border-color: #888888
 }
 .color_box_blue 
 {
@@ -363,6 +381,10 @@ div.input-prepend
 	margin-right: 5px;
 	border: solid 1px silver;
 }
+.color_box_blue:hover
+{
+	border-color: #888888
+}
 .color_box_bronze 
 {
 	background: #cd7f32;
@@ -377,6 +399,10 @@ div.input-prepend
 	border-radius: 5px;
 	margin-right: 5px;
 	border: solid 1px silver;
+}
+.color_box_bronze:hover
+{
+	border-color: #888888
 }
 .color_box_brown 
 {
@@ -393,6 +419,10 @@ div.input-prepend
 	margin-right: 5px;
 	border: solid 1px silver;
 }
+.color_box_brown:hover
+{
+	border-color: #888888
+}
 .color_box_gold 
 {
 	background: #EEC900;
@@ -407,6 +437,10 @@ div.input-prepend
 	border-radius: 5px;
 	margin-right: 5px;
 	border: solid 1px silver;
+}
+.color_box_gold:hover
+{
+	border-color: #888888
 }
 .color_box_green 
 {
@@ -423,6 +457,10 @@ div.input-prepend
 	margin-right: 5px;
 	border: solid 1px silver;
 }
+.color_box_green:hover
+{
+	border-color: #888888
+}
 .color_box_grey 
 {
 	background: grey;
@@ -437,6 +475,10 @@ div.input-prepend
 	border-radius: 5px;
 	margin-right: 5px;
 	border: solid 1px silver;
+}
+.color_box_grey:hover
+{
+	border-color: #888888
 }
 .color_box_maroon 
 {
@@ -453,6 +495,10 @@ div.input-prepend
 	margin-right: 5px;
 	border: solid 1px silver;
 }
+.color_box_maroon:hover
+{
+	border-color: #888888
+}
 .color_box_orange 
 {
 	background: #FF6600;
@@ -467,6 +513,10 @@ div.input-prepend
 	border-radius: 5px;
 	margin-right: 5px;
 	border: solid 1px silver;
+}
+.color_box_orange:hover
+{
+	border-color: #888888
 }
 .color_box_pink 
 {
@@ -483,6 +533,10 @@ div.input-prepend
 	margin-right: 5px;
 	border: solid 1px silver;
 }
+.color_box_pink:hover
+{
+	border-color: #888888
+}
 .color_box_purple 
 {
 	background: purple;
@@ -497,6 +551,10 @@ div.input-prepend
 	border-radius: 5px;
 	margin-right: 5px;
 	border: solid 1px silver;
+}
+.color_box_purple:hover
+{
+	border-color: #888888
 }
 .color_box_red 
 {
@@ -513,6 +571,10 @@ div.input-prepend
 	margin-right: 5px;
 	border: solid 1px silver;
 }
+.color_box_red:hover
+{
+	border-color: #888888
+}
 .color_box_silver 
 {
 	background: silver;
@@ -527,6 +589,10 @@ div.input-prepend
 	border-radius: 5px;
 	margin-right: 5px;
 	border: solid 1px silver;
+}
+.color_box_silver:hover
+{
+	border-color: #888888
 }
 .color_box_white 
 {
@@ -543,6 +609,10 @@ div.input-prepend
 	margin-right: 5px;
 	border: solid 1px silver;
 }
+.color_box_white:hover
+{
+	border-color: #888888
+}
 .color_box_yellow 
 {
 	background: yellow;
@@ -558,77 +628,12 @@ div.input-prepend
 	margin-right: 5px;
 	border: solid 1px silver;
 }
-
-@media (max-width: 600px)
+.color_box_yellow:hover
 {
-	.color_box_beige 
-	{
-		width: 20px;
-	}
-	.color_box_black 
-	{
-		width: 20px;
-	}
-	.color_box_blue 
-	{
-		width: 20px;
-	}
-	.color_box_bronze 
-	{
-		width: 20px;
-	}
-	.color_box_brown 
-	{
-		width: 20px;
-	}
-	.color_box_gold 
-	{
-		width: 20px;
-	}
-	.color_box_green 
-	{
-		width: 20px;
-	}
-	.color_box_grey 
-	{
-		width: 20px;
-	}
-	.color_box_maroon 
-	{
-		width: 20px;
-	}
-	.color_box_orange 
-	{
-		width: 20px;
-	}
-	.color_box_pink 
-	{
-		width: 20px;
-	}
-	.color_box_purple 
-	{
-		width: 20px;
-	}
-	.color_box_red 
-	{
-		width: 20px;
-	}
-	.color_box_silver 
-	{
-		width: 20px;
-	}
-	.color_box_white 
-	{
-		width: 20px;
-	}
-	.color_box_yellow 
-	{
-		width: 20px;
-	}
+	border-color: #888888
 }
-
-
 //**************************END OF COLOR***********************************************************
+
 .results_main_page 
 {
 	padding: 7.5px;
@@ -724,12 +729,12 @@ div.input-prepend
 	text-align: center;
 	a
 	{
-		width: 15%;
+		width: 15.8%;
 		display: inline-table;	
 	}
 	
 }
-@media (max-width: 480px)
+@media (max-width: 577px)
 {
 	.browse_body_type a
 	{
@@ -740,12 +745,16 @@ div.input-prepend
 		}
 	}
 }
-.span4.showroom_browse .browse_body_type
+.span4.showroom_browse .browse_body_type a
 {
-	a
+	width: 48%;
+}
+@media (min-width: 350px) and (max-width: 520px)
+{
+	.span4.showroom_browse .browse_body_type a
 	{
-		width: 48%;
-	}
+		width: 36%;
+	}	
 }
 .span4.showroom_browse .browse_maker
 {
@@ -754,10 +763,7 @@ div.input-prepend
 	{
 		display: inline-table;
 		margin-bottom: 3px;
-		.image_border
-		{
-			width: 63.5px;
-		}
+		width: 31%;
 	}
 }
 
@@ -808,7 +814,7 @@ div.input-prepend
 		}
 	}
 }
-@media (max-width: 767px)
+@media (min-width: 440px) and (max-width: 767px)
 {
 	.latest_bikes .browse_maker
 	{
@@ -825,17 +831,10 @@ div.input-prepend
 }
 @media (max-width: 345px)
 {
-	.latest_bikes .browse_maker
-	{
-		img
-		{
-			max-width: none;
-		}
-	}
 	.browse_body_type a img 
 	{
 		max-width: 100%;
-	}		
+	}
 }
 
 .sell_your_bike 
@@ -873,6 +872,7 @@ div.input-prepend
 	a.manage-ad:hover
 	{
 		background: inherit;
+		text-decoration: none;
 	}
 	.create-ad:hover 
 	{
@@ -1005,6 +1005,29 @@ div.input-prepend
 	padding: 30px;
 	background: white;
 }
+#spec_show_page_header 
+{
+	margin-top: -27px;
+	.legen .facebook_share 
+			{
+				background: #3b5998;
+				color: white;
+				padding-left: 5px;
+				padding-right: 5px;
+				border-radius: 5px;
+				height: 34px;
+				float: right;
+				.icon-share 
+				{
+					font-size: 17px;
+				}
+				a 
+				{
+					color: #E7E1E1;
+					font-size: 15px;
+				}
+			}
+}
 @media (max-width: 420px)
 {
 	.picture
@@ -1030,10 +1053,39 @@ div.input-prepend
 		{
 			margin-left: 20px;
 			width:90%;
+			.facebook_share 
+			{
+				text-align: center;
+				width: 20px;
+				a 
+				{
+					font-size: 0px;
+				}
+			}
 		}
+
 	}
 }
+@media (max-width: 520px)
+{
+	
+	#spec_show_page_header
+	{
+		.legen
+		{
+			.facebook_share 
+			{
+				text-align: center;
+				width: 20px;
+				a 
+				{
+					font-size: 0px;
+				}
+			}
+		}
 
+	}
+}
 
 .bike_new_page 
 {
@@ -1193,7 +1245,7 @@ div.search_result_div a
 .new_bike_make_table td ul li a:hover
 {
 	font-size: 11px;
-	text-decoration: none;
+	text-decoration: underline;
 	background: transparent;
 	color: black;
 }
@@ -1483,7 +1535,7 @@ a#logo_link
 a#logo_link:hover 
 {
 	color:black;
-	backgroung: transparent;
+	background: transparent;
 	text-decoration: none;
 }
 
@@ -1522,7 +1574,7 @@ margin-left: 0px;
 }
 .profile_see_all 
 {
-	float: right;
+	text-align: right;
 	font-weight: bold;
 	color: black;
 }
@@ -1547,7 +1599,7 @@ margin-left: 0px;
 	a:hover 
 	{
 		color: black;
-		background-color: black;
+		background: inherit;
 	}
 }
 #bike_spec_span 
@@ -1753,10 +1805,7 @@ ul#selection li ul li
 	}
 }
 
-#spec_show_page_header 
-{
-	margin-top: -27px;
-}
+
 
 ul#selection li.refine_search 
 {

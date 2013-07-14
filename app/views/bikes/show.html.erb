@@ -87,6 +87,14 @@
           <td><%=@bike.type%></td>
         </tr>
         <tr>
+          <th>Ad Created:<th> 
+          <td><%=@bike.created.to_date%></td>
+        </tr>
+        <tr>
+          <th>Last Updated:<th> 
+          <td><%=@bike.updated.to_date%></td>
+        </tr>
+        <tr>
           <th>Price:<th> 
           <td><%= number_to_currency(@bike.price,:unit => "Rs ",:precision => 0) %></td>
         </tr>

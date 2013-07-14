@@ -85,12 +85,20 @@
         <div class= "browse_maker">
           
             <%@latest_bike.each do |bike|%>
+            <%var= bike.variant if bike.variant != "N/A"%>
+                    <%title = [bike.year.to_s,bike.make,bike.model,var].join(" ")%>
                     <% if !bike.pictures.last.nil?%>
-                    <a href = '<%=bike_spec_path(bike)%>' title ="<%= bike.year.to_s+" "+bike.make+" "+bike.model+" "+bike.variant%>"><div class= "image_border"><%=image_tag bike.pictures.last.file.url(:thumb), size: "100x100", alt: bike.year.to_s+" "+bike.make+" "+bike.model+" "+bike.variant, title: bike.year.to_s+" "+bike.make+" "+bike.model+" "+bike.variant%></div></a>
+                    
+
+                    <a href = '<%=bike_spec_path(bike)%>' title ='<%= title%>'>
+                      <div class= "image_border">
+                        <%=image_tag bike.pictures.last.file.url(:thumb), size: "100x100", alt: title, title: title%>
+                      </div>
+                    </a>
                     <%else%>
                     <a href = '<%=bike_spec_path(bike)%>'><div class= "image_border"><%=image_tag "default_image.jpg", size: "100x100"%></div></a>
                     <%end%>
-                    <a href = '<%=bike_spec_path(bike)%>'><%= bike.year %>  <%= bike.make %>  <%= bike.model %>  <%= bike.variant if !bike.variant.nil? %></a>
+                    <a href = '<%=bike_spec_path(bike)%>'><%= title%></a>
             <%end%>      
            
         </div>  

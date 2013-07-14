@@ -88,6 +88,7 @@
           <%= pluralize(@bikes.count, 'Match')%>
           <select class="sort_select">
             <option value= "1">Sort By: Latest</option>
+             <option value= "2">Sort By: Popularity(Most viewed)</option>
             <option value= "2">Sort By: Price (High to Low)</option>
             <option value = "3">Sort By: Price (Low to High)</option>
             <option value= "4">Sort By: Year (High to Low)</option>
@@ -147,15 +148,18 @@
   });
   
   $("select.sort_select").change(function() {
+
     $("select.sort_select option:selected").each(function () {
       str = $(this).attr("value");
     });
     if (str =="1"){
       $('div.bikes_sort').load('<%= bikes_path(sort: "latest", type: params[:type],body: params[:body], make: params[:make], model: params[:model], color: params[:color], location: params[:location], price_from: params[:price_from], price_to: params[:price_to]) + " div.results"%>');
+      
       sort= 'latest'
       direction= null
 
-      div=1;//to undo the page load!!!
+      div=1;
+      //to undo the page load!!!
     };
     if (str =="2"){
       $('div.bikes_sort').load('<%= bikes_path(sort: "price", :direction => "desc", type: params[:type],body: params[:body], make: params[:make], model: params[:model], color: params[:color], location: params[:location], price_from: params[:price_from], price_to: params[:price_to] ) + " div.results"%>');
@@ -166,6 +170,7 @@
     };
     if (str =="3"){
       $('div.bikes_sort').load('<%= bikes_path(sort: "price", :direction => "asc", type: params[:type],body: params[:body], make: params[:make], model: params[:model], color: params[:color], location: params[:location], price_from: params[:price_from], price_to: params[:price_to] ) + " div.results"%>');
+
       sort= 'price'
         direction= 'asc'
       div=1;
@@ -181,6 +186,15 @@
       div=1;
       sort= 'year'
       direction= 'asc'
+    };    
+    if (str =="6"){
+      $('div.bikes_sort').load('<%= bikes_path(sort: "popularity", :direction => "desc", type: params[:type],body: params[:body], make: params[:make], model: params[:model], color: params[:color], location: params[:location], price_from: params[:price_from], price_to: params[:price_to] ) + " div.results"%>');
+      div=1;
+      sort= 'popularity'
+      direction= 'desc'
     };
+       
+        
+      
   });
 </script>

@@ -3,6 +3,11 @@
   <div class= "row" id= "spec_show_page_header">
     <div class = "span12" >
       <div class = "legen"><%= @bike_spec.year %>  <%= @bike_spec.make %>  <%= @bike_spec.model %>  <%= @bike_spec.variant if @bike_spec.variant !="N/A"%>
+        <div class = "facebook_share">
+        <a id = "share" style="cursor:pointer" title= " Share on Facebook">
+          <div class = "icon-share"> </div> Share on Facebook
+        </a>
+      </div>
       </div>
     </div>
   </div>
@@ -23,7 +28,7 @@
     <div class = "span6">
       <div class= "info">
         <div class = "legen">
-          <%=@bike_spec.make%> <%=@bike_spec.model%>  <div class="fb-like" data-send="true" data-layout="button_count" data-width="45" data-show-faces="false"></div>
+          <%=@bike_spec.make%> <%=@bike_spec.model%>  <div class="fb-like" data-send="true" data-layout="button_count" data-width="45" data-show-faces="false"></div> 
         </div>
         <table class= "table">
           <tr>
@@ -38,10 +43,12 @@
             <td>Price:</td> 
             <td>Rs. <%=@bike_spec.price%></td>
           </tr>
-          <tr>
-            <td>Variant:</td> 
-            <td><%=@bike_spec.variant%></td>
-          </tr>
+          <%if @bike_spec.variant != "N/A"%>
+            <tr>
+              <td>Variant:</td> 
+              <td><%=@bike_spec.variant%></td>
+            </tr>
+          <%end%>
           <tr>
             <td>Year:</td> 
             <td><%=@bike_spec.year%></td>
@@ -543,17 +550,19 @@
       <div class= "info">
         <div class = "legen">Other Bikes from <%= @bike_spec.make%></div>
         <%@makers_bike.each do |bike|%>
-          <a href= "<%=bike_spec_path(bike)%>" title ="<%= bike.year.to_s+" "+bike.make+" "+bike.model+" "+bike.variant%>">
+        <%var= bike.variant if bike.variant != "N/A"%>
+        <%title = [bike.year.to_s,bike.make,bike.model,var].join(" ")%>
+          <a href= "<%=bike_spec_path(bike)%>" title ="<%= title%>">
             <div class = "other_bikes">
               <div>
                 <div>
                   <% if !bike.pictures.last.nil?%>
-                    <%= image_tag bike.pictures.last.file.url(:original), size: "250x150", alt: bike.year.to_s+" "+bike.make+" "+bike.model+" "+bike.variant%>
+                    <%= image_tag bike.pictures.last.file.url(:original), size: "250x150", alt: title%>
                   <%else%>
                     <%=image_tag "default_image.jpg"%>
                   <%end%>
                 </div>
-                <div class ="text"><%= bike.year %>  <%= bike.make %>  <%= bike.model %>  <%= bike.variant if !bike.variant.nil? %>
+                <div class ="text"><%= title %>
                 </div>
               </div>
             </div>

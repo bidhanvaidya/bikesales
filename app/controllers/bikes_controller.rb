@@ -46,16 +46,18 @@ class BikesController < ApplicationController
     if params[:sort] == "price" and params[:direction] == "asc" 
       @bikes = @bikes.asc(:price)
     elsif params[:sort] == "price" and params[:direction] == "desc"
-      @bikes= @bikes.desc(:price)
+      @bikes= @bikes.desc(:price) 
+    elsif params[:sort] == "popularity" and params[:direction] == "desc"
+      @bikes= @bikes.desc(:clicks,  :created)
       
     elsif params[:sort] == "year" and params[:direction] == "asc" 
       @bikes = @bikes.asc(:year)
     elsif params[:sort] == "year" and params[:direction] == "desc"
       @bikes= @bikes.desc(:year)
        elsif params[:sort] == "latest"
-      @bikes= @bikes.desc(:created)
+      @bikes= @bikes.desc(:updated)
     else
-        @bikes= @bikes.desc(:created)
+        @bikes= @bikes.desc(:updated)
       
       
     end
