@@ -1,0 +1,23 @@
+<!--Indentation Complete-->
+
+        <ul>
+        <%if cookies[:bike_one]== "none"%>
+            <li>No Recent Bikes Yet
+            </li>
+         <%else%>
+         
+            <li>
+            	<%=link_to [@first.year, @first.make, @first.model].join(" "), @first if !@first.nil?%>
+            </li>
+            <%if !@second.nil?%>
+            <li>
+            	<%=link_to [@second.year, @second.make, @second.model].join(" "), @second %>
+            </li>
+           <%end%>
+           <%if !@third.nil?%>
+            <li>
+            	<%=link_to [@third.year, @third.make, @third.model].join(" "), @third if !@third.nil?%>
+        	</li>
+        	<%end%>
+        <%end%>    
+   

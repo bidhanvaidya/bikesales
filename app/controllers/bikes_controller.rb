@@ -138,13 +138,39 @@ class BikesController < ApplicationController
         break
       
     end
+    end
+    cookies[:bike_zero] = { :value => "none", :expires => 2.weeks.from_now } if cookies[:bike_zero].nil? 
+    cookies[:bike_one] = { :value => "none", :expires => 2.weeks.from_now } if cookies[:bike_one].nil? 
+    cookies[:bike_two] = { :value => "none", :expires => 2.weeks.from_now } if cookies[:bike_two].nil? 
+    cookies[:bike_three] = { :value => "none", :expires => 2.weeks.from_now } if cookies[:bike_three].nil? 
+
+    if  @bike.id.to_s !=cookies[:bike_zero].to_s and @bike.id.to_s != cookies[:bike_one].to_s and @bike.id.to_s !=cookies[:bike_two].to_s and @bike.id.to_s != cookies[:bike_three].to_s
+      if cookies[:bike_zero] != "none"
+        if cookies[:bike_one] != "none"
+        
+        
+          if !cookies[:bike_two] != "none"
+          cookies[:bike_three]= {:value => cookies[:bike_two],:expires => 2.weeks.from_now }
+          end
+          cookies[:bike_two]= {:value => cookies[:bike_one],:expires => 2.weeks.from_now }
+        end
+        cookies[:bike_one]= {:value => cookies[:bike_zero],:expires => 2.weeks.from_now }
+      end
+      cookies[:bike_zero] = { :value => @bike.id, :expires => 2.weeks.from_now }
+    end
+    @first=Bike.find(cookies[:bike_one]) if cookies[:bike_one]!= "none"
+    @second=Bike.find(cookies[:bike_two]) if cookies[:bike_two]!= "none"
+    @third=Bike.find(cookies[:bike_three]) if cookies[:bike_three]!= "none"
+    @first = Bike.find(cookies[:bike_zero]) if @first == @bike
+    @second = Bike.find(cookies[:bike_zero]) if @second == @bike
+    @second = Bike.find(cookies[:bike_zero]) if @third == @bike
 
     set_meta_tags :title => [@bike.year.to_s,@bike.make,@bike.model,@bike.variant].reject(&:nil?).reject(&:empty?).join(' '),
               :description => "Bike for sale, to a the nepali public, "+
               [@bike.year.to_s,@bike.make,@bike.model,@bike.variant, @bike.location,@bike.type, @bike.body, @bike.price.to_s, @bike.comment].reject(&:nil?).reject(&:empty?).join(', '),
               :keywords => "Bike for sale nepal"+[@bike.year.to_s,@bike.make,@bike.model,@bike.variant, @bike.location,@bike.type, @bike.body].reject(&:nil?).reject(&:empty?).join(', '),
               :canonical => bike_url(@bike)
-    end
+ 
       respond_to do |format|
         format.html # show.html.erb
         format.js
