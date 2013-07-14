@@ -532,7 +532,7 @@ def delete_picture
 
 def showroom
   @bikes = BikeSpec.latest.with_price.desc(:year)
-  @latest_bike = @bikes.desc(:year, :updated).limit(3)
+  @latest_bike = @bikes.desc(:year, :updated).limit(4)
   @models= @bikes.distinct(:model)
   @makes= @bikes.distinct(:make)
   set_meta_tags :title => 'Search New Bikes for sale in Nepal, get their specs, price',

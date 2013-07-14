@@ -53,7 +53,7 @@ body
 {
 	max-width: 979px;
 	margin: auto;
-	min-width:300px
+	min-width:280px
 }
 
 @media (max-width: 979px)
@@ -213,36 +213,7 @@ body
 
 //*****************************SHOW PAGE***********************************************************
 //***************************************************************************************************
-.fb_iframe_widget 
-{
-	margin-bottom: 40px;
-}
-@media (min-width: 850px) and (max-width: 926px)
-{
-	.main_page_facebook .fb_iframe_widget 
-	{
-	margin-left: -9%;
-	}
-}
 
-@media (min-width: 767px) and (max-width: 850px)
-{
-	.main_page_facebook .fb_iframe_widget 
-	{
-	margin-left: -17%;
-	}
-}
-@media (min-width: 767px) and (max-width: 979px)
-{
-	.showroom_facebook .fb_iframe_widget 
-	{
-	margin-left: -30%;
-	}
-}
-.fb-like.fb_edge_widget_with_comment.fb_iframe_widget 
-{
-	margin-bottom: 0px;
-}
 .result 
 {
 	border: 1px solid #888888;
@@ -720,15 +691,12 @@ div.input-prepend
 {
 	padding: 15px;
 	margin-bottom: 25px;
-
-}
-@media (min-width: 767px) and (max-width: 850px)
-{
-	.main_page_browse_by 
+	.browse_body_type .image_border
 	{
-		margin-right: 18px;	
+		height: 120px;
 	}
 }
+
 
 .span12.main_page_browse 
 {
@@ -757,14 +725,19 @@ div.input-prepend
 	a
 	{
 		width: 15%;
-		display: inline-table;
+		display: inline-table;	
 	}
+	
 }
 @media (max-width: 480px)
 {
 	.browse_body_type a
 	{
-		width:25%
+		width:25%;
+		img
+		{
+			max-width: none;
+		}
 	}
 }
 .span4.showroom_browse .browse_body_type
@@ -774,7 +747,19 @@ div.input-prepend
 		width: 48%;
 	}
 }
-
+.span4.showroom_browse .browse_maker
+{
+	text-align: center;
+	a
+	{
+		display: inline-table;
+		margin-bottom: 3px;
+		.image_border
+		{
+			width: 63.5px;
+		}
+	}
+}
 
 .browse_makers 
 {
@@ -784,6 +769,10 @@ div.input-prepend
 	{
 		width: 10%;
 		display: inline-table;
+		img
+		{
+			width:90px;
+		}
 	}
 }
 @media(max-width: 512px)
@@ -807,16 +796,15 @@ div.input-prepend
 }
 .latest_bikes .browse_maker
 {
-	padding-bottom: 15px;
+	padding-bottom: 5px;
 	a 
 	{
-		width: 40%;
-		
 		display: inline-table;
-		width: 24%;
+		width: 42%;
 		.image_border
 		{
 			width: 100px;
+			max-height: 100%;
 		}
 	}
 }
@@ -827,7 +815,7 @@ div.input-prepend
 		display: inline;
 		a 
 		{
-			display: block;
+			width: 24%;
 			.image_border
 			{
 				display: inline;
@@ -835,7 +823,20 @@ div.input-prepend
 		}
 	}		
 }
-
+@media (max-width: 345px)
+{
+	.latest_bikes .browse_maker
+	{
+		img
+		{
+			max-width: none;
+		}
+	}
+	.browse_body_type a img 
+	{
+		max-width: 100%;
+	}		
+}
 
 .sell_your_bike 
 {
@@ -1564,7 +1565,8 @@ margin-left: 0px;
 	padding: 12px;
 	margin-top: 10px;
 	box-shadow: 5px 5px 10px #888888;
-	margin-bottom: 50px;
+	border: solid 1px rgba(136, 136, 136, 0.4);
+	margin-bottom: 10px;
 }
 .latest_bikes 
 {
@@ -1817,3 +1819,26 @@ ul#selection li.refine_search
 	}
 }
 //****************************************************************************************************
+.fb-comments, .fb-comments span, .fb-comments.fb_iframe_widget span iframe 
+{
+    width: 100% !important;
+}
+.fb-like-box, .fb-like-box span, .fb-like-box.fb_iframe_widget span iframe 
+{
+    width: 100% !important;
+}
+.facebook_comment{
+		box-shadow: 5px 5px 10px #888888;
+	border: 1px solid rgba(136, 136, 136, 0.4);
+	background: white;
+	margin-top: 10px;
+	padding: 15px;
+	margin-bottom: 50px;
+}
+@media (max-width: 979px)
+{
+	.facebook_comment
+	{
+		margin-bottom: 5px;
+	}
+}
