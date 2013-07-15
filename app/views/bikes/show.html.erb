@@ -39,8 +39,8 @@
         </div>  
       <%end%>
       <div>
-          Recent Searches
-          <%=render "recent"%>
+        Recent Searches
+        <%=render "recent"%>
       </div>
     </div>
     <%=render "current_selection"%>
@@ -53,15 +53,17 @@
     </div>
     <div class="fb-like" data-send="true" data-layout="button_count" data-width="45" data-show-faces="false">
     </div>
+    <%var= @bike.variant if @bike.variant != "N/A"%>
+    <%title = [@bike.year.to_s,@bike.make,@bike.model,var].join(" ")%>   
     <%if !@bike.pictures.empty? %>
     <div class = "picture">
-      <%= image_tag @bike.pictures.last.file.url(:original), alt: @bike_spec.year.to_s+" "+@bike_spec.make+" "+ @bike_spec.model+" "+@bike_spec.variant, title:  @bike_spec.year.to_s+" "+@bike_spec.make+" "+ @bike_spec.model+" "+@bike_spec.variant, id: "bike_picture" %>
+      <%= image_tag @bike.pictures.last.file.url(:original), alt: title, title: title, id: "bike_picture" %>
     </div>
     <%end%>
     <% if !@bike.pictures.empty?%>
       <ul class = "image_list">
         <%@bike.pictures.each do |image| %>
-          <li><%= image_tag image.file.url(:thumb), alt: @bike_spec.year.to_s+" "+@bike_spec.make+" "+ @bike_spec.model+" "+@bike_spec.variant, title:  @bike_spec.year.to_s+" "+@bike_spec.make+" "+ @bike_spec.model+" "+@bike_spec.variant, id: image.id %></li>
+          <li><%= image_tag image.file.url(:thumb), alt: title, title: title, id: image.id %></li>
         <% end %>
       </ul>
     <%end%>
@@ -82,10 +84,12 @@
           <th>Model:<th> 
           <td><%=@bike.model%></td>
         </tr>
-        <tr>
-          <th>Variant:<th> 
-          <td><%=@bike.variant%></td>
-        </tr>
+        <%if @bike.variant != "N/A"%>
+          <tr>
+            <th>Variant:<th> 
+            <td><%=@bike.variant%></td>
+          </tr>
+        <%end%>
         <tr>
           <th>Ad Type:<th> 
           <td><%=@bike.type%></td>

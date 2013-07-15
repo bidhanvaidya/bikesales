@@ -62,8 +62,8 @@ require 'open-uri'
   # GET /bike_specs/1
   # GET /bike_specs/1.json
   def show
-    @bike_spec = BikeSpec.latest.with_price.find(params[:id])
-    @makers_bike = BikeSpec.latest.where(make: @bike_spec.make).desc(:year, :updated).limit(3)
+    @bike_spec = BikeSpec.find(params[:id])
+    @makers_bike = BikeSpec.latest.with_price.where(make: @bike_spec.make).desc(:year, :updated).limit(3)
     set_meta_tags :title => [@bike_spec.year.to_s,@bike_spec.make,@bike_spec.model,@bike_spec.variant].reject(&:nil?).reject(&:empty?).join(' '),
               :description => "New Bike for sale, to the nepali public, specs, "+
               [@bike_spec.year.to_s,@bike_spec.make,@bike_spec.model,@bike_spec.variant, @bike_spec.body, @bike_spec.price.to_s].reject(&:nil?).reject(&:empty?).join(' '),
@@ -578,7 +578,7 @@ end
   end
   private
   def owner
-    if current_user == User.first || current_user.email == "bidhanvaidya@gmail.com"
+    if current_user.email == "admin@bikes.bechnu.com"
       return true
     else
       redirect_to bike_specs_path

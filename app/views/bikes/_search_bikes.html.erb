@@ -8,14 +8,16 @@
             <% if bike.pictures.empty?%>
             <%=image_tag "default_image.jpg"%>
             <%else%>
-            <%= image_tag bike.pictures.last.file.url(:original), alt: bike.year.to_s+" "+bike.make+" "+bike.model+" "+bike.variant, title: bike.year.to_s+" "+bike.make+" "+bike.model+" "+bike.variant, id: "bike_picture" %>
+            <%var= bike.variant if bike.variant != "N/A"%>
+            <%title = [bike.year.to_s,bike.make,bike.model,var].join(" ")%>  
+            <%= image_tag bike.pictures.last.file.url(:original), alt: title, title: title, id: "bike_picture" %>
             <%end%>
           </div> <!-- span5 Image of the searched bike --> 
           <div class= "span7">
             <div class= "result_table">
               <div class = "result_header">
                 <div class= "listing_title">
-                  <%= bike.year %>  <%= bike.make %>  <%= bike.model %>  <%= bike.variant if bike.variant!= "N/A" %>
+                  <%= bike.year %>  <%= bike.make %>  <%= bike.model %>  <%= bike.variant if bike.variant != "N/A" %>
                 </div>
                 <div class= "legen"><%= number_to_currency(bike.price,:unit => "Rs ",:precision => 0) %>
                 </div>
