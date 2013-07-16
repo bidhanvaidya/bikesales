@@ -52,7 +52,20 @@
       <div class="control-group">
         <label class="control-label" for="bike_city">City *</label>
         <div class="controls">
-         <%= f.select :location, options_for_select(["Bhaktapur", "Kathmandu", "Latitpur"], f.object.location),{:include_blank => 'Select City'},:required => true%>
+         <%= f.select :location, options_for_select([                  
+          "Bhaktapur",
+          "Bharatpur",
+          "Biratnagar",
+          "Birganj",
+          "Butwal",
+          "Dhangadhi",
+          "Dharan",
+          "Hetauda",
+          "Janakpur",
+          "Kathmandu", 
+          "Latitpur",
+          "Pokhara",
+          "Other"  ], f.object.location),{:include_blank => 'Select City'},:required => true%>
         </div>
       </div>
       <div class="control-group">
@@ -74,7 +87,7 @@
       <div class="control-group">
         <label class="control-label" for="bike_type">Type *</label>
           <div class="controls">
-          <%= f.select :type, options_for_select(["Dealer New", "Dealer Used", "Private Seller"],f.object.type),:required => true, :prompt => 'Select Type' %>
+          <%= f.select :type, options_for_select(["Dealer New", "Dealer Used", "Private Seller"],f.object.type),{:include_blank => 'Select Type'},:required => true %>
         </div>
       </div>
       <div class="control-group">

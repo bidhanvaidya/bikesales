@@ -1,6 +1,6 @@
   <!--Indentation Complete-->
   <div class = "results_main_page">
-    <div class= "legen">Search Bikes</div>
+    <div class= "legen">Search Bikes for Sale</div>
 
         <%=form_tag(search_bikes_path, :method => "get") do %>
 
@@ -62,9 +62,19 @@
                 <span class="add-on">City: </span>     
       			    <%= select_tag :location, options_for_select([
                   "Any Cities",
+                  "Bhaktapur",
+                  "Bharatpur",
+                  "Biratnagar",
+                  "Birganj",
+                  "Butwal",
+                  "Dhangadhi",
+                  "Dharan",
+                  "Hetauda",
+                  "Janakpur",
                   "Kathmandu", 
-                  "Latitpur", 
-                  "Bhaktapur"
+                  "Latitpur",
+                  "Pokhara",
+                  "Other"                  
                   ]),:class=>"input-drop-down" %>
               </div>
       		  </div>
