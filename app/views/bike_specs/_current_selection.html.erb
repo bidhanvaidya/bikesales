@@ -4,7 +4,7 @@
         <li><div class = "legen">Current Selection</div></li>
         <% if  @body_selection.nil? and @make_selection.nil? and @model_selection.nil? %>
             <li>No options selected. Please choose one or more options.
-            <%= link_to "New search", bikes_path%>
+            <%= link_to "New search", bike_specs_path%>
             </li>
         <%end%>    
         <% if !@body_selection.nil?%>
