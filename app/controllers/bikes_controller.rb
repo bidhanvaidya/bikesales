@@ -211,7 +211,7 @@ class BikesController < ApplicationController
     respond_to do |format|
 
       if @bike.save
-        @bike = Bike.find(@bike)
+        @bike = Bike.unscoped.unvalidated.find(@bike)
         if BikeSpec.where(year: params[:bike][:year], make: params[:bike][:make], model: params[:bike][:model],variant: params[:bike][:variant]).empty?
        bike_spec= BikeSpec.where(make: params[:bike][:make], model: params[:bike][:model],variant: params[:bike][:variant]).first
     else
@@ -256,14 +256,7 @@ class BikesController < ApplicationController
       set_meta_tags :title => 'Update your Bike AD!!',
                     :description => 'Update for existing bike'
       @bike = Bike.unscoped.unvalidated.find(params[:id])
-      if !BikeSpec.where(year: params[:bike][:year], make: params[:bike][:make], model: params[:bike][:model],variant: params[:bike][:variant]).empty?
-      bike_spec= BikeSpec.where(year: params[:bike][:year], make: params[:bike][:make], model: params[:bike][:model],variant: params[:bike][:variant]).first
-    else
-     bike_spec= BikeSpec.where(make: params[:bike][:make], model: params[:bike][:model],variant: params[:bike][:variant]).first
-     
-    end
-      @bike.bike_spec_id = bike_spec.id
-      @bike.body = bike_spec.body
+
       @bike.updated = Time.now
 
       if current_user.email != "marketing@bikes.bechnu.com" 
@@ -273,7 +266,19 @@ class BikesController < ApplicationController
 
       respond_to do |format|
         if @bike.update_attributes(params[:bike])
-           UserMailer.send_to_spec(@bike).deliver  
+          @bike = Bike.unscoped.unvalidated.find(@bike)
+          if !BikeSpec.where(year: params[:bike][:year], make: params[:bike][:make],
+            model: params[:bike][:model],variant: params[:bike][:variant]).empty?
+            bike_spec= BikeSpec.where(year: params[:bike][:year], make: params[:bike][:make], 
+            model: params[:bike][:model],variant: params[:bike][:variant]).first
+          else
+            bike_spec= BikeSpec.where(make: params[:bike][:make], model: params[:bike][:model],
+            variant: params[:bike][:variant]).first
+          end
+          @bike.bike_spec_id = bike_spec.id
+          @bike.body = bike_spec.body
+          @bike.save
+          UserMailer.send_to_spec(@bike).deliver  
           if current_user.provider == 'facebook'
 
             @user = FbGraph::User.me(current_user.facebook_token).fetch
