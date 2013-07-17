@@ -233,6 +233,11 @@ body
 	margin: 5px;
 	font-weight: bold;
 }
+.navbar .nav > li > a
+{
+	color: #dddddd;
+	margin-left: 10px;
+}
 .navbar .nav > li > a#toggle 
 {
 	float: none;
@@ -1264,10 +1269,18 @@ div.search_result_div a
 	background: transparent;
 	color: black;
 }
-.nav-collapse .nav > li a
+.nav-collapse .nav > li 
 {
-	font-weight: bold;
-	font-size: 15px;
+	a
+	{
+		font-weight: bold;
+		font-size: 15px;
+	}
+	a:hover
+	{
+		background-color: #0074cc;
+	}
+
 }
 
 @media (min-width: 479px) (max-width: 979px)
