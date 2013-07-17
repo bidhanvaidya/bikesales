@@ -13,7 +13,7 @@ require 'open-uri'
         if current_user.email=="admin@bikes.bechnu.com"
             @bikes=BikeSpec.all
         else
-             @bikes = BikeSpec.only(:model,:updated, :price, :make, :year, :variant, :displacement, 
+             @bikes = BikeSpec.latest.with_price.only(:model,:updated, :price, :make, :year, :variant, :displacement, 
             :body, :max_power, :max_torque, :fuel_consumption_city,:pictures, :fuel_consumption_highway, :top_speed).all
         end
     else    
