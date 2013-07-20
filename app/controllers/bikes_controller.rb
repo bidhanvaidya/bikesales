@@ -354,7 +354,7 @@ class BikesController < ApplicationController
   end
 
   def search_page
-    @bikes = Bike.all
+    @bikes = Bike.unscoped.unvalidated.all
     @type_selection = params[:type]
     @make_selection = params[:make]
     @model_selection = params[:model]

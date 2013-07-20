@@ -27,6 +27,7 @@
                   <li>
                     Body: <%= bike.body %>  
                   </li>
+                  <%if !bike.odometer.blank?%> 
                   <li>
                     Odometer: <%= bike.odometer %> km
                   </li>
