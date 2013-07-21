@@ -164,7 +164,7 @@ class BikesController < ApplicationController
     @first = Bike.find(cookies[:bike_zero]) if @first == @bike
     @second = Bike.find(cookies[:bike_zero]) if @second == @bike
     @second = Bike.find(cookies[:bike_zero]) if @third == @bike
-    var= @bike.variant if @bikes.variant != "N/A" 
+    var= @bike.variant if @bike.variant != "N/A" 
     set_meta_tags :title => [@bike.year.to_s,@bike.make,@bike.model,var].reject(&:nil?).reject(&:empty?).join(' '),
               :description => "Bike for sale, to a the nepali public, "+
               [@bike.year.to_s,@bike.make,@bike.model,var, @bike.location,@bike.type, @bike.body, @bike.price.to_s, @bike.comment].reject(&:nil?).reject(&:empty?).join(', '),
