@@ -104,10 +104,14 @@
             <% (2..@bikees.total_pages).each do |i|%> <!-- Creating empty div with respect to page number-->
               <div class = "<%= i%>"></div>
             <%end%>
-           <div class = "loading btn">
+            <%if @bikes.count >10%>
+                         
+                         
+                        <div class = "loading btn">
                             <%= image_tag 'loader.gif', size: "16x16"%> 
-                            <%= link_to "Show More", id: "Next"%>
+                            <a id= "next">Show More</a>
                         </div>
+                          <%end%>
           </div><!--div bike sort-->
         </div><!--div results -->
       </div>
@@ -116,14 +120,11 @@
 </div>
 <%= javascript_include_tag "jquery.min" %>
 <script type="text/javascript">
-  <%if @bikes.count <=10%>
-  $('.loading').hide();
-  <%end%>
   var div =1
   var sort= 'latest'
   var direction= null
   var check= false;
-    $("a#Next").click(function(){
+    $("a#next").click(function(){
       check = true;
       div=div+1
       <%if(params.has_key?(:type) or params.has_key?(:body) or params.has_key?(:make) or params.has_key?(:model) or params.has_key?(:color) or params.has_key?(:sort) or params.has_key?(:direction) or params.has_key?(:price_to) or params.has_key?(:price_from))%>
