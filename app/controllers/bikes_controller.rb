@@ -336,7 +336,7 @@ class BikesController < ApplicationController
   end
   
   def change_variant
-    @bikes=BikeSpec.where(model: params[:model]).distinct(:variant).sort
+    @bikes=BikeSpec.where(make: params[:make], model: params[:model]).distinct(:variant).sort
     respond_to do |format|
       format.js
     end

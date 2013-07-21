@@ -10,7 +10,7 @@
             <%else%>
             <%var= bike.variant if bike.variant != "N/A"%>
             <%title = [bike.year.to_s,bike.make,bike.model,var].join(" ")%>  
-            <%= image_tag bike.pictures.last.file.url(:original), alt: title, title: title, id: "bike_picture" %>
+            <%= image_tag bike.pictures.last.file.url(:original), alt: title, title: title, class: "bike_picture" %>
             <%end%>
           </div> <!-- span5 Image of the searched bike --> 
           <div class= "span7">

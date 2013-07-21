@@ -88,7 +88,7 @@
           <%= pluralize(@bikes.count, 'Match')%>
           <select class="sort_select">
             <option value= "1">Sort By: Latest</option>
-             <option value= "2">Sort By: Popularity(Most viewed)</option>
+             <option value= "6">Sort By: Popularity(Most viewed)</option>
             <option value= "2">Sort By: Price (High to Low)</option>
             <option value = "3">Sort By: Price (Low to High)</option>
             <option value= "4">Sort By: Year (High to Low)</option>
@@ -104,9 +104,10 @@
             <% (2..@bikees.total_pages).each do |i|%> <!-- Creating empty div with respect to page number-->
               <div class = "<%= i%>"></div>
             <%end%>
-            <div class = "loading">
-                <%= image_tag 'loader.gif', size: "16x16"%> Loading...
-            </div>
+           <div class = "loading btn">
+                            <%= image_tag 'loader.gif', size: "16x16"%> 
+                            <%= link_to "Show More", id: "Next"%>
+                        </div>
           </div><!--div bike sort-->
         </div><!--div results -->
       </div>
@@ -122,6 +123,20 @@
   var sort= 'latest'
   var direction= null
   var check= false;
+    $("a#Next").click(function(){
+      check = true;
+      div=div+1
+      <%if(params.has_key?(:type) or params.has_key?(:body) or params.has_key?(:make) or params.has_key?(:model) or params.has_key?(:color) or params.has_key?(:sort) or params.has_key?(:direction) or params.has_key?(:price_to) or params.has_key?(:price_from))%>
+        var link= "<%= bikes_path(type: params[:type],body: params[:body], make: params[:make], model: params[:model], color: params[:color], price_from: params[:price_from], price_to: params[:price_to] )%>"+'&sort='+sort+'&direction='+direction+'&amp;page='+ div.toString()+ ' div.scroll'
+      <%else%>
+       var link='/bikes?'+'&sort='+sort+'&direction='+direction+'&amp;page='+ div.toString()+ ' div.scroll' 
+        
+      <%end%>
+      
+      $("div." +div.toString()).load(link, function() {
+        
+      });
+    })
   $(window).scroll(function() { 
     if(($(window).scrollTop()+ $(window).height()> ($(document).height()*.85) && check==false)||
             ($(window).scrollTop()+ $(window).height()== $(document).height()))

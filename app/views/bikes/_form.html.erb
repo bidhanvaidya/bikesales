@@ -216,12 +216,16 @@
     {
       str = $(this).text();
     });
+    $("select#bike_make option:selected").each(function () 
+    {
+      makestr = $(this).text();
+    }); 
     var option_variant = $('<option></option>').attr("value", "").text("Select Variant");
     $("select#bike_variant").append(option_variant);
     $.ajax(
     {
       url: "<%=change_variant_bikes_path%>",
-      data: {model:str },
+      data: {make:makestr, model:str },
       success:"True",
     });
   });

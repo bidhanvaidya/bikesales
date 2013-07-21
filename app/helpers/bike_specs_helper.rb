@@ -690,6 +690,15 @@ module BikeSpecsHelper
 
 	
 	end
+	def empty_model
+		bikes=BikeSpec.where(model: "")
+		bikes.each do |bike|
+			bike.model= bike.variant
+			bike.variant= "N/A"
+			bike.save
+		end
+		
+	end
 
 
 end

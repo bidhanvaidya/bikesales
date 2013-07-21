@@ -58,10 +58,15 @@
                         <% (2..@bikees.total_pages).each do |i|%> <!-- Creating empty div with respect to page number-->
                             <div class = "<%= i%>"></div>
                         <%end%>
-                        
-                        <div class = "loading">
-                            <%= image_tag 'loader.gif', size: "16x16"%> Loading...
+                        <%if @bikes.count >10%>
+                         
+                         
+                        <div class = "loading btn">
+                            <%= image_tag 'loader.gif', size: "16x16"%> 
+                            <%= link_to "Show More", id: "Next"%>
                         </div>
+                          <%end%>
+                        
                     </div><!--div bike sort-->
                 </div><!--div results -->
             </div>
@@ -70,14 +75,29 @@
 </div>
 <%= javascript_include_tag "jquery.min" %>
 <script type="text/javascript">
-    <%if @bikes.count <=10%>
-      $('.loading').hide();
-      <%end%>
+
     var div =1
     var sort= 'latest'
     var direction= null
     var check= false;
-    $(window).scroll(function() 
+   
+        $("a#Next").click(function(){
+            check = true;
+            div=div+1
+
+            <%if(params.has_key?(:body) || params.has_key?(:make) || params.has_key?(:model) || params.has_key?(:sort) || params.has_key?(:direction))%>
+                var link= "<%= bike_specs_path(body: params[:body], make: params[:make], model: params[:model] )%>"+'&sort='+sort+'&direction='+direction+'&amp;page='+ div.toString()+ ' div.scroll'
+                
+            <%else%>
+                var link='/bike_specs?'+'&sort='+sort+'&direction='+direction+'&amp;page='+ div.toString()+ ' div.scroll' 
+            <%end%>
+            console.log(link);
+            $("div." +div.toString()).load(link, function() {
+               
+            });
+
+       })
+    $(window).scroll(function()
     { 
         if(($(window).scrollTop()+ $(window).height()> ($(document).height()*.85) && check==false)||
             ($(window).scrollTop()+ $(window).height()== $(document).height()))
@@ -104,7 +124,7 @@
              }
         }
     });
-   
+    
     $("select.sort_select").change(function() {
         $("select.sort_select option:selected").each(function () {
             str = $(this).attr("value");
