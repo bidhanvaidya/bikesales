@@ -60,12 +60,12 @@
                 <div>
                     <a href = "<%=bikes_path(price_from: nil, price_to: nil,sort: params[:sort], :direction => params[:direction], type: params[:type],body: params[:body], make: params[:make], model: params[:model], color: params[:color], location: params[:location])%>"><b>Price:</b></br> 
                         <% if !@price_from_selection.nil?%>
-                            Rs. <%= @price_from_selection.to_i+1 %> - 
+                            Rs. <%= @price_from_selection.to_i %> - 
                         <% else %>
                             Min. - 
                         <%end%>
                         <% if !@price_to_selection.nil?%>
-                            Rs. <%= @price_to_selection.to_i-1 %>   
+                            Rs. <%= @price_to_selection.to_i %>   
                         <% else %>
                             Max.
                         <%end%>

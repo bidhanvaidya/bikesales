@@ -30,8 +30,8 @@ class BikesController < ApplicationController
     @bikes=@bikes.make(@make_selection) if !@make_selection.nil?
     @bikes=@bikes.where(model: @model_selection) if !@model_selection.nil?
     @bikes=@bikes.where(color: @color_selection) if !@color_selection.nil?
-    @bikes=@bikes.where(:price.gt => @price_from_selection) if !@price_from_selection.nil?
-    @bikes=@bikes.where(:price.lt => @price_to_selection) if !@price_to_selection.nil?
+    @bikes=@bikes.where(:price.gte => @price_from_selection) if !@price_from_selection.nil?
+    @bikes=@bikes.where(:price.lte => @price_to_selection) if !@price_to_selection.nil?
     @bikes=@bikes.where(location: @location_selection) if !@location_selection.nil?
     @bikes=@bikes.where(body: @body_selection) if !@body_selection.nil?
   
@@ -94,8 +94,8 @@ class BikesController < ApplicationController
     @bikes=@bikes.make(@make_selection) if !@make_selection.nil?
     @bikes=@bikes.where(model: @model_selection) if !@model_selection.nil?
     @bikes=@bikes.where(color: @color_selection) if !@color_selection.nil?
-    @bikes=@bikes.where(:price.gt => @price_from_selection) if !@price_from_selection.nil?
-    @bikes=@bikes.where(:price.lt => @price_to_selection) if !@price_to_selection.nil?
+    @bikes=@bikes.where(:price.gte => @price_from_selection) if !@price_from_selection.nil?
+    @bikes=@bikes.where(:price.lte => @price_to_selection) if !@price_to_selection.nil?
     @bikes=@bikes.where(location: @location_selection) if !@location_selection.nil?
     @bikes=@bikes.where(body: @body_selection) if !@body_selection.nil?
   
