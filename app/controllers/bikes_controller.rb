@@ -213,35 +213,40 @@ class BikesController < ApplicationController
       if @bike.save
         @bike = Bike.unscoped.unvalidated.find(@bike)
         if BikeSpec.where(year: params[:bike][:year], make: params[:bike][:make], model: params[:bike][:model],variant: params[:bike][:variant]).empty?
-       bike_spec= BikeSpec.where(make: params[:bike][:make], model: params[:bike][:model],variant: params[:bike][:variant]).first
-    else
-     bike_spec= BikeSpec.where(year: params[:bike][:year], make: params[:bike][:make], model: params[:bike][:model],variant: params[:bike][:variant]).first
-    end
+          bike_spec= BikeSpec.where(make: params[:bike][:make], model: params[:bike][:model],variant: params[:bike][:variant]).first
+          @bike.bike_spec_id = bike_spec.id
+          @bike.body = bike_spec.body
+          @bike.user_id = current_user.id
+          @bike.save
+        else
+          bike_spec= BikeSpec.where(year: params[:bike][:year], make: params[:bike][:make], model: params[:bike][:model],variant: params[:bike][:variant]).first
+          @bike.bike_spec_id = bike_spec.id
+          @bike.body = bike_spec.body
+          @bike.user_id = current_user.id
+          @bike.save
+          UserMailer.send_to_spec(@bike).deliver 
+        end
         
-        @bike.bike_spec_id = bike_spec.id
-        @bike.body = bike_spec.body
-        @bike.user_id = current_user.id
-        @bike.save
-        UserMailer.send_to_spec(@bike).deliver  
-          if current_user.provider == 'facebook'
+         
+        if current_user.provider == 'facebook'
 
-            @user = FbGraph::User.me(current_user.facebook_token).fetch
-            if @user.permissions.include?(:publish_actions)
-              if @bike.pictures.empty?
-                picture= 'https://s3.amazonaws.com/bikesbechnu_public/logo.png'
-              else
-                picture = @bike.pictures.first.file.url
-              end
-              link= 'http://bikes.bechnu.com/bikes/'+@bike.id+ '.html'
-              @user.feed!(
-              :message => @bike.comment,
-              :picture => picture,
-              :link => link,
-              :name => 'BikeSales',
-              :description =>  @bike.description )
+          @user = FbGraph::User.me(current_user.facebook_token).fetch
+          if @user.permissions.include?(:publish_actions)
+            if @bike.pictures.empty?
+              picture= 'https://s3.amazonaws.com/bikesbechnu_public/logo.png'
+            else
+              picture = @bike.pictures.first.file.url
             end
-
+            link= 'http://bikes.bechnu.com/bikes/'+@bike.id+ '.html'
+            @user.feed!(
+            :message => @bike.comment,
+            :picture => picture,
+            :link => link,
+            :name => 'BikeSales',
+            :description =>  @bike.description )
           end
+
+        end
         format.html { redirect_to @bike, notice: 'Bike was successfully created.' }
         format.json { render json: @bike, status: :created, location: @bike }
       else
@@ -262,23 +267,28 @@ class BikesController < ApplicationController
       if current_user.email != "marketing@bikes.bechnu.com" 
         @bike.validated = true
       end
-      @bike.user = current_user
+      @bike.user = current_user if current_user.email != "admin@bikes.bechnu.com"
 
       respond_to do |format|
         if @bike.update_attributes(params[:bike])
           @bike = Bike.unscoped.unvalidated.find(@bike)
           if !BikeSpec.where(year: params[:bike][:year], make: params[:bike][:make],
             model: params[:bike][:model],variant: params[:bike][:variant]).empty?
+            
             bike_spec= BikeSpec.where(year: params[:bike][:year], make: params[:bike][:make], 
             model: params[:bike][:model],variant: params[:bike][:variant]).first
+            @bike.bike_spec_id = bike_spec.id
+            @bike.body = bike_spec.body
+            @bike.save
           else
             bike_spec= BikeSpec.where(make: params[:bike][:make], model: params[:bike][:model],
             variant: params[:bike][:variant]).first
+            @bike.bike_spec_id = bike_spec.id
+            @bike.body = bike_spec.body
+            @bike.save
+            UserMailer.send_to_spec(@bike).deliver
           end
-          @bike.bike_spec_id = bike_spec.id
-          @bike.body = bike_spec.body
-          @bike.save
-          UserMailer.send_to_spec(@bike).deliver  
+            
           if current_user.provider == 'facebook'
 
             @user = FbGraph::User.me(current_user.facebook_token).fetch
@@ -490,7 +500,8 @@ class BikesController < ApplicationController
   private
   def owner
     @bike = Bike.find(params[:id])
-    if current_user==@bike.user || current_user == User.first
+
+    if current_user==@bike.user || current_user == User.where(email: "admin@bikes.bechnu.com").first
       return true
     else
       redirect_to @bike
@@ -498,7 +509,7 @@ class BikesController < ApplicationController
   end
   def marketing_ad
     @bike = Bike.unscoped.unvalidated.find(params[:id])
-     if current_user==@bike.user || current_user == User.first || @bike.validated==false
+     if current_user==@bike.user || current_user == User.where(email: "admin@bikes.bechnu.com").first || @bike.validated==false
       return true
     else
       redirect_to @bike

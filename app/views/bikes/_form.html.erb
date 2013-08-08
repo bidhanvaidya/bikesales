@@ -170,7 +170,7 @@
       </div>
       
       <div class="form-actions">
-        <%if params[:id].nil? or @bike.user == current_user %>
+        <%if params[:id].nil? or @bike.user == current_user or current_user.email == "admin@bikes.bechnu.com" %>
     
         <%= f.submit nil, :class => 'btn btn-primary' %>
 
