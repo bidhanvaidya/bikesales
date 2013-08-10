@@ -61,6 +61,7 @@ class BikesController < ApplicationController
       
       
     end
+    
     @bikees=@bikes.paginate(:page => params[:page], :per_page => 10)
     set_meta_tags :title => 'Search for New and Used bikes, get prices and compare',
               :description => "Bike for sale, to a the nepali public, "+
@@ -419,7 +420,7 @@ class BikesController < ApplicationController
     @bikes = Bike.all
     @models= @bikes.distinct(:model)
     @makes= @bikes.distinct(:make)
-     
+     Analytic.create(source: "User profile share") if params[:source]== "UPS"
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @bikes }
