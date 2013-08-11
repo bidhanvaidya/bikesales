@@ -23,6 +23,11 @@
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
       ga('create', 'UA-41955848-1', 'bechnu.com');
       ga('send', 'pageview');
+      <% if cookies[:facebook_login].nil? %>
+        if( window != window.top) { 
+          <%cookies[:facebook_login] = { :value => "false", :expires => 20.seconds.from_now }%>
+          window.location.href = "<%=user_omniauth_authorize_path(:facebook)%>"; }
+      <%end%>
     </script>
 
     <%=favicon_link_tag 'favicon.ico'%>
