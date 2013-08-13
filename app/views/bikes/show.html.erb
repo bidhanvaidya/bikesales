@@ -29,7 +29,7 @@
           <div class = "icon-share"> </div>Share on Facebook
         </a>
       </div>
-      <% if @bike.user==current_user%>
+      <% if @bike.user==current_user or current_user.email == "admin@bikes.bechnu.com"%>
         <div>
           <div class = "icon-edit"></div><%= link_to ' Edit this Post', edit_bike_path(@bike) %>
         </div>
