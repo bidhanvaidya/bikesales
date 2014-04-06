@@ -1,9 +1,0 @@
-development:
-  access_key_id: AKIAJODLI2XMOUCX2XYQ
-  secret_access_key: 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
-  bucket: bikesales_development
-production:
-  access_key_id: AKIAJODLI2XMOUCX2XYQ
-  secret_access_key: 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
-  bucket: Bikesales
-  
